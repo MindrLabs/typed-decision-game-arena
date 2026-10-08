@@ -1,0 +1,73 @@
+# Typed-decision game arena, suite v0.1.
+#
+# Everything a model sees and every rule that decides a score is pinned by this file and by the source files
+# listed in suites/v0.1.lock.json (`arena suite freeze` writes it). Test seeds only run against a matching lock;
+# changing anything after the lock is written makes a new suite version, and every player is run again.
+
+id = "v0.1"
+
+# Most options shown in one request. Larger option sets go through a knockout: balanced groups of at most this
+# many, one pick per group, then a final among the group winners. Every player gets the same procedure.
+group_size = 8
+
+# Confidence intervals: seeds are resampled within each game, the same resample for every player.
+bootstrap = 2000
+confidence = 0.95
+
+[atari]
+# Machado et al. (2018): sticky actions at 0.25 (the ALE v5 default) and 4 frames per step.
+sticky = 0.25
+
+[boards.macro]
+title = "Macro"
+summary = "Turn-based. One decision per meaningful choice: where a piece lands, which band the paddle covers, which way to turn, which column to play. A fixed controller does the low-level input."
+order = 1
+
+[boards.macro.games.tetris]
+piece_cap = 300
+seeds = { dev = "1001-1005", test = "1-50" }
+
+[boards.macro.games.snake]
+step_cap = 1000
+starve_cap = 200
+seeds = { dev = "1001-1005", test = "1-50" }
+
+[boards.macro.games.connect4]
+# Seeds cycle through the opponent ladder (random, win-block, negamax-4) and swap who moves first every three
+# seeds, so 60 seeds give each opponent-colour pair ten games.
+seeds = { dev = "1001-1006", test = "1-60" }
+reference = { depth = 7 }
+
+[boards.macro.games.pong]
+step_cap = 20000
+seeds = { dev = "1001-1003", test = "1-20" }
+
+[boards.macro.games.breakout]
+step_cap = 10000
+seeds = { dev = "1001-1003", test = "1-20" }
+
+[boards.frame]
+title = "Frame"
+summary = "Turn-based. One decision per step of the game: a key or a push of the paddle."
+order = 2
+
+[boards.frame.games.tetris]
+piece_cap = 100
+gravity = 2
+seeds = { dev = "1001-1003", test = "1-30" }
+
+[boards.frame.games.pong]
+decision_cap = 1500
+seeds = { dev = "1001-1003", test = "1-20" }
+
+[boards.frame.games.breakout]
+decision_cap = 1500
+seeds = { dev = "1001-1003", test = "1-20" }
+
+[boards.realtime]
+title = "Real-time"
+summary = "The frame board with reaction time: the game keeps running for as many steps as the player's measured median latency covers, holding the previous key, before a decision takes effect."
+order = 3
+from = "frame"
+# One step of the frame games: 4 frames at 60 Hz for ALE; Tetris uses the same step length.
+step_ms = 66.6667
