@@ -130,9 +130,12 @@ Environment(Machado et al. 2018)에서 돌립니다. 게임별 규칙, 선택지
 
 ## 전체 실행
 
-suite를 동결하고 앵커를 돌린 다음, 모델을 하나씩 GPU에 혼자 올려 Macro와 Frame 보드, `arena latency`,
-Real-time 보드, `arena bias` 순으로 돌립니다. 마지막으로 `arena verify`, `arena env`, `arena score`,
-`arena export`를 실행합니다. 명령어와 이 순서의 이유는 [docs/operations.md](docs/operations.md)에 있습니다.
+suite를 동결한 뒤 `uv run arena campaign --seed-set test`를 실행하면 정해진 순서대로 모두 돌아갑니다. 먼저
+앵커를 돌리고, 이어서 모델을 하나씩 GPU에 혼자 올려 Macro와 Frame 보드, `arena latency`, Real-time 보드,
+`arena bias` 순으로 진행합니다. 끝난 일은 건너뛰고, 실패한 에피소드는 다시 돌리며, 계속 실패하는 모델은 넘어갑니다.
+남은 일은 `uv run arena status`로 확인합니다. 마지막으로 `arena verify`, `arena env`, `arena score`,
+`arena export`를 실행하고, `arena dataset`으로 결정 로그를 Hugging Face dataset에 올립니다. 명령어와 이 순서의
+이유는 [docs/operations.md](docs/operations.md)에 있습니다.
 
 ## 모델 추가하기
 
@@ -140,7 +143,7 @@ Real-time 보드, `arena bias` 순으로 돌립니다. 마지막으로 `arena ve
    리비전을 고정합니다. model-compose가 `typed-decision` 태스크로 서빙하는 family(clef, kev, laya, nimble)는
    그대로 쓸 수 있습니다. 새 family는 model-compose 드라이버가 먼저 필요하고, `arena/families.py`에 두 줄을 추가합니다.
 2. `uv run python scripts/setup_runtimes.py <id>`와 `uv run arena smoke --player <id>`를 실행합니다.
-3. [전체 실행](#전체-실행)처럼 돌립니다. 다른 모델의 점수는 바뀌지 않습니다.
+3. `uv run arena campaign --seed-set test --models <id> --no-anchors`를 실행합니다. 다른 모델의 점수는 바뀌지 않습니다.
 
 ## 저장소 구성
 

@@ -131,9 +131,12 @@ pairwise differences carry Holm-adjusted p-values. The real-time board is scored
 
 ## Full runs
 
-Freeze the suite, run the anchors, then each model alone on the GPU: macro and frame boards, `arena latency`,
-the real-time board, `arena bias`; finally `arena verify`, `arena env`, `arena score` and `arena export`.
-[docs/operations.md](docs/operations.md) has the commands and the reasoning behind the order.
+Freeze the suite, then `uv run arena campaign --seed-set test` runs everything in order: the anchors, then each
+model alone on the GPU (macro and frame boards, `arena latency`, the real-time board, `arena bias`). It skips what is
+done, retries failed episodes and moves past a model that keeps failing; `uv run arena status` shows what is left.
+Finally `arena verify`, `arena env`, `arena score` and `arena export`, and `arena dataset` publishes the decision
+logs as a Hugging Face dataset. [docs/operations.md](docs/operations.md) has the commands and the reasoning behind
+the order.
 
 ## Adding a model
 
@@ -141,7 +144,7 @@ the real-time board, `arena bias`; finally `arena verify`, `arena env`, `arena s
    checkpoint revision. Any family model-compose serves under the `typed-decision` task works (clef, kev, laya,
    nimble); a new family needs a model-compose driver first and a two-line entry in `arena/families.py`.
 2. `uv run python scripts/setup_runtimes.py <id>` and `uv run arena smoke --player <id>`.
-3. Run it as in [Full runs](#full-runs). Nobody else's score changes.
+3. `uv run arena campaign --seed-set test --models <id> --no-anchors`. Nobody else's score changes.
 
 ## Repository layout
 

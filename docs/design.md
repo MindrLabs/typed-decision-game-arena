@@ -103,11 +103,51 @@ PascalPons/connect4는 AGPL-3.0이라 MIT 저장소에 넣지 않습니다. 매 
 - **kev-0.8b 짧은 실제 판:** 리플레이 불일치 0. 이 과정에서 Snake 벽 선택지의 존재하지 않는 좌표 문제를 찾아 고쳤습니다.
 - **전체 서버 동시 기동:** workflow 10개, 정적 웹 UI, 데이터 응답 확인.
 
-## 5. 남은 일
+## 5. 2026-10-08 두 번째 결정
 
-1. dev 시드 파일럿(모델 몇 개)으로 비용과 바닥·천장 효과를 확인한 뒤 `arena suite freeze`.
-2. test 시드 실행: 앵커, 모델 하나씩, latency, Real-time, bias, verify, env, score, export.
-3. 결정 로그 공개 위치(예: HF dataset) 결정.
-4. 새 family upstream 기여 후보(PR마다 사전 승인): NeoHorse-Jev-4B, AutoJev-27B, 그 밖의 Decision Index 상위 공개 모델.
-5. model-compose 첫 기동 설치 경쟁 이슈 초안.
-6. GitHub 저장소 생성, push, 공개 전환: 매번 사전 승인.
+남은 결정은 위임받아 다음과 같이 정했습니다.
+
+| 항목 | 결정 | 이유 |
+|---|---|---|
+| 저장소 | `MindrLabs/typed-decision-game-arena`를 private로 만들고 push | 커밋된 webui 빌드는 aarch64에서 만들었는데, x86_64에서 바이트 단위로 같은지는 GitHub CI가 돌아야 확인됩니다. 첫 실행에서 세 job 모두 통과했습니다 |
+| 결정 로그 공개 | HF dataset `MindrLabs/typed-decision-game-arena`, 새로 만들면 private | 크기는 결정 하나에 약 67 B(gz, 기준 봇)라 전체가 1 GB 안팎이어서 문제가 아닙니다. 기준은 버전 관리와 공개 관례였습니다. `arena dataset`이 suite, lock, 에피소드, 진단, 점수와 함께 커밋 하나로 올립니다 |
+| upstream 이슈 | [hanyeol/model-compose#37](https://github.com/hanyeol/model-compose/issues/37)로 등록 | main(`373d7bad`)에서도 `installer.py`가 디렉터리 존재를 확인한 뒤 clone하는 구조 그대로입니다. 우회책(`setup_runtimes.py`)은 유지합니다 |
+| 새 family 기여 | v0.1 결과 뒤로 미룸 | v0.1 범위 밖이고, PR마다 사전 승인을 받습니다 |
+| 공개 전환 | test 결과를 본 뒤 결정 | |
+
+## 6. 무인 실행을 위해 더한 것 (근거 포함)
+
+**`arena campaign`과 `arena status`.** test 실행은 모델 10개에 며칠이 걸립니다.
+- 문서에 적힌 순서를 그대로 돌립니다. 앵커를 먼저 돌리고, 이어 모델마다 turn-based 보드, latency, Real-time 보드, bias 순으로 진행합니다.
+- 끝난 일은 건너뜁니다.
+- 실패한 에피소드는 다시 돌리고, 그래도 실패하는 모델은 보고만 한 뒤 다음 모델로 넘어갑니다.
+- 서버가 재시작하는 동안은 최대 1시간 기다립니다.
+
+**latency는 GPU가 조용할 때만 잽니다.** 모델을 언로드한 model-compose 런타임도 CUDA 컨텍스트를 쥐고 있습니다(GB10에서 약 400 MiB). 그래서 다른 프로세스가 있는지가 아니라, 1 GiB를 넘게 쓰는 다른 프로세스가 있는지로 판단합니다. 가장 작은 Laya도 로드되면 약 2.8 GiB를 씁니다.
+
+**latency와 bias를 lock에 묶었습니다.**
+- 두 파일에 측정 당시의 lock을 기록합니다.
+- test 시드의 Real-time 보드는 현재 lock에서 잰 latency만 씁니다.
+- 점수를 낼 때, Real-time 에피소드가 실제로 쓴 지연이 latency 파일에서 나오는 지연과 같은지 확인합니다.
+
+이렇게 한 이유는 파일럿 latency에 노이즈가 있었기 때문입니다. 다운로드와 겹쳐 laya-typed의 frame/tetris는 46 ms, laya-english는 27 ms로 나왔습니다.
+
+**공개 파일에 로컬 경로를 남기지 않습니다.** latency 파일에 적는 GPU 프로세스는 플레이어 id나 실행 파일 이름으로만 표기합니다.
+
+**export는 검사를 모두 마친 뒤에 씁니다.** export가 도중에 거부되더라도 webui/data를 반쯤 지운 채로 남기지 않습니다.
+
+**worker에는 검증된 Suite를 그대로 넘깁니다.** 전에는 러너가 worker 안에서 suite를 id로 다시 읽었습니다. 이제는 상위 프로세스가 lock을 검사한 그 객체를 넘깁니다.
+
+**test campaign은 동결 커밋의 worktree에서 돌립니다.** campaign이 띄우는 프로세스는 코드를 디스크에서 다시 읽습니다. 그래서 실행 중에 체크아웃을 고쳐도 campaign에 영향이 가지 않게 분리합니다.
+
+**가중치는 미리 받아 둡니다.** clef(55 GB), clef-flash(19 GB), kev의 base 모델이 대상입니다. kev 체크포인트는 `training_config.json`의 `base_revision`으로 base 모델을 직접 고정하고 있습니다(9B-Base `68c46c4b`, 4B-Base `1001bb4d`, 0.8B-Base `dc7cdfe2`).
+
+## 7. 남은 일
+
+1. 파일럿
+   - laya 세 개의 latency는 쟀습니다(게임별 중앙값 15~46 ms).
+   - 나머지 모델의 latency를 재고, dev campaign(laya-typed, kev-0.8b, clef-flash, nimble-v2)을 돌립니다.
+   - 비용과 바닥·천장 효과를 본 뒤 `arena suite freeze`.
+2. test campaign을 마친 뒤 verify, env, score, export, dataset을 거쳐 결과를 커밋합니다.
+3. 저장소와 dataset의 공개 전환: 사전 승인.
+4. 새 family upstream 기여: v0.1 결과 뒤, PR마다 사전 승인. 후보는 NeoHorse-Jev-4B, AutoJev-27B, 그 밖의 Decision Index 상위 공개 모델입니다.

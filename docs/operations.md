@@ -12,8 +12,10 @@ uv run python scripts/setup_runtimes.py   # one model-compose runtime per player
 
 `setup_runtimes.py` starts each component alone once. model-compose starts all components together, and on a first
 start the components of one family install the same GitHub package out of one shared clone directory at the same
-time, which can fail. After this step `scripts/serve.sh` finds everything installed and starts in seconds. No model
-weights are downloaded here; each model downloads on its first request.
+time, which can fail ([hanyeol/model-compose#37](https://github.com/hanyeol/model-compose/issues/37)). After this
+step `scripts/serve.sh` finds everything installed and starts in seconds. No model weights are downloaded here;
+each model downloads on its first request (Clef's 55 GB take minutes, well inside the runner's 15-minute timeout,
+and latency measurements warm up first).
 
 ## Serving
 
@@ -36,13 +38,29 @@ Check a player end to end before a long run (one request per game):
 uv run arena smoke --player kev-0.8b
 ```
 
+For a campaign of several days, run the server as a user service that restarts after a crash; the campaign waits up
+to an hour for it to come back:
+
+```bash
+systemd-run --user --unit=arena-serve -p Restart=on-failure --working-directory=$PWD -E PATH=$PATH scripts/serve.sh
+systemctl --user stop arena-serve         # stops it and every model runtime
+```
+
 ## Order of a full run
+
+`arena campaign` runs everything of a seed set in this order, skips what is already done, retries failed
+episodes, and moves on past a model that keeps failing (`arena status` shows what is left; running the same command
+again picks it up):
+
+1. the anchors, random and reference, on the macro and frame boards (CPU only, eight processes);
+2. each model in turn: macro and frame boards; latency, once no other model holds more than an idle context on the
+   GPU; the real-time board, which needs that latency; position bias.
+
+Steps:
 
 1. **Pilot on dev seeds** (results stay local; `results/*/dev/` is git-ignored):
    ```bash
-   uv run arena board --board macro --player random --seeds dev --workers 8
-   uv run arena board --board macro --player reference --seeds dev --workers 8
-   uv run arena board --board macro --player kev-0.8b --seeds dev
+   uv run arena campaign --seed-set dev --models laya-typed,kev-0.8b,clef-flash,nimble-v2
    uv run arena score --seed-set dev
    ```
    Adjust only parameters in `suites/v0.1.toml` and only on dev seeds. Regenerate the golden questions if the text
@@ -50,43 +68,44 @@ uv run arena smoke --player kev-0.8b
    player still reads whole questions (`uv sync --extra diag && uv run arena laya-cuts`; with the 2048 / 512
    budgets nothing was cut on 2026-10-08).
 2. **Freeze**: `uv run arena suite freeze`, commit `suites/v0.1.lock.json`. From now on the protocol is fixed.
-3. **Anchors** on test seeds (CPU only; parallel is fine):
+   Latency and bias measured before the freeze do not count on test seeds: the campaign measures them again.
+3. **The test campaign**, from a worktree at the frozen commit, so that later edits to the checkout cannot reach a
+   run that lasts days (processes the campaign starts import the code from disk). Results go to the main checkout:
    ```bash
-   for board in macro frame; do for p in random reference; do
-     uv run arena board --board $board --player $p --seeds test --workers 8; done; done
+   git worktree add ../arena-run HEAD && cd ../arena-run && uv sync
+   systemd-run --user --unit=arena-campaign --working-directory=$PWD -E PATH=$PATH \
+     uv run arena campaign --seed-set test --results ~/Projects/typed-decision-game-arena/results \
+       --models laya-multilingual,laya-english,laya-typed,kev-0.8b,kev-4b,clef-flash,nimble-v2,nimble,kev-9b,clef
+   journalctl --user -u arena-campaign -f    # follow it
+   uv run arena status --seed-set test       # what is complete
    ```
-4. **Models**, one at a time, macro and frame boards, then latency, then the real-time board:
-   ```bash
-   P=kev-0.8b
-   uv run arena board --board macro --player $P --seeds test
-   uv run arena board --board frame --player $P --seeds test
-   uv run arena latency --player $P          # alone on the GPU
-   uv run arena board --board realtime --player $P --seeds test
-   uv run arena bias --player $P
-   ```
-5. **Check and publish**:
+   Fastest models first, so the board fills early. To give the GPU to something else, `systemctl --user stop
+   arena-campaign`: the episodes that were running are discarded and run again on the next start.
+4. **Check and publish**, from the main checkout:
    ```bash
    uv run arena verify --seed-set test       # replays every episode
-   uv run arena env                          # GPU, driver, model-compose revision, runtime packages
+   uv run arena env                          # GPU, driver, model-compose revision, packages of every runtime
    uv run arena score --seed-set test        # results/v0.1/scores-test.json
    uv run arena export --seed-set test       # webui/data for the leaderboard
+   uv sync --extra publish && uv run arena dataset --seed-set test
    ```
-
-Long runs outlive a terminal: start them with `systemd-run --user --unit=<name> --working-directory=$PWD -E PATH=$PATH ...`
-and follow `journalctl --user -u <name> -f`.
+   `arena dataset` uploads the decision logs with the suite, the episode lines, the diagnostics and the scores to
+   the Hugging Face dataset `MindrLabs/typed-decision-game-arena` in one commit (a new dataset is private). Then
+   commit `results/v0.1/` (episode lines, scores, latency, bias, environment) and `webui/data`.
 
 ## Cost
 
 Requests per episode depend on the game (Tetris landings above 8 options take several requests: on average about
-4.7 per piece). Measured on the GB10 with the server warm: Laya about 30 ms per request, Kev 0.8B 60 to 100 ms,
+4.7 per piece). Measured on the GB10 with the server warm: Laya 15 to 30 ms per request, Kev 0.8B 75 to 100 ms,
 Nimble 9B about 250 ms. An upper bound for one model over every test seed of the macro and frame boards is about
-230,000 requests; most models end games far earlier than the caps.
+230,000 requests; most models end games far earlier than the caps. The real-time board costs about 1/k of the frame
+board, since a model with a reaction time of k steps decides once every k steps.
 
 ## Results layout
 
 See [`results/README.md`](../results/README.md). Episode lines and scores are small and belong in git; decision
-logs are git-ignored and published separately (for example as a dataset), since the replays on the site only need
-a few of them.
+logs are git-ignored and published as a Hugging Face dataset (`arena dataset`), since the replays on the site only
+need a few of them.
 
 ## Troubleshooting
 
@@ -94,5 +113,10 @@ a few of them.
   `scripts/setup_runtimes.py` (see above).
 - **`workflow ... is not served`**: the player id is not in `model-compose.yml`, or the server runs another file.
 - **Test seeds refuse to run**: `uv run arena suite check` lists what differs from the lock.
-- **The real-time board refuses a player**: measure its latency first (`arena latency`).
+- **The real-time board refuses a player**: measure its latency first (`arena latency`). On test seeds it must have
+  been measured under the current lock.
+- **`arena score` refuses a real-time board** because its episodes ran with another delay than the latency file
+  gives: the latency was measured again after the runs. Rerun that player's real-time board, or restore the file.
+- **The campaign stopped with "no model server"**: the server was away for over an hour. Start it and run the same
+  command again.
 - **An episode failed**: it is in `errors.jsonl`; re-running the same command runs it again from the start.

@@ -126,8 +126,10 @@ Environment 上（Machado et al. 2018）。各游戏的规则、选项和上限�
 
 ## 完整运行
 
-冻结 suite，运行锚点，然后让每个模型独占 GPU 依次运行：Macro 与 Frame 榜单、`arena latency`、Real-time 榜单、
-`arena bias`；最后运行 `arena verify`、`arena env`、`arena score` 和 `arena export`。命令及该顺序的原因见
+冻结 suite 后，`uv run arena campaign --seed-set test` 按顺序运行全部内容：先运行锚点，再让每个模型独占 GPU 依次
+运行 Macro 与 Frame 榜单、`arena latency`、Real-time 榜单和 `arena bias`。已完成的部分会跳过，失败的对局会重跑，
+持续失败的模型会被跳过；用 `uv run arena status` 查看剩余部分。最后运行 `arena verify`、`arena env`、
+`arena score` 和 `arena export`，并用 `arena dataset` 把决策日志发布为 Hugging Face 数据集。命令及该顺序的原因见
 [docs/operations.md](docs/operations.md)。
 
 ## 添加模型
@@ -136,7 +138,7 @@ Environment 上（Machado et al. 2018）。各游戏的规则、选项和上限�
    以 `typed-decision` 任务提供服务的 family（clef、kev、laya、nimble）都可以直接使用；新的 family 需要先有
    model-compose 驱动，并在 `arena/families.py` 中加两行。
 2. 运行 `uv run python scripts/setup_runtimes.py <id>` 和 `uv run arena smoke --player <id>`。
-3. 按[完整运行](#完整运行)执行。其他模型的分数不会改变。
+3. 运行 `uv run arena campaign --seed-set test --models <id> --no-anchors`。其他模型的分数不会改变。
 
 ## 仓库结构
 

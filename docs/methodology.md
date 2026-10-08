@@ -91,8 +91,10 @@ knows what it decided last.
 The latency is each model's median on the frame board's probe questions (`arena latency`): 200 fixed questions
 per game taken from the reference player's games on probe seeds, after 20 warm-up requests, timed on the client
 (model-compose's HTTP overhead included), with the model alone on the GPU. The file records the GPU and the other
-GPU processes seen at the start, so a contaminated measurement is visible. *k* is fixed per model, so the
-real-time board is as reproducible as the others, but it belongs to the machine that measured it.
+GPU processes seen at the start, so a contaminated measurement is visible. Test seeds use only a latency measured
+under the frozen suite, and scores are refused when a model's real-time episodes ran with another *k* than its
+published latency gives. *k* is fixed per model, so the real-time board is as reproducible as the others, but it
+belongs to the machine that measured it.
 
 ## Seeds
 
