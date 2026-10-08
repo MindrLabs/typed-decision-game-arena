@@ -237,8 +237,17 @@ class Campaign:
             model.close()
         return True
 
+    def complete(self, player: str) -> bool:
+        """Every episode, the latency and the bias of this player are there for the current lock."""
+        (row,) = [r for r in status(self.suite, self.seed_set, self.results) if r.player == player]
+        boards = all(done == expected for done, expected in (v for v in row.boards.values() if v is not None))
+        return boards and bool(row.latency) and bool(row.bias)
+
     def model(self, player: str) -> None:
         self.say(f"== {player}")
+        if self.complete(player):
+            self.say(f"{player}: complete")
+            return  # no smoke question: it would load the weights for nothing
         try:
             if not self.answers(player):
                 return

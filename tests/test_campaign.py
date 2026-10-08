@@ -70,6 +70,7 @@ def test_a_campaign_runs_everything_once(tiny: Suite, results: Path, server: str
     lines.clear()
     assert campaign(tiny, results, server, lines).run(["kev-0.8b"]).failed == []
     assert files(results) == before  # nothing measured or played twice
+    assert "kev-0.8b: complete" in lines  # and no smoke question that would load the model
     assert lines[-1] == "campaign complete"
 
 
