@@ -1,0 +1,353 @@
+"""`arena`: run, verify, score and publish the typed-decision game arena.
+
+arena list                                    boards, games and players
+arena show   --board macro --game tetris      print exactly what a model is asked
+arena smoke  --player kev-0.8b                one request per game against the model server
+arena run    --board macro --game tetris --player kev-0.8b --seeds dev
+arena board  --board macro --player kev-0.8b --seeds test       every game of a board
+arena verify                                  replay every logged episode
+arena score  --seed-set test                  normalised scores, intervals, pairwise tests
+arena export --seed-set test                  site data into webui/data
+arena latency --player kev-0.8b               latency on fixed probe questions
+arena bias    --player kev-0.8b               option-order (position) bias
+arena laya-cuts                               how much of each question Laya reads
+arena suite show|freeze|check                 the frozen protocol
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from collections.abc import Sequence
+from pathlib import Path
+
+from arena import __version__
+from arena.client import DEFAULT_SERVER, ModelClient
+from arena.logs import RESULTS, write_json
+from arena.registry import BASELINES, contestants
+from arena.suite import SEED_SETS, Suite, freeze, load_suite, lock_differences, parse_seeds
+
+
+def _seeds(suite: Suite, board: str, game: str, value: str, seed_set: str | None) -> tuple[list[int], str]:
+    if value in SEED_SETS:
+        return suite.game(board, game).seeds[value], value
+    if seed_set is None:
+        raise SystemExit("an explicit seed list needs --seed-set dev|test")
+    allowed = set(suite.game(board, game).seeds[seed_set])
+    seeds = parse_seeds(value)
+    outside = sorted(set(seeds) - allowed)
+    if outside:
+        raise SystemExit(f"seeds {outside} are not {seed_set} seeds of {board}/{game}")
+    return seeds, seed_set
+
+
+def cmd_list(args: argparse.Namespace) -> int:
+    suite = load_suite(args.suite)
+    for board in sorted(suite.boards.values(), key=lambda b: b.order):
+        print(f"{board.id}: {board.title}. {board.summary}")
+        for game, spec in board.games.items():
+            seeds = ", ".join(f"{name} {len(values)}" for name, values in spec.seeds.items())
+            print(f"  {game:<9} {spec.params or ''} seeds: {seeds}")
+    print("players:")
+    for name in BASELINES:
+        print(f"  {name:<18} baseline")
+    for c in contestants().values():
+        print(f"  {c.id:<18} {c.family:<7} {c.repository}@{(c.revision or 'unpinned')[:12]}")
+    return 0
+
+
+def cmd_show(args: argparse.Namespace) -> int:
+    from arena.episode import decision_rng, realtime_note
+    from arena.players import ReferencePlayer
+    from arena.tasks import make_task
+
+    suite = load_suite(args.suite)
+    spec = suite.game(args.board, args.game)
+    task = make_task(suite, args.board, args.game)
+    reference = ReferencePlayer(args.game, spec.track, dict(spec.reference))
+    task.reset(args.seed)
+    reference.start(args.seed)
+    try:
+        for index in range(args.skip + args.decisions):
+            if task.done:
+                break
+            point = task.decision_point()
+            rng = decision_rng(suite.id, args.board, args.game, args.seed, index)
+            if index >= args.skip:
+                q = point.question
+                state = q.state
+                if suite.board(args.board).step_ms is not None:
+                    state += "\n" + realtime_note(1, task.default_key)
+                print(f"--- decision {index} (step {task.steps}) ---")
+                print(state)
+                print(f"\nInstructions: {q.instructions}")
+                for option in q.options:
+                    print(f"  [{option.key}] {option.text}")
+                print()
+            task.apply(reference.decide(point, rng).choice)
+    finally:
+        task.close()
+    return 0
+
+
+def cmd_smoke(args: argparse.Namespace) -> int:
+    from arena.players import TextPlayer
+    from arena.probe import sample_questions
+
+    suite = load_suite(args.suite)
+    contestant = contestants()[args.player]
+    player = TextPlayer(contestant, ModelClient(args.server, retries=0), suite.group_size)
+    failures = 0
+    try:
+        for board, game in suite.pairs():
+            if suite.board(board).step_ms is not None:
+                continue
+            question = sample_questions(suite, board, game, 1)[0]
+            try:
+                call = player.ask(question, "smoke")
+                top = max((call.probabilities or {}).items(), key=lambda kv: kv[1], default=(None, None))
+                print(f"ok    {board}/{game}: {call.choice} ({call.latency_ms:.0f} ms, top p {top[1]})")
+            except Exception as error:
+                failures += 1
+                print(f"FAIL  {board}/{game}: {error}")
+    finally:
+        player.close()
+    return 1 if failures else 0
+
+
+def _run_one(args: argparse.Namespace, suite: Suite, board: str, game: str) -> int:
+    from arena.runner import run
+
+    seeds, seed_set = _seeds(suite, board, game, args.seeds, args.seed_set)
+    summary = run(
+        suite,
+        board,
+        game,
+        args.player,
+        seeds,
+        seed_set=seed_set,
+        server=args.server,
+        workers=args.workers,
+        results=Path(args.results),
+    )
+    print(
+        f"{board}/{game} {args.player}: {len(summary.finished)} finished, {summary.skipped} already done, "
+        f"{len(summary.failed)} failed",
+        file=sys.stderr,
+    )
+    return 1 if summary.failed else 0
+
+
+def cmd_run(args: argparse.Namespace) -> int:
+    return _run_one(args, load_suite(args.suite), args.board, args.game)
+
+
+def cmd_board(args: argparse.Namespace) -> int:
+    suite = load_suite(args.suite)
+    status = 0
+    for game in suite.board(args.board).games:
+        status |= _run_one(args, suite, args.board, game)
+    return status
+
+
+def cmd_verify(args: argparse.Namespace) -> int:
+    from arena.replay import verify
+
+    suite = load_suite(args.suite)
+    checked = failed = 0
+    for item in verify(
+        suite, args.seed_set, boards=args.board, games=args.game, players=args.player, results=Path(args.results)
+    ):
+        checked += 1
+        if item.problem:
+            failed += 1
+            print(f"MISMATCH {item.board}/{item.game} {item.player} seed {item.seed}: {item.problem}")
+        elif args.verbose:
+            print(f"ok {item.board}/{item.game} {item.player} seed {item.seed} ({item.decisions} decisions)")
+    print(f"{checked} episodes replayed, {failed} mismatches", file=sys.stderr)
+    return 1 if failed else 0
+
+
+def cmd_score(args: argparse.Namespace) -> int:
+    from arena.score import score
+
+    suite = load_suite(args.suite)
+    report = score(suite, args.seed_set, Path(args.results))
+    out = Path(args.out) if args.out else Path(args.results) / suite.id / f"scores-{args.seed_set}.json"
+    write_json(out, report)
+    for board, data in report["boards"].items():
+        print(f"{board}:")
+        if data["missing_anchors"]:
+            print(f"  anchors missing for {', '.join(data['missing_anchors'])}")
+        for player in data["ranking"]:
+            info = data["players"][player]
+            low, high = info.get("index_ci") or (float("nan"), float("nan"))
+            print(f"  {info['rank']:>2}. {player:<18} {info['index']:6.1f}  [{low:.1f}, {high:.1f}]")
+        unranked = [p for p in data["players"] if p not in data["ranking"]]
+        if unranked:
+            print(f"  incomplete: {', '.join(unranked)}")
+    print(f"wrote {out}", file=sys.stderr)
+    return 0
+
+
+def cmd_export(args: argparse.Namespace) -> int:
+    from arena.export import WEBUI_DATA, export
+
+    suite = load_suite(args.suite)
+    out = Path(args.out) if args.out else WEBUI_DATA
+    path = export(suite, args.seed_set, out=out, results=Path(args.results), replays_per_player=args.replays)
+    print(f"wrote {path}", file=sys.stderr)
+    return 0
+
+
+def cmd_latency(args: argparse.Namespace) -> int:
+    from arena.latency import measure
+
+    path = measure(load_suite(args.suite), args.player, server=args.server, sample=args.sample)
+    print(f"wrote {path}", file=sys.stderr)
+    return 0
+
+
+def cmd_bias(args: argparse.Namespace) -> int:
+    from arena.bias import measure
+
+    path = measure(load_suite(args.suite), args.player, server=args.server, sample=args.sample)
+    print(f"wrote {path}", file=sys.stderr)
+    return 0
+
+
+def cmd_laya_cuts(args: argparse.Namespace) -> int:
+    from arena.laya_cuts import measure
+
+    suite = load_suite(args.suite)
+    report = measure(suite, sample=args.sample)
+    out = RESULTS / suite.id / "laya-cuts.json"
+    write_json(out, report)
+    print(f"wrote {out}", file=sys.stderr)
+    return 0
+
+
+def cmd_env(args: argparse.Namespace) -> int:
+    from arena.environment import describe
+
+    suite = load_suite(args.suite)
+    out = Path(args.results) / suite.id / "environment.json"
+    write_json(out, describe())
+    print(f"wrote {out}", file=sys.stderr)
+    return 0
+
+
+def cmd_suite(args: argparse.Namespace) -> int:
+    suite = load_suite(args.suite)
+    if args.action == "show":
+        from arena.suite import manifest
+
+        print(json.dumps(manifest(suite), indent=2, sort_keys=True))
+        return 0
+    if args.action == "freeze":
+        print(f"wrote {freeze(suite)}")
+        return 0
+    problems = lock_differences(suite)
+    for line in problems:
+        print(line)
+    print("lock matches" if not problems else f"{len(problems)} differences", file=sys.stderr)
+    return 1 if problems else 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog="arena", description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument("--version", action="version", version=f"arena {__version__}")
+    parser.add_argument("--suite", default="v0.1", help="suite id (suites/<id>.toml)")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    def server(p: argparse.ArgumentParser) -> None:
+        p.add_argument("--server", default=DEFAULT_SERVER, help=f"model-compose API base (default {DEFAULT_SERVER})")
+
+    def results(p: argparse.ArgumentParser) -> None:
+        p.add_argument("--results", default=str(RESULTS), help="results directory")
+
+    sub.add_parser("list", help="boards, games and players").set_defaults(func=cmd_list)
+
+    p = sub.add_parser("show", help="print the questions a model sees")
+    p.add_argument("--board", required=True)
+    p.add_argument("--game", required=True)
+    p.add_argument("--seed", type=int, default=1001)
+    p.add_argument("--skip", type=int, default=0, help="decisions to play (as the reference) before printing")
+    p.add_argument("--decisions", type=int, default=1)
+    p.set_defaults(func=cmd_show)
+
+    p = sub.add_parser("smoke", help="one request per game against the model server")
+    p.add_argument("--player", required=True)
+    server(p)
+    p.set_defaults(func=cmd_smoke)
+
+    for name, func, helptext in (("run", cmd_run, "run one game"), ("board", cmd_board, "run every game of a board")):
+        p = sub.add_parser(name, help=helptext)
+        p.add_argument("--board", required=True)
+        if name == "run":
+            p.add_argument("--game", required=True)
+        p.add_argument("--player", required=True)
+        p.add_argument("--seeds", required=True, help="dev, test, or a list like 1-5,8 (with --seed-set)")
+        p.add_argument("--seed-set", choices=SEED_SETS)
+        p.add_argument("--workers", type=int, default=1, help="parallel episodes (baselines: CPU cores)")
+        server(p)
+        results(p)
+        p.set_defaults(func=func)
+
+    p = sub.add_parser("verify", help="replay logged episodes and compare")
+    p.add_argument("--seed-set", choices=SEED_SETS, default="test")
+    p.add_argument("--board", action="append")
+    p.add_argument("--game", action="append")
+    p.add_argument("--player", action="append")
+    p.add_argument("--verbose", action="store_true")
+    results(p)
+    p.set_defaults(func=cmd_verify)
+
+    p = sub.add_parser("score", help="normalised scores and intervals")
+    p.add_argument("--seed-set", choices=SEED_SETS, default="test")
+    p.add_argument("--out")
+    results(p)
+    p.set_defaults(func=cmd_score)
+
+    p = sub.add_parser("export", help="write site data into webui/data")
+    p.add_argument("--seed-set", choices=SEED_SETS, default="test")
+    p.add_argument("--out")
+    p.add_argument("--replays", type=int, default=2, help="replays per (board, game, player)")
+    results(p)
+    p.set_defaults(func=cmd_export)
+
+    p = sub.add_parser("latency", help="latency on fixed probe questions (run the model alone on the GPU)")
+    p.add_argument("--player", required=True)
+    p.add_argument("--sample", type=int, default=200)
+    server(p)
+    p.set_defaults(func=cmd_latency)
+
+    p = sub.add_parser("bias", help="option-order bias on fixed probe questions")
+    p.add_argument("--player", required=True)
+    p.add_argument("--sample", type=int, default=40)
+    server(p)
+    p.set_defaults(func=cmd_bias)
+
+    p = sub.add_parser("laya-cuts", help="token budgets of the Laya players against the probe questions")
+    p.add_argument("--sample", type=int, default=100)
+    p.set_defaults(func=cmd_laya_cuts)
+
+    p = sub.add_parser("env", help="record software and hardware next to the results")
+    results(p)
+    p.set_defaults(func=cmd_env)
+
+    p = sub.add_parser("suite", help="show, freeze or check the suite lock")
+    p.add_argument("action", choices=("show", "freeze", "check"))
+    p.set_defaults(func=cmd_suite)
+    return parser
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    status: int = args.func(args)
+    return status
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
