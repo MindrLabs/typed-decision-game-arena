@@ -1,0 +1,80 @@
+[project]
+name = "typed-decision-game-arena"
+version = "0.1.0"
+description = "Typed-decision models playing Tetris, Snake, Connect Four, Pong and Breakout under one pre-registered protocol"
+readme = "README.md"
+license = "MIT"
+requires-python = "==3.12.*"
+dependencies = [
+    "ale-py>=0.12.1",
+    "gymnasium>=1.4.0",
+    "httpx>=0.28.1",
+    "numpy>=2.3",
+    "pyyaml>=6.0.2",
+]
+
+[project.urls]
+Repository = "https://github.com/MindrLabs/typed-decision-game-arena"
+
+[project.optional-dependencies]
+# Token counts with the encoders behind Laya (input-cut diagnostics only).
+diag = ["tokenizers>=0.22", "huggingface-hub>=0.35"]
+
+[project.scripts]
+arena = "arena.cli:main"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.140",
+    "mypy>=1.18",
+    "pytest>=8.4",
+    "ruff>=0.14",
+    "types-pyyaml>=6.0.12",
+]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["arena"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "PERF", "PL", "N"]
+ignore = [
+    "PLR0911", "PLR0912", "PLR0913", "PLR0915", "PLR2004",  # game code is branchy and full of board constants
+    "RUF001", "RUF002", "RUF003",                            # en dashes and arrows in prose are intended
+]
+
+[tool.ruff.lint.per-file-ignores]
+# One-letter module aliases (`tetris as T`) keep game tests readable.
+"tests/**" = ["PLC0415", "N812"]
+# Subcommands import what they need, so `arena list` does not start the emulator; the diag extra is optional.
+"arena/cli.py" = ["PLC0415"]
+"arena/laya_cuts.py" = ["PLC0415"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["arena", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["gymnasium.*", "ale_py.*", "tokenizers.*", "huggingface_hub.*"]
+ignore_missing_imports = true
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.12"
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+markers = [
+    "ale: needs the Arcade Learning Environment (ale-py)",
+    "slow: takes more than a few seconds",
+]

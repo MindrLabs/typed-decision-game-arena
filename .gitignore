@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+dist/
+
+# model-compose runtimes and caches
+.runtime/
+.cache/
+
+# Runs: dev-seed pilots stay local; test-seed decision logs are published as a dataset, not in git
+results/*/dev/
+results/*/test/**/decisions/
+results/*/test/**/errors.jsonl
+*.tmp
+
+# Site sources build into webui/ (committed); node_modules never
+site/node_modules/
+site/.vite/
+node_modules/
+
+# Local env
+.env
