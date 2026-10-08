@@ -19,6 +19,8 @@ Repository = "https://github.com/MindrLabs/typed-decision-game-arena"
 [project.optional-dependencies]
 # Token counts with the encoders behind Laya (input-cut diagnostics only).
 diag = ["tokenizers>=0.22", "huggingface-hub>=0.35"]
+# Uploading results as a Hugging Face dataset (`arena dataset`).
+publish = ["huggingface-hub>=0.35"]
 
 [project.scripts]
 arena = "arena.cli:main"
@@ -53,9 +55,11 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 # One-letter module aliases (`tetris as T`) keep game tests readable.
 "tests/**" = ["PLC0415", "N812"]
-# Subcommands import what they need, so `arena list` does not start the emulator; the diag extra is optional.
+# Subcommands import what they need, so `arena list` does not start the emulator; the diag and publish extras
+# are optional.
 "arena/cli.py" = ["PLC0415"]
 "arena/laya_cuts.py" = ["PLC0415"]
+"arena/dataset.py" = ["PLC0415"]
 
 [tool.mypy]
 python_version = "3.12"

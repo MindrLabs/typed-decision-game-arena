@@ -530,6 +530,9 @@ diag = [
     { name = "huggingface-hub" },
     { name = "tokenizers" },
 ]
+publish = [
+    { name = "huggingface-hub" },
+]
 
 [package.dev-dependencies]
 dev = [
@@ -546,11 +549,12 @@ requires-dist = [
     { name = "gymnasium", specifier = ">=1.4.0" },
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "huggingface-hub", marker = "extra == 'diag'", specifier = ">=0.35" },
+    { name = "huggingface-hub", marker = "extra == 'publish'", specifier = ">=0.35" },
     { name = "numpy", specifier = ">=2.3" },
     { name = "pyyaml", specifier = ">=6.0.2" },
     { name = "tokenizers", marker = "extra == 'diag'", specifier = ">=0.22" },
 ]
-provides-extras = ["diag"]
+provides-extras = ["diag", "publish"]
 
 [package.metadata.requires-dev]
 dev = [

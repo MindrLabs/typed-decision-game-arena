@@ -27,12 +27,20 @@ site:
     pnpm --dir site install --frozen-lockfile
     pnpm --dir site build
 
-# dev-seed pilot of one player on the macro board
-pilot player:
-    uv run arena board --board macro --player {{player}} --seeds dev
+# dev-seed pilot: anchors, then each model's boards, latency and bias (resumable)
+pilot models="laya-typed,kev-0.8b,clef-flash,nimble-v2":
+    uv run arena campaign --seed-set dev --models {{models}}
+
+# what is complete, per player and board
+status seed_set="test":
+    uv run arena status --seed-set {{seed_set}}
 
 # refresh scores and the leaderboard data from a seed set (dev or test)
 publish seed_set="test":
     uv run arena verify --seed-set {{seed_set}}
     uv run arena score --seed-set {{seed_set}}
     uv run arena export --seed-set {{seed_set}}
+
+# decision logs and results to the Hugging Face dataset (a new one is private)
+dataset seed_set="test":
+    uv run --extra publish arena dataset --seed-set {{seed_set}}

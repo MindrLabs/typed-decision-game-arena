@@ -10,6 +10,9 @@ arena score  --seed-set test                  normalised scores, intervals, pair
 arena export --seed-set test                  site data into webui/data
 arena latency --player kev-0.8b               latency on fixed probe questions
 arena bias    --player kev-0.8b               option-order (position) bias
+arena campaign --seed-set test                every run in order, unattended and resumable
+arena status   --seed-set test                what is complete, per player and board
+arena dataset  --seed-set test                decision logs and results to a Hugging Face dataset
 arena laya-cuts                               how much of each question Laya reads
 arena suite show|freeze|check                 the frozen protocol
 """
@@ -204,7 +207,8 @@ def cmd_export(args: argparse.Namespace) -> int:
 def cmd_latency(args: argparse.Namespace) -> int:
     from arena.latency import measure
 
-    path = measure(load_suite(args.suite), args.player, server=args.server, sample=args.sample)
+    suite = load_suite(args.suite)
+    path = measure(suite, args.player, server=args.server, sample=args.sample, results=Path(args.results))
     print(f"wrote {path}", file=sys.stderr)
     return 0
 
@@ -212,8 +216,49 @@ def cmd_latency(args: argparse.Namespace) -> int:
 def cmd_bias(args: argparse.Namespace) -> int:
     from arena.bias import measure
 
-    path = measure(load_suite(args.suite), args.player, server=args.server, sample=args.sample)
+    suite = load_suite(args.suite)
+    path = measure(suite, args.player, server=args.server, sample=args.sample, results=Path(args.results))
     print(f"wrote {path}", file=sys.stderr)
+    return 0
+
+
+def cmd_campaign(args: argparse.Namespace) -> int:
+    from arena.campaign import Campaign, ServerUnavailableError
+
+    models = [m for m in args.models.split(",") if m] if args.models else list(contestants())
+    campaign = Campaign(
+        load_suite(args.suite),
+        args.seed_set,
+        server=args.server,
+        results=Path(args.results),
+        anchor_workers=args.anchor_workers,
+        attempts=args.attempts,
+        server_wait=args.server_wait,
+        gpu_wait=args.gpu_wait,
+        latency_sample=args.latency_sample,
+        bias_sample=args.bias_sample,
+    )
+    try:
+        report = campaign.run(models, anchors=not args.no_anchors)
+    except ServerUnavailableError as error:
+        print(f"campaign stopped: {error}; run the same command again once the server is up", file=sys.stderr)
+        return 2
+    return 1 if report.failed else 0
+
+
+def cmd_dataset(args: argparse.Namespace) -> int:
+    from arena.dataset import publish
+
+    suite = load_suite(args.suite)
+    publish(suite, args.seed_set, args.repo, results=Path(args.results), private=not args.public)
+    print(f"uploaded {suite.id} {args.seed_set} to https://huggingface.co/datasets/{args.repo}", file=sys.stderr)
+    return 0
+
+
+def cmd_status(args: argparse.Namespace) -> int:
+    from arena.campaign import format_status, status
+
+    print(format_status(status(load_suite(args.suite), args.seed_set, Path(args.results))))
     return 0
 
 
@@ -321,13 +366,41 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--player", required=True)
     p.add_argument("--sample", type=int, default=200)
     server(p)
+    results(p)
     p.set_defaults(func=cmd_latency)
 
     p = sub.add_parser("bias", help="option-order bias on fixed probe questions")
     p.add_argument("--player", required=True)
     p.add_argument("--sample", type=int, default=40)
     server(p)
+    results(p)
     p.set_defaults(func=cmd_bias)
+
+    p = sub.add_parser("campaign", help="every run of a seed set in order: anchors, then each model (resumable)")
+    p.add_argument("--seed-set", choices=SEED_SETS, required=True)
+    p.add_argument("--models", help="comma-separated, in running order (default: every model in model-compose.yml)")
+    p.add_argument("--no-anchors", action="store_true", help="leave out the random and reference runs")
+    p.add_argument("--anchor-workers", type=int, default=8, help="parallel episodes of the anchors (CPU only)")
+    p.add_argument("--attempts", type=int, default=3, help="runs of one game until its failed episodes pass")
+    p.add_argument("--server-wait", type=float, default=3600, help="seconds to wait for an absent model server")
+    p.add_argument("--gpu-wait", type=float, default=1800, help="seconds a latency measurement waits for the GPU")
+    p.add_argument("--latency-sample", type=int, default=200)
+    p.add_argument("--bias-sample", type=int, default=40)
+    server(p)
+    results(p)
+    p.set_defaults(func=cmd_campaign)
+
+    p = sub.add_parser("dataset", help="publish decision logs and results as a Hugging Face dataset")
+    p.add_argument("--seed-set", choices=SEED_SETS, default="test")
+    p.add_argument("--repo", default="MindrLabs/typed-decision-game-arena", help="dataset repository id")
+    p.add_argument("--public", action="store_true", help="create it public (an existing one keeps its visibility)")
+    results(p)
+    p.set_defaults(func=cmd_dataset)
+
+    p = sub.add_parser("status", help="what is complete, per player and board")
+    p.add_argument("--seed-set", choices=SEED_SETS, default="test")
+    results(p)
+    p.set_defaults(func=cmd_status)
 
     p = sub.add_parser("laya-cuts", help="token budgets of the Laya players against the probe questions")
     p.add_argument("--sample", type=int, default=100)
