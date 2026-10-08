@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+
+/* Colours are CSS variables so light and dark come from one set of utilities (bg-surface, text-muted, ...).
+   The canvas renderers read the same variables. */
+:root {
+  --bg: #f5f7f7;
+  --surface: #ffffff;
+  --surface-2: #eef2f2;
+  --border: #dbe2e3;
+  --text: #121a1d;
+  --muted: #56656c;
+  --faint: #86949a;
+  --accent: #0f766e;
+  --accent-strong: #0b5a54;
+  --accent-soft: #e2f4f1;
+  --heat: #14b8a6;
+  --warn-bg: #fff7e5;
+  --warn-border: #eec36b;
+  --warn-text: #6a4300;
+  --good: #15803d;
+
+  /* game canvases */
+  --game-bg: #10181b;
+  --game-grid: #1f2b30;
+  --game-stack: #8aa0a8;
+  --game-text: #e9f1f2;
+  --game-dim: #6e8187;
+  --game-snake: #2dd4bf;
+  --game-snake-head: #99f6e4;
+  --game-food: #f87171;
+  --game-board: #1d4ed8;
+  --game-hole: #0b1220;
+  --game-x: #ef4444;
+  --game-o: #facc15;
+  --game-player: #4ade80;
+  --game-opponent: #fb923c;
+  --game-ball: #f8fafc;
+  --game-paddle: #ef6262;
+  --game-band: #5eead4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c1113;
+    --surface: #131a1d;
+    --surface-2: #1a2327;
+    --border: #2a353a;
+    --text: #e4ebed;
+    --muted: #9aa9af;
+    --faint: #6b7a80;
+    --accent: #2dd4bf;
+    --accent-strong: #5eead4;
+    --accent-soft: #0f2f2b;
+    --heat: #0d9488;
+    --warn-bg: #2a2111;
+    --warn-border: #7f6223;
+    --warn-text: #f2d48d;
+    --good: #4ade80;
+
+    --game-bg: #070b0d;
+    --game-grid: #172126;
+  }
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--border);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-soft: var(--accent-soft);
+  --color-warn-bg: var(--warn-bg);
+  --color-warn-line: var(--warn-border);
+  --color-warn-fg: var(--warn-text);
+  --color-good: var(--good);
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+@layer base {
+  html {
+    background: var(--bg);
+    color: var(--text);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    min-height: 100dvh;
+  }
+
+  a {
+    color: var(--accent);
+    text-underline-offset: 2px;
+  }
+
+  a:hover {
+    color: var(--accent-strong);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  summary {
+    cursor: pointer;
+  }
+}
