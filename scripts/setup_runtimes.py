@@ -7,6 +7,10 @@ place and starts in seconds.
 
     uv run python scripts/setup_runtimes.py              every component in model-compose.yml
     uv run python scripts/setup_runtimes.py kev-0.8b     only some
+
+It also adds what a driver needs but does not install yet. Clef loads a Qwen3-VL processor, which refuses to
+start without torchvision even for text, and the pinned Clef driver does not install it: the script adds the
+torchvision release paired with the runtime's torch, from the same wheel index, without touching anything else.
 """
 
 from __future__ import annotations
@@ -52,6 +56,25 @@ def stop(process: subprocess.Popen[bytes]) -> None:
             process.wait(wait)
         except subprocess.TimeoutExpired:
             continue
+
+
+def add_torchvision(python: Path) -> None:
+    """torchvision 0.(m+15).p pairs with torch 2.m.p; the local version (+cu130) names the wheel index."""
+    torch = subprocess.run(
+        [str(python), "-c", "import torch; print(torch.__version__)"], capture_output=True, text=True, check=True
+    ).stdout.strip()
+    release, _, channel = torch.partition("+")
+    _, minor, patch = [*release.split("."), "0"][:3]
+    vision = f"0.{int(minor) + 15}.{patch}"
+    index = f"https://download.pytorch.org/whl/{channel or 'cpu'}"
+    subprocess.run(
+        ["uv", "pip", "install", "--no-deps", "--python", str(python), f"torchvision=={vision}", "--index-url", index],
+        check=True,
+    )
+
+
+# Families whose driver needs torchvision without installing it (Clef's Qwen3-VL processor).
+NEEDS_TORCHVISION = {"clef"}
 
 
 def setup(component: dict[str, object], workflow: dict[str, object], timeout: float) -> bool:
@@ -111,6 +134,8 @@ def main() -> int:
             continue
         clock = time.monotonic()
         ok = setup(component, workflows[component["id"]], args.timeout)
+        if ok and component.get("family") in NEEDS_TORCHVISION:
+            add_torchvision(ROOT / str(component["runtime"]["path"]) / "bin" / "python")
         took = time.monotonic() - clock
         status = "ok  " if ok else "FAIL"
         print(f"{status} {component['id']} ({took:.0f}s, log .runtime/setup-logs/{component['id']}.log)", flush=True)
