@@ -2,49 +2,28 @@
 
 Run it with that model alone on the GPU: busy neighbours slow every request (on the GB10 a model next to busy
 servers measured 2.5 to 10 times slower). The file records the other GPU processes seen at the start, so a
-contaminated measurement is visible. The real-time board reads the frame-board medians from here.
+contaminated measurement is visible. The real-time board reads the frame-board medians from here, and on test
+seeds only from a measurement made under the current suite lock.
 """
 
 from __future__ import annotations
 
 import math
 import platform
-import shutil
 import statistics
-import subprocess
 from collections.abc import Callable
 from datetime import UTC, datetime
 from pathlib import Path
 
 from arena.client import DEFAULT_SERVER, ModelClient
 from arena.core import JSON
-from arena.logs import RESULTS, write_json
+from arena.gpu import gpu_name, gpu_processes
+from arena.logs import RESULTS, say, write_json
 from arena.players import TextPlayer
 from arena.probe import sample_questions
 from arena.registry import contestants
 from arena.runner import latency_path
-from arena.suite import Suite
-
-
-def gpu_processes() -> list[str]:
-    if shutil.which("nvidia-smi") is None:
-        return []
-    result = subprocess.run(
-        ["nvidia-smi", "--query-compute-apps=pid,process_name", "--format=csv,noheader"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    return [line.strip() for line in result.stdout.splitlines() if line.strip()]
-
-
-def gpu_name() -> str | None:
-    if shutil.which("nvidia-smi") is None:
-        return None
-    result = subprocess.run(
-        ["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"], capture_output=True, text=True, check=False
-    )
-    return result.stdout.strip().splitlines()[0] if result.stdout.strip() else None
+from arena.suite import Suite, locked_digest
 
 
 def percentile(values: list[float], q: float) -> float:
@@ -60,11 +39,11 @@ def measure(
     sample: int = 200,
     warmup: int = 20,
     results: Path = RESULTS,
-    progress: Callable[[str], None] = print,
+    progress: Callable[[str], None] = say,
 ) -> Path:
     contestant = contestants()[player_id]
     player = TextPlayer(contestant, ModelClient(server), suite.group_size)
-    neighbours = gpu_processes()
+    neighbours = [p.label for p in gpu_processes() if p.runtime != player_id]
     games: dict[str, JSON] = {}
     try:
         warm = sample_questions(suite, "macro", "snake", warmup)
@@ -89,6 +68,7 @@ def measure(
         path,
         {
             "suite": suite.id,
+            "lock": locked_digest(suite),
             "player": player_id,
             "measured": datetime.now(UTC).isoformat(timespec="seconds"),
             "server": server,

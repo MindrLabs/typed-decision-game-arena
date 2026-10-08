@@ -14,6 +14,7 @@ from __future__ import annotations
 import gzip
 import json
 import os
+import sys
 from collections.abc import Iterator
 from pathlib import Path
 from typing import Any
@@ -23,6 +24,11 @@ from arena.episode import DecisionRecord
 from arena.suite import ROOT
 
 RESULTS = ROOT / "results"
+
+
+def say(line: str) -> None:
+    """A progress line, on stderr and flushed at once, so that a log under systemd follows a run live."""
+    print(line, file=sys.stderr, flush=True)
 
 
 def run_dir(suite_id: str, seed_set: str, board: str, game: str, player: str, *, results: Path = RESULTS) -> Path:

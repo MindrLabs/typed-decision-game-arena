@@ -4,9 +4,10 @@ from pathlib import Path
 
 import pytest
 
-from arena.logs import append_jsonl, episodes_path, run_dir
+from arena.logs import append_jsonl, episodes_path, run_dir, write_json
+from arena.runner import latency_path
 from arena.score import StaleResultsError, holm, score, score_board
-from arena.suite import Suite
+from arena.suite import Suite, locked_digest
 
 
 def write(results: Path, suite: Suite, board: str, game: str, player: str, *, scores: dict[int, float]) -> None:
@@ -79,3 +80,15 @@ def test_test_results_must_match_the_current_lock(suite: Suite, results: Path) -
     append_jsonl(episodes_path(directory), {"seed": 1, "score": 3.0, "lock": "an-older-lock", "metrics": {}})
     with pytest.raises(StaleResultsError, match="another suite lock"):
         score_board(suite, "test", "macro", results)
+
+
+def test_real_time_results_must_match_the_published_latency(frozen: Suite, results: Path) -> None:
+    lock = locked_digest(frozen)
+    latency = latency_path(frozen.id, "kev-0.8b", results)
+    write_json(latency, {"lock": lock, "games": {"frame/pong": {"median_ms": 150.0}}})  # 3 steps
+    directory = run_dir(frozen.id, "test", "realtime", "pong", "kev-0.8b", results=results)
+    append_jsonl(episodes_path(directory), {"seed": 1, "score": -3.0, "lock": lock, "delay_steps": 3, "metrics": {}})
+    score_board(frozen, "test", "realtime", results)
+    write_json(latency, {"lock": lock, "games": {"frame/pong": {"median_ms": 250.0}}})  # measured again: 4 steps
+    with pytest.raises(StaleResultsError, match="the latency file gives 4"):
+        score_board(frozen, "test", "realtime", results)

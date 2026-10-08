@@ -5,14 +5,29 @@ from __future__ import annotations
 import json
 from http.server import BaseHTTPRequestHandler
 
+from arena.registry import contestants
+
 
 class FakeModelCompose(BaseHTTPRequestHandler):
     """Answers every typed-decision request with the first option shown (both question shapes)."""
 
     fail = False
+    served: list[str] | None = None  # workflows it serves; None: every player in model-compose.yml
+
+    def _served(self) -> list[str]:
+        return list(contestants()) if self.served is None else self.served
+
+    def do_GET(self) -> None:
+        if self.path.rstrip("/").endswith("/workflows"):
+            self._send(200, [{"workflow_id": w, "title": w} for w in self._served()])
+        else:
+            self._send(404, {"detail": "Not Found"})
 
     def do_POST(self) -> None:
         body = json.loads(self.rfile.read(int(self.headers["Content-Length"])))
+        if body["workflow_id"] not in self._served():
+            self._send(404, {"detail": f"Workflow not found: {body['workflow_id']}"})
+            return
         if self.fail:
             self._send(200, {"status": "failed", "error": "boom"})
             return

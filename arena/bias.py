@@ -13,11 +13,11 @@ from pathlib import Path
 
 from arena.client import DEFAULT_SERVER, ModelClient
 from arena.core import JSON
-from arena.logs import RESULTS, write_json
+from arena.logs import RESULTS, say, write_json
 from arena.players import TextPlayer
 from arena.probe import sample_questions
 from arena.registry import contestants
-from arena.suite import Suite
+from arena.suite import Suite, locked_digest
 
 
 def bias_path(suite_id: str, player_id: str, results: Path = RESULTS) -> Path:
@@ -49,7 +49,7 @@ def measure(
     server: str = DEFAULT_SERVER,
     sample: int = 40,
     results: Path = RESULTS,
-    progress: Callable[[str], None] = print,
+    progress: Callable[[str], None] = say,
 ) -> Path:
     contestant = contestants()[player_id]
     player = TextPlayer(contestant, ModelClient(server), suite.group_size)
@@ -84,6 +84,7 @@ def measure(
         path,
         {
             "suite": suite.id,
+            "lock": locked_digest(suite),
             "player": player_id,
             "measured": datetime.now(UTC).isoformat(timespec="seconds"),
             "games": games,

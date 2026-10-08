@@ -18,7 +18,7 @@ from arena.core import JSON
 from arena.logs import RESULTS, decisions_path, read_decisions, read_episodes, read_final, read_json, run_dir
 from arena.registry import contestants
 from arena.runner import latency_path
-from arena.score import score
+from arena.score import StaleResultsError, score
 from arena.suite import ROOT, Suite, locked_digest
 
 SCHEMA = 1
@@ -87,6 +87,24 @@ def _write_replay(suite: Suite, seed_set: str, episode: JSON, out: Path, results
     return relative
 
 
+def _diagnostics(suite: Suite, seed_set: str, players: dict[str, JSON], results: Path) -> dict[str, dict[str, JSON]]:
+    """Latency and bias files per player; on test seeds only those measured under the current suite lock."""
+    found: dict[str, dict[str, JSON]] = {"latency": {}, "bias": {}}
+    lock = locked_digest(suite)
+    for player_id in players:
+        for kind, path in (
+            ("latency", latency_path(suite.id, player_id, results)),
+            ("bias", bias_path(suite.id, player_id, results)),
+        ):
+            if not path.exists():
+                continue
+            data = read_json(path)
+            if seed_set == "test" and data.get("lock") != lock:
+                raise StaleResultsError(f"{path}: measured under another suite lock; run `arena {kind}` again")
+            found[kind][player_id] = data
+    return found
+
+
 def export(
     suite: Suite,
     seed_set: str,
@@ -95,11 +113,14 @@ def export(
     results: Path = RESULTS,
     replays_per_player: int = 2,
 ) -> Path:
+    """Everything is read and checked before `out` is touched, so a refused export leaves the old data in place."""
     report = score(suite, seed_set, results)
+    players = _players()
+    diagnostics = _diagnostics(suite, seed_set, players, results)
+    lock = locked_digest(suite)
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
-    players = _players()
     replays: list[JSON] = []
     for board, game in suite.pairs():
         game_dir = results / suite.id / seed_set / board / game
@@ -119,14 +140,6 @@ def export(
                         "path": path,
                     }
                 )
-    diagnostics: dict[str, dict[str, JSON]] = {"latency": {}, "bias": {}}
-    for player_id in players:
-        latency = latency_path(suite.id, player_id, results)
-        bias = bias_path(suite.id, player_id, results)
-        if latency.exists():
-            diagnostics["latency"][player_id] = read_json(latency)
-        if bias.exists():
-            diagnostics["bias"][player_id] = read_json(bias)
     boards = sorted(suite.boards.values(), key=lambda b: b.order)
     index = {
         "schema": SCHEMA,
@@ -134,8 +147,8 @@ def export(
         "generated": datetime.now(UTC).isoformat(timespec="seconds"),
         "suite": {
             "id": suite.id,
-            "frozen": locked_digest(suite) is not None,
-            "lock": locked_digest(suite),
+            "frozen": lock is not None,
+            "lock": lock,
             "group_size": suite.group_size,
             "bootstrap": suite.bootstrap,
             "confidence": suite.confidence,

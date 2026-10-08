@@ -10,7 +10,6 @@ from __future__ import annotations
 import math
 import multiprocessing
 import statistics
-import sys
 import time
 from collections.abc import Callable
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -18,7 +17,7 @@ from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
 
-from arena import __version__
+from arena import __version__, logs
 from arena.client import DEFAULT_SERVER, ModelClient
 from arena.core import JSON, Player
 from arena.episode import DecisionRecord, play
@@ -34,7 +33,7 @@ from arena.logs import (
 )
 from arena.players import RandomPlayer, ReferencePlayer, TextPlayer
 from arena.registry import BASELINES, contestants
-from arena.suite import Suite, load_suite, lock_differences, locked_digest
+from arena.suite import Suite, lock_differences, locked_digest
 from arena.tasks import make_task
 
 
@@ -62,10 +61,13 @@ def latency_path(suite_id: str, player_id: str, results: Path = RESULTS) -> Path
     return results / suite_id / "latency" / f"{player_id}.json"
 
 
-def delay_steps(suite: Suite, board: str, game: str, player_id: str, results: Path = RESULTS) -> int:
+def delay_steps(
+    suite: Suite, board: str, game: str, player_id: str, results: Path = RESULTS, *, seed_set: str = "dev"
+) -> int:
     """Reaction time in steps on the real-time board (0 elsewhere): the player's measured median latency on the
     same game's frame board, rounded up to whole steps, at least one. The real-time board has no baseline runs:
-    its anchors are the frame board's (random play, and the reference reacting instantly)."""
+    its anchors are the frame board's (random play, and the reference reacting instantly). Test seeds take only
+    a latency measured under the current suite lock."""
     spec = suite.board(board)
     if spec.step_ms is None:
         return 0
@@ -73,16 +75,18 @@ def delay_steps(suite: Suite, board: str, game: str, player_id: str, results: Pa
         raise ValueError(f"baselines do not run on the {board} board; its anchors are the {spec.based_on} board's")
     path = latency_path(suite.id, player_id, results)
     key = f"{spec.based_on}/{game}"
-    games = read_json(path).get("games", {}) if path.exists() else {}
-    if key not in games:
-        hint = f"run `arena latency --player {player_id}` first"
-        raise LatencyMissingError(f"no latency for {player_id} on {key}; {hint}")
-    return max(1, math.ceil(float(games[key]["median_ms"]) / spec.step_ms))
+    hint = f"run `arena latency --player {player_id}`"
+    data = read_json(path) if path.exists() else {}
+    if key not in data.get("games", {}):
+        raise LatencyMissingError(f"no latency for {player_id} on {key}; {hint} first")
+    if seed_set == "test" and data.get("lock") != locked_digest(suite):
+        raise LatencyMissingError(f"the latency of {player_id} was measured under another suite lock; {hint} again")
+    return max(1, math.ceil(float(data["games"][key]["median_ms"]) / spec.step_ms))
 
 
 @dataclass(frozen=True)
 class Job:
-    suite_id: str
+    suite: Suite  # the suite the parent checked, not one read again by id
     seed_set: str
     board: str
     game: str
@@ -110,10 +114,10 @@ def _model_info(player_id: str) -> JSON | None:
 
 def run_job(job: Job) -> tuple[JSON | None, JSON | None]:
     """Play one episode. Returns (episode line, None) or (None, error line)."""
-    suite = load_suite(job.suite_id)
+    suite = job.suite
     task = make_task(suite, job.board, job.game)
     player = make_player(job.player, suite, job.board, job.game, job.server)
-    directory = run_dir(job.suite_id, job.seed_set, job.board, job.game, job.player, results=Path(job.results))
+    directory = run_dir(suite.id, job.seed_set, job.board, job.game, job.player, results=Path(job.results))
     writer = DecisionWriter(decisions_path(directory, job.seed))
     latencies: list[float] = []
 
@@ -124,7 +128,7 @@ def run_job(job: Job) -> tuple[JSON | None, JSON | None]:
     started = datetime.now(UTC)
     clock = time.perf_counter()
     base: JSON = {
-        "suite": job.suite_id,
+        "suite": suite.id,
         "lock": job.lock,
         "seed_set": job.seed_set,
         "board": job.board,
@@ -138,7 +142,7 @@ def run_job(job: Job) -> tuple[JSON | None, JSON | None]:
             task,
             player,
             job.seed,
-            suite_id=job.suite_id,
+            suite_id=suite.id,
             board=job.board,
             delay_steps=job.delay_steps,
             on_decision=record,
@@ -196,7 +200,7 @@ def run(
     results: Path = RESULTS,
     progress: Callable[[str], None] | None = None,
 ) -> Summary:
-    say = progress or (lambda line: print(line, file=sys.stderr, flush=True))
+    say = progress or logs.say
     if seed_set == "test":
         problems = lock_differences(suite)
         if problems:
@@ -206,13 +210,13 @@ def run(
     suite.game(board, game)  # fail early on a typo
     if player_id not in BASELINES and player_id not in contestants():
         raise KeyError(f"unknown player {player_id!r}; baselines {BASELINES}, models {sorted(contestants())}")
-    delay = delay_steps(suite, board, game, player_id, results)
+    delay = delay_steps(suite, board, game, player_id, results, seed_set=seed_set)
     directory = run_dir(suite.id, seed_set, board, game, player_id, results=results)
     done = {int(e["seed"]) for e in read_episodes(directory)}
     todo = [seed for seed in seeds if seed not in done]
     summary = Summary(skipped=len(seeds) - len(todo))
     lock = locked_digest(suite) if seed_set == "test" else None
-    jobs = [Job(suite.id, seed_set, board, game, player_id, seed, server, delay, str(results), lock) for seed in todo]
+    jobs = [Job(suite, seed_set, board, game, player_id, seed, server, delay, str(results), lock) for seed in todo]
 
     def handle(episode: JSON | None, error: JSON | None) -> None:
         if episode is not None:

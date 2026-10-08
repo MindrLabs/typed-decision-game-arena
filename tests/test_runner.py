@@ -11,7 +11,7 @@ import pytest
 from arena.logs import decisions_path, read_decisions, read_episodes, read_final, read_jsonl, run_dir, write_json
 from arena.replay import verify
 from arena.runner import LatencyMissingError, SuiteNotFrozenError, delay_steps, latency_path, run
-from arena.suite import Suite
+from arena.suite import Suite, locked_digest
 from tests.fakes import FakeModelCompose
 
 
@@ -89,6 +89,16 @@ def test_real_time_delay_comes_from_measured_latency(suite: Suite, results: Path
     assert delay_steps(suite, "realtime", "pong", "kev-0.8b", results) == 1  # never below one step
     with pytest.raises(ValueError, match="anchors are the frame board"):
         delay_steps(suite, "realtime", "pong", "reference", results)
+
+
+def test_test_seeds_take_only_a_latency_measured_under_the_current_lock(frozen: Suite, results: Path) -> None:
+    path = latency_path(frozen.id, "kev-0.8b", results)
+    write_json(path, {"lock": None, "games": {"frame/pong": {"median_ms": 150.0}}})
+    assert delay_steps(frozen, "realtime", "pong", "kev-0.8b", results) == 3  # dev seeds take any measurement
+    with pytest.raises(LatencyMissingError, match="another suite lock"):
+        delay_steps(frozen, "realtime", "pong", "kev-0.8b", results, seed_set="test")
+    write_json(path, {"lock": locked_digest(frozen), "games": {"frame/pong": {"median_ms": 150.0}}})
+    assert delay_steps(frozen, "realtime", "pong", "kev-0.8b", results, seed_set="test") == 3
 
 
 def test_an_unknown_player_is_refused_before_any_episode(suite: Suite, results: Path) -> None:

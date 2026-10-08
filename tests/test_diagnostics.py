@@ -6,12 +6,15 @@ import gzip
 import json
 from pathlib import Path
 
+import pytest
+
 from arena import bias, latency
 from arena.environment import describe
 from arena.export import export
-from arena.logs import read_json
+from arena.logs import read_json, write_json
 from arena.probe import sample_questions
 from arena.runner import run
+from arena.score import StaleResultsError
 from arena.suite import Suite
 
 
@@ -31,6 +34,8 @@ def test_latency_file(suite: Suite, results: Path, server: str) -> None:
     data = read_json(path)
     assert set(data["games"]) == {f"{b}/{g}" for b, g in suite.pairs() if b != "realtime"}
     assert all(entry["n"] == 3 and entry["median_ms"] > 0 for entry in data["games"].values())
+    assert data["lock"] is None  # the suite is not frozen
+    assert isinstance(data["environment"]["gpu_processes_at_start"], list)
 
 
 def test_a_position_follower_shows_up_in_the_bias_report(suite: Suite, results: Path, server: str) -> None:
@@ -64,3 +69,13 @@ def test_environment_record() -> None:
     record = describe()
     assert record["model_compose"] and len(record["model_compose"]) == 40
     assert record["python"].startswith("3.12")
+
+
+def test_a_test_export_refuses_diagnostics_from_another_lock(frozen: Suite, results: Path, tmp_path: Path) -> None:
+    out = tmp_path / "data"
+    out.mkdir()
+    (out / "index.json").write_text("{}")
+    write_json(bias.bias_path(frozen.id, "kev-0.8b", results), {"lock": None, "games": {}, "overall": {"n": 0}})
+    with pytest.raises(StaleResultsError, match="another suite lock"):
+        export(frozen, "test", out=out, results=results)
+    assert (out / "index.json").read_text() == "{}"  # a refused export leaves the old data in place

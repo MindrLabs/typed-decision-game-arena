@@ -22,6 +22,7 @@ import numpy.typing as npt
 from arena.core import JSON
 from arena.logs import RESULTS, read_episodes
 from arena.registry import BASELINES
+from arena.runner import LatencyMissingError, delay_steps
 from arena.seeding import Rng
 from arena.suite import Suite, locked_digest
 
@@ -58,6 +59,26 @@ def load_game(suite: Suite, seed_set: str, board: str, game: str, results: Path 
                 episodes[player_dir.name] = items
                 scores[player_dir.name] = {int(e["seed"]): float(e["score"]) for e in items}
     return GameData(seeds, scores, episodes)
+
+
+def check_delays(suite: Suite, board: str, game: str, data: GameData, results: Path = RESULTS) -> None:
+    """Test seeds of the real-time board: every model's episodes ran with the delay its published latency gives.
+    A latency measured again after the runs would otherwise sit next to results it did not produce."""
+    if suite.board(board).step_ms is None:
+        return
+    for player, episodes in data.episodes.items():
+        if player in BASELINES:
+            continue
+        try:
+            expected = delay_steps(suite, board, game, player, results, seed_set="test")
+        except LatencyMissingError as error:
+            raise StaleResultsError(f"{board}/{game} {player}: {error}") from None
+        used = sorted({int(e.get("delay_steps", 0)) for e in episodes})
+        if used != [expected]:
+            raise StaleResultsError(
+                f"{board}/{game} {player}: episodes ran with a delay of {used} steps, but the latency file gives "
+                f"{expected}; rerun the real-time board for {player} or restore the latency it was run with"
+            )
 
 
 def bootstrap_indices(n: int, replicates: int, *parts: str | int) -> npt.NDArray[np.int64]:
@@ -194,6 +215,9 @@ def score_board(suite: Suite, seed_set: str, board: str, results: Path = RESULTS
     anchor_board = spec.based_on or board
     games = list(spec.games)
     data = {g: load_game(suite, seed_set, board, g, results) for g in games}
+    if seed_set == "test":
+        for g in games:
+            check_delays(suite, board, g, data[g], results)
     anchors = {g: _anchors(load_game(suite, seed_set, anchor_board, g, results), data[g].seeds) for g in games}
 
     anchor_report: JSON = {}
