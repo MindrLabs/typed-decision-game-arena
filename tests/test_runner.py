@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pytest
 
+from arena.core import JSON
 from arena.logs import decisions_path, read_decisions, read_episodes, read_final, read_jsonl, run_dir, write_json
 from arena.replay import verify
 from arena.runner import LatencyMissingError, SuiteNotFrozenError, delay_steps, latency_path, run
@@ -27,6 +28,21 @@ def test_baselines_run_resume_and_replay(suite: Suite, results: Path) -> None:
     assert not again.finished
     checked = list(verify(suite, "dev", results=results))
     assert [v.problem for v in checked] == [None, None]
+
+
+def test_parallel_workers_play_the_same_episodes(suite: Suite, tmp_path: Path) -> None:
+    # workers are spawned processes: the job, suite included, has to pickle, and play must not depend on the process
+    seeds = [1001, 1002, 1003]
+    serial = run(suite, "macro", "connect4", "random", seeds, seed_set="dev", results=tmp_path / "a", progress=quiet)
+    parallel = run(
+        suite, "macro", "connect4", "random", seeds, seed_set="dev", workers=2, results=tmp_path / "b", progress=quiet
+    )
+
+    def outcome(episodes: list[JSON]) -> list[tuple[object, ...]]:
+        return sorted((e["seed"], e["score"], e["decisions"], e["steps"]) for e in episodes)
+
+    assert outcome(serial.finished) == outcome(parallel.finished)
+    assert len(parallel.finished) == len(seeds)
 
 
 def test_replay_catches_a_tampered_log(suite: Suite, results: Path) -> None:
