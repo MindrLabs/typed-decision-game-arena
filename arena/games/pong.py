@@ -11,7 +11,7 @@ x 140-143 and is 16 pixels tall; the ball is 2 x 4 pixels and its position is it
 * `frame`: a decision every step: up, down or stay.
 
 Score: points won minus points lost (the game's own reward), over a full game on the macro track and within
-`decision_cap` steps on the frame track.
+`step_cap` steps on the frame track.
 
 The paddle has momentum (measured: velocity' = 0.55 velocity + 10 per step of pressing), so the controller looks
 a few steps ahead instead of reacting to the current gap; a plain bang-bang controller oscillates.
@@ -40,7 +40,9 @@ DECAY, ACCEL, HORIZON = 0.55, 10.0, 4
 
 
 def _ball(ram: npt.NDArray[np.uint8]) -> tuple[int, int] | None:
-    if int(ram[54]) == 0:
+    # Before the first serve the console leaves a vertical position with no horizontal one (x would read -49);
+    # the screen shows no ball then.
+    if int(ram[54]) == 0 or int(ram[49]) == 0:
         return None
     return int(ram[49]) - 49, int(ram[54]) - 48
 
@@ -71,9 +73,11 @@ class Pong(AleGame):
         return int(self.ram[14]), int(self.ram[13])
 
 
-def span(top: int) -> tuple[int, int]:
-    """The visible part of a paddle whose top edge is at `top`."""
-    return max(top, 0), min(top + PADDLE_HEIGHT - 1, FIELD - 1)
+def span(top: int) -> tuple[int, int] | None:
+    """The visible part of a paddle whose top edge is at `top`; None while it is off the field (the opponent's
+    paddle is, for the first steps of a game)."""
+    low, high = max(top, 0), min(top + PADDLE_HEIGHT - 1, FIELD - 1)
+    return (low, high) if low <= high else None
 
 
 def zone_bounds(zone: int) -> tuple[int, int]:
@@ -134,9 +138,16 @@ FRAME_TEXT = {"up": "push your paddle up", "down": "push your paddle down", "sta
 FRAME_ACTIONS = {"up": UP, "down": DOWN, "stay": NOOP}
 
 
-def render_state(game: Pong) -> str:
+def _paddle_text(owner: str, place: tuple[int, int] | None) -> str:
+    return f"{owner} paddle is not on the field" if place is None else f"{owner} paddle covers y {place[0]}-{place[1]}"
+
+
+def render_state(game: Pong, step_cap: int) -> str:
     me, them = game.score()
-    lines = [HEADER, f"Score: you {me}, opponent {them}."]
+    lines = [
+        f"{HEADER} The game also ends after {step_cap} steps (a step is 4 frames, 1/15 of a second).",
+        f"Step {game.steps} of {step_cap}. Score: you {me}, opponent {them}.",
+    ]
     m = game.motion()
     ball = game.ball()
     if ball is None:
@@ -145,15 +156,16 @@ def render_state(game: Pong) -> str:
         lines.append(f"The ball is at x {ball[0]}, y {ball[1]}; it has just appeared.")
     else:
         lines.append(f"The ball is at x {m.x}, y {m.y}; it {describe_motion(m, ('right', 'left'), ('down', 'up'))}.")
-    top, bottom = span(game.player_top())
     velocity = game.player_velocity()
     moving = f"moved {abs(velocity)} {'down' if velocity > 0 else 'up'}" if velocity else "did not move"
-    otop, obottom = span(game.opponent_top())
-    lines.append(
-        f"Your paddle covers y {top}-{bottom} and {moving} over the last step. "
-        f"The opponent's paddle covers y {otop}-{obottom}."
-    )
+    yours = _paddle_text("Your", span(game.player_top()))
+    theirs = _paddle_text("The opponent's", span(game.opponent_top()))
+    lines.append(f"{yours} and {moving} over the last step. {theirs}.")
     return "\n".join(lines)
+
+
+def _listed(place: tuple[int, int] | None) -> list[int] | None:
+    return None if place is None else list(place)
 
 
 def snapshot(game: Pong) -> JSON:
@@ -162,8 +174,8 @@ def snapshot(game: Pong) -> JSON:
     return {
         "field": [FIELD, FIELD],
         "ball": list(ball) if ball else None,
-        "player": list(span(game.player_top())),
-        "opponent": list(span(game.opponent_top())),
+        "player": _listed(span(game.player_top())),
+        "opponent": _listed(span(game.opponent_top())),
         "score": [me, them],
     }
 
@@ -252,8 +264,8 @@ class PongMacro(_PongTask):
                 return
 
     def decision_point(self) -> DecisionPoint:
-        top, bottom = span(self.ale.player_top())
-        here = zone_of((top + bottom) / 2)
+        place = span(self.ale.player_top())
+        here = zone_of((place[0] + place[1]) / 2) if place else None
         options = []
         for zone in range(1, ZONES + 1):
             low, high = zone_bounds(zone)
@@ -261,7 +273,7 @@ class PongMacro(_PongTask):
             if zone == here:
                 text += " (your paddle is centred in this band now)"
             options.append(Option(f"zone{zone}", text))
-        question = Question(render_state(self.ale), MACRO_INSTRUCTIONS, tuple(options))
+        question = Question(render_state(self.ale, self.step_cap), MACRO_INSTRUCTIONS, tuple(options))
         return DecisionPoint(question, self._view())
 
     def apply(self, key: str) -> None:
@@ -276,20 +288,21 @@ class PongFrame(_PongTask):
     track = "frame"
     default_key = "stay"
 
-    def __init__(self, decision_cap: int = 1500, sticky: float = 0.25) -> None:
+    def __init__(self, step_cap: int = 1500, sticky: float = 0.25) -> None:
         super().__init__(sticky)
-        self.decision_cap = decision_cap
+        self.step_cap = step_cap
 
     def reset(self, seed: int) -> None:
         self.ale.reset(seed)
 
     @property
     def done(self) -> bool:
-        return self.ale.over or self.ale.steps >= self.decision_cap
+        return self.ale.over or self.ale.steps >= self.step_cap
 
     def decision_point(self) -> DecisionPoint:
         options = tuple(Option(key, FRAME_TEXT[key]) for key in ("up", "down", "stay"))
-        return DecisionPoint(Question(render_state(self.ale), FRAME_INSTRUCTIONS, options), self._view())
+        state = render_state(self.ale, self.step_cap)
+        return DecisionPoint(Question(state, FRAME_INSTRUCTIONS, options), self._view())
 
     def apply(self, key: str) -> None:
         self.ale.step(FRAME_ACTIONS.get(key, NOOP))

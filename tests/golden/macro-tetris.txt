@@ -1,6 +1,6 @@
-Tetris. The well is 10 columns wide (column 1 on the left) and 20 rows tall (row 1 at the bottom). A full row clears; the game ends when a new piece has no room at the top.
+Tetris. The well is 10 columns wide (column 1 on the left) and 20 rows tall (row 1 at the bottom). A full row clears; the game ends when a new piece has no room at the top, or once 300 pieces are placed.
 Current piece: Z. Next piece: S.
-Lines cleared: 0. Pieces placed: 0. Stack height: 0. Holes: 0.
+Lines cleared: 0. Pieces placed: 0 of 300. Stack height: 0. Holes: 0.
 The well is empty.
 
 --- instructions ---

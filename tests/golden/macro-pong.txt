@@ -1,5 +1,5 @@
-Pong. You control the right paddle (x 140-143); the opponent controls the left paddle (x 16-19). The field is 160 wide (x 0 at the left) and 160 tall (y 0 at the top). Paddles are 16 tall and move only up and down. The ball bounces off the top and bottom edges and off the paddles; a ball that gets past a paddle scores a point for the other side. The first side to 21 points wins.
-Score: you 0, opponent 0.
+Pong. You control the right paddle (x 140-143); the opponent controls the left paddle (x 16-19). The field is 160 wide (x 0 at the left) and 160 tall (y 0 at the top). Paddles are 16 tall and move only up and down. The ball bounces off the top and bottom edges and off the paddles; a ball that gets past a paddle scores a point for the other side. The first side to 21 points wins. The game also ends after 20000 steps (a step is 4 frames, 1/15 of a second).
+Step 18 of 20000. Score: you 0, opponent 0.
 The ball is at x 65, y 94; it moved 8 left and 8 down over the last 2 steps.
 Your paddle covers y 61-76 and did not move over the last step. The opponent's paddle covers y 93-108.
 

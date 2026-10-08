@@ -72,8 +72,9 @@ export function isSnake(value: unknown): value is SnakeSnapshot {
 export function isConnect4(value: unknown): value is Connect4Snapshot {
   return isObject(value) && Array.isArray(value.grid) && typeof value.you === 'string'
 }
+const isSpanOrNull = (value: unknown): boolean => value === null || Array.isArray(value)
 export function isPong(value: unknown): value is PongSnapshot {
-  return isObject(value) && Array.isArray(value.player) && Array.isArray(value.opponent)
+  return isObject(value) && Array.isArray(value.score) && isSpanOrNull(value.player) && isSpanOrNull(value.opponent)
 }
 export function isBreakout(value: unknown): value is BreakoutSnapshot {
   return isObject(value) && Array.isArray(value.bricks) && Array.isArray(value.paddle)
@@ -299,10 +300,13 @@ function drawPong(ctx: CanvasRenderingContext2D, s: PongSnapshot, palette: Palet
     rect(134, overlay.band[0], 16, overlay.band[1] - overlay.band[0] + 1)
     ctx.globalAlpha = 1
   }
-  ctx.fillStyle = palette.opponent
-  rect(16, s.opponent[0], 4, s.opponent[1] - s.opponent[0] + 1)
-  ctx.fillStyle = palette.player
-  rect(140, s.player[0], 4, s.player[1] - s.player[0] + 1)
+  const paddle = (x: number, span: [number, number] | null, colour: string) => {
+    if (!span) return
+    ctx.fillStyle = colour
+    rect(x, span[0], 4, span[1] - span[0] + 1)
+  }
+  paddle(16, s.opponent, palette.opponent)
+  paddle(140, s.player, palette.player)
   if (s.ball) {
     ctx.fillStyle = palette.ball
     rect(s.ball[0], s.ball[1], 2, 4)

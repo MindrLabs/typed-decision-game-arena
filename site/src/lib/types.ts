@@ -239,10 +239,10 @@ export interface PongSnapshot {
   field: [number, number]
   /** Top-left corner of the 2 x 4 ball. */
   ball: Cell | null
-  /** Vertical span of the player's paddle at x 140-143. */
-  player: [number, number]
-  /** Vertical span of the opponent's paddle at x 16-19. */
-  opponent: [number, number]
+  /** Vertical span of the player's paddle at x 140-143; null while it is off the field. */
+  player: [number, number] | null
+  /** Vertical span of the opponent's paddle at x 16-19; null while it is off the field (the first steps of a game). */
+  opponent: [number, number] | null
   score: [number, number]
 }
 

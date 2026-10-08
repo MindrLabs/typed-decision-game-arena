@@ -53,7 +53,9 @@ immediately after it, and nothing else:
 | Connect Four: whether the move wins, whether it takes the cell where the opponent could complete four, whether it leaves the opponent an immediate four | the value of the position, a solver's verdict |
 | Pong, Breakout: positions, how far the ball moved over the last steps, the band each option covers | where the ball will arrive, how far the paddle is from the ball |
 
-Instructions state the goal of the game, not how to weigh the facts.
+The state also names every limit that can end the game, the arena's caps included (300 Tetris pieces, 200 Snake
+steps without food, and so on), with the counters that run against them: a player is never stopped by a rule it
+was not shown. Instructions state the goal of the game, not how to weigh the facts.
 
 ## Option order and the knockout
 

@@ -1,5 +1,5 @@
-Snake on a 10 x 10 grid (row 1 at the top, column 1 on the left). The snake moves one cell per step; eating food makes it one cell longer. Hitting a wall or its own body ends the game.
-Heading: up. Length: 3. Food eaten: 0. Steps since the last food: 0.
+Snake on a 10 x 10 grid (row 1 at the top, column 1 on the left). The snake moves one cell per step; eating food makes it one cell longer. Hitting a wall or its own body ends the game. The game also ends after 1000 steps, or after 200 steps in a row without food.
+Heading: up. Length: 3. Food eaten: 0. Step 0 of 1000. Steps since the last food: 0 of 200.
 Head at row 5, column 5. Tail at row 7, column 5. Food at row 1, column 3.
 Grid (H head, o body, t tail, * food, . empty):
  1 . . * . . . . . . .

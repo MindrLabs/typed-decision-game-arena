@@ -19,9 +19,13 @@ Status: **not frozen.** The numbers below may still change after the dev-seed pi
 | macro / breakout | ball changes direction | 8 bands of 18 pixels | game over (5 lives) or 10,000 steps | game points | 1-20 |
 | frame / tetris | each step | left, right, cw, ccw, soft, hard, wait (legal ones) | 100 pieces or top-out | lines cleared | 1-30 |
 | frame / pong | each step | up, down, stay | game over or 1500 steps | points won minus lost | 1-20 |
-| frame / breakout | each step | left, right, stay (+ launch with no ball) | game over or 1500 steps | game points | 1-20 |
+| frame / breakout | each step | left, right, stay (+ launch with no ball) | game over, 1500 steps, or 300 steps in a row without a ball in play | game points | 1-20 |
 
 The real-time board plays the frame games with the player's reaction delay.
+
+Every state names the limits that can end its game, the arena's caps included, with the counters that run
+against them (the step, the pieces placed, the steps since the last food, the steps left to launch a ball), so no
+player is stopped by a rule it was not shown.
 
 Anchor means on the dev seeds (pilot, 3 to 6 seeds each):
 
@@ -33,7 +37,7 @@ Anchor means on the dev seeds (pilot, 3 to 6 seeds each):
 | macro / pong | -20.7 | -7.7 |
 | macro / breakout | 0.7 | 55.3 |
 | frame / tetris | 0 | 38.7 |
-| frame / pong | -20.3 | -2.3 |
+| frame / pong | -20.3 | 0.0 |
 | frame / breakout | 0.7 | 224.3 |
 
 ## Tetris
@@ -78,7 +82,9 @@ missed wins and moves that allow an immediate loss when a safe move existed.
 ALE `Pong-v5`; the player holds the right paddle against the console. Field coordinates: x 0-159, y 0-159 from
 the top of the playing field. The player's paddle is at x 140-143 and 16 pixels tall. The state gives the score,
 the ball's position and how far it moved over the last one or two steps (two only when they agree in direction,
-so a bounce never blurs the reading), and both paddles' spans.
+so a bounce never blurs the reading), and both paddles' spans. Before the first serve the console keeps a
+half-set ball and an opponent paddle above the field in memory; the state says that no ball is in play and that
+the opponent's paddle is not on the field, as the screen shows.
 
 - **Macro.** A decision whenever the ball starts moving towards the player, bounces off the top or bottom on its
   way in, or starts moving away, each time once three consistent steps show the new direction. The options are 8
@@ -100,5 +106,7 @@ shows the score, lives, ball position and motion, the paddle span, and the six b
   options are 8 bands of 18 pixels (the paddle plus the ball); the controller centres the paddle in the chosen
   band and launches new balls by itself.
 - **Frame.** Push left, push right, do not push, and launch while no ball is in play. A push moves the paddle
-  about 12 pixels in its step and 11 more in the next.
+  about 12 pixels in its step and 11 more in the next. The game ends after 300 steps in a row without a ball in
+  play: nothing happens until a ball is launched, and in the pilot a model that never launched spent all 1500
+  steps that way (the state counts down the steps left).
 - **Reference.** As in Pong, with the walls on the sides; a 3-step model-predictive controller for the frame board.

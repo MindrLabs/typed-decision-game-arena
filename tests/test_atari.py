@@ -35,8 +35,9 @@ def test_pong_ram_matches_the_screen() -> None:
         field = screen[34:194]
         paddle = boxes(np.all(field[:, 140:144] == GREEN, axis=2))
         if paddle is not None and paddle[2] > 2 and paddle[3] < 157:  # fully inside the field
-            top, bottom = P.span(game.player_top())
-            assert abs(paddle[2] - top) <= 1 and abs(paddle[3] - bottom) <= 1
+            place = P.span(game.player_top())
+            assert place is not None
+            assert abs(paddle[2] - place[0]) <= 1 and abs(paddle[3] - place[1]) <= 1
         ball = game.ball()
         found = boxes(np.all(field == WHITE, axis=2))
         if ball is not None and found is not None:
@@ -134,7 +135,7 @@ def test_pong_macro_reference_beats_random() -> None:
 
 def test_breakout_frame_reference_beats_random() -> None:
     def play(seed: int, reference: bool) -> float:
-        task = B.BreakoutFrame(decision_cap=600)
+        task = B.BreakoutFrame(step_cap=600)
         task.reset(seed)
         rng = Rng(seed)
         while not task.done:
@@ -144,3 +145,37 @@ def test_breakout_frame_reference_beats_random() -> None:
         return task.score()
 
     assert play(1, True) > play(1, False) + 10
+
+
+def test_pong_says_what_is_missing_before_the_first_serve() -> None:
+    task = P.PongFrame()
+    task.reset(1001)
+    first = task.decision_point().question.state
+    # the console leaves a half-set ball and an opponent paddle above the field in RAM at the start
+    assert "No ball is in play." in first
+    assert "The opponent's paddle is not on the field." in first
+    assert "--" not in first and "x -" not in first
+    assert task.snapshot()["opponent"] is None
+    for _ in range(20):
+        task.apply("stay")
+    later = task.decision_point().question.state
+    assert "The opponent's paddle covers y " in later
+    task.close()
+
+
+def test_breakout_frame_ends_when_no_ball_is_launched() -> None:
+    task = B.BreakoutFrame(idle_cap=40)
+    task.reset(1001)
+    assert "the game ends unless one is launched within 40 steps" in task.decision_point().question.state
+    while not task.done:
+        task.apply("stay")
+    assert task.steps == 40
+    assert task.metrics()["idle_end"] is True
+    task.close()
+
+    task = B.BreakoutFrame(step_cap=400, idle_cap=40)  # the reference launches at once and never runs into it
+    task.reset(1001)
+    while not task.done:
+        task.apply(B.reference_frame(task.decision_point().view))
+    assert task.steps == 400 and task.metrics()["idle_end"] is False
+    task.close()

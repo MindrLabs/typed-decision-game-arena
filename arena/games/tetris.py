@@ -415,12 +415,13 @@ def render_board(rows: Rows, active: tuple[Cell, ...] = ()) -> str:
     return "\n".join(lines)
 
 
-def _state_header(game: Tetris) -> list[str]:
+def _state_header(game: Tetris, piece_cap: int) -> list[str]:
     return [
         "Tetris. The well is 10 columns wide (column 1 on the left) and 20 rows tall (row 1 at the bottom). "
-        "A full row clears; the game ends when a new piece has no room at the top.",
+        "A full row clears; the game ends when a new piece has no room at the top, or once "
+        f"{piece_cap} pieces are placed.",
         f"Current piece: {game.piece.kind}. Next piece: {game.next_kind}.",
-        f"Lines cleared: {game.lines}. Pieces placed: {game.pieces}. "
+        f"Lines cleared: {game.lines}. Pieces placed: {game.pieces} of {piece_cap}. "
         f"Stack height: {stack_height(game.rows)}. Holes: {holes(game.rows)}.",
     ]
 
@@ -486,7 +487,7 @@ class TetrisMacro:
     def decision_point(self) -> DecisionPoint:
         found = self.state.placements()
         self._options = {p.key: p for p in found}
-        state = "\n".join([*_state_header(self.state), render_board(self.state.rows)])
+        state = "\n".join([*_state_header(self.state, self.piece_cap), render_board(self.state.rows)])
         question = Question(state, MACRO_INSTRUCTIONS, tuple(Option(p.key, placement_text(p)) for p in found))
         view = MacroView(self.state.rows, self.state.piece.kind, self.state.next_kind, tuple(found))
         return DecisionPoint(question, view)
@@ -569,7 +570,7 @@ class TetrisFrame:
         falls_in = s.gravity - s.gravity_timer
         state = "\n".join(
             [
-                *_state_header(s),
+                *_state_header(s, self.piece_cap),
                 f"The {p.kind} piece is at rotation {ROTATIONS[p.rot]}, {_span('column', min(cols), max(cols))}, "
                 f"lowest cell in row {low}; it falls one row in {_plural(falls_in, 'step')}. '@' marks it below.",
                 render_board(s.rows, p.cells()),

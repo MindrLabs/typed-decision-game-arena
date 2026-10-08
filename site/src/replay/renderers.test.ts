@@ -28,6 +28,11 @@ describe('canDraw', () => {
     expect(canDraw('chess', tetris)).toBe(false)
     expect(canDraw('pong', null)).toBe(false)
   })
+
+  it('takes a Pong snapshot whose opponent paddle is off the field', () => {
+    expect(canDraw('pong', { ...pong, opponent: null })).toBe(true)
+    expect(canDraw('pong', { ...pong, opponent: undefined })).toBe(false)
+  })
 })
 
 describe('describeSnapshot', () => {
@@ -107,6 +112,15 @@ describe('drawSnapshot', () => {
     expect(strokes(plain.calls)).toBe(0)
     expect(strokes(ghost.calls)).toBe(4)
     expect(strokes(both.calls)).toBe(8)
+  })
+
+  it('leaves out a Pong paddle that is off the field', () => {
+    const fills = (calls: string[]) => calls.filter((call) => call.startsWith('fillRect')).length
+    const both = recordingContext()
+    drawSnapshot(both.context, 'pong', pong, FALLBACK_PALETTE, size)
+    const one = recordingContext()
+    drawSnapshot(one.context, 'pong', { ...pong, opponent: null }, FALLBACK_PALETTE, size)
+    expect(fills(one.calls)).toBe(fills(both.calls) - 1)
   })
 
   it('draws nothing on a canvas too small to hold the board', () => {

@@ -25,3 +25,4 @@ node_modules/
 
 # Local env
 .env
+results/*/scores-dev.json

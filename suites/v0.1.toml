@@ -57,11 +57,13 @@ gravity = 2
 seeds = { dev = "1001-1003", test = "1-30" }
 
 [boards.frame.games.pong]
-decision_cap = 1500
+step_cap = 1500
 seeds = { dev = "1001-1003", test = "1-20" }
 
 [boards.frame.games.breakout]
-decision_cap = 1500
+step_cap = 1500
+# A game also ends after this many steps in a row without a ball in play: nothing happens until a ball is launched.
+idle_cap = 300
 seeds = { dev = "1001-1003", test = "1-20" }
 
 [boards.realtime]

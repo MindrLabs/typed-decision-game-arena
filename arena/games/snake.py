@@ -137,14 +137,15 @@ def render_grid(game: Snake) -> str:
     return "\n".join(f"{r + 1:>2} " + " ".join(marks.get((r, c), ".") for c in range(SIZE)) for r in range(SIZE))
 
 
-def render_state(game: Snake) -> str:
+def render_state(game: Snake, step_cap: int, starve_cap: int) -> str:
     food = _cell(game.food) if game.food else "none (the grid is full)"
     return "\n".join(
         [
             "Snake on a 10 x 10 grid (row 1 at the top, column 1 on the left). The snake moves one cell per step; "
-            "eating food makes it one cell longer. Hitting a wall or its own body ends the game.",
+            "eating food makes it one cell longer. Hitting a wall or its own body ends the game. The game also "
+            f"ends after {step_cap} steps, or after {starve_cap} steps in a row without food.",
             f"Heading: {HEADINGS[game.heading]}. Length: {len(game.body)}. Food eaten: {game.eaten}. "
-            f"Steps since the last food: {game.since_food}.",
+            f"Step {game.steps} of {step_cap}. Steps since the last food: {game.since_food} of {starve_cap}.",
             f"Head at {_cell(game.head)}. Tail at {_cell(game.body[-1])}. Food at {food}.",
             "Grid (H head, o body, t tail, * food, . empty):",
             render_grid(game),
@@ -189,7 +190,7 @@ class SnakeTask:
 
     def decision_point(self) -> DecisionPoint:
         question = Question(
-            render_state(self.state),
+            render_state(self.state, self.step_cap, self.starve_cap),
             INSTRUCTIONS,
             tuple(Option(move, option_text(self.state, move)) for move in MOVES),
         )

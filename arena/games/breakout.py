@@ -8,10 +8,13 @@ is 16 pixels wide (it can shrink during the game; the state reports its current 
   time once three consistent steps show the new direction). The player picks one of 8 vertical bands, 18 pixels
   each, and a fixed controller moves the paddle centre to the middle of that band and holds it there. A new ball
   is launched automatically.
-* `frame`: a decision every step: left, right or stay, plus launch while no ball is in play.
+* `frame`: a decision every step: left, right or stay, plus launch while no ball is in play. The game also ends
+  after `idle_cap` steps in a row without a ball in play: nothing can happen until the player launches one, so a
+  player that never does would otherwise spend the rest of `step_cap` on steps that change nothing (Snake ends a
+  game without food for the same reason).
 
-Score: the game's points, over a full game (5 lives) on the macro track and within `decision_cap` steps on the
-frame track.
+Score: the game's points, over a full game (5 lives) on the macro track and within `step_cap` steps on the frame
+track.
 
 Pressing left or right moves the paddle about 12 pixels in that step and about 11 more in the next (measured),
 so the controller plans a few steps ahead.
@@ -169,11 +172,17 @@ FRAME_TEXT = {
 FRAME_ACTIONS = {"left": LEFT, "right": RIGHT, "stay": NOOP, "launch": FIRE}
 
 
-def render_state(game: Breakout) -> str:
-    lines = [HEADER, f"Score: {int(game.total)}. Lives: {game.lives()}."]
+def render_state(game: Breakout, step_cap: int, idle: tuple[int, int] | None = None) -> str:
+    """`idle` is (steps without a ball in play so far, the cap on them) where that cap applies."""
+    rule = f"The game also ends after {step_cap} steps (a step is 4 frames, 1/15 of a second)"
+    if idle is not None:
+        rule += f", or after {idle[1]} steps in a row without a ball in play"
+    lines = [f"{HEADER} {rule}.", f"Step {game.steps} of {step_cap}. Score: {int(game.total)}. Lives: {game.lives()}."]
     m = game.motion()
     ball = game.ball()
-    if ball is None:
+    if ball is None and idle is not None:
+        lines.append(f"No ball is in play; the game ends unless one is launched within {idle[1] - idle[0]} steps.")
+    elif ball is None:
         lines.append("No ball is in play.")
     elif m is None:
         lines.append(f"The ball is at x {ball[0]}, y {ball[1]}; it has just appeared.")
@@ -297,7 +306,7 @@ class BreakoutMacro(_BreakoutTask):
             if zone == here:
                 text += " (your paddle is centred in this band now)"
             options.append(Option(f"zone{zone}", text))
-        question = Question(render_state(self.ale), MACRO_INSTRUCTIONS, tuple(options))
+        question = Question(render_state(self.ale, self.step_cap), MACRO_INSTRUCTIONS, tuple(options))
         return DecisionPoint(question, self._view())
 
     def apply(self, key: str) -> None:
@@ -312,24 +321,32 @@ class BreakoutFrame(_BreakoutTask):
     track = "frame"
     default_key = "stay"
 
-    def __init__(self, decision_cap: int = 1500, sticky: float = 0.25) -> None:
+    def __init__(self, step_cap: int = 1500, idle_cap: int = 300, sticky: float = 0.25) -> None:
         super().__init__(sticky)
-        self.decision_cap = decision_cap
+        self.step_cap = step_cap
+        self.idle_cap = idle_cap
+        self.idle = 0  # steps in a row that ended without a ball in play
 
     def reset(self, seed: int) -> None:
         self.ale.reset(seed)
+        self.idle = 0
 
     @property
     def done(self) -> bool:
-        return self.ale.over or self.ale.steps >= self.decision_cap
+        return self.ale.over or self.ale.steps >= self.step_cap or self.idle >= self.idle_cap
 
     def decision_point(self) -> DecisionPoint:
         keys = ["left", "right", "stay"] + (["launch"] if self.ale.ball() is None else [])
         options = tuple(Option(key, FRAME_TEXT[key]) for key in keys)
-        return DecisionPoint(Question(render_state(self.ale), FRAME_INSTRUCTIONS, options), self._view())
+        state = render_state(self.ale, self.step_cap, (self.idle, self.idle_cap))
+        return DecisionPoint(Question(state, FRAME_INSTRUCTIONS, options), self._view())
 
     def apply(self, key: str) -> None:
         self.ale.step(FRAME_ACTIONS.get(key, NOOP))
+        self.idle = self.idle + 1 if self.ale.ball() is None else 0
+
+    def metrics(self) -> dict[str, Metric]:
+        return {**super().metrics(), "idle_end": self.idle >= self.idle_cap}
 
 
 # --- reference player -----------------------------------------------------------------------------------

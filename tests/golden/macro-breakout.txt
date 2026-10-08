@@ -1,5 +1,5 @@
-Breakout. You control the paddle at the bottom of a field 144 wide (x 0 at the left wall) whose top edge is y 0; the paddle's top edge is at y 157. The ball bounces off the walls, the bricks and your paddle; each brick it hits breaks and scores points. A ball that falls past your paddle costs a life; the game ends with no lives.
-Score: 0. Lives: 5.
+Breakout. You control the paddle at the bottom of a field 144 wide (x 0 at the left wall) whose top edge is y 0; the paddle's top edge is at y 157. The ball bounces off the walls, the bricks and your paddle; each brick it hits breaks and scores points. A ball that falls past your paddle costs a life; the game ends with no lives. The game also ends after 10000 steps (a step is 4 frames, 1/15 of a second).
+Step 4 of 10000. Score: 0. Lives: 5.
 The ball is at x 86, y 104; it moved 8 right and 8 down over the last 2 steps.
 Your paddle covers x 59-74.
 Bricks standing: 108 of 108 (# standing, . broken; 8 wide each):
