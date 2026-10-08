@@ -95,25 +95,22 @@ def cmd_show(args: argparse.Namespace) -> int:
 
 
 def cmd_smoke(args: argparse.Namespace) -> int:
+    from arena.core import PlayerError
     from arena.players import TextPlayer
-    from arena.probe import sample_questions
+    from arena.probe import smoke
 
     suite = load_suite(args.suite)
     contestant = contestants()[args.player]
     player = TextPlayer(contestant, ModelClient(args.server, retries=0), suite.group_size)
     failures = 0
     try:
-        for board, game in suite.pairs():
-            if suite.board(board).step_ms is not None:
-                continue
-            question = sample_questions(suite, board, game, 1)[0]
-            try:
-                call = player.ask(question, "smoke")
-                top = max((call.probabilities or {}).items(), key=lambda kv: kv[1], default=(None, None))
-                print(f"ok    {board}/{game}: {call.choice} ({call.latency_ms:.0f} ms, top p {top[1]})")
-            except Exception as error:
+        for board, game, answer in smoke(suite, player):
+            if isinstance(answer, PlayerError):
                 failures += 1
-                print(f"FAIL  {board}/{game}: {error}")
+                print(f"FAIL  {board}/{game}: {answer}")
+                continue
+            top = max((answer.probabilities or {}).items(), key=lambda kv: kv[1], default=(None, None))
+            print(f"ok    {board}/{game}: {answer.choice} ({answer.latency_ms:.0f} ms, top p {top[1]})")
     finally:
         player.close()
     return 1 if failures else 0

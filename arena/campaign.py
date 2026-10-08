@@ -1,8 +1,9 @@
 """`arena campaign`: every run of a seed set in the documented order, unattended and resumable.
 
 1. Anchors: random and reference on every turn-based board (CPU only, in parallel processes).
-2. Each model in turn, so that one model at a time works on the GPU: its turn-based boards; its latency, once
-   no other model holds the GPU; its real-time board, which needs that latency; its position bias.
+2. Each model in turn, so that one model at a time works on the GPU: one question per game first (a model that
+   cannot answer is reported and skipped at once, not retried episode by episode); its turn-based boards; its
+   latency, once no other model holds the GPU; its real-time board, which needs that latency; its position bias.
 
 Nothing is done twice. The runner skips episodes that are already logged, and latency and bias are measured only
 when no file for the current suite lock exists. Failed episodes run again, up to `attempts` times in all. Before
@@ -30,6 +31,8 @@ from arena.client import DEFAULT_SERVER, ModelClient
 from arena.core import PlayerError
 from arena.gpu import GpuProcess, gpu_processes
 from arena.logs import RESULTS, read_episodes, read_json, run_dir
+from arena.players import TextPlayer
+from arena.probe import smoke
 from arena.registry import BASELINES, contestants
 from arena.runner import SuiteNotFrozenError, latency_path
 from arena.runner import run as run_episodes
@@ -198,9 +201,24 @@ class Campaign:
             return False
         return True
 
+    def answers(self, player: str) -> bool:
+        """One question per game; False (and reported) when the model cannot answer one of them."""
+        wait_for_server(self.server, player, self.server_wait, say=self.say)
+        model = TextPlayer(contestants()[player], ModelClient(self.server), self.suite.group_size)
+        try:
+            for board, game, answer in smoke(self.suite, model):
+                if isinstance(answer, PlayerError):
+                    self.report.failed.append(f"{player}: no answer on {board}/{game}, skipped: {answer}")
+                    return False
+        finally:
+            model.close()
+        return True
+
     def model(self, player: str) -> None:
         self.say(f"== {player}")
         try:
+            if not self.answers(player):
+                return
             for board in self.turn_based():
                 self.board(player, board)
             timed = self.diagnostic("latency", player)

@@ -12,6 +12,8 @@ class FakeModelCompose(BaseHTTPRequestHandler):
     """Answers every typed-decision request with the first option shown (both question shapes)."""
 
     fail = False
+    fail_after: int | None = None  # answer this many requests, then fail every one
+    answered = 0
     served: list[str] | None = None  # workflows it serves; None: every player in model-compose.yml
 
     def _served(self) -> list[str]:
@@ -28,7 +30,9 @@ class FakeModelCompose(BaseHTTPRequestHandler):
         if body["workflow_id"] not in self._served():
             self._send(404, {"detail": f"Workflow not found: {body['workflow_id']}"})
             return
-        if self.fail:
+        if self.fail_after is not None:
+            FakeModelCompose.answered += 1
+        if self.fail or (self.fail_after is not None and self.answered > self.fail_after):
             self._send(200, {"status": "failed", "error": "boom"})
             return
         move = body["input"]["schema"]["move"]

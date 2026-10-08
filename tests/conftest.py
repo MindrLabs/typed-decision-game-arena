@@ -87,4 +87,6 @@ def server() -> Iterator[str]:
     yield f"http://127.0.0.1:{httpd.server_address[1]}/api"
     httpd.shutdown()
     FakeModelCompose.fail = False
+    FakeModelCompose.fail_after = None
+    FakeModelCompose.answered = 0
     FakeModelCompose.served = None

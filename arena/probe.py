@@ -7,9 +7,11 @@ model is timed and probed on byte-identical inputs.
 
 from __future__ import annotations
 
-from arena.core import Question
+from collections.abc import Iterator
+
+from arena.core import Call, PlayerError, Question
 from arena.episode import decision_rng
-from arena.players import ReferencePlayer
+from arena.players import ReferencePlayer, TextPlayer
 from arena.suite import Suite
 from arena.tasks import make_task
 
@@ -40,3 +42,16 @@ def sample_questions(suite: Suite, board: str, game: str, count: int) -> list[Qu
     finally:
         task.close()
     return found
+
+
+def smoke(suite: Suite, player: TextPlayer) -> Iterator[tuple[str, str, Call | PlayerError]]:
+    """One probe question per game of every turn-based board, asked the way an episode asks: the answer, or
+    the error that stopped it."""
+    for board, game in suite.pairs():
+        if suite.board(board).step_ms is not None:
+            continue
+        question = sample_questions(suite, board, game, 1)[0]
+        try:
+            yield board, game, player.ask(question, "smoke")
+        except PlayerError as error:
+            yield board, game, error

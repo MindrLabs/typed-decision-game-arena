@@ -85,7 +85,7 @@ def test_failing_steps_are_retried_then_reported(
     tiny: Suite, results: Path, server: str, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     monkeypatch.setattr("arena.client.time.sleep", lambda seconds: None)
-    FakeModelCompose.fail = True
+    FakeModelCompose.fail_after = 2  # the two smoke questions pass, every later request fails
     report = campaign(tiny, results, server, [], attempts=2).run(["kev-0.8b"], anchors=False)
     assert report.failed[:2] == [
         "macro/snake kev-0.8b: 2 episodes still fail",
@@ -97,8 +97,18 @@ def test_failing_steps_are_retried_then_reported(
     errors = read_jsonl(run_dir(tiny.id, "dev", "macro", "snake", "kev-0.8b", results=results) / "errors.jsonl")
     assert len(errors) == 4  # two seeds, two attempts
 
-    FakeModelCompose.fail = False  # the next run picks up what is left
+    FakeModelCompose.fail_after = None  # the next run picks up what is left
     assert campaign(tiny, results, server, []).run(["kev-0.8b"], anchors=False).failed == []
+
+
+def test_a_model_that_cannot_answer_is_skipped_at_once(
+    tiny: Suite, results: Path, server: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr("arena.client.time.sleep", lambda seconds: None)
+    FakeModelCompose.fail = True
+    (failure,) = campaign(tiny, results, server, []).run(["kev-0.8b"], anchors=False).failed
+    assert failure.startswith("kev-0.8b: no answer on macro/snake, skipped:")
+    assert not (run_dir(tiny.id, "dev", "macro", "snake", "kev-0.8b", results=results) / "errors.jsonl").exists()
 
 
 def test_unknown_models_are_refused_before_anything_runs(tiny: Suite, results: Path, server: str) -> None:
