@@ -142,12 +142,40 @@ PascalPons/connect4는 AGPL-3.0이라 MIT 저장소에 넣지 않습니다. 매 
 
 **가중치는 미리 받아 둡니다.** clef(55 GB), clef-flash(19 GB), kev의 base 모델이 대상입니다. kev 체크포인트는 `training_config.json`의 `base_revision`으로 base 모델을 직접 고정하고 있습니다(9B-Base `68c46c4b`, 4B-Base `1001bb4d`, 0.8B-Base `dc7cdfe2`).
 
-## 7. 남은 일
+## 7. 파일럿 (dev 시드, 2026-10-08)
 
-1. 파일럿
-   - laya 세 개의 latency는 쟀습니다(게임별 중앙값 15~46 ms).
-   - 나머지 모델의 latency를 재고, dev campaign(laya-typed, kev-0.8b, clef-flash, nimble-v2)을 돌립니다.
-   - 비용과 바닥·천장 효과를 본 뒤 `arena suite freeze`.
-2. test campaign을 마친 뒤 verify, env, score, export, dataset을 거쳐 결과를 커밋합니다.
+모델 5개를 dev campaign으로 돌렸습니다(laya-typed, kev-0.8b, clef-flash, nimble-v2, clef). 첫 실행에서 문제 다섯 가지가 나왔고, 동결 전에 고친 뒤 처음부터 다시 돌렸습니다.
+
+1. **Pong 시작 화면.** 첫 서브 전 RAM에는 반쯤 설정된 공(x -49)과 필드 위쪽에 있는 상대 패들이 남아 있습니다. 화면에는 둘 다 보이지 않습니다. 그래서 상태 문장에 "공 없음"과 "상대 패들이 필드 밖"으로 적고, 스냅샷의 패들 값은 null로 둡니다. 이 수정 뒤 Frame Pong 기준 봇의 dev 평균은 -2.3에서 0.0으로 바뀌었습니다(출발 동작이 달라짐).
+2. **Breakout Frame의 대기.** kev-0.8b는 1500스텝 동안 발사를 한 번도 고르지 않았습니다. 그래서 공이 없는 스텝이 300번 이어지면 게임을 끝내기로 했습니다. Snake의 굶주림 상한과 같은 이유입니다. 이 규칙과 남은 스텝 수를 상태에 보여 주자, 같은 모델이 공을 발사해 평균 3점을 냈습니다.
+3. **알려 주지 않던 상한.** 조각 수, 스텝 수, 굶주림 상한을 모델이 볼 수 없었습니다. 이제 모든 상태에 게임을 끝내는 한계와 그에 대응하는 카운터를 적습니다. Frame의 `decision_cap`은 실제로 스텝을 세므로 `step_cap`으로 이름을 바꿨습니다. 실시간 보드에서는 결정 수와 스텝 수가 다르기 때문입니다.
+4. **Clef 런타임에 torchvision이 없음.** Qwen3-VL 프로세서가 텍스트만 다룰 때도 torchvision을 요구합니다. torch(2.14.1+cu130)와 짝이 맞는 torchvision 0.29.1+cu130만 `--no-deps`로 넣었고, `setup_runtimes.py`가 자동으로 처리합니다. upstream에는 hanyeol/model-compose#39로 보고했습니다.
+5. **고장 난 모델이 시간을 잡아먹음.** 응답하지 못하는 모델도 재시도할 때마다 가중치를 다시 읽었습니다. 이제 campaign이 모델마다 게임당 질문 하나씩을 먼저 물어보고, 하나라도 실패하면 바로 건너뜁니다.
+
+다시 돌린 결과(dev 지수)입니다.
+
+| 모델 | Macro | Frame | Real-time |
+|---|---:|---:|---:|
+| nimble-v2 | 13.6 | 21.2 | 0.5 |
+| clef-flash | 5.5 | 5.6 | 0.6 |
+| kev-0.8b | 5.3 | 0.3 | 0.2 |
+| laya-typed | 4.4 | 0.5 | 2.3 |
+
+**동결 판단.** suite는 바꾸지 않고 동결했습니다. 근거는 다음과 같습니다.
+- **변별력이 있습니다.** nimble-v2는 Frame Pong(k 0.54), Snake(k 0.21), Connect Four(k 0.44)에서 다른 모델과 뚜렷하게 갈립니다.
+- **천장 효과가 없습니다.** 상한에 닿은 경우는 Frame Pong이 1500스텝까지 이어진 것뿐인데, 이는 공을 받아내는 플레이어라면 정상적으로 생깁니다.
+- **바닥에 몰린 게임이 많은 것은 모델의 한계입니다.** 대부분 모델이 Tetris에서 0줄입니다. 로그를 보면 선택지마다 확률이 거의 평평하고(그룹 1위 0.17~0.26), "구멍 4개, 높이 6"인 선택지를 두고 "구멍 6개, 높이 8"을 골랐습니다. 문장은 명확하고 중립적이므로, 모델에 맞춰 바꾸면 원칙에 어긋납니다.
+- **실시간 보드는 모두 바닥입니다.** 3~4스텝 지연으로는 공을 따라가지 못합니다. 이것 자체가 이 보드가 측정하려는 결과입니다.
+
+clef의 파일럿은 건너뛰었습니다. 앞의 결과로 천장 효과는 나타날 수 없음이 분명했고, smoke는 통과했으며, test campaign도 모델마다 smoke를 먼저 하기 때문입니다.
+
+**비용.** dev 실측 시간을 test 시드 수로 늘려 계산했습니다(에피소드만).
+- laya-typed 0.7시간, kev-0.8b 1.1시간, clef-flash 3.5시간, nimble-v2 4.7시간
+- 요청 하나에 걸리는 시간은 clef가 clef-flash의 약 3배이므로, 10개 모델 전체는 약 1.5~2일로 봅니다.
+
+## 8. 남은 일
+
+1. test campaign. 동결 커밋의 worktree에서 실행하고, 빠른 모델부터 돌립니다.
+2. 끝나면 verify, env, score, export, dataset(private)을 거쳐 결과를 커밋하고 push합니다.
 3. 저장소와 dataset의 공개 전환: 사전 승인.
 4. 새 family upstream 기여: v0.1 결과 뒤, PR마다 사전 승인. 후보는 NeoHorse-Jev-4B, AutoJev-27B, 그 밖의 Decision Index 상위 공개 모델입니다.

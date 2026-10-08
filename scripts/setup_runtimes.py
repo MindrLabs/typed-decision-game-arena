@@ -9,8 +9,9 @@ place and starts in seconds.
     uv run python scripts/setup_runtimes.py kev-0.8b     only some
 
 It also adds what a driver needs but does not install yet. Clef loads a Qwen3-VL processor, which refuses to
-start without torchvision even for text, and the pinned Clef driver does not install it: the script adds the
-torchvision release paired with the runtime's torch, from the same wheel index, without touching anything else.
+start without torchvision even for text, and the pinned Clef driver does not install it
+(hanyeol/model-compose#39): the script adds the torchvision release paired with the runtime's torch, from the
+same wheel index, without touching anything else.
 """
 
 from __future__ import annotations
