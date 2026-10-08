@@ -1,0 +1,245 @@
+# Typed-decision game arena.
+#
+# Every workflow is one player, named by its workflow id: `arena run --player <id>`. The arena reads this file to
+# know each player's family, checkpoint and revision, and records them (with a hash of the component settings)
+# in every result line.
+#
+# Models load on their first request and unload after two idle minutes (`on_demand`), so all players can be
+# declared here while only the one being run takes memory. Run one player at a time: models sharing the GPU slow
+# each other down, which would distort latency and the real-time board.
+#
+#   API      http://127.0.0.1:${ARENA_API_PORT:-8380}/api
+#   Web UI   http://127.0.0.1:${ARENA_WEB_PORT:-8381}   (the leaderboard and replays in webui/)
+
+controller:
+  adapter:
+    type: http-server
+    host: 127.0.0.1
+    port: ${env.ARENA_API_PORT | 8380}
+    base_path: /api
+  webui:
+    driver: static
+    static_dir: webui
+    host: 127.0.0.1
+    port: ${env.ARENA_WEB_PORT | 8381}
+
+workflows:
+  - id: clef
+    title: Clef
+    description: Cloudflare's decision model, a routing head and LoRA on Qwen3.8-27B (27B, BF16).
+    job: { component: clef, input: "${input}", output: "${output as json}" }
+
+  - id: clef-flash
+    title: Clef-flash
+    description: The small Clef, on Qwen3.5-9B.
+    job: { component: clef-flash, input: "${input}", output: "${output as json}" }
+
+  - id: kev-9b
+    title: Kev 9B
+    description: Kev, LoRA and pointer head on Qwen3.5-9B-Base.
+    job: { component: kev-9b, input: "${input}", output: "${output as json}" }
+
+  - id: kev-4b
+    title: Kev 4B
+    description: Kev, LoRA and pointer head on Qwen3.5-4B-Base.
+    job: { component: kev-4b, input: "${input}", output: "${output as json}" }
+
+  - id: kev-0.8b
+    title: Kev 0.8B
+    description: Kev, LoRA and pointer head on Qwen3.5-0.8B-Base.
+    job: { component: kev-0.8b, input: "${input}", output: "${output as json}" }
+
+  - id: nimble-v2
+    title: Bespoke Nimble 9B v2
+    description: Bespoke Labs' LoRA on Qwen3.5-9B, second release.
+    job: { component: nimble-v2, input: "${input}", output: "${output as json}" }
+
+  - id: nimble
+    title: Bespoke Nimble 9B
+    description: Bespoke Labs' LoRA on Qwen3.5-9B, first release.
+    job: { component: nimble, input: "${input}", output: "${output as json}" }
+
+  - id: laya-english
+    title: Laya (english)
+    description: Convai's Laya on ModernBERT-large (421M), English checkpoint.
+    job: { component: laya-english, input: "${input}", output: "${output as json}" }
+
+  - id: laya-typed
+    title: Laya (typed-decisions)
+    description: Convai's Laya on ModernBERT-large (421M), checkpoint tuned on the typed-decisions workflows.
+    job: { component: laya-typed, input: "${input}", output: "${output as json}" }
+
+  - id: laya-multilingual
+    title: Laya (multilingual)
+    description: Convai's Laya on mmBERT-base (322M), multilingual checkpoint.
+    job: { component: laya-multilingual, input: "${input}", output: "${output as json}" }
+
+components:
+  - id: clef
+    type: model
+    task: typed-decision
+    driver: custom
+    family: clef
+    model:
+      provider: huggingface
+      repository: Cloudflare/clef
+      revision: ed3eed331870db2eff4b0db01237128ede8a00ce
+    preload: false
+    on_demand: &on_demand { idle_timeout: 120s }
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/clef }
+    action: &action
+      text: ${input.text as text}
+      schema: ${input.schema as json}
+      return_probabilities: true
+
+  - id: clef-flash
+    type: model
+    task: typed-decision
+    driver: custom
+    family: clef
+    model:
+      provider: huggingface
+      repository: Cloudflare/clef-flash
+      revision: fde727a287004204b7518dcc983fe64379776712
+    preload: false
+    on_demand: *on_demand
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/clef-flash }
+    action: *action
+
+  - id: kev-9b
+    type: model
+    task: typed-decision
+    driver: custom
+    family: kev
+    model:
+      provider: huggingface
+      repository: jaredpalmer/kev-9b
+      revision: db029f08b290afd9fee4aa4bbcd9ae48602d1eb0
+    preload: false
+    on_demand: *on_demand
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/kev-9b }
+    action: *action
+
+  - id: kev-4b
+    type: model
+    task: typed-decision
+    driver: custom
+    family: kev
+    model:
+      provider: huggingface
+      repository: jaredpalmer/kev-4b
+      revision: 6cfce5c2fa4b4bd64026336ab649c5ca78857d52
+    preload: false
+    on_demand: *on_demand
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/kev-4b }
+    action: *action
+
+  - id: kev-0.8b
+    type: model
+    task: typed-decision
+    driver: custom
+    family: kev
+    model:
+      provider: huggingface
+      repository: jaredpalmer/kev-0.8b
+      revision: bf75a6a8848ea6960ff2ed108d9ed44c2941174f
+    preload: false
+    on_demand: *on_demand
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/kev-0.8b }
+    action: *action
+
+  - id: nimble-v2
+    type: model
+    task: typed-decision
+    driver: custom
+    family: nimble
+    model:
+      provider: huggingface
+      repository: bespokelabs/Bespoke-Nimble-9B-v2
+      revision: 4b8c04d1ac2cea3e41e5e3c4d2130bcead2c0abe
+    base_model:
+      provider: huggingface
+      repository: Qwen/Qwen3.5-9B
+      revision: c202236235762e1c871ad0ccb60c8ee5ba337b9a
+    precision: bfloat16
+    max_seq_length: 4096
+    preload: false
+    on_demand: *on_demand
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/nimble-v2 }
+    action: *action
+
+  - id: nimble
+    type: model
+    task: typed-decision
+    driver: custom
+    family: nimble
+    model:
+      provider: huggingface
+      repository: bespokelabs/Bespoke-Nimble-9B
+      revision: bd792f44ec8e265be861bfcdf4e05967ffe0e858
+    base_model:
+      provider: huggingface
+      repository: Qwen/Qwen3.5-9B
+      revision: c202236235762e1c871ad0ccb60c8ee5ba337b9a
+    precision: bfloat16
+    max_seq_length: 4096
+    preload: false
+    on_demand: *on_demand
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/nimble }
+    action: *action
+
+  # Laya's defaults (512 tokens per call with a 192-token option head on English) cannot hold eight described
+  # options, and an over-long head raises instead of truncating. Convai's README documents raising both
+  # (head_max_len 512, max_len 1024 to 8192); every Laya player uses 2048 / 512. Longer states are cut by the
+  # driver, and `arena laya-cuts` reports how often.
+  - id: laya-english
+    type: model
+    task: typed-decision
+    driver: custom
+    family: laya
+    preset: english
+    max_seq_length: 2048
+    max_head_length: 512
+    fast: false
+    preload: false
+    on_demand: *on_demand
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/laya-english }
+    action: *action
+
+  - id: laya-typed
+    type: model
+    task: typed-decision
+    driver: custom
+    family: laya
+    preset: typed-decisions
+    max_seq_length: 2048
+    max_head_length: 512
+    fast: false
+    preload: false
+    on_demand: *on_demand
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/laya-typed }
+    action: *action
+
+  - id: laya-multilingual
+    type: model
+    task: typed-decision
+    driver: custom
+    family: laya
+    preset: multilingual
+    max_seq_length: 2048
+    max_head_length: 512
+    fast: false
+    preload: false
+    on_demand: *on_demand
+    max_concurrent_count: 1
+    runtime: { type: virtualenv, path: .runtime/laya-multilingual }
+    action: *action
