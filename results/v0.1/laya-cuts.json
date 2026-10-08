@@ -1,0 +1,200 @@
+{
+  "laya-english": {
+    "budget": {
+      "max_head_length": 512,
+      "max_seq_length": 2048,
+      "preset": "english"
+    },
+    "games": {
+      "frame/breakout": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 244,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "frame/pong": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 161,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "frame/tetris": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 200,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/breakout": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 249,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/connect4": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 126,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/pong": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 161,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/snake": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 236,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/tetris": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 137,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      }
+    },
+    "tokenizer": "answerdotai/ModernBERT-large"
+  },
+  "laya-multilingual": {
+    "budget": {
+      "max_head_length": 512,
+      "max_seq_length": 2048,
+      "preset": "multilingual"
+    },
+    "games": {
+      "frame/breakout": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 297,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "frame/pong": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 202,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "frame/tetris": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 217,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/breakout": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 304,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/connect4": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 145,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/pong": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 204,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/snake": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 265,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/tetris": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 147,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      }
+    },
+    "tokenizer": "jhu-clsp/mmBERT-base"
+  },
+  "laya-typed": {
+    "budget": {
+      "max_head_length": 512,
+      "max_seq_length": 2048,
+      "preset": "typed-decisions"
+    },
+    "games": {
+      "frame/breakout": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 244,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "frame/pong": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 161,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "frame/tetris": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 200,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/breakout": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 249,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/connect4": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 126,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/pong": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 161,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/snake": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 236,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      },
+      "macro/tetris": {
+        "head_over_budget": 0.0,
+        "longest_state_tokens": 137,
+        "n": 60,
+        "option_cut": 0.0,
+        "state_cut": 0.0
+      }
+    },
+    "tokenizer": "answerdotai/ModernBERT-large"
+  }
+}
