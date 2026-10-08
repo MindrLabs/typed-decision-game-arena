@@ -1,0 +1,967 @@
+{
+ "arena": "0.1.0",
+ "bias": {},
+ "boards": [
+  {
+   "anchor_board": "macro",
+   "games": [
+    "tetris",
+    "snake",
+    "connect4",
+    "pong",
+    "breakout"
+   ],
+   "id": "macro",
+   "seeds": {
+    "breakout": 3,
+    "connect4": 6,
+    "pong": 3,
+    "snake": 5,
+    "tetris": 5
+   },
+   "summary": "Turn-based. One decision per meaningful choice: where a piece lands, which band the paddle covers, which way to turn, which column to play. A fixed controller does the low-level input.",
+   "title": "Macro"
+  },
+  {
+   "anchor_board": "frame",
+   "games": [
+    "tetris",
+    "pong",
+    "breakout"
+   ],
+   "id": "frame",
+   "seeds": {
+    "breakout": 3,
+    "pong": 3,
+    "tetris": 3
+   },
+   "summary": "Turn-based. One decision per step of the game: a key or a push of the paddle.",
+   "title": "Frame"
+  },
+  {
+   "anchor_board": "frame",
+   "games": [
+    "tetris",
+    "pong",
+    "breakout"
+   ],
+   "id": "realtime",
+   "seeds": {
+    "breakout": 3,
+    "pong": 3,
+    "tetris": 3
+   },
+   "summary": "The frame board with reaction time: the game keeps running for as many steps as the player's measured median latency covers, holding the previous key, before a decision takes effect.",
+   "title": "Real-time"
+  }
+ ],
+ "games": {
+  "breakout": {
+   "score": "points",
+   "title": "Breakout"
+  },
+  "connect4": {
+   "score": "points per game (win 1, draw 0.5)",
+   "title": "Connect Four"
+  },
+  "pong": {
+   "score": "points won minus points lost",
+   "title": "Pong"
+  },
+  "snake": {
+   "score": "food eaten",
+   "title": "Snake"
+  },
+  "tetris": {
+   "score": "lines cleared",
+   "title": "Tetris"
+  }
+ },
+ "generated": "2026-10-08T00:42:43+00:00",
+ "latency": {},
+ "players": {
+  "clef": {
+   "base_model": null,
+   "description": "Cloudflare's decision model, a routing head and LoRA on Qwen3.8-27B (27B, BF16).",
+   "family": "clef",
+   "kind": "model",
+   "preset": null,
+   "repository": "Cloudflare/clef",
+   "revision": "ed3eed331870db2eff4b0db01237128ede8a00ce",
+   "title": "Clef"
+  },
+  "clef-flash": {
+   "base_model": null,
+   "description": "The small Clef, on Qwen3.5-9B.",
+   "family": "clef",
+   "kind": "model",
+   "preset": null,
+   "repository": "Cloudflare/clef-flash",
+   "revision": "fde727a287004204b7518dcc983fe64379776712",
+   "title": "Clef-flash"
+  },
+  "kev-0.8b": {
+   "base_model": null,
+   "description": "Kev, LoRA and pointer head on Qwen3.5-0.8B-Base.",
+   "family": "kev",
+   "kind": "model",
+   "preset": null,
+   "repository": "jaredpalmer/kev-0.8b",
+   "revision": "bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+   "title": "Kev 0.8B"
+  },
+  "kev-4b": {
+   "base_model": null,
+   "description": "Kev, LoRA and pointer head on Qwen3.5-4B-Base.",
+   "family": "kev",
+   "kind": "model",
+   "preset": null,
+   "repository": "jaredpalmer/kev-4b",
+   "revision": "6cfce5c2fa4b4bd64026336ab649c5ca78857d52",
+   "title": "Kev 4B"
+  },
+  "kev-9b": {
+   "base_model": null,
+   "description": "Kev, LoRA and pointer head on Qwen3.5-9B-Base.",
+   "family": "kev",
+   "kind": "model",
+   "preset": null,
+   "repository": "jaredpalmer/kev-9b",
+   "revision": "db029f08b290afd9fee4aa4bbcd9ae48602d1eb0",
+   "title": "Kev 9B"
+  },
+  "laya-english": {
+   "base_model": null,
+   "description": "Convai's Laya on ModernBERT-large (421M), English checkpoint.",
+   "family": "laya",
+   "kind": "model",
+   "preset": "english",
+   "repository": "convaiinnovations/laya",
+   "revision": null,
+   "title": "Laya (english)"
+  },
+  "laya-multilingual": {
+   "base_model": null,
+   "description": "Convai's Laya on mmBERT-base (322M), multilingual checkpoint.",
+   "family": "laya",
+   "kind": "model",
+   "preset": "multilingual",
+   "repository": "convaiinnovations/laya",
+   "revision": null,
+   "title": "Laya (multilingual)"
+  },
+  "laya-typed": {
+   "base_model": null,
+   "description": "Convai's Laya on ModernBERT-large (421M), checkpoint tuned on the typed-decisions workflows.",
+   "family": "laya",
+   "kind": "model",
+   "preset": "typed-decisions",
+   "repository": "convaiinnovations/laya",
+   "revision": null,
+   "title": "Laya (typed-decisions)"
+  },
+  "nimble": {
+   "base_model": "Qwen/Qwen3.5-9B",
+   "description": "Bespoke Labs' LoRA on Qwen3.5-9B, first release.",
+   "family": "nimble",
+   "kind": "model",
+   "preset": null,
+   "repository": "bespokelabs/Bespoke-Nimble-9B",
+   "revision": "bd792f44ec8e265be861bfcdf4e05967ffe0e858",
+   "title": "Bespoke Nimble 9B"
+  },
+  "nimble-v2": {
+   "base_model": "Qwen/Qwen3.5-9B",
+   "description": "Bespoke Labs' LoRA on Qwen3.5-9B, second release.",
+   "family": "nimble",
+   "kind": "model",
+   "preset": null,
+   "repository": "bespokelabs/Bespoke-Nimble-9B-v2",
+   "revision": "4b8c04d1ac2cea3e41e5e3c4d2130bcead2c0abe",
+   "title": "Bespoke Nimble 9B v2"
+  },
+  "random": {
+   "description": "A uniformly random legal option. Defines 0 on every normalised score.",
+   "kind": "baseline",
+   "title": "Random"
+  },
+  "reference": {
+   "description": "A strong rule-based player per game that reads the game state directly, never the text. Defines 100 on every normalised score.",
+   "kind": "baseline",
+   "title": "Reference"
+  }
+ },
+ "replays": [
+  {
+   "board": "macro",
+   "decisions": 14,
+   "game": "tetris",
+   "path": "replays/macro/tetris/random/1001.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 24,
+   "game": "tetris",
+   "path": "replays/macro/tetris/random/1002.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1002
+  },
+  {
+   "board": "macro",
+   "decisions": 300,
+   "game": "tetris",
+   "path": "replays/macro/tetris/reference/1001.json.gz",
+   "player": "reference",
+   "score": 117.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 300,
+   "game": "tetris",
+   "path": "replays/macro/tetris/reference/1002.json.gz",
+   "player": "reference",
+   "score": 119.0,
+   "seed": 1002
+  },
+  {
+   "board": "macro",
+   "decisions": 13,
+   "game": "snake",
+   "path": "replays/macro/snake/random/1001.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 18,
+   "game": "snake",
+   "path": "replays/macro/snake/random/1002.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1002
+  },
+  {
+   "board": "macro",
+   "decisions": 1000,
+   "game": "snake",
+   "path": "replays/macro/snake/reference/1001.json.gz",
+   "player": "reference",
+   "score": 82.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 613,
+   "game": "snake",
+   "path": "replays/macro/snake/reference/1002.json.gz",
+   "player": "reference",
+   "score": 43.0,
+   "seed": 1002
+  },
+  {
+   "board": "macro",
+   "decisions": 6,
+   "game": "connect4",
+   "path": "replays/macro/connect4/random/1001.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 3,
+   "game": "connect4",
+   "path": "replays/macro/connect4/random/1002.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1002
+  },
+  {
+   "board": "macro",
+   "decisions": 5,
+   "game": "connect4",
+   "path": "replays/macro/connect4/reference/1001.json.gz",
+   "player": "reference",
+   "score": 1.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 21,
+   "game": "connect4",
+   "path": "replays/macro/connect4/reference/1002.json.gz",
+   "player": "reference",
+   "score": 0.5,
+   "seed": 1002
+  },
+  {
+   "board": "macro",
+   "decisions": 34,
+   "game": "pong",
+   "path": "replays/macro/pong/random/1001.json.gz",
+   "player": "random",
+   "score": -21.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 35,
+   "game": "pong",
+   "path": "replays/macro/pong/random/1002.json.gz",
+   "player": "random",
+   "score": -20.0,
+   "seed": 1002
+  },
+  {
+   "board": "macro",
+   "decisions": 627,
+   "game": "pong",
+   "path": "replays/macro/pong/reference/1001.json.gz",
+   "player": "reference",
+   "score": -6.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 241,
+   "game": "pong",
+   "path": "replays/macro/pong/reference/1002.json.gz",
+   "player": "reference",
+   "score": -16.0,
+   "seed": 1002
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/random/1001.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/random/1002.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1002
+  },
+  {
+   "board": "macro",
+   "decisions": 92,
+   "game": "breakout",
+   "path": "replays/macro/breakout/reference/1001.json.gz",
+   "player": "reference",
+   "score": 64.0,
+   "seed": 1001
+  },
+  {
+   "board": "macro",
+   "decisions": 67,
+   "game": "breakout",
+   "path": "replays/macro/breakout/reference/1002.json.gz",
+   "player": "reference",
+   "score": 42.0,
+   "seed": 1002
+  },
+  {
+   "board": "frame",
+   "decisions": 46,
+   "game": "tetris",
+   "path": "replays/frame/tetris/random/1001.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1001
+  },
+  {
+   "board": "frame",
+   "decisions": 60,
+   "game": "tetris",
+   "path": "replays/frame/tetris/random/1002.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1002
+  },
+  {
+   "board": "frame",
+   "decisions": 409,
+   "game": "tetris",
+   "path": "replays/frame/tetris/reference/1001.json.gz",
+   "player": "reference",
+   "score": 38.0,
+   "seed": 1001
+  },
+  {
+   "board": "frame",
+   "decisions": 418,
+   "game": "tetris",
+   "path": "replays/frame/tetris/reference/1002.json.gz",
+   "player": "reference",
+   "score": 39.0,
+   "seed": 1002
+  },
+  {
+   "board": "frame",
+   "decisions": 824,
+   "game": "pong",
+   "path": "replays/frame/pong/random/1001.json.gz",
+   "player": "random",
+   "score": -21.0,
+   "seed": 1001
+  },
+  {
+   "board": "frame",
+   "decisions": 921,
+   "game": "pong",
+   "path": "replays/frame/pong/random/1002.json.gz",
+   "player": "random",
+   "score": -20.0,
+   "seed": 1002
+  },
+  {
+   "board": "frame",
+   "decisions": 1500,
+   "game": "pong",
+   "path": "replays/frame/pong/reference/1001.json.gz",
+   "player": "reference",
+   "score": -5.0,
+   "seed": 1001
+  },
+  {
+   "board": "frame",
+   "decisions": 1500,
+   "game": "pong",
+   "path": "replays/frame/pong/reference/1002.json.gz",
+   "player": "reference",
+   "score": 0.0,
+   "seed": 1002
+  },
+  {
+   "board": "frame",
+   "decisions": 141,
+   "game": "breakout",
+   "path": "replays/frame/breakout/random/1001.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1001
+  },
+  {
+   "board": "frame",
+   "decisions": 142,
+   "game": "breakout",
+   "path": "replays/frame/breakout/random/1002.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1002
+  },
+  {
+   "board": "frame",
+   "decisions": 1401,
+   "game": "breakout",
+   "path": "replays/frame/breakout/reference/1001.json.gz",
+   "player": "reference",
+   "score": 160.0,
+   "seed": 1001
+  },
+  {
+   "board": "frame",
+   "decisions": 1500,
+   "game": "breakout",
+   "path": "replays/frame/breakout/reference/1002.json.gz",
+   "player": "reference",
+   "score": 313.0,
+   "seed": 1002
+  }
+ ],
+ "schema": 1,
+ "scores": {
+  "frame": {
+   "anchor_board": "frame",
+   "anchors": {
+    "breakout": {
+     "n": 3,
+     "random": 0.6667,
+     "reference": 224.3333
+    },
+    "pong": {
+     "n": 3,
+     "random": -20.3333,
+     "reference": -2.3333
+    },
+    "tetris": {
+     "n": 3,
+     "random": 0.0,
+     "reference": 38.6667
+    }
+   },
+   "board": "frame",
+   "games": [
+    "tetris",
+    "pong",
+    "breakout"
+   ],
+   "missing_anchors": [],
+   "pairs": [],
+   "players": {
+    "random": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "mean": 0.6667,
+       "mean_ci": [
+        0.0,
+        2.0
+       ],
+       "metrics": {
+        "bricks_broken": 0.6667,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 3
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "mean": -20.3333,
+       "mean_ci": [
+        -21.0,
+        -20.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.6667
+       },
+       "n": 3
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 11.3333,
+        "topped_out": 1.0
+       },
+       "n": 3
+      }
+     },
+     "index": 0.0,
+     "index_ci": [
+      0.0,
+      0.0
+     ],
+     "rank": 2
+    },
+    "reference": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 1.0,
+       "k_ci": [
+        1.0,
+        1.0
+       ],
+       "mean": 224.3333,
+       "mean_ci": [
+        160.0,
+        313.0
+       ],
+       "metrics": {
+        "bricks_broken": 67.3333,
+        "game_over": 0.3333,
+        "lives": 1.3333
+       },
+       "n": 3
+      },
+      "pong": {
+       "k": 1.0,
+       "k_ci": [
+        1.0,
+        1.0
+       ],
+       "mean": -2.3333,
+       "mean_ci": [
+        -5.0,
+        0.0
+       ],
+       "metrics": {
+        "game_over": 0.0,
+        "points_lost": 4.0,
+        "points_won": 1.6667
+       },
+       "n": 3
+      },
+      "tetris": {
+       "k": 1.0,
+       "k_ci": [
+        1.0,
+        1.0
+       ],
+       "mean": 38.6667,
+       "mean_ci": [
+        38.0,
+        39.0
+       ],
+       "metrics": {
+        "lines": 38.6667,
+        "pieces": 100.0,
+        "topped_out": 0.0
+       },
+       "n": 3
+      }
+     },
+     "index": 100.0,
+     "index_ci": [
+      100.0,
+      100.0
+     ],
+     "rank": 1
+    }
+   },
+   "ranking": [
+    "reference",
+    "random"
+   ]
+  },
+  "macro": {
+   "anchor_board": "macro",
+   "anchors": {
+    "breakout": {
+     "n": 3,
+     "random": 0.6667,
+     "reference": 55.3333
+    },
+    "connect4": {
+     "n": 6,
+     "random": 0.1667,
+     "reference": 0.9167
+    },
+    "pong": {
+     "n": 3,
+     "random": -20.6667,
+     "reference": -7.6667
+    },
+    "snake": {
+     "n": 5,
+     "random": 0.0,
+     "reference": 61.4
+    },
+    "tetris": {
+     "n": 5,
+     "random": 0.0,
+     "reference": 118.2
+    }
+   },
+   "board": "macro",
+   "games": [
+    "tetris",
+    "snake",
+    "connect4",
+    "pong",
+    "breakout"
+   ],
+   "missing_anchors": [],
+   "pairs": [],
+   "players": {
+    "random": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "mean": 0.6667,
+       "mean_ci": [
+        0.0,
+        2.0
+       ],
+       "metrics": {
+        "bricks_broken": 0.6667,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 3
+      },
+      "connect4": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "mean": 0.1667,
+       "mean_ci": [
+        0.0,
+        0.5
+       ],
+       "metrics": {
+        "allowed_wins": 1.3333,
+        "first": 0.5,
+        "missed_wins": 0.3333,
+        "moves": 16.0,
+        "opponent": {
+         "negamax-4": 2,
+         "random": 2,
+         "win-block": 2
+        },
+        "result": {
+         "loss": 5,
+         "win": 1
+        }
+       },
+       "n": 6
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "mean": -20.6667,
+       "mean_ci": [
+        -21.0,
+        -20.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.3333
+       },
+       "n": 3
+      },
+      "snake": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "death": {
+         "wall": 5
+        },
+        "died": 1.0,
+        "food": 0.0,
+        "length": 3.0,
+        "starved": 0.0
+       },
+       "n": 5
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 17.6,
+        "topped_out": 1.0
+       },
+       "n": 5
+      }
+     },
+     "index": 0.0,
+     "index_ci": [
+      0.0,
+      0.0
+     ],
+     "rank": 2
+    },
+    "reference": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 1.0,
+       "k_ci": [
+        1.0,
+        1.0
+       ],
+       "mean": 55.3333,
+       "mean_ci": [
+        42.0,
+        64.0
+       ],
+       "metrics": {
+        "bricks_broken": 32.3333,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 3
+      },
+      "connect4": {
+       "k": 1.0,
+       "k_ci": [
+        1.0,
+        1.0
+       ],
+       "mean": 0.9167,
+       "mean_ci": [
+        0.75,
+        1.0
+       ],
+       "metrics": {
+        "allowed_wins": 0.0,
+        "first": 0.5,
+        "missed_wins": 0.0,
+        "moves": 19.8333,
+        "opponent": {
+         "negamax-4": 2,
+         "random": 2,
+         "win-block": 2
+        },
+        "result": {
+         "draw": 1,
+         "win": 5
+        }
+       },
+       "n": 6
+      },
+      "pong": {
+       "k": 1.0,
+       "k_ci": [
+        1.0,
+        1.0
+       ],
+       "mean": -7.6667,
+       "mean_ci": [
+        -16.0,
+        -1.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 13.3333
+       },
+       "n": 3
+      },
+      "snake": {
+       "k": 1.0,
+       "k_ci": [
+        1.0,
+        1.0
+       ],
+       "mean": 61.4,
+       "mean_ci": [
+        46.0,
+        76.4
+       ],
+       "metrics": {
+        "death": {
+         "none": 5
+        },
+        "died": 0.0,
+        "food": 61.4,
+        "length": 64.4,
+        "starved": 0.4
+       },
+       "n": 5
+      },
+      "tetris": {
+       "k": 1.0,
+       "k_ci": [
+        1.0,
+        1.0
+       ],
+       "mean": 118.2,
+       "mean_ci": [
+        117.4,
+        119.0
+       ],
+       "metrics": {
+        "lines": 118.2,
+        "pieces": 300.0,
+        "topped_out": 0.0
+       },
+       "n": 5
+      }
+     },
+     "index": 100.0,
+     "index_ci": [
+      100.0,
+      100.0
+     ],
+     "rank": 1
+    }
+   },
+   "ranking": [
+    "reference",
+    "random"
+   ]
+  },
+  "realtime": {
+   "anchor_board": "frame",
+   "anchors": {
+    "breakout": {
+     "n": 3,
+     "random": 0.6667,
+     "reference": 224.3333
+    },
+    "pong": {
+     "n": 3,
+     "random": -20.3333,
+     "reference": -2.3333
+    },
+    "tetris": {
+     "n": 3,
+     "random": 0.0,
+     "reference": 38.6667
+    }
+   },
+   "board": "realtime",
+   "games": [
+    "tetris",
+    "pong",
+    "breakout"
+   ],
+   "missing_anchors": [],
+   "pairs": [],
+   "players": {},
+   "ranking": []
+  }
+ },
+ "seed_set": "dev",
+ "suite": {
+  "bootstrap": 2000,
+  "confidence": 0.95,
+  "frozen": false,
+  "group_size": 8,
+  "id": "v0.1",
+  "lock": null,
+  "sticky": 0.25
+ }
+}
