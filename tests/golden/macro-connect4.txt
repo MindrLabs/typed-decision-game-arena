@@ -1,0 +1,21 @@
+Connect Four, 7 columns x 6 rows (column 1 on the left, row 1 at the bottom). You play O; the opponent plays X; the opponent moved first. Four in a row across, up or diagonally wins.
+Move 2. It is your turn.
+    1 2 3 4 5 6 7
+ 6  . . . . . . .
+ 5  . . . . . . .
+ 4  . . . . . . .
+ 3  . . . . . . .
+ 2  . . . . . . .
+ 1  . . X . . . .
+
+--- instructions ---
+Choose the column for your disc. It drops to the lowest empty row of that column. Each option names the column, the row where the disc lands and what follows immediately. Goal: win the game.
+
+--- options ---
+[c1] column 1, the disc lands in row 1: no four is completed or allowed on the next move
+[c2] column 2, the disc lands in row 1: no four is completed or allowed on the next move
+[c3] column 3, the disc lands in row 2: no four is completed or allowed on the next move
+[c4] column 4, the disc lands in row 1: no four is completed or allowed on the next move
+[c5] column 5, the disc lands in row 1: no four is completed or allowed on the next move
+[c6] column 6, the disc lands in row 1: no four is completed or allowed on the next move
+[c7] column 7, the disc lands in row 1: no four is completed or allowed on the next move

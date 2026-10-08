@@ -1,0 +1,17 @@
+Pong. You control the right paddle (x 140-143); the opponent controls the left paddle (x 16-19). The field is 160 wide (x 0 at the left) and 160 tall (y 0 at the top). Paddles are 16 tall and move only up and down. The ball bounces off the top and bottom edges and off the paddles; a ball that gets past a paddle scores a point for the other side. The first side to 21 points wins.
+Score: you 0, opponent 0.
+The ball is at x 65, y 94; it moved 8 left and 8 down over the last 2 steps.
+Your paddle covers y 61-76 and did not move over the last step. The opponent's paddle covers y 93-108.
+
+--- instructions ---
+Choose the band of the field where your paddle should be. Your paddle moves to the middle of that band and stays there until the next decision; centred there, it covers the whole band. Goal: win as many points as possible.
+
+--- options ---
+[zone1] band 1: y 0-19
+[zone2] band 2: y 20-39
+[zone3] band 3: y 40-59
+[zone4] band 4: y 60-79 (your paddle is centred in this band now)
+[zone5] band 5: y 80-99
+[zone6] band 6: y 100-119
+[zone7] band 7: y 120-139
+[zone8] band 8: y 140-159

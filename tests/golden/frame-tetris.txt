@@ -1,0 +1,19 @@
+Tetris. The well is 10 columns wide (column 1 on the left) and 20 rows tall (row 1 at the bottom). A full row clears; the game ends when a new piece has no room at the top.
+Current piece: Z. Next piece: S.
+Lines cleared: 0. Pieces placed: 0. Stack height: 0. Holes: 0.
+The Z piece is at rotation spawn, columns 4-6, lowest cell in row 19; it falls one row in 2 steps. '@' marks it below.
+20 ...@@.....
+19 ....@@....
+Rows 18-1 are empty.
+
+--- instructions ---
+Choose the key for this step. The piece falls one row on its own every 2 steps and locks when it cannot fall. Goal: clear as many lines as possible before the stack reaches the top.
+
+--- options ---
+[left] move the piece one column left
+[right] move the piece one column right
+[cw] rotate the piece clockwise
+[ccw] rotate the piece counter-clockwise
+[soft] move the piece down one row
+[hard] drop the piece now; it lands in columns 4-6, rows 1-2: clears 0 lines; holes after: 1; stack height after: 2
+[wait] do nothing this step

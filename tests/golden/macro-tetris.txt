@@ -1,0 +1,26 @@
+Tetris. The well is 10 columns wide (column 1 on the left) and 20 rows tall (row 1 at the bottom). A full row clears; the game ends when a new piece has no room at the top.
+Current piece: Z. Next piece: S.
+Lines cleared: 0. Pieces placed: 0. Stack height: 0. Holes: 0.
+The well is empty.
+
+--- instructions ---
+Choose where the current piece lands. Each option is a final position (rotation, columns and rows) and the board right after it lands. Goal: clear as many lines as possible before the stack reaches the top.
+
+--- options ---
+[spawn-c1] rotation spawn, lands in columns 1-3, rows 1-2: clears 0 lines; holes after: 1; stack height after: 2
+[spawn-c2] rotation spawn, lands in columns 2-4, rows 1-2: clears 0 lines; holes after: 1; stack height after: 2
+[spawn-c3] rotation spawn, lands in columns 3-5, rows 1-2: clears 0 lines; holes after: 1; stack height after: 2
+[spawn-c4] rotation spawn, lands in columns 4-6, rows 1-2: clears 0 lines; holes after: 1; stack height after: 2
+[spawn-c5] rotation spawn, lands in columns 5-7, rows 1-2: clears 0 lines; holes after: 1; stack height after: 2
+[spawn-c6] rotation spawn, lands in columns 6-8, rows 1-2: clears 0 lines; holes after: 1; stack height after: 2
+[spawn-c7] rotation spawn, lands in columns 7-9, rows 1-2: clears 0 lines; holes after: 1; stack height after: 2
+[spawn-c8] rotation spawn, lands in columns 8-10, rows 1-2: clears 0 lines; holes after: 1; stack height after: 2
+[cw-c1] rotation cw, lands in columns 1-2, rows 1-3: clears 0 lines; holes after: 1; stack height after: 3
+[cw-c2] rotation cw, lands in columns 2-3, rows 1-3: clears 0 lines; holes after: 1; stack height after: 3
+[cw-c3] rotation cw, lands in columns 3-4, rows 1-3: clears 0 lines; holes after: 1; stack height after: 3
+[cw-c4] rotation cw, lands in columns 4-5, rows 1-3: clears 0 lines; holes after: 1; stack height after: 3
+[cw-c5] rotation cw, lands in columns 5-6, rows 1-3: clears 0 lines; holes after: 1; stack height after: 3
+[cw-c6] rotation cw, lands in columns 6-7, rows 1-3: clears 0 lines; holes after: 1; stack height after: 3
+[cw-c7] rotation cw, lands in columns 7-8, rows 1-3: clears 0 lines; holes after: 1; stack height after: 3
+[cw-c8] rotation cw, lands in columns 8-9, rows 1-3: clears 0 lines; holes after: 1; stack height after: 3
+[cw-c9] rotation cw, lands in columns 9-10, rows 1-3: clears 0 lines; holes after: 1; stack height after: 3
