@@ -29,7 +29,7 @@ from arena import bias, latency, logs
 from arena.bias import bias_path
 from arena.client import DEFAULT_SERVER, ModelClient
 from arena.core import PlayerError
-from arena.gpu import GpuProcess, gpu_processes
+from arena.gpu import GpuProcess, gpu_processes, gpu_utilization
 from arena.logs import RESULTS, read_episodes, read_json, run_dir
 from arena.players import TextPlayer
 from arena.probe import smoke
@@ -95,29 +95,49 @@ def wait_for_server(
         client.close()
 
 
+QUIET_PERCENT = 5
+QUIET_SAMPLES = 10
+
+
 def wait_for_quiet_gpu(
     player: str,
     timeout: float,
     *,
     say: Say,
+    utilization: Callable[[], int | None] = gpu_utilization,
     processes: Callable[[], list[GpuProcess]] = gpu_processes,
     poll: float = 10.0,
     sleep: Callable[[float], None] = time.sleep,
     clock: Callable[[], float] = time.monotonic,
 ) -> None:
-    """Until no process other than the player's own runtime holds more than an idle CUDA context. The arena's
-    other runtimes unload their models after two idle minutes; anything else has to finish first."""
+    """Until nothing else computes on the GPU: its utilisation stays at most QUIET_PERCENT for QUIET_SAMPLES
+    one-second samples (the campaign sends no requests meanwhile). Where utilisation is not reported, until no
+    process other than the player's own runtime holds more than an idle context."""
     deadline = clock() + timeout
     waiting = False
     while True:
-        busy = [p for p in processes() if p.busy and p.runtime != player]
-        if not busy:
+        samples: list[int] = []
+        for _ in range(QUIET_SAMPLES):
+            value = utilization()
+            if value is None:
+                break
+            samples.append(value)
+            if value > QUIET_PERCENT:
+                break
+            sleep(1.0)
+        if len(samples) == QUIET_SAMPLES:
             return
-        names = ", ".join(p.label for p in busy)
+        if samples:
+            reason = f"utilisation {samples[-1]}%"
+        else:
+            busy = [p for p in processes() if p.busy and p.runtime != player]
+            if not busy:
+                return
+            reason = ", ".join(p.label for p in busy)
         if clock() >= deadline:
-            raise GpuBusyError(f"the GPU stayed busy for {timeout:.0f}s: {names}")
+            raise GpuBusyError(f"the GPU stayed busy for {timeout:.0f}s ({reason})")
         if not waiting:
-            say(f"latency of {player} waits for the GPU: {names}")
+            say(f"latency of {player} waits for the GPU ({reason})")
             waiting = True
         sleep(poll)
 
@@ -135,6 +155,7 @@ class Campaign:
     latency_sample: int = 200
     bias_sample: int = 40
     say: Say = logs.say
+    utilization: Callable[[], int | None] = gpu_utilization
     processes: Callable[[], list[GpuProcess]] = gpu_processes
     report: Report = field(default_factory=Report)
 
@@ -178,7 +199,9 @@ class Campaign:
         try:
             wait_for_server(self.server, player, self.server_wait, say=self.say)
             if kind == "latency":
-                wait_for_quiet_gpu(player, self.gpu_wait, say=self.say, processes=self.processes)
+                wait_for_quiet_gpu(
+                    player, self.gpu_wait, say=self.say, utilization=self.utilization, processes=self.processes
+                )
                 latency.measure(
                     self.suite,
                     player,

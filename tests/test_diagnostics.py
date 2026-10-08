@@ -15,7 +15,7 @@ from arena.logs import read_json, write_json
 from arena.probe import sample_questions
 from arena.runner import run
 from arena.score import StaleResultsError
-from arena.suite import Suite
+from arena.suite import Suite, locked_digest
 
 
 def quiet(line: str) -> None:
@@ -34,7 +34,7 @@ def test_latency_file(suite: Suite, results: Path, server: str) -> None:
     data = read_json(path)
     assert set(data["games"]) == {f"{b}/{g}" for b, g in suite.pairs() if b != "realtime"}
     assert all(entry["n"] == 3 and entry["median_ms"] > 0 for entry in data["games"].values())
-    assert data["lock"] is None  # the suite is not frozen
+    assert data["lock"] == locked_digest(suite)
     assert isinstance(data["environment"]["gpu_processes_at_start"], list)
 
 

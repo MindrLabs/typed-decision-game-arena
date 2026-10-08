@@ -33,6 +33,7 @@ def campaign(suite: Suite, results: Path, server: str, lines: list[str], *, atte
         latency_sample=2,
         bias_sample=2,
         say=lines.append,
+        utilization=lambda: None,  # not reported: the process list decides, and it is empty
         processes=lambda: [],
     )
 
@@ -131,22 +132,39 @@ def test_waiting_for_the_server(server: str) -> None:
     assert lines == ["waiting for the model server at http://127.0.0.1:9/api (ConnectError)"]
 
 
-def test_latency_waits_for_other_models_to_leave_the_gpu() -> None:
+def test_latency_waits_until_nothing_else_computes() -> None:
+    readings = iter([30, *([0] * 10)])  # someone else computes, then ten quiet seconds
+    lines: list[str] = []
+    sleeps: list[float] = []
+    wait_for_quiet_gpu("kev-9b", 60, say=lines.append, utilization=lambda: next(readings), sleep=sleeps.append)
+    assert sleeps == [10.0] + [1.0] * 10
+    assert lines == ["latency of kev-9b waits for the GPU (utilisation 30%)"]
+
+    # an idle runtime holding memory does not matter: only computation does
+    idle = GpuProcess(11, "/srv/arena/.runtime/laya-multilingual/bin/python", 1161)
+    wait_for_quiet_gpu(
+        "kev-9b", 60, say=lines.append, utilization=lambda: 0, processes=lambda: [idle], sleep=sleeps.append
+    )
+
+    clock = iter(range(0, 1000, 10))
+    with pytest.raises(GpuBusyError, match="stayed busy"):
+        wait_for_quiet_gpu(
+            "kev-9b", 30, say=lines.append, utilization=lambda: 80, sleep=lambda s: None, clock=lambda: next(clock)
+        )
+
+
+def test_without_utilisation_latency_waits_for_other_models_to_unload() -> None:
     loaded = GpuProcess(11, "/srv/arena/.runtime/clef/bin/python", 56_000)
     idle = GpuProcess(11, "/srv/arena/.runtime/clef/bin/python", 399)
     own = GpuProcess(12, "/srv/arena/.runtime/kev-9b/bin/python", 18_000)
     seen = iter([[loaded, own], [loaded, own], [idle, own]])
     lines: list[str] = []
     sleeps: list[float] = []
-    wait_for_quiet_gpu("kev-9b", 60, say=lines.append, processes=lambda: next(seen), sleep=sleeps.append)
+    wait_for_quiet_gpu(
+        "kev-9b", 60, say=lines.append, utilization=lambda: None, processes=lambda: next(seen), sleep=sleeps.append
+    )
     assert sleeps == [10.0, 10.0]
-    assert lines == ["latency of kev-9b waits for the GPU: runtime clef (56000 MiB)"]
-
-    clock = iter(range(0, 1000, 10))
-    with pytest.raises(GpuBusyError, match="stayed busy"):
-        wait_for_quiet_gpu(
-            "kev-9b", 30, say=lines.append, processes=lambda: [loaded], sleep=lambda s: None, clock=lambda: next(clock)
-        )
+    assert lines == ["latency of kev-9b waits for the GPU (runtime clef (56000 MiB))"]
 
 
 def test_status_table(tiny: Suite, results: Path) -> None:

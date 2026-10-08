@@ -26,9 +26,9 @@ def test_show_adds_the_real_time_line(capsys: pytest.CaptureFixture[str]) -> Non
     assert "Real time: the game does not wait for you" in capsys.readouterr().out
 
 
-def test_unfrozen_suite_fails_the_check(capsys: pytest.CaptureFixture[str]) -> None:
-    assert main(["suite", "check"]) == 1
-    assert "not frozen" in capsys.readouterr().out
+def test_the_frozen_suite_matches_the_tree(capsys: pytest.CaptureFixture[str]) -> None:
+    # suite v0.1 is frozen: a change to a locked source or package belongs in a new suite version
+    assert main(["suite", "check"]) == 0, capsys.readouterr().out
 
 
 def test_run_score_and_verify_into_a_results_directory(tmp_path: Path) -> None:

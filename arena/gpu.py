@@ -1,10 +1,12 @@
-"""GPU processes as nvidia-smi reports them: recorded next to every latency measurement, and watched by the campaign
-so that latency is measured only while no other model works on the GPU.
+"""The GPU as nvidia-smi reports it: recorded next to every latency measurement, and watched by the campaign so
+that latency is measured only while nothing else computes on the GPU.
 
-A model-compose runtime keeps its CUDA context after its model unloads (about 400 MiB on the GB10), so a process
-counts as busy by its memory, not by its presence. Names are reduced to what is worth publishing: an arena model
-runtime shows as its player id (`.runtime/<id>/bin/python`), anything else as its executable name, never as a
-local path.
+What disturbs a measurement is computation, not memory: an idle runtime keeps its CUDA context (about 400 MiB on
+the GB10, over 1 GiB for some) and a loaded model that gets no requests costs nothing. While the campaign waits
+it sends no requests, so the device's utilisation is then exactly the other work on the GPU. Per-process
+utilisation is not reported on the GB10; where the device's is not either, a process with more than an idle
+context's memory counts as busy instead. Names are reduced to what is worth publishing: an arena model runtime
+shows as its player id (`.runtime/<id>/bin/python`), anything else as its executable name, never as a local path.
 """
 
 from __future__ import annotations
@@ -62,6 +64,12 @@ def parse_process(line: str) -> GpuProcess:
 
 def gpu_processes() -> list[GpuProcess]:
     return [parse_process(line) for line in _smi("--query-compute-apps=pid,process_name,used_memory")]
+
+
+def gpu_utilization() -> int | None:
+    """The device's utilisation in percent over the last sample period, or None where it is not reported."""
+    values = _smi("--query-gpu=utilization.gpu")
+    return int(values[0]) if values and values[0].isdigit() else None
 
 
 def gpu_name() -> str | None:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import gzip
 import json
+import shutil
 from pathlib import Path
 
 import pytest
@@ -12,7 +13,7 @@ from arena.core import JSON
 from arena.logs import decisions_path, read_decisions, read_episodes, read_final, read_jsonl, run_dir, write_json
 from arena.replay import verify
 from arena.runner import LatencyMissingError, SuiteNotFrozenError, delay_steps, latency_path, run
-from arena.suite import Suite, locked_digest
+from arena.suite import SUITES, Suite, load_suite, locked_digest
 from tests.fakes import FakeModelCompose
 
 
@@ -58,9 +59,12 @@ def test_replay_catches_a_tampered_log(suite: Suite, results: Path) -> None:
     assert "decision 0: state differs" in item.problem
 
 
-def test_test_seeds_need_a_frozen_suite(suite: Suite, results: Path) -> None:
-    with pytest.raises(SuiteNotFrozenError):
-        run(suite, "macro", "snake", "random", [1], seed_set="test", results=results, progress=quiet)
+def test_test_seeds_need_a_frozen_suite(tmp_path: Path, results: Path) -> None:
+    directory = tmp_path / "suites"
+    directory.mkdir()
+    shutil.copy(SUITES / "v0.1.toml", directory / "v0.1.toml")  # the same suite, without its lock
+    with pytest.raises(SuiteNotFrozenError, match="not frozen"):
+        run(load_suite("v0.1", directory), "macro", "snake", "random", [1], seed_set="test", results=results)
 
 
 def test_a_model_through_http(suite: Suite, results: Path, server: str) -> None:

@@ -17,7 +17,7 @@ from pathlib import Path
 
 from arena.client import DEFAULT_SERVER, ModelClient
 from arena.core import JSON
-from arena.gpu import gpu_name, gpu_processes
+from arena.gpu import gpu_name, gpu_processes, gpu_utilization
 from arena.logs import RESULTS, say, write_json
 from arena.players import TextPlayer
 from arena.probe import sample_questions
@@ -44,6 +44,7 @@ def measure(
     contestant = contestants()[player_id]
     player = TextPlayer(contestant, ModelClient(server), suite.group_size)
     neighbours = [p.label for p in gpu_processes() if p.runtime != player_id]
+    busy_percent = gpu_utilization()
     games: dict[str, JSON] = {}
     try:
         warm = sample_questions(suite, "macro", "snake", warmup)
@@ -77,6 +78,7 @@ def measure(
             "environment": {
                 "gpu": gpu_name(),
                 "gpu_processes_at_start": neighbours,
+                "gpu_utilization_at_start": busy_percent,
                 "machine": platform.machine(),
                 "note": "client-side wall time per request, model-compose HTTP overhead included",
             },
