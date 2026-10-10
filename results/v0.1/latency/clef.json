@@ -1,0 +1,69 @@
+{
+  "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+      "python3 (1303 MiB)",
+      "runtime kev-4b (290 MiB)",
+      "runtime kev-9b (668 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+  },
+  "games": {
+    "frame/breakout": {
+      "mean_ms": 812.56,
+      "median_ms": 812.684,
+      "n": 200,
+      "p95_ms": 822.38
+    },
+    "frame/pong": {
+      "mean_ms": 671.23,
+      "median_ms": 673.759,
+      "n": 200,
+      "p95_ms": 678.96
+    },
+    "frame/tetris": {
+      "mean_ms": 762.764,
+      "median_ms": 758.933,
+      "n": 200,
+      "p95_ms": 804.635
+    },
+    "macro/breakout": {
+      "mean_ms": 1000.149,
+      "median_ms": 999.766,
+      "n": 200,
+      "p95_ms": 1008.888
+    },
+    "macro/connect4": {
+      "mean_ms": 805.435,
+      "median_ms": 821.364,
+      "n": 160,
+      "p95_ms": 826.091
+    },
+    "macro/pong": {
+      "mean_ms": 913.128,
+      "median_ms": 913.598,
+      "n": 200,
+      "p95_ms": 918.007
+    },
+    "macro/snake": {
+      "mean_ms": 826.156,
+      "median_ms": 824.707,
+      "n": 200,
+      "p95_ms": 836.557
+    },
+    "macro/tetris": {
+      "mean_ms": 991.455,
+      "median_ms": 990.218,
+      "n": 200,
+      "p95_ms": 1015.388
+    }
+  },
+  "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+  "measured": "2026-10-10T22:07:31+00:00",
+  "player": "clef",
+  "server": "http://127.0.0.1:8380/api",
+  "suite": "v0.1",
+  "warmup": 20
+}

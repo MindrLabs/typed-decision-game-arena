@@ -1,0 +1,50 @@
+{
+  "games": {
+    "breakout": {
+      "agreement": 0.5,
+      "first_rate": 0.225,
+      "last_rate": 0.1,
+      "n": 40,
+      "uniform_rate": 0.125
+    },
+    "connect4": {
+      "agreement": 0.8,
+      "first_rate": 0.1625,
+      "last_rate": 0.125,
+      "n": 40,
+      "uniform_rate": 0.1601
+    },
+    "pong": {
+      "agreement": 0.475,
+      "first_rate": 0.2875,
+      "last_rate": 0.05,
+      "n": 40,
+      "uniform_rate": 0.125
+    },
+    "snake": {
+      "agreement": 0.4,
+      "first_rate": 0.4125,
+      "last_rate": 0.2375,
+      "n": 40,
+      "uniform_rate": 0.3333
+    },
+    "tetris": {
+      "agreement": 0.275,
+      "first_rate": 0.1,
+      "last_rate": 0.0375,
+      "n": 40,
+      "uniform_rate": 0.125
+    }
+  },
+  "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+  "measured": "2026-10-08T11:01:05+00:00",
+  "overall": {
+    "agreement": 0.49,
+    "first_rate": 0.2375,
+    "last_rate": 0.11,
+    "n": 200,
+    "uniform_rate": 0.1737
+  },
+  "player": "laya-english",
+  "suite": "v0.1"
+}

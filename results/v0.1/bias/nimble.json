@@ -1,0 +1,50 @@
+{
+  "games": {
+    "breakout": {
+      "agreement": 0.85,
+      "first_rate": 0.125,
+      "last_rate": 0.1,
+      "n": 40,
+      "uniform_rate": 0.125
+    },
+    "connect4": {
+      "agreement": 0.4,
+      "first_rate": 0.05,
+      "last_rate": 0.3125,
+      "n": 40,
+      "uniform_rate": 0.1601
+    },
+    "pong": {
+      "agreement": 0.95,
+      "first_rate": 0.15,
+      "last_rate": 0.15,
+      "n": 40,
+      "uniform_rate": 0.125
+    },
+    "snake": {
+      "agreement": 1.0,
+      "first_rate": 0.3625,
+      "last_rate": 0.3625,
+      "n": 40,
+      "uniform_rate": 0.3333
+    },
+    "tetris": {
+      "agreement": 0.5,
+      "first_rate": 0.0625,
+      "last_rate": 0.2,
+      "n": 40,
+      "uniform_rate": 0.125
+    }
+  },
+  "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+  "measured": "2026-10-09T03:13:47+00:00",
+  "overall": {
+    "agreement": 0.74,
+    "first_rate": 0.15,
+    "last_rate": 0.225,
+    "n": 200,
+    "uniform_rate": 0.1737
+  },
+  "player": "nimble",
+  "suite": "v0.1"
+}

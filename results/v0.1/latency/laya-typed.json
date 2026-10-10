@@ -1,0 +1,68 @@
+{
+  "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+      "runtime laya-multilingual (1161 MiB)",
+      "runtime laya-english (1161 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+  },
+  "games": {
+    "frame/breakout": {
+      "mean_ms": 38.814,
+      "median_ms": 46.048,
+      "n": 200,
+      "p95_ms": 51.169
+    },
+    "frame/pong": {
+      "mean_ms": 35.397,
+      "median_ms": 25.501,
+      "n": 200,
+      "p95_ms": 49.565
+    },
+    "frame/tetris": {
+      "mean_ms": 36.704,
+      "median_ms": 28.307,
+      "n": 200,
+      "p95_ms": 51.919
+    },
+    "macro/breakout": {
+      "mean_ms": 39.193,
+      "median_ms": 31.537,
+      "n": 200,
+      "p95_ms": 52.613
+    },
+    "macro/connect4": {
+      "mean_ms": 40.52,
+      "median_ms": 48.817,
+      "n": 160,
+      "p95_ms": 52.171
+    },
+    "macro/pong": {
+      "mean_ms": 37.831,
+      "median_ms": 29.576,
+      "n": 200,
+      "p95_ms": 51.431
+    },
+    "macro/snake": {
+      "mean_ms": 39.376,
+      "median_ms": 46.063,
+      "n": 200,
+      "p95_ms": 51.267
+    },
+    "macro/tetris": {
+      "mean_ms": 41.751,
+      "median_ms": 48.018,
+      "n": 200,
+      "p95_ms": 54.428
+    }
+  },
+  "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+  "measured": "2026-10-08T11:24:26+00:00",
+  "player": "laya-typed",
+  "server": "http://127.0.0.1:8380/api",
+  "suite": "v0.1",
+  "warmup": 20
+}

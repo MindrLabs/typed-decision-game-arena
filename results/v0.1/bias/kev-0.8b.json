@@ -1,0 +1,50 @@
+{
+  "games": {
+    "breakout": {
+      "agreement": 1.0,
+      "first_rate": 0.1,
+      "last_rate": 0.1,
+      "n": 40,
+      "uniform_rate": 0.125
+    },
+    "connect4": {
+      "agreement": 0.675,
+      "first_rate": 0.1125,
+      "last_rate": 0.175,
+      "n": 40,
+      "uniform_rate": 0.1601
+    },
+    "pong": {
+      "agreement": 0.95,
+      "first_rate": 0.1375,
+      "last_rate": 0.15,
+      "n": 40,
+      "uniform_rate": 0.125
+    },
+    "snake": {
+      "agreement": 0.525,
+      "first_rate": 0.55,
+      "last_rate": 0.15,
+      "n": 40,
+      "uniform_rate": 0.3333
+    },
+    "tetris": {
+      "agreement": 0.25,
+      "first_rate": 0.0125,
+      "last_rate": 0.1,
+      "n": 40,
+      "uniform_rate": 0.125
+    }
+  },
+  "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+  "measured": "2026-10-08T13:03:08+00:00",
+  "overall": {
+    "agreement": 0.68,
+    "first_rate": 0.1825,
+    "last_rate": 0.135,
+    "n": 200,
+    "uniform_rate": 0.1737
+  },
+  "player": "kev-0.8b",
+  "suite": "v0.1"
+}
