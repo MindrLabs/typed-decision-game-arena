@@ -36,13 +36,23 @@ def runtime_packages(runtimes: Path = ROOT / ".runtime") -> dict[str, list[str]]
     return found
 
 
+OUTPUTS = ("results", "webui/data")  # what runs write; not part of the code that produced them
+
+
+def dirty(root: Path = ROOT) -> bool | None:
+    """The checkout differs from its commit outside the outputs (tracked or untracked). None outside git."""
+    excluded = [f":(top,exclude){path}" for path in OUTPUTS]
+    status = _run(["git", "status", "--porcelain", "--", ":(top)", *excluded], cwd=root)
+    return None if status is None else bool(status)
+
+
 def describe() -> JSON:
     gpu = _run(["nvidia-smi", "--query-gpu=name,driver_version", "--format=csv,noheader"])
     return {
         "recorded": datetime.now(UTC).isoformat(timespec="seconds"),
         "arena": __version__,
         "repository_commit": _run(["git", "rev-parse", "HEAD"]),
-        "repository_dirty": bool(_run(["git", "status", "--porcelain"])),
+        "repository_dirty": dirty(),
         "model_compose": (ROOT / "scripts" / "model-compose.rev").read_text().strip(),
         "python": platform.python_version(),
         "machine": platform.machine(),

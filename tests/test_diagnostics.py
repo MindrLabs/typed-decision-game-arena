@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import gzip
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
 
 from arena import bias, latency
-from arena.environment import describe
+from arena.environment import describe, dirty
 from arena.export import export
 from arena.logs import read_json, write_json
 from arena.probe import sample_questions
@@ -69,6 +70,26 @@ def test_environment_record() -> None:
     record = describe()
     assert record["model_compose"] and len(record["model_compose"]) == 40
     assert record["python"].startswith("3.12")
+
+
+def test_only_code_changes_make_the_checkout_dirty(tmp_path: Path) -> None:
+    def git(*args: str) -> None:
+        subprocess.run(["git", "-C", str(tmp_path), *args], check=True, capture_output=True)
+
+    git("init", "-q")
+    (tmp_path / "code.py").write_text("x = 1\n")
+    git("add", "code.py")
+    git("-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "code")
+    for output in ("results/v0.1/test/a.jsonl", "webui/data/index.json"):
+        (tmp_path / output).parent.mkdir(parents=True)
+        (tmp_path / output).write_text("{}")
+    assert dirty(tmp_path) is False  # results of a run do not change the code that produced them
+    (tmp_path / "new.py").write_text("")
+    assert dirty(tmp_path) is True
+    (tmp_path / "new.py").unlink()
+    (tmp_path / "code.py").write_text("x = 2\n")
+    assert dirty(tmp_path) is True
+    assert dirty(tmp_path / "results") is True  # from a subdirectory too, the whole checkout counts
 
 
 def test_a_test_export_refuses_diagnostics_from_another_lock(frozen: Suite, results: Path, tmp_path: Path) -> None:
