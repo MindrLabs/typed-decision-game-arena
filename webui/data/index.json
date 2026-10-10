@@ -1,6 +1,507 @@
 {
  "arena": "0.1.0",
- "bias": {},
+ "bias": {
+  "clef": {
+   "games": {
+    "breakout": {
+     "agreement": 1.0,
+     "first_rate": 0.1375,
+     "last_rate": 0.1375,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 1.0,
+     "first_rate": 0.175,
+     "last_rate": 0.175,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 1.0,
+     "first_rate": 0.075,
+     "last_rate": 0.075,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 1.0,
+     "first_rate": 0.325,
+     "last_rate": 0.325,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 1.0,
+     "first_rate": 0.1375,
+     "last_rate": 0.1375,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-10T22:45:34+00:00",
+   "overall": {
+    "agreement": 1.0,
+    "first_rate": 0.17,
+    "last_rate": 0.17,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "clef",
+   "suite": "v0.1"
+  },
+  "clef-flash": {
+   "games": {
+    "breakout": {
+     "agreement": 1.0,
+     "first_rate": 0.1375,
+     "last_rate": 0.1375,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 1.0,
+     "first_rate": 0.15,
+     "last_rate": 0.15,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 1.0,
+     "first_rate": 0.1,
+     "last_rate": 0.1,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 1.0,
+     "first_rate": 0.35,
+     "last_rate": 0.35,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 1.0,
+     "first_rate": 0.125,
+     "last_rate": 0.125,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T16:58:08+00:00",
+   "overall": {
+    "agreement": 1.0,
+    "first_rate": 0.1725,
+    "last_rate": 0.1725,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "clef-flash",
+   "suite": "v0.1"
+  },
+  "kev-0.8b": {
+   "games": {
+    "breakout": {
+     "agreement": 1.0,
+     "first_rate": 0.1,
+     "last_rate": 0.1,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 0.675,
+     "first_rate": 0.1125,
+     "last_rate": 0.175,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 0.95,
+     "first_rate": 0.1375,
+     "last_rate": 0.15,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 0.525,
+     "first_rate": 0.55,
+     "last_rate": 0.15,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 0.25,
+     "first_rate": 0.0125,
+     "last_rate": 0.1,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T13:03:08+00:00",
+   "overall": {
+    "agreement": 0.68,
+    "first_rate": 0.1825,
+    "last_rate": 0.135,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "kev-0.8b",
+   "suite": "v0.1"
+  },
+  "kev-4b": {
+   "games": {
+    "breakout": {
+     "agreement": 1.0,
+     "first_rate": 0.1,
+     "last_rate": 0.1,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 0.425,
+     "first_rate": 0.025,
+     "last_rate": 0.2375,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 0.8,
+     "first_rate": 0.125,
+     "last_rate": 0.1125,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 0.875,
+     "first_rate": 0.3375,
+     "last_rate": 0.3125,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 0.2,
+     "first_rate": 0.0125,
+     "last_rate": 0.2375,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-10T01:10:56+00:00",
+   "overall": {
+    "agreement": 0.66,
+    "first_rate": 0.12,
+    "last_rate": 0.2,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "kev-4b",
+   "suite": "v0.1"
+  },
+  "kev-9b": {
+   "games": {
+    "breakout": {
+     "agreement": 0.55,
+     "first_rate": 0.0625,
+     "last_rate": 0.2,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 0.35,
+     "first_rate": 0.175,
+     "last_rate": 0.2,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 0.6,
+     "first_rate": 0.075,
+     "last_rate": 0.175,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 0.825,
+     "first_rate": 0.275,
+     "last_rate": 0.35,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 0.25,
+     "first_rate": 0.1,
+     "last_rate": 0.1375,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-10T09:01:25+00:00",
+   "overall": {
+    "agreement": 0.515,
+    "first_rate": 0.1375,
+    "last_rate": 0.2125,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "kev-9b",
+   "suite": "v0.1"
+  },
+  "laya-english": {
+   "games": {
+    "breakout": {
+     "agreement": 0.5,
+     "first_rate": 0.225,
+     "last_rate": 0.1,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 0.8,
+     "first_rate": 0.1625,
+     "last_rate": 0.125,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 0.475,
+     "first_rate": 0.2875,
+     "last_rate": 0.05,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 0.4,
+     "first_rate": 0.4125,
+     "last_rate": 0.2375,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 0.275,
+     "first_rate": 0.1,
+     "last_rate": 0.0375,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T11:01:05+00:00",
+   "overall": {
+    "agreement": 0.49,
+    "first_rate": 0.2375,
+    "last_rate": 0.11,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "laya-english",
+   "suite": "v0.1"
+  },
+  "laya-multilingual": {
+   "games": {
+    "breakout": {
+     "agreement": 0.55,
+     "first_rate": 0.0625,
+     "last_rate": 0.0375,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 0.525,
+     "first_rate": 0.1125,
+     "last_rate": 0.1125,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 0.55,
+     "first_rate": 0.0,
+     "last_rate": 0.0625,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 0.375,
+     "first_rate": 0.625,
+     "last_rate": 0.125,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 0.125,
+     "first_rate": 0.0375,
+     "last_rate": 0.075,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T10:18:13+00:00",
+   "overall": {
+    "agreement": 0.425,
+    "first_rate": 0.1675,
+    "last_rate": 0.0825,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "laya-multilingual",
+   "suite": "v0.1"
+  },
+  "laya-typed": {
+   "games": {
+    "breakout": {
+     "agreement": 0.5,
+     "first_rate": 0.075,
+     "last_rate": 0.1,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 0.775,
+     "first_rate": 0.15,
+     "last_rate": 0.125,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 0.8,
+     "first_rate": 0.175,
+     "last_rate": 0.125,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 0.725,
+     "first_rate": 0.35,
+     "last_rate": 0.275,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 0.175,
+     "first_rate": 0.1125,
+     "last_rate": 0.025,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T11:51:44+00:00",
+   "overall": {
+    "agreement": 0.595,
+    "first_rate": 0.1725,
+    "last_rate": 0.13,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "laya-typed",
+   "suite": "v0.1"
+  },
+  "nimble": {
+   "games": {
+    "breakout": {
+     "agreement": 0.85,
+     "first_rate": 0.125,
+     "last_rate": 0.1,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 0.4,
+     "first_rate": 0.05,
+     "last_rate": 0.3125,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 0.95,
+     "first_rate": 0.15,
+     "last_rate": 0.15,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 1.0,
+     "first_rate": 0.3625,
+     "last_rate": 0.3625,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 0.5,
+     "first_rate": 0.0625,
+     "last_rate": 0.2,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-09T03:13:47+00:00",
+   "overall": {
+    "agreement": 0.74,
+    "first_rate": 0.15,
+    "last_rate": 0.225,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "nimble",
+   "suite": "v0.1"
+  },
+  "nimble-v2": {
+   "games": {
+    "breakout": {
+     "agreement": 0.675,
+     "first_rate": 0.15,
+     "last_rate": 0.1375,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "connect4": {
+     "agreement": 0.375,
+     "first_rate": 0.075,
+     "last_rate": 0.2625,
+     "n": 40,
+     "uniform_rate": 0.1601
+    },
+    "pong": {
+     "agreement": 0.75,
+     "first_rate": 0.05,
+     "last_rate": 0.0875,
+     "n": 40,
+     "uniform_rate": 0.125
+    },
+    "snake": {
+     "agreement": 0.675,
+     "first_rate": 0.475,
+     "last_rate": 0.2375,
+     "n": 40,
+     "uniform_rate": 0.3333
+    },
+    "tetris": {
+     "agreement": 0.55,
+     "first_rate": 0.0875,
+     "last_rate": 0.175,
+     "n": 40,
+     "uniform_rate": 0.125
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T21:59:59+00:00",
+   "overall": {
+    "agreement": 0.605,
+    "first_rate": 0.1675,
+    "last_rate": 0.18,
+    "n": 200,
+    "uniform_rate": 0.1737
+   },
+   "player": "nimble-v2",
+   "suite": "v0.1"
+  }
+ },
  "boards": [
   {
    "anchor_board": "macro",
@@ -13,11 +514,11 @@
    ],
    "id": "macro",
    "seeds": {
-    "breakout": 3,
-    "connect4": 6,
-    "pong": 3,
-    "snake": 5,
-    "tetris": 5
+    "breakout": 20,
+    "connect4": 60,
+    "pong": 20,
+    "snake": 50,
+    "tetris": 50
    },
    "summary": "Turn-based. One decision per meaningful choice: where a piece lands, which band the paddle covers, which way to turn, which column to play. A fixed controller does the low-level input.",
    "title": "Macro"
@@ -31,9 +532,9 @@
    ],
    "id": "frame",
    "seeds": {
-    "breakout": 3,
-    "pong": 3,
-    "tetris": 3
+    "breakout": 20,
+    "pong": 20,
+    "tetris": 30
    },
    "summary": "Turn-based. One decision per step of the game: a key or a push of the paddle.",
    "title": "Frame"
@@ -47,9 +548,9 @@
    ],
    "id": "realtime",
    "seeds": {
-    "breakout": 3,
-    "pong": 3,
-    "tetris": 3
+    "breakout": 20,
+    "pong": 20,
+    "tetris": 30
    },
    "summary": "The frame board with reaction time: the game keeps running for as many steps as the player's measured median latency covers, holding the previous key, before a decision takes effect.",
    "title": "Real-time"
@@ -77,8 +578,694 @@
    "title": "Tetris"
   }
  },
- "generated": "2026-10-08T07:48:42+00:00",
- "latency": {},
+ "generated": "2026-10-10T22:47:49+00:00",
+ "latency": {
+  "clef": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+     "python3 (1303 MiB)",
+     "runtime kev-4b (290 MiB)",
+     "runtime kev-9b (668 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 812.56,
+     "median_ms": 812.684,
+     "n": 200,
+     "p95_ms": 822.38
+    },
+    "frame/pong": {
+     "mean_ms": 671.23,
+     "median_ms": 673.759,
+     "n": 200,
+     "p95_ms": 678.96
+    },
+    "frame/tetris": {
+     "mean_ms": 762.764,
+     "median_ms": 758.933,
+     "n": 200,
+     "p95_ms": 804.635
+    },
+    "macro/breakout": {
+     "mean_ms": 1000.149,
+     "median_ms": 999.766,
+     "n": 200,
+     "p95_ms": 1008.888
+    },
+    "macro/connect4": {
+     "mean_ms": 805.435,
+     "median_ms": 821.364,
+     "n": 160,
+     "p95_ms": 826.091
+    },
+    "macro/pong": {
+     "mean_ms": 913.128,
+     "median_ms": 913.598,
+     "n": 200,
+     "p95_ms": 918.007
+    },
+    "macro/snake": {
+     "mean_ms": 826.156,
+     "median_ms": 824.707,
+     "n": 200,
+     "p95_ms": 836.557
+    },
+    "macro/tetris": {
+     "mean_ms": 991.455,
+     "median_ms": 990.218,
+     "n": 200,
+     "p95_ms": 1015.388
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-10T22:07:31+00:00",
+   "player": "clef",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  },
+  "clef-flash": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+     "runtime laya-multilingual (1161 MiB)",
+     "runtime laya-english (1161 MiB)",
+     "runtime laya-typed (1161 MiB)",
+     "runtime kev-0.8b (666 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 249.549,
+     "median_ms": 249.468,
+     "n": 200,
+     "p95_ms": 254.613
+    },
+    "frame/pong": {
+     "mean_ms": 206.526,
+     "median_ms": 207.049,
+     "n": 200,
+     "p95_ms": 211.124
+    },
+    "frame/tetris": {
+     "mean_ms": 239.736,
+     "median_ms": 239.886,
+     "n": 200,
+     "p95_ms": 247.602
+    },
+    "macro/breakout": {
+     "mean_ms": 306.293,
+     "median_ms": 306.156,
+     "n": 200,
+     "p95_ms": 309.76
+    },
+    "macro/connect4": {
+     "mean_ms": 248.075,
+     "median_ms": 251.544,
+     "n": 160,
+     "p95_ms": 255.899
+    },
+    "macro/pong": {
+     "mean_ms": 276.337,
+     "median_ms": 276.197,
+     "n": 200,
+     "p95_ms": 280.249
+    },
+    "macro/snake": {
+     "mean_ms": 253.242,
+     "median_ms": 253.272,
+     "n": 200,
+     "p95_ms": 257.081
+    },
+    "macro/tetris": {
+     "mean_ms": 305.796,
+     "median_ms": 305.517,
+     "n": 200,
+     "p95_ms": 317.172
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T16:29:25+00:00",
+   "player": "clef-flash",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  },
+  "kev-0.8b": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+     "runtime laya-multilingual (1161 MiB)",
+     "runtime laya-english (1161 MiB)",
+     "runtime laya-typed (1161 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 92.46,
+     "median_ms": 87.372,
+     "n": 200,
+     "p95_ms": 109.791
+    },
+    "frame/pong": {
+     "mean_ms": 70.186,
+     "median_ms": 65.067,
+     "n": 200,
+     "p95_ms": 92.5
+    },
+    "frame/tetris": {
+     "mean_ms": 77.465,
+     "median_ms": 72.234,
+     "n": 200,
+     "p95_ms": 99.037
+    },
+    "macro/breakout": {
+     "mean_ms": 108.515,
+     "median_ms": 105.176,
+     "n": 200,
+     "p95_ms": 124.573
+    },
+    "macro/connect4": {
+     "mean_ms": 72.958,
+     "median_ms": 73.178,
+     "n": 160,
+     "p95_ms": 74.983
+    },
+    "macro/pong": {
+     "mean_ms": 88.139,
+     "median_ms": 88.166,
+     "n": 200,
+     "p95_ms": 89.764
+    },
+    "macro/snake": {
+     "mean_ms": 87.391,
+     "median_ms": 87.25,
+     "n": 200,
+     "p95_ms": 89.333
+    },
+    "macro/tetris": {
+     "mean_ms": 101.975,
+     "median_ms": 100.227,
+     "n": 200,
+     "p95_ms": 107.24
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T12:37:02+00:00",
+   "player": "kev-0.8b",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  },
+  "kev-4b": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+     "python3 (345 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 374.418,
+     "median_ms": 374.49,
+     "n": 200,
+     "p95_ms": 378.323
+    },
+    "frame/pong": {
+     "mean_ms": 291.364,
+     "median_ms": 291.776,
+     "n": 200,
+     "p95_ms": 294.589
+    },
+    "frame/tetris": {
+     "mean_ms": 315.392,
+     "median_ms": 316.671,
+     "n": 200,
+     "p95_ms": 324.16
+    },
+    "macro/breakout": {
+     "mean_ms": 507.263,
+     "median_ms": 514.551,
+     "n": 200,
+     "p95_ms": 519.357
+    },
+    "macro/connect4": {
+     "mean_ms": 325.46,
+     "median_ms": 328.242,
+     "n": 160,
+     "p95_ms": 333.159
+    },
+    "macro/pong": {
+     "mean_ms": 383.203,
+     "median_ms": 382.883,
+     "n": 200,
+     "p95_ms": 387.809
+    },
+    "macro/snake": {
+     "mean_ms": 379.901,
+     "median_ms": 380.013,
+     "n": 200,
+     "p95_ms": 383.802
+    },
+    "macro/tetris": {
+     "mean_ms": 465.984,
+     "median_ms": 435.887,
+     "n": 200,
+     "p95_ms": 517.134
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-10T00:39:21+00:00",
+   "player": "kev-4b",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  },
+  "kev-9b": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+     "python3 (345 MiB)",
+     "runtime kev-4b (290 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 595.641,
+     "median_ms": 594.795,
+     "n": 200,
+     "p95_ms": 599.827
+    },
+    "frame/pong": {
+     "mean_ms": 450.111,
+     "median_ms": 450.272,
+     "n": 200,
+     "p95_ms": 454.274
+    },
+    "frame/tetris": {
+     "mean_ms": 493.51,
+     "median_ms": 497.166,
+     "n": 200,
+     "p95_ms": 503.207
+    },
+    "macro/breakout": {
+     "mean_ms": 796.558,
+     "median_ms": 811.488,
+     "n": 200,
+     "p95_ms": 820.399
+    },
+    "macro/connect4": {
+     "mean_ms": 488.124,
+     "median_ms": 482.176,
+     "n": 160,
+     "p95_ms": 509.601
+    },
+    "macro/pong": {
+     "mean_ms": 606.139,
+     "median_ms": 606.539,
+     "n": 200,
+     "p95_ms": 611.554
+    },
+    "macro/snake": {
+     "mean_ms": 599.273,
+     "median_ms": 599.438,
+     "n": 200,
+     "p95_ms": 603.861
+    },
+    "macro/tetris": {
+     "mean_ms": 706.99,
+     "median_ms": 630.877,
+     "n": 200,
+     "p95_ms": 817.646
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-10T08:25:51+00:00",
+   "player": "kev-9b",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  },
+  "laya-english": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+     "runtime laya-multilingual (2701 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 38.687,
+     "median_ms": 45.873,
+     "n": 200,
+     "p95_ms": 51.832
+    },
+    "frame/pong": {
+     "mean_ms": 36.391,
+     "median_ms": 45.361,
+     "n": 200,
+     "p95_ms": 49.524
+    },
+    "frame/tetris": {
+     "mean_ms": 37.37,
+     "median_ms": 28.749,
+     "n": 200,
+     "p95_ms": 50.88
+    },
+    "macro/breakout": {
+     "mean_ms": 38.784,
+     "median_ms": 31.013,
+     "n": 200,
+     "p95_ms": 51.322
+    },
+    "macro/connect4": {
+     "mean_ms": 36.99,
+     "median_ms": 28.781,
+     "n": 160,
+     "p95_ms": 50.519
+    },
+    "macro/pong": {
+     "mean_ms": 38.946,
+     "median_ms": 45.598,
+     "n": 200,
+     "p95_ms": 52.085
+    },
+    "macro/snake": {
+     "mean_ms": 37.988,
+     "median_ms": 29.61,
+     "n": 200,
+     "p95_ms": 51.576
+    },
+    "macro/tetris": {
+     "mean_ms": 41.478,
+     "median_ms": 47.303,
+     "n": 200,
+     "p95_ms": 52.414
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T10:45:08+00:00",
+   "player": "laya-english",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  },
+  "laya-multilingual": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [],
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 30.661,
+     "median_ms": 38.438,
+     "n": 200,
+     "p95_ms": 42.613
+    },
+    "frame/pong": {
+     "mean_ms": 28.586,
+     "median_ms": 37.94,
+     "n": 200,
+     "p95_ms": 43.12
+    },
+    "frame/tetris": {
+     "mean_ms": 29.228,
+     "median_ms": 38.421,
+     "n": 200,
+     "p95_ms": 41.52
+    },
+    "macro/breakout": {
+     "mean_ms": 28.531,
+     "median_ms": 19.676,
+     "n": 200,
+     "p95_ms": 42.237
+    },
+    "macro/connect4": {
+     "mean_ms": 29.303,
+     "median_ms": 38.486,
+     "n": 160,
+     "p95_ms": 41.43
+    },
+    "macro/pong": {
+     "mean_ms": 27.344,
+     "median_ms": 17.878,
+     "n": 200,
+     "p95_ms": 42.042
+    },
+    "macro/snake": {
+     "mean_ms": 26.867,
+     "median_ms": 17.779,
+     "n": 200,
+     "p95_ms": 41.289
+    },
+    "macro/tetris": {
+     "mean_ms": 28.881,
+     "median_ms": 19.427,
+     "n": 200,
+     "p95_ms": 43.073
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T10:02:53+00:00",
+   "player": "laya-multilingual",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  },
+  "laya-typed": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+     "runtime laya-multilingual (1161 MiB)",
+     "runtime laya-english (1161 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 38.814,
+     "median_ms": 46.048,
+     "n": 200,
+     "p95_ms": 51.169
+    },
+    "frame/pong": {
+     "mean_ms": 35.397,
+     "median_ms": 25.501,
+     "n": 200,
+     "p95_ms": 49.565
+    },
+    "frame/tetris": {
+     "mean_ms": 36.704,
+     "median_ms": 28.307,
+     "n": 200,
+     "p95_ms": 51.919
+    },
+    "macro/breakout": {
+     "mean_ms": 39.193,
+     "median_ms": 31.537,
+     "n": 200,
+     "p95_ms": 52.613
+    },
+    "macro/connect4": {
+     "mean_ms": 40.52,
+     "median_ms": 48.817,
+     "n": 160,
+     "p95_ms": 52.171
+    },
+    "macro/pong": {
+     "mean_ms": 37.831,
+     "median_ms": 29.576,
+     "n": 200,
+     "p95_ms": 51.431
+    },
+    "macro/snake": {
+     "mean_ms": 39.376,
+     "median_ms": 46.063,
+     "n": 200,
+     "p95_ms": 51.267
+    },
+    "macro/tetris": {
+     "mean_ms": 41.751,
+     "median_ms": 48.018,
+     "n": 200,
+     "p95_ms": 54.428
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T11:24:26+00:00",
+   "player": "laya-typed",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  },
+  "nimble": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+     "runtime laya-multilingual (1161 MiB)",
+     "runtime laya-english (1161 MiB)",
+     "runtime laya-typed (1161 MiB)",
+     "runtime kev-0.8b (666 MiB)",
+     "runtime clef-flash (1163 MiB)",
+     "runtime nimble-v2 (1160 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 254.175,
+     "median_ms": 253.904,
+     "n": 200,
+     "p95_ms": 260.02
+    },
+    "frame/pong": {
+     "mean_ms": 214.358,
+     "median_ms": 209.475,
+     "n": 200,
+     "p95_ms": 230.024
+    },
+    "frame/tetris": {
+     "mean_ms": 250.44,
+     "median_ms": 250.098,
+     "n": 200,
+     "p95_ms": 259.3
+    },
+    "macro/breakout": {
+     "mean_ms": 338.238,
+     "median_ms": 338.25,
+     "n": 200,
+     "p95_ms": 344.966
+    },
+    "macro/connect4": {
+     "mean_ms": 261.006,
+     "median_ms": 265.098,
+     "n": 160,
+     "p95_ms": 269.9
+    },
+    "macro/pong": {
+     "mean_ms": 297.465,
+     "median_ms": 297.015,
+     "n": 200,
+     "p95_ms": 303.422
+    },
+    "macro/snake": {
+     "mean_ms": 262.613,
+     "median_ms": 262.891,
+     "n": 200,
+     "p95_ms": 268.214
+    },
+    "macro/tetris": {
+     "mean_ms": 333.118,
+     "median_ms": 335.594,
+     "n": 200,
+     "p95_ms": 345.472
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-09T02:40:27+00:00",
+   "player": "nimble",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  },
+  "nimble-v2": {
+   "environment": {
+    "gpu": "NVIDIA GB10",
+    "gpu_processes_at_start": [
+     "runtime laya-multilingual (1161 MiB)",
+     "runtime laya-english (1161 MiB)",
+     "runtime laya-typed (1161 MiB)",
+     "runtime kev-0.8b (666 MiB)",
+     "runtime clef-flash (1163 MiB)"
+    ],
+    "gpu_utilization_at_start": 0,
+    "machine": "aarch64",
+    "note": "client-side wall time per request, model-compose HTTP overhead included"
+   },
+   "games": {
+    "frame/breakout": {
+     "mean_ms": 255.53,
+     "median_ms": 254.949,
+     "n": 200,
+     "p95_ms": 262.654
+    },
+    "frame/pong": {
+     "mean_ms": 215.291,
+     "median_ms": 211.671,
+     "n": 200,
+     "p95_ms": 228.218
+    },
+    "frame/tetris": {
+     "mean_ms": 251.425,
+     "median_ms": 251.565,
+     "n": 200,
+     "p95_ms": 258.513
+    },
+    "macro/breakout": {
+     "mean_ms": 338.733,
+     "median_ms": 338.514,
+     "n": 200,
+     "p95_ms": 343.998
+    },
+    "macro/connect4": {
+     "mean_ms": 265.074,
+     "median_ms": 269.529,
+     "n": 160,
+     "p95_ms": 278.131
+    },
+    "macro/pong": {
+     "mean_ms": 301.445,
+     "median_ms": 300.668,
+     "n": 200,
+     "p95_ms": 308.237
+    },
+    "macro/snake": {
+     "mean_ms": 266.606,
+     "median_ms": 267.433,
+     "n": 200,
+     "p95_ms": 273.222
+    },
+    "macro/tetris": {
+     "mean_ms": 334.474,
+     "median_ms": 336.736,
+     "n": 200,
+     "p95_ms": 345.659
+    }
+   },
+   "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
+   "measured": "2026-10-08T21:25:24+00:00",
+   "player": "nimble-v2",
+   "server": "http://127.0.0.1:8380/api",
+   "suite": "v0.1",
+   "warmup": 20
+  }
+ },
  "players": {
   "clef": {
    "base_model": null,
@@ -194,291 +1381,2271 @@
  "replays": [
   {
    "board": "macro",
-   "decisions": 14,
+   "decisions": 29,
    "game": "tetris",
-   "path": "replays/macro/tetris/random/1001.json.gz",
-   "player": "random",
+   "path": "replays/macro/tetris/clef/1.json.gz",
+   "player": "clef",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 26,
+   "game": "tetris",
+   "path": "replays/macro/tetris/clef/2.json.gz",
+   "player": "clef",
    "score": 0.0,
-   "seed": 1001
+   "seed": 2
   },
   {
    "board": "macro",
-   "decisions": 24,
+   "decisions": 12,
    "game": "tetris",
-   "path": "replays/macro/tetris/random/1002.json.gz",
-   "player": "random",
+   "path": "replays/macro/tetris/clef-flash/1.json.gz",
+   "player": "clef-flash",
    "score": 0.0,
-   "seed": 1002
-  },
-  {
-   "board": "macro",
-   "decisions": 300,
-   "game": "tetris",
-   "path": "replays/macro/tetris/reference/1001.json.gz",
-   "player": "reference",
-   "score": 117.0,
-   "seed": 1001
-  },
-  {
-   "board": "macro",
-   "decisions": 300,
-   "game": "tetris",
-   "path": "replays/macro/tetris/reference/1002.json.gz",
-   "player": "reference",
-   "score": 119.0,
-   "seed": 1002
+   "seed": 1
   },
   {
    "board": "macro",
    "decisions": 13,
-   "game": "snake",
-   "path": "replays/macro/snake/random/1001.json.gz",
-   "player": "random",
+   "game": "tetris",
+   "path": "replays/macro/tetris/clef-flash/2.json.gz",
+   "player": "clef-flash",
    "score": 0.0,
-   "seed": 1001
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 30,
+   "game": "tetris",
+   "path": "replays/macro/tetris/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 33,
+   "game": "tetris",
+   "path": "replays/macro/tetris/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": 2.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 12,
+   "game": "tetris",
+   "path": "replays/macro/tetris/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "tetris",
+   "path": "replays/macro/tetris/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 20,
+   "game": "tetris",
+   "path": "replays/macro/tetris/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 19,
+   "game": "tetris",
+   "path": "replays/macro/tetris/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 20,
+   "game": "tetris",
+   "path": "replays/macro/tetris/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 14,
+   "game": "tetris",
+   "path": "replays/macro/tetris/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 2
   },
   {
    "board": "macro",
    "decisions": 18,
-   "game": "snake",
-   "path": "replays/macro/snake/random/1002.json.gz",
+   "game": "tetris",
+   "path": "replays/macro/tetris/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 15,
+   "game": "tetris",
+   "path": "replays/macro/tetris/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 15,
+   "game": "tetris",
+   "path": "replays/macro/tetris/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 16,
+   "game": "tetris",
+   "path": "replays/macro/tetris/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 68,
+   "game": "tetris",
+   "path": "replays/macro/tetris/nimble/1.json.gz",
+   "player": "nimble",
+   "score": 19.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 46,
+   "game": "tetris",
+   "path": "replays/macro/tetris/nimble/2.json.gz",
+   "player": "nimble",
+   "score": 11.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 25,
+   "game": "tetris",
+   "path": "replays/macro/tetris/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 18,
+   "game": "tetris",
+   "path": "replays/macro/tetris/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 20,
+   "game": "tetris",
+   "path": "replays/macro/tetris/random/1.json.gz",
    "player": "random",
    "score": 0.0,
-   "seed": 1002
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 22,
+   "game": "tetris",
+   "path": "replays/macro/tetris/random/2.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 300,
+   "game": "tetris",
+   "path": "replays/macro/tetris/reference/1.json.gz",
+   "player": "reference",
+   "score": 119.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 300,
+   "game": "tetris",
+   "path": "replays/macro/tetris/reference/2.json.gz",
+   "player": "reference",
+   "score": 118.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 65,
+   "game": "snake",
+   "path": "replays/macro/snake/clef/1.json.gz",
+   "player": "clef",
+   "score": 6.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 82,
+   "game": "snake",
+   "path": "replays/macro/snake/clef/2.json.gz",
+   "player": "clef",
+   "score": 8.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 8,
+   "game": "snake",
+   "path": "replays/macro/snake/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 16,
+   "game": "snake",
+   "path": "replays/macro/snake/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 30,
+   "game": "snake",
+   "path": "replays/macro/snake/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 14,
+   "game": "snake",
+   "path": "replays/macro/snake/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 8,
+   "game": "snake",
+   "path": "replays/macro/snake/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 9,
+   "game": "snake",
+   "path": "replays/macro/snake/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 81,
+   "game": "snake",
+   "path": "replays/macro/snake/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 111,
+   "game": "snake",
+   "path": "replays/macro/snake/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": 1.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 11,
+   "game": "snake",
+   "path": "replays/macro/snake/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 17,
+   "game": "snake",
+   "path": "replays/macro/snake/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 22,
+   "game": "snake",
+   "path": "replays/macro/snake/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 6,
+   "game": "snake",
+   "path": "replays/macro/snake/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 17,
+   "game": "snake",
+   "path": "replays/macro/snake/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 5,
+   "game": "snake",
+   "path": "replays/macro/snake/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 160,
+   "game": "snake",
+   "path": "replays/macro/snake/nimble/1.json.gz",
+   "player": "nimble",
+   "score": 12.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 298,
+   "game": "snake",
+   "path": "replays/macro/snake/nimble/2.json.gz",
+   "player": "nimble",
+   "score": 21.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 60,
+   "game": "snake",
+   "path": "replays/macro/snake/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": 4.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 115,
+   "game": "snake",
+   "path": "replays/macro/snake/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": 10.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 25,
+   "game": "snake",
+   "path": "replays/macro/snake/random/1.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 36,
+   "game": "snake",
+   "path": "replays/macro/snake/random/2.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 2
   },
   {
    "board": "macro",
    "decisions": 1000,
    "game": "snake",
-   "path": "replays/macro/snake/reference/1001.json.gz",
+   "path": "replays/macro/snake/reference/1.json.gz",
    "player": "reference",
-   "score": 82.0,
-   "seed": 1001
+   "score": 74.0,
+   "seed": 1
   },
   {
    "board": "macro",
-   "decisions": 613,
+   "decisions": 1000,
    "game": "snake",
-   "path": "replays/macro/snake/reference/1002.json.gz",
+   "path": "replays/macro/snake/reference/2.json.gz",
    "player": "reference",
-   "score": 43.0,
-   "seed": 1002
+   "score": 72.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 4,
+   "game": "connect4",
+   "path": "replays/macro/connect4/clef/1.json.gz",
+   "player": "clef",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "connect4",
+   "path": "replays/macro/connect4/clef/2.json.gz",
+   "player": "clef",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 7,
+   "game": "connect4",
+   "path": "replays/macro/connect4/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 4,
+   "game": "connect4",
+   "path": "replays/macro/connect4/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": 1.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 4,
+   "game": "connect4",
+   "path": "replays/macro/connect4/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 8,
+   "game": "connect4",
+   "path": "replays/macro/connect4/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 13,
+   "game": "connect4",
+   "path": "replays/macro/connect4/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 7,
+   "game": "connect4",
+   "path": "replays/macro/connect4/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 4,
+   "game": "connect4",
+   "path": "replays/macro/connect4/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "connect4",
+   "path": "replays/macro/connect4/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 12,
+   "game": "connect4",
+   "path": "replays/macro/connect4/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 8,
+   "game": "connect4",
+   "path": "replays/macro/connect4/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 12,
+   "game": "connect4",
+   "path": "replays/macro/connect4/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 4,
+   "game": "connect4",
+   "path": "replays/macro/connect4/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 4,
+   "game": "connect4",
+   "path": "replays/macro/connect4/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 9,
+   "game": "connect4",
+   "path": "replays/macro/connect4/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 4,
+   "game": "connect4",
+   "path": "replays/macro/connect4/nimble/1.json.gz",
+   "player": "nimble",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 4,
+   "game": "connect4",
+   "path": "replays/macro/connect4/nimble/2.json.gz",
+   "player": "nimble",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 7,
+   "game": "connect4",
+   "path": "replays/macro/connect4/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 8,
+   "game": "connect4",
+   "path": "replays/macro/connect4/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "connect4",
+   "path": "replays/macro/connect4/random/1.json.gz",
+   "player": "random",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 11,
+   "game": "connect4",
+   "path": "replays/macro/connect4/random/2.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 2
   },
   {
    "board": "macro",
    "decisions": 6,
    "game": "connect4",
-   "path": "replays/macro/connect4/random/1001.json.gz",
-   "player": "random",
-   "score": 0.0,
-   "seed": 1001
-  },
-  {
-   "board": "macro",
-   "decisions": 3,
-   "game": "connect4",
-   "path": "replays/macro/connect4/random/1002.json.gz",
-   "player": "random",
-   "score": 0.0,
-   "seed": 1002
-  },
-  {
-   "board": "macro",
-   "decisions": 5,
-   "game": "connect4",
-   "path": "replays/macro/connect4/reference/1001.json.gz",
+   "path": "replays/macro/connect4/reference/1.json.gz",
    "player": "reference",
    "score": 1.0,
-   "seed": 1001
+   "seed": 1
   },
   {
    "board": "macro",
-   "decisions": 21,
+   "decisions": 4,
    "game": "connect4",
-   "path": "replays/macro/connect4/reference/1002.json.gz",
+   "path": "replays/macro/connect4/reference/2.json.gz",
    "player": "reference",
-   "score": 0.5,
-   "seed": 1002
+   "score": 1.0,
+   "seed": 2
   },
   {
    "board": "macro",
-   "decisions": 34,
+   "decisions": 39,
    "game": "pong",
-   "path": "replays/macro/pong/random/1001.json.gz",
-   "player": "random",
-   "score": -21.0,
-   "seed": 1001
+   "path": "replays/macro/pong/clef/1.json.gz",
+   "player": "clef",
+   "score": -19.0,
+   "seed": 1
   },
   {
    "board": "macro",
    "decisions": 35,
    "game": "pong",
-   "path": "replays/macro/pong/random/1002.json.gz",
+   "path": "replays/macro/pong/clef/2.json.gz",
+   "player": "clef",
+   "score": -20.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 28,
+   "game": "pong",
+   "path": "replays/macro/pong/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": -20.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 31,
+   "game": "pong",
+   "path": "replays/macro/pong/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": -20.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 23,
+   "game": "pong",
+   "path": "replays/macro/pong/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 23,
+   "game": "pong",
+   "path": "replays/macro/pong/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 23,
+   "game": "pong",
+   "path": "replays/macro/pong/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 23,
+   "game": "pong",
+   "path": "replays/macro/pong/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 26,
+   "game": "pong",
+   "path": "replays/macro/pong/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 28,
+   "game": "pong",
+   "path": "replays/macro/pong/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": -20.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 42,
+   "game": "pong",
+   "path": "replays/macro/pong/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 42,
+   "game": "pong",
+   "path": "replays/macro/pong/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": -20.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 29,
+   "game": "pong",
+   "path": "replays/macro/pong/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 29,
+   "game": "pong",
+   "path": "replays/macro/pong/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 32,
+   "game": "pong",
+   "path": "replays/macro/pong/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": -20.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 32,
+   "game": "pong",
+   "path": "replays/macro/pong/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 23,
+   "game": "pong",
+   "path": "replays/macro/pong/nimble/1.json.gz",
+   "player": "nimble",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 23,
+   "game": "pong",
+   "path": "replays/macro/pong/nimble/2.json.gz",
+   "player": "nimble",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 31,
+   "game": "pong",
+   "path": "replays/macro/pong/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": -20.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 34,
+   "game": "pong",
+   "path": "replays/macro/pong/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": -20.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 51,
+   "game": "pong",
+   "path": "replays/macro/pong/random/1.json.gz",
+   "player": "random",
+   "score": -17.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 41,
+   "game": "pong",
+   "path": "replays/macro/pong/random/2.json.gz",
    "player": "random",
    "score": -20.0,
-   "seed": 1002
+   "seed": 2
   },
   {
    "board": "macro",
-   "decisions": 627,
+   "decisions": 424,
    "game": "pong",
-   "path": "replays/macro/pong/reference/1001.json.gz",
+   "path": "replays/macro/pong/reference/1.json.gz",
    "player": "reference",
-   "score": -6.0,
-   "seed": 1001
+   "score": -9.0,
+   "seed": 1
   },
   {
    "board": "macro",
-   "decisions": 241,
+   "decisions": 438,
    "game": "pong",
-   "path": "replays/macro/pong/reference/1002.json.gz",
+   "path": "replays/macro/pong/reference/2.json.gz",
    "player": "reference",
-   "score": -16.0,
-   "seed": 1002
+   "score": -13.0,
+   "seed": 2
   },
   {
    "board": "macro",
    "decisions": 10,
    "game": "breakout",
-   "path": "replays/macro/breakout/random/1001.json.gz",
-   "player": "random",
+   "path": "replays/macro/breakout/clef/1.json.gz",
+   "player": "clef",
    "score": 0.0,
-   "seed": 1001
+   "seed": 1
   },
   {
    "board": "macro",
    "decisions": 10,
    "game": "breakout",
-   "path": "replays/macro/breakout/random/1002.json.gz",
-   "player": "random",
+   "path": "replays/macro/breakout/clef/2.json.gz",
+   "player": "clef",
    "score": 0.0,
-   "seed": 1002
+   "seed": 2
   },
   {
    "board": "macro",
-   "decisions": 92,
+   "decisions": 10,
    "game": "breakout",
-   "path": "replays/macro/breakout/reference/1001.json.gz",
-   "player": "reference",
-   "score": 64.0,
-   "seed": 1001
+   "path": "replays/macro/breakout/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": 0.0,
+   "seed": 1
   },
   {
    "board": "macro",
-   "decisions": 67,
+   "decisions": 10,
    "game": "breakout",
-   "path": "replays/macro/breakout/reference/1002.json.gz",
+   "path": "replays/macro/breakout/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 12,
+   "game": "breakout",
+   "path": "replays/macro/breakout/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 13,
+   "game": "breakout",
+   "path": "replays/macro/breakout/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": 3.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 12,
+   "game": "breakout",
+   "path": "replays/macro/breakout/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/nimble/1.json.gz",
+   "player": "nimble",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/nimble/2.json.gz",
+   "player": "nimble",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 12,
+   "game": "breakout",
+   "path": "replays/macro/breakout/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 12,
+   "game": "breakout",
+   "path": "replays/macro/breakout/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": 2.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/random/1.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 10,
+   "game": "breakout",
+   "path": "replays/macro/breakout/random/2.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "macro",
+   "decisions": 72,
+   "game": "breakout",
+   "path": "replays/macro/breakout/reference/1.json.gz",
    "player": "reference",
-   "score": 42.0,
-   "seed": 1002
+   "score": 55.0,
+   "seed": 1
+  },
+  {
+   "board": "macro",
+   "decisions": 66,
+   "game": "breakout",
+   "path": "replays/macro/breakout/reference/2.json.gz",
+   "player": "reference",
+   "score": 45.0,
+   "seed": 2
   },
   {
    "board": "frame",
-   "decisions": 46,
+   "decisions": 11,
    "game": "tetris",
-   "path": "replays/frame/tetris/random/1001.json.gz",
-   "player": "random",
+   "path": "replays/frame/tetris/clef/1.json.gz",
+   "player": "clef",
    "score": 0.0,
-   "seed": 1001
+   "seed": 1
   },
   {
    "board": "frame",
-   "decisions": 60,
+   "decisions": 11,
    "game": "tetris",
-   "path": "replays/frame/tetris/random/1002.json.gz",
+   "path": "replays/frame/tetris/clef/2.json.gz",
+   "player": "clef",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 143,
+   "game": "tetris",
+   "path": "replays/frame/tetris/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 171,
+   "game": "tetris",
+   "path": "replays/frame/tetris/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 109,
+   "game": "tetris",
+   "path": "replays/frame/tetris/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 95,
+   "game": "tetris",
+   "path": "replays/frame/tetris/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 90,
+   "game": "tetris",
+   "path": "replays/frame/tetris/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 80,
+   "game": "tetris",
+   "path": "replays/frame/tetris/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 89,
+   "game": "tetris",
+   "path": "replays/frame/tetris/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 81,
+   "game": "tetris",
+   "path": "replays/frame/tetris/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 18,
+   "game": "tetris",
+   "path": "replays/frame/tetris/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 12,
+   "game": "tetris",
+   "path": "replays/frame/tetris/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 34,
+   "game": "tetris",
+   "path": "replays/frame/tetris/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 26,
+   "game": "tetris",
+   "path": "replays/frame/tetris/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 65,
+   "game": "tetris",
+   "path": "replays/frame/tetris/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 88,
+   "game": "tetris",
+   "path": "replays/frame/tetris/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 89,
+   "game": "tetris",
+   "path": "replays/frame/tetris/nimble/1.json.gz",
+   "player": "nimble",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 83,
+   "game": "tetris",
+   "path": "replays/frame/tetris/nimble/2.json.gz",
+   "player": "nimble",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 97,
+   "game": "tetris",
+   "path": "replays/frame/tetris/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 96,
+   "game": "tetris",
+   "path": "replays/frame/tetris/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 30,
+   "game": "tetris",
+   "path": "replays/frame/tetris/random/1.json.gz",
    "player": "random",
    "score": 0.0,
-   "seed": 1002
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 38,
+   "game": "tetris",
+   "path": "replays/frame/tetris/random/2.json.gz",
+   "player": "random",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 412,
+   "game": "tetris",
+   "path": "replays/frame/tetris/reference/1.json.gz",
+   "player": "reference",
+   "score": 38.0,
+   "seed": 1
   },
   {
    "board": "frame",
    "decisions": 409,
    "game": "tetris",
-   "path": "replays/frame/tetris/reference/1001.json.gz",
-   "player": "reference",
-   "score": 38.0,
-   "seed": 1001
-  },
-  {
-   "board": "frame",
-   "decisions": 418,
-   "game": "tetris",
-   "path": "replays/frame/tetris/reference/1002.json.gz",
+   "path": "replays/frame/tetris/reference/2.json.gz",
    "player": "reference",
    "score": 39.0,
-   "seed": 1002
+   "seed": 2
   },
   {
    "board": "frame",
-   "decisions": 824,
+   "decisions": 1500,
    "game": "pong",
-   "path": "replays/frame/pong/random/1001.json.gz",
+   "path": "replays/frame/pong/clef/1.json.gz",
+   "player": "clef",
+   "score": -4.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 1500,
+   "game": "pong",
+   "path": "replays/frame/pong/clef/2.json.gz",
+   "player": "clef",
+   "score": -16.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/frame/pong/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/frame/pong/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/frame/pong/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/frame/pong/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 1468,
+   "game": "pong",
+   "path": "replays/frame/pong/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": -20.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 1443,
+   "game": "pong",
+   "path": "replays/frame/pong/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": -19.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 1099,
+   "game": "pong",
+   "path": "replays/frame/pong/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": -20.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 1124,
+   "game": "pong",
+   "path": "replays/frame/pong/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 983,
+   "game": "pong",
+   "path": "replays/frame/pong/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": -20.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 1247,
+   "game": "pong",
+   "path": "replays/frame/pong/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/frame/pong/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/frame/pong/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 1129,
+   "game": "pong",
+   "path": "replays/frame/pong/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 979,
+   "game": "pong",
+   "path": "replays/frame/pong/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": -20.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 1499,
+   "game": "pong",
+   "path": "replays/frame/pong/nimble/1.json.gz",
+   "player": "nimble",
+   "score": -19.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 1375,
+   "game": "pong",
+   "path": "replays/frame/pong/nimble/2.json.gz",
+   "player": "nimble",
+   "score": -19.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 1500,
+   "game": "pong",
+   "path": "replays/frame/pong/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": -9.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 1500,
+   "game": "pong",
+   "path": "replays/frame/pong/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": -10.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 1130,
+   "game": "pong",
+   "path": "replays/frame/pong/random/1.json.gz",
    "player": "random",
    "score": -21.0,
-   "seed": 1001
+   "seed": 1
   },
   {
    "board": "frame",
-   "decisions": 921,
+   "decisions": 946,
    "game": "pong",
-   "path": "replays/frame/pong/random/1002.json.gz",
+   "path": "replays/frame/pong/random/2.json.gz",
    "player": "random",
-   "score": -20.0,
-   "seed": 1002
+   "score": -21.0,
+   "seed": 2
   },
   {
    "board": "frame",
    "decisions": 1500,
    "game": "pong",
-   "path": "replays/frame/pong/reference/1001.json.gz",
+   "path": "replays/frame/pong/reference/1.json.gz",
    "player": "reference",
+   "score": -2.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 1500,
+   "game": "pong",
+   "path": "replays/frame/pong/reference/2.json.gz",
+   "player": "reference",
+   "score": 1.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 1449,
+   "game": "breakout",
+   "path": "replays/frame/breakout/clef/1.json.gz",
+   "player": "clef",
+   "score": 80.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 714,
+   "game": "breakout",
+   "path": "replays/frame/breakout/clef/2.json.gz",
+   "player": "clef",
+   "score": 31.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 1138,
+   "game": "breakout",
+   "path": "replays/frame/breakout/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": 42.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 1479,
+   "game": "breakout",
+   "path": "replays/frame/breakout/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": 74.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 202,
+   "game": "breakout",
+   "path": "replays/frame/breakout/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 298,
+   "game": "breakout",
+   "path": "replays/frame/breakout/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": 4.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 200,
+   "game": "breakout",
+   "path": "replays/frame/breakout/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 200,
+   "game": "breakout",
+   "path": "replays/frame/breakout/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": 2.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 675,
+   "game": "breakout",
+   "path": "replays/frame/breakout/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": 24.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 526,
+   "game": "breakout",
+   "path": "replays/frame/breakout/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": 15.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 200,
+   "game": "breakout",
+   "path": "replays/frame/breakout/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 125,
+   "game": "breakout",
+   "path": "replays/frame/breakout/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 242,
+   "game": "breakout",
+   "path": "replays/frame/breakout/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
    "score": 3.0,
-   "seed": 1001
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 185,
+   "game": "breakout",
+   "path": "replays/frame/breakout/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": 1.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 200,
+   "game": "breakout",
+   "path": "replays/frame/breakout/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 200,
+   "game": "breakout",
+   "path": "replays/frame/breakout/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": 2.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 543,
+   "game": "breakout",
+   "path": "replays/frame/breakout/nimble/1.json.gz",
+   "player": "nimble",
+   "score": 15.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 431,
+   "game": "breakout",
+   "path": "replays/frame/breakout/nimble/2.json.gz",
+   "player": "nimble",
+   "score": 9.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 661,
+   "game": "breakout",
+   "path": "replays/frame/breakout/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": 15.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 808,
+   "game": "breakout",
+   "path": "replays/frame/breakout/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": 29.0,
+   "seed": 2
+  },
+  {
+   "board": "frame",
+   "decisions": 189,
+   "game": "breakout",
+   "path": "replays/frame/breakout/random/1.json.gz",
+   "player": "random",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 161,
+   "game": "breakout",
+   "path": "replays/frame/breakout/random/2.json.gz",
+   "player": "random",
+   "score": 1.0,
+   "seed": 2
   },
   {
    "board": "frame",
    "decisions": 1500,
+   "game": "breakout",
+   "path": "replays/frame/breakout/reference/1.json.gz",
+   "player": "reference",
+   "score": 142.0,
+   "seed": 1
+  },
+  {
+   "board": "frame",
+   "decisions": 1500,
+   "game": "breakout",
+   "path": "replays/frame/breakout/reference/2.json.gz",
+   "player": "reference",
+   "score": 284.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 11,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/clef/1.json.gz",
+   "player": "clef",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 10,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/clef/2.json.gz",
+   "player": "clef",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 16,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 15,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 58,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 52,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 35,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 30,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 31,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 28,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 81,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 144,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 244,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 222,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 527,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 244,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 38,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/nimble/1.json.gz",
+   "player": "nimble",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 38,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/nimble/2.json.gz",
+   "player": "nimble",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 41,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": 0.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 49,
+   "game": "tetris",
+   "path": "replays/realtime/tetris/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": 0.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 86,
    "game": "pong",
-   "path": "replays/frame/pong/reference/1002.json.gz",
-   "player": "reference",
-   "score": -1.0,
-   "seed": 1002
+   "path": "replays/realtime/pong/clef/1.json.gz",
+   "player": "clef",
+   "score": -21.0,
+   "seed": 1
   },
   {
-   "board": "frame",
-   "decisions": 141,
+   "board": "realtime",
+   "decisions": 92,
+   "game": "pong",
+   "path": "replays/realtime/pong/clef/2.json.gz",
+   "player": "clef",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 230,
+   "game": "pong",
+   "path": "replays/realtime/pong/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": -20.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 221,
+   "game": "pong",
+   "path": "replays/realtime/pong/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/realtime/pong/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/realtime/pong/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 153,
+   "game": "pong",
+   "path": "replays/realtime/pong/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 153,
+   "game": "pong",
+   "path": "replays/realtime/pong/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 110,
+   "game": "pong",
+   "path": "replays/realtime/pong/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 110,
+   "game": "pong",
+   "path": "replays/realtime/pong/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/realtime/pong/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/realtime/pong/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 764,
+   "game": "pong",
+   "path": "replays/realtime/pong/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 824,
+   "game": "pong",
+   "path": "replays/realtime/pong/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 1007,
+   "game": "pong",
+   "path": "replays/realtime/pong/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 1344,
+   "game": "pong",
+   "path": "replays/realtime/pong/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": -20.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 191,
+   "game": "pong",
+   "path": "replays/realtime/pong/nimble/1.json.gz",
+   "player": "nimble",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 267,
+   "game": "pong",
+   "path": "replays/realtime/pong/nimble/2.json.gz",
+   "player": "nimble",
+   "score": -21.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 252,
+   "game": "pong",
+   "path": "replays/realtime/pong/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": -21.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 276,
+   "game": "pong",
+   "path": "replays/realtime/pong/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": -20.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 20,
    "game": "breakout",
-   "path": "replays/frame/breakout/random/1001.json.gz",
-   "player": "random",
+   "path": "replays/realtime/breakout/clef/1.json.gz",
+   "player": "clef",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 21,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/clef/2.json.gz",
+   "player": "clef",
+   "score": 2.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 65,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/clef-flash/1.json.gz",
+   "player": "clef-flash",
+   "score": 3.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 58,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/clef-flash/2.json.gz",
+   "player": "clef-flash",
+   "score": 2.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 162,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/kev-0.8b/1.json.gz",
+   "player": "kev-0.8b",
+   "score": 4.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 137,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/kev-0.8b/2.json.gz",
+   "player": "kev-0.8b",
+   "score": 3.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 38,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/kev-4b/1.json.gz",
+   "player": "kev-4b",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 38,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/kev-4b/2.json.gz",
+   "player": "kev-4b",
+   "score": 2.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 23,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/kev-9b/1.json.gz",
+   "player": "kev-9b",
+   "score": 1.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 32,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/kev-9b/2.json.gz",
+   "player": "kev-9b",
+   "score": 3.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 205,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/laya-english/1.json.gz",
+   "player": "laya-english",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 205,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/laya-english/2.json.gz",
+   "player": "laya-english",
+   "score": 2.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 300,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/laya-multilingual/1.json.gz",
+   "player": "laya-multilingual",
    "score": 0.0,
-   "seed": 1001
+   "seed": 1
   },
   {
-   "board": "frame",
-   "decisions": 142,
+   "board": "realtime",
+   "decisions": 433,
    "game": "breakout",
-   "path": "replays/frame/breakout/random/1002.json.gz",
-   "player": "random",
+   "path": "replays/realtime/breakout/laya-multilingual/2.json.gz",
+   "player": "laya-multilingual",
    "score": 0.0,
-   "seed": 1002
+   "seed": 2
   },
   {
-   "board": "frame",
-   "decisions": 1401,
+   "board": "realtime",
+   "decisions": 233,
    "game": "breakout",
-   "path": "replays/frame/breakout/reference/1001.json.gz",
-   "player": "reference",
-   "score": 160.0,
-   "seed": 1001
+   "path": "replays/realtime/breakout/laya-typed/1.json.gz",
+   "player": "laya-typed",
+   "score": 3.0,
+   "seed": 1
   },
   {
-   "board": "frame",
-   "decisions": 1500,
+   "board": "realtime",
+   "decisions": 233,
    "game": "breakout",
-   "path": "replays/frame/breakout/reference/1002.json.gz",
-   "player": "reference",
-   "score": 313.0,
-   "seed": 1002
+   "path": "replays/realtime/breakout/laya-typed/2.json.gz",
+   "player": "laya-typed",
+   "score": 3.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 64,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/nimble/1.json.gz",
+   "player": "nimble",
+   "score": 2.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 65,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/nimble/2.json.gz",
+   "player": "nimble",
+   "score": 3.0,
+   "seed": 2
+  },
+  {
+   "board": "realtime",
+   "decisions": 93,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/nimble-v2/1.json.gz",
+   "player": "nimble-v2",
+   "score": 6.0,
+   "seed": 1
+  },
+  {
+   "board": "realtime",
+   "decisions": 84,
+   "game": "breakout",
+   "path": "replays/realtime/breakout/nimble-v2/2.json.gz",
+   "player": "nimble-v2",
+   "score": 4.0,
+   "seed": 2
   }
  ],
  "schema": 1,
@@ -487,19 +3654,19 @@
    "anchor_board": "frame",
    "anchors": {
     "breakout": {
-     "n": 3,
-     "random": 0.6667,
-     "reference": 224.3333
+     "n": 20,
+     "random": 1.15,
+     "reference": 174.25
     },
     "pong": {
-     "n": 3,
-     "random": -20.3333,
-     "reference": 0.0
+     "n": 20,
+     "random": -20.7,
+     "reference": -0.65
     },
     "tetris": {
-     "n": 3,
+     "n": 30,
      "random": 0.0,
-     "reference": 38.6667
+     "reference": 38.2
     }
    },
    "board": "frame",
@@ -509,8 +3676,1284 @@
     "breakout"
    ],
    "missing_anchors": [],
-   "pairs": [],
+   "pairs": [
+    {
+     "a": "clef",
+     "b": "nimble-v2",
+     "ci": [
+      -1.1065,
+      6.1981
+     ],
+     "diff": 2.59,
+     "p": 0.1609,
+     "p_holm": 0.8046
+    },
+    {
+     "a": "clef",
+     "b": "nimble",
+     "ci": [
+      13.5961,
+      20.4422
+     ],
+     "diff": 17.09,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "clef-flash",
+     "ci": [
+      13.8173,
+      20.8772
+     ],
+     "diff": 17.65,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "kev-9b",
+     "ci": [
+      20.4404,
+      26.9148
+     ],
+     "diff": 23.82,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "kev-4b",
+     "ci": [
+      21.6704,
+      28.941
+     ],
+     "diff": 25.27,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "laya-english",
+     "ci": [
+      22.6579,
+      29.3133
+     ],
+     "diff": 25.93,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "laya-typed",
+     "ci": [
+      23.4483,
+      30.2152
+     ],
+     "diff": 26.81,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "kev-0.8b",
+     "ci": [
+      23.5404,
+      30.2484
+     ],
+     "diff": 26.85,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "laya-multilingual",
+     "ci": [
+      23.6285,
+      30.2968
+     ],
+     "diff": 26.94,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "nimble",
+     "ci": [
+      11.2796,
+      17.8431
+     ],
+     "diff": 14.5,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "clef-flash",
+     "ci": [
+      12.0534,
+      17.6809
+     ],
+     "diff": 15.06,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "kev-9b",
+     "ci": [
+      18.4955,
+      24.0435
+     ],
+     "diff": 21.23,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "kev-4b",
+     "ci": [
+      20.1148,
+      25.5389
+     ],
+     "diff": 22.68,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "laya-english",
+     "ci": [
+      20.8228,
+      26.2601
+     ],
+     "diff": 23.34,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "laya-typed",
+     "ci": [
+      21.8484,
+      26.7957
+     ],
+     "diff": 24.22,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "kev-0.8b",
+     "ci": [
+      22.0138,
+      26.8771
+     ],
+     "diff": 24.26,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "laya-multilingual",
+     "ci": [
+      22.1327,
+      26.9037
+     ],
+     "diff": 24.35,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "clef-flash",
+     "ci": [
+      -1.7424,
+      2.621
+     ],
+     "diff": 0.56,
+     "p": 0.7146,
+     "p_holm": 1.0
+    },
+    {
+     "a": "nimble",
+     "b": "kev-9b",
+     "ci": [
+      4.5203,
+      9.0255
+     ],
+     "diff": 6.73,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "kev-4b",
+     "ci": [
+      6.1896,
+      10.5359
+     ],
+     "diff": 8.18,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "laya-english",
+     "ci": [
+      6.8122,
+      11.2166
+     ],
+     "diff": 8.84,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "laya-typed",
+     "ci": [
+      7.6888,
+      12.0305
+     ],
+     "diff": 9.72,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "kev-0.8b",
+     "ci": [
+      7.7576,
+      12.1523
+     ],
+     "diff": 9.76,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "laya-multilingual",
+     "ci": [
+      7.8476,
+      12.2525
+     ],
+     "diff": 9.85,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "kev-9b",
+     "ci": [
+      4.3405,
+      8.1567
+     ],
+     "diff": 6.17,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "kev-4b",
+     "ci": [
+      5.8622,
+      9.9831
+     ],
+     "diff": 7.62,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "laya-english",
+     "ci": [
+      6.5335,
+      10.5498
+     ],
+     "diff": 8.28,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "laya-typed",
+     "ci": [
+      7.4818,
+      11.2515
+     ],
+     "diff": 9.16,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "kev-0.8b",
+     "ci": [
+      7.63,
+      11.3797
+     ],
+     "diff": 9.2,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "laya-multilingual",
+     "ci": [
+      7.6541,
+      11.4797
+     ],
+     "diff": 9.29,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-9b",
+     "b": "kev-4b",
+     "ci": [
+      -0.0598,
+      3.1529
+     ],
+     "diff": 1.45,
+     "p": 0.059,
+     "p_holm": 0.5307
+    },
+    {
+     "a": "kev-9b",
+     "b": "laya-english",
+     "ci": [
+      0.7015,
+      3.8152
+     ],
+     "diff": 2.11,
+     "p": 0.004,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-9b",
+     "b": "laya-typed",
+     "ci": [
+      1.7329,
+      4.5133
+     ],
+     "diff": 2.99,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-9b",
+     "b": "kev-0.8b",
+     "ci": [
+      1.8643,
+      4.572
+     ],
+     "diff": 3.03,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-9b",
+     "b": "laya-multilingual",
+     "ci": [
+      1.9035,
+      4.7024
+     ],
+     "diff": 3.12,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-4b",
+     "b": "laya-english",
+     "ci": [
+      -0.5142,
+      1.8993
+     ],
+     "diff": 0.66,
+     "p": 0.2779,
+     "p_holm": 1.0
+    },
+    {
+     "a": "kev-4b",
+     "b": "laya-typed",
+     "ci": [
+      0.675,
+      2.3127
+     ],
+     "diff": 1.54,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-4b",
+     "b": "kev-0.8b",
+     "ci": [
+      0.7694,
+      2.3995
+     ],
+     "diff": 1.58,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-4b",
+     "b": "laya-multilingual",
+     "ci": [
+      0.821,
+      2.4573
+     ],
+     "diff": 1.67,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-english",
+     "b": "laya-typed",
+     "ci": [
+      -0.1225,
+      1.7024
+     ],
+     "diff": 0.88,
+     "p": 0.1169,
+     "p_holm": 0.7016
+    },
+    {
+     "a": "laya-english",
+     "b": "kev-0.8b",
+     "ci": [
+      -0.0431,
+      1.8896
+     ],
+     "diff": 0.92,
+     "p": 0.079,
+     "p_holm": 0.6317
+    },
+    {
+     "a": "laya-english",
+     "b": "laya-multilingual",
+     "ci": [
+      0.0098,
+      1.9372
+     ],
+     "diff": 1.01,
+     "p": 0.046,
+     "p_holm": 0.4598
+    },
+    {
+     "a": "laya-typed",
+     "b": "kev-0.8b",
+     "ci": [
+      -0.0739,
+      0.45
+     ],
+     "diff": 0.04,
+     "p": 0.4228,
+     "p_holm": 1.0
+    },
+    {
+     "a": "laya-typed",
+     "b": "laya-multilingual",
+     "ci": [
+      0.0,
+      0.5134
+     ],
+     "diff": 0.13,
+     "p": 0.094,
+     "p_holm": 0.6577
+    },
+    {
+     "a": "kev-0.8b",
+     "b": "laya-multilingual",
+     "ci": [
+      -0.0186,
+      0.1921
+     ],
+     "diff": 0.09,
+     "p": 0.3738,
+     "p_holm": 1.0
+    }
+   ],
    "players": {
+    "clef": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.2071,
+       "k_ci": [
+        0.1516,
+        0.2757
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 809.562
+       },
+       "mean": 37.0,
+       "mean_ci": [
+        30.25,
+        43.8
+       ],
+       "metrics": {
+        "bricks_broken": 24.55,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.601,
+       "k_ci": [
+        0.5169,
+        0.6769
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 673.448
+       },
+       "mean": -8.65,
+       "mean_ci": [
+        -10.25,
+        -7.3
+       ],
+       "metrics": {
+        "game_over": 0.0,
+        "points_lost": 11.45,
+        "points_won": 2.8
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 807.901
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.6667,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 26.94,
+     "index_ci": [
+      23.64,
+      30.3
+     ],
+     "rank": 2
+    },
+    "clef-flash": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.2787,
+       "k_ci": [
+        0.2259,
+        0.3377
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 249.379
+       },
+       "mean": 49.4,
+       "mean_ci": [
+        39.45,
+        59.5512
+       ],
+       "metrics": {
+        "bricks_broken": 30.5,
+        "game_over": 0.9,
+        "idle_end": 0.0,
+        "lives": 0.15
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0242
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 206.002
+       },
+       "mean": -20.7,
+       "mean_ci": [
+        -21.0,
+        -20.3
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.3
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 244.089
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.8333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 9.29,
+     "index_ci": [
+      7.66,
+      11.51
+     ],
+     "rank": 5
+    },
+    "kev-0.8b": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0026,
+       "k_ci": [
+        0.0,
+        0.007
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 86.356
+       },
+       "mean": 1.6,
+       "mean_ci": [
+        1.05,
+        2.15
+       ],
+       "metrics": {
+        "bricks_broken": 1.6,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 64.709
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 72.642
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.8333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.09,
+     "index_ci": [
+      0.0,
+      0.23
+     ],
+     "rank": 10
+    },
+    "kev-4b": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0026,
+       "k_ci": [
+        0.0,
+        0.0076
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 372.125
+       },
+       "mean": 1.6,
+       "mean_ci": [
+        1.05,
+        2.15
+       ],
+       "metrics": {
+        "bricks_broken": 1.6,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0474,
+       "k_ci": [
+        0.0228,
+        0.0714
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 292.432
+       },
+       "mean": -19.75,
+       "mean_ci": [
+        -20.15,
+        -19.3
+       ],
+       "metrics": {
+        "game_over": 0.9,
+        "points_lost": 20.85,
+        "points_won": 1.1
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 322.413
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.8333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 1.67,
+     "index_ci": [
+      0.83,
+      2.49
+     ],
+     "rank": 7
+    },
+    "kev-9b": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0812,
+       "k_ci": [
+        0.0475,
+        0.1257
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 593.722
+       },
+       "mean": 15.2,
+       "mean_ci": [
+        10.1,
+        21.3012
+       ],
+       "metrics": {
+        "bricks_broken": 12.35,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0125,
+       "k_ci": [
+        0.0,
+        0.0291
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 449.652
+       },
+       "mean": -20.45,
+       "mean_ci": [
+        -20.75,
+        -20.15
+       ],
+       "metrics": {
+        "game_over": 0.95,
+        "points_lost": 20.95,
+        "points_won": 0.5
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 498.041
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.8333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 3.12,
+     "index_ci": [
+      1.92,
+      4.7
+     ],
+     "rank": 6
+    },
+    "laya-english": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0003,
+       "k_ci": [
+        0.0,
+        0.0043
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 37.495
+       },
+       "mean": 1.2,
+       "mean_ci": [
+        0.7,
+        1.8
+       ],
+       "metrics": {
+        "bricks_broken": 1.2,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0299,
+       "k_ci": [
+        0.0,
+        0.0576
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 26.551
+       },
+       "mean": -20.1,
+       "mean_ci": [
+        -20.6,
+        -19.65
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.9
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 27.831
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 11.4,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 1.01,
+     "index_ci": [
+      0.05,
+      1.96
+     ],
+     "rank": 8
+    },
+    "laya-multilingual": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0041
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 32.666
+       },
+       "mean": 1.05,
+       "mean_ci": [
+        0.55,
+        1.6
+       ],
+       "metrics": {
+        "bricks_broken": 1.05,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 15.98
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 15.366
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 11.3333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.0,
+     "index_ci": [
+      0.0,
+      0.14
+     ],
+     "rank": 11
+    },
+    "laya-typed": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.004,
+       "k_ci": [
+        0.0,
+        0.0093
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 37.895
+       },
+       "mean": 1.85,
+       "mean_ci": [
+        1.2,
+        2.5
+       ],
+       "metrics": {
+        "bricks_broken": 1.85,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.012
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 26.486
+       },
+       "mean": -20.8,
+       "mean_ci": [
+        -20.95,
+        -20.6
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.2
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 28.726
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 13.2,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.13,
+     "index_ci": [
+      0.0,
+      0.54
+     ],
+     "rank": 9
+    },
+    "nimble": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.1308,
+       "k_ci": [
+        0.0906,
+        0.1848
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 253.224
+       },
+       "mean": 23.8,
+       "mean_ci": [
+        17.4975,
+        30.95
+       ],
+       "metrics": {
+        "bricks_broken": 17.2,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.1646,
+       "k_ci": [
+        0.1197,
+        0.2113
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 209.668
+       },
+       "mean": -17.4,
+       "mean_ci": [
+        -18.2,
+        -16.55
+       ],
+       "metrics": {
+        "game_over": 0.3,
+        "points_lost": 19.15,
+        "points_won": 1.75
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 253.704
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 11.2,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 9.85,
+     "index_ci": [
+      7.86,
+      12.25
+     ],
+     "rank": 4
+    },
+    "nimble-v2": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.132,
+       "k_ci": [
+        0.1012,
+        0.1763
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 254.907
+       },
+       "mean": 24.0,
+       "mean_ci": [
+        20.7488,
+        27.5
+       ],
+       "metrics": {
+        "bricks_broken": 18.0,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.5985,
+       "k_ci": [
+        0.5385,
+        0.6597
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 211.959
+       },
+       "mean": -8.7,
+       "mean_ci": [
+        -10.0,
+        -7.4
+       ],
+       "metrics": {
+        "game_over": 0.0,
+        "points_lost": 11.65,
+        "points_won": 2.95
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 255.221
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 11.5333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 24.35,
+     "index_ci": [
+      22.15,
+      26.95
+     ],
+     "rank": 3
+    },
     "random": {
      "complete": true,
      "games": {
@@ -520,18 +4963,18 @@
         0.0,
         0.0
        ],
-       "mean": 0.6667,
+       "mean": 1.15,
        "mean_ci": [
-        0.0,
-        2.0
+        0.75,
+        1.6
        ],
        "metrics": {
-        "bricks_broken": 0.6667,
+        "bricks_broken": 1.15,
         "game_over": 1.0,
         "idle_end": 0.0,
         "lives": 0.0
        },
-       "n": 3
+       "n": 20
       },
       "pong": {
        "k": 0.0,
@@ -539,17 +4982,17 @@
         0.0,
         0.0
        ],
-       "mean": -20.3333,
+       "mean": -20.7,
        "mean_ci": [
-        -21.0,
-        -20.0
+        -20.95,
+        -20.35
        ],
        "metrics": {
         "game_over": 1.0,
         "points_lost": 21.0,
-        "points_won": 0.6667
+        "points_won": 0.3
        },
-       "n": 3
+       "n": 20
       },
       "tetris": {
        "k": 0.0,
@@ -564,10 +5007,10 @@
        ],
        "metrics": {
         "lines": 0.0,
-        "pieces": 11.3333,
+        "pieces": 11.5333,
         "topped_out": 1.0
        },
-       "n": 3
+       "n": 30
       }
      },
      "index": 0.0,
@@ -575,7 +5018,7 @@
       0.0,
       0.0
      ],
-     "rank": 2
+     "rank": 12
     },
     "reference": {
      "complete": true,
@@ -586,18 +5029,18 @@
         1.0,
         1.0
        ],
-       "mean": 224.3333,
+       "mean": 174.25,
        "mean_ci": [
-        160.0,
-        313.0
+        141.1975,
+        210.0575
        ],
        "metrics": {
-        "bricks_broken": 67.3333,
-        "game_over": 0.3333,
+        "bricks_broken": 59.5,
+        "game_over": 0.0,
         "idle_end": 0.0,
-        "lives": 1.3333
+        "lives": 2.2
        },
-       "n": 3
+       "n": 20
       },
       "pong": {
        "k": 1.0,
@@ -605,17 +5048,17 @@
         1.0,
         1.0
        ],
-       "mean": 0.0,
+       "mean": -0.65,
        "mean_ci": [
-        -2.0,
-        3.0
+        -1.9,
+        0.45
        ],
        "metrics": {
         "game_over": 0.0,
-        "points_lost": 2.6667,
-        "points_won": 2.6667
+        "points_lost": 2.75,
+        "points_won": 2.1
        },
-       "n": 3
+       "n": 20
       },
       "tetris": {
        "k": 1.0,
@@ -623,17 +5066,17 @@
         1.0,
         1.0
        ],
-       "mean": 38.6667,
+       "mean": 38.2,
        "mean_ci": [
-        38.0,
-        39.0
+        37.9,
+        38.4667
        ],
        "metrics": {
-        "lines": 38.6667,
+        "lines": 38.2,
         "pieces": 100.0,
         "topped_out": 0.0
        },
-       "n": 3
+       "n": 30
       }
      },
      "index": 100.0,
@@ -646,6 +5089,16 @@
    },
    "ranking": [
     "reference",
+    "clef",
+    "nimble-v2",
+    "nimble",
+    "clef-flash",
+    "kev-9b",
+    "kev-4b",
+    "laya-english",
+    "laya-typed",
+    "kev-0.8b",
+    "laya-multilingual",
     "random"
    ]
   },
@@ -653,29 +5106,29 @@
    "anchor_board": "macro",
    "anchors": {
     "breakout": {
-     "n": 3,
-     "random": 0.6667,
-     "reference": 55.3333
+     "n": 20,
+     "random": 1.1,
+     "reference": 69.6
     },
     "connect4": {
-     "n": 6,
-     "random": 0.1667,
-     "reference": 0.9167
+     "n": 60,
+     "random": 0.2167,
+     "reference": 0.9417
     },
     "pong": {
-     "n": 3,
-     "random": -20.6667,
-     "reference": -7.6667
+     "n": 20,
+     "random": -19.35,
+     "reference": -6.15
     },
     "snake": {
-     "n": 5,
-     "random": 0.0,
-     "reference": 61.4
+     "n": 50,
+     "random": 0.06,
+     "reference": 67.72
     },
     "tetris": {
-     "n": 5,
-     "random": 0.0,
-     "reference": 118.2
+     "n": 50,
+     "random": 0.08,
+     "reference": 118.08
     }
    },
    "board": "macro",
@@ -687,8 +5140,1864 @@
     "breakout"
    ],
    "missing_anchors": [],
-   "pairs": [],
+   "pairs": [
+    {
+     "a": "clef",
+     "b": "nimble",
+     "ci": [
+      -1.5781,
+      4.1352
+     ],
+     "diff": 1.24,
+     "p": 0.3988,
+     "p_holm": 1.0
+    },
+    {
+     "a": "clef",
+     "b": "nimble-v2",
+     "ci": [
+      -0.9678,
+      4.701
+     ],
+     "diff": 1.79,
+     "p": 0.2169,
+     "p_holm": 1.0
+    },
+    {
+     "a": "clef",
+     "b": "kev-9b",
+     "ci": [
+      2.3835,
+      7.6648
+     ],
+     "diff": 5.02,
+     "p": 0.002,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "clef-flash",
+     "ci": [
+      2.895,
+      9.2349
+     ],
+     "diff": 5.98,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "kev-0.8b",
+     "ci": [
+      5.9299,
+      11.2715
+     ],
+     "diff": 8.47,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "laya-english",
+     "ci": [
+      7.1015,
+      13.0588
+     ],
+     "diff": 10.09,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "laya-typed",
+     "ci": [
+      8.625,
+      14.252
+     ],
+     "diff": 11.4,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "kev-4b",
+     "ci": [
+      8.7682,
+      14.7865
+     ],
+     "diff": 11.76,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "laya-multilingual",
+     "ci": [
+      10.0711,
+      15.909
+     ],
+     "diff": 13.26,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "nimble-v2",
+     "ci": [
+      -2.5019,
+      3.4838
+     ],
+     "diff": 0.55,
+     "p": 0.7096,
+     "p_holm": 1.0
+    },
+    {
+     "a": "nimble",
+     "b": "kev-9b",
+     "ci": [
+      1.0128,
+      6.5349
+     ],
+     "diff": 3.78,
+     "p": 0.007,
+     "p_holm": 0.1259
+    },
+    {
+     "a": "nimble",
+     "b": "clef-flash",
+     "ci": [
+      1.5092,
+      7.9639
+     ],
+     "diff": 4.74,
+     "p": 0.002,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "kev-0.8b",
+     "ci": [
+      4.6022,
+      9.8574
+     ],
+     "diff": 7.23,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "laya-english",
+     "ci": [
+      5.7401,
+      11.9156
+     ],
+     "diff": 8.85,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "laya-typed",
+     "ci": [
+      7.7581,
+      12.8104
+     ],
+     "diff": 10.16,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "kev-4b",
+     "ci": [
+      8.0882,
+      13.2312
+     ],
+     "diff": 10.52,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "laya-multilingual",
+     "ci": [
+      9.1536,
+      14.5608
+     ],
+     "diff": 12.02,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "kev-9b",
+     "ci": [
+      0.4643,
+      5.8446
+     ],
+     "diff": 3.23,
+     "p": 0.018,
+     "p_holm": 0.2339
+    },
+    {
+     "a": "nimble-v2",
+     "b": "clef-flash",
+     "ci": [
+      1.7628,
+      6.8144
+     ],
+     "diff": 4.19,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "kev-0.8b",
+     "ci": [
+      3.9634,
+      9.4309
+     ],
+     "diff": 6.68,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "laya-english",
+     "ci": [
+      5.7665,
+      11.1381
+     ],
+     "diff": 8.3,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "laya-typed",
+     "ci": [
+      7.1108,
+      12.4331
+     ],
+     "diff": 9.61,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "kev-4b",
+     "ci": [
+      6.848,
+      12.9562
+     ],
+     "diff": 9.97,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "laya-multilingual",
+     "ci": [
+      8.4157,
+      14.1101
+     ],
+     "diff": 11.47,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-9b",
+     "b": "clef-flash",
+     "ci": [
+      -2.46,
+      4.5723
+     ],
+     "diff": 0.96,
+     "p": 0.6027,
+     "p_holm": 1.0
+    },
+    {
+     "a": "kev-9b",
+     "b": "kev-0.8b",
+     "ci": [
+      0.2835,
+      6.684
+     ],
+     "diff": 3.45,
+     "p": 0.035,
+     "p_holm": 0.4198
+    },
+    {
+     "a": "kev-9b",
+     "b": "laya-english",
+     "ci": [
+      2.1748,
+      7.9105
+     ],
+     "diff": 5.07,
+     "p": 0.002,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-9b",
+     "b": "laya-typed",
+     "ci": [
+      3.5888,
+      9.3727
+     ],
+     "diff": 6.38,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-9b",
+     "b": "kev-4b",
+     "ci": [
+      4.0123,
+      9.4146
+     ],
+     "diff": 6.74,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-9b",
+     "b": "laya-multilingual",
+     "ci": [
+      5.3121,
+      10.7724
+     ],
+     "diff": 8.24,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "kev-0.8b",
+     "ci": [
+      0.0495,
+      5.1585
+     ],
+     "diff": 2.49,
+     "p": 0.051,
+     "p_holm": 0.5607
+    },
+    {
+     "a": "clef-flash",
+     "b": "laya-english",
+     "ci": [
+      1.184,
+      7.265
+     ],
+     "diff": 4.11,
+     "p": 0.012,
+     "p_holm": 0.1919
+    },
+    {
+     "a": "clef-flash",
+     "b": "laya-typed",
+     "ci": [
+      2.3682,
+      8.5617
+     ],
+     "diff": 5.42,
+     "p": 0.002,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "kev-4b",
+     "ci": [
+      2.5465,
+      8.8783
+     ],
+     "diff": 5.78,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "laya-multilingual",
+     "ci": [
+      4.2141,
+      10.081
+     ],
+     "diff": 7.28,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "kev-0.8b",
+     "b": "laya-english",
+     "ci": [
+      -1.0037,
+      4.4478
+     ],
+     "diff": 1.62,
+     "p": 0.2199,
+     "p_holm": 1.0
+    },
+    {
+     "a": "kev-0.8b",
+     "b": "laya-typed",
+     "ci": [
+      0.6904,
+      5.5294
+     ],
+     "diff": 2.93,
+     "p": 0.013,
+     "p_holm": 0.1949
+    },
+    {
+     "a": "kev-0.8b",
+     "b": "kev-4b",
+     "ci": [
+      0.5411,
+      6.2614
+     ],
+     "diff": 3.29,
+     "p": 0.014,
+     "p_holm": 0.1959
+    },
+    {
+     "a": "kev-0.8b",
+     "b": "laya-multilingual",
+     "ci": [
+      2.0467,
+      7.3015
+     ],
+     "diff": 4.79,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-english",
+     "b": "laya-typed",
+     "ci": [
+      -0.2379,
+      2.9999
+     ],
+     "diff": 1.31,
+     "p": 0.094,
+     "p_holm": 0.8456
+    },
+    {
+     "a": "laya-english",
+     "b": "kev-4b",
+     "ci": [
+      -0.8983,
+      4.0107
+     ],
+     "diff": 1.67,
+     "p": 0.2199,
+     "p_holm": 1.0
+    },
+    {
+     "a": "laya-english",
+     "b": "laya-multilingual",
+     "ci": [
+      0.7116,
+      5.1476
+     ],
+     "diff": 3.17,
+     "p": 0.008,
+     "p_holm": 0.1359
+    },
+    {
+     "a": "laya-typed",
+     "b": "kev-4b",
+     "ci": [
+      -2.0392,
+      2.5681
+     ],
+     "diff": 0.36,
+     "p": 0.9035,
+     "p_holm": 1.0
+    },
+    {
+     "a": "laya-typed",
+     "b": "laya-multilingual",
+     "ci": [
+      -0.0061,
+      3.6146
+     ],
+     "diff": 1.86,
+     "p": 0.094,
+     "p_holm": 0.8456
+    },
+    {
+     "a": "kev-4b",
+     "b": "laya-multilingual",
+     "ci": [
+      -0.3133,
+      3.2573
+     ],
+     "diff": 1.5,
+     "p": 0.073,
+     "p_holm": 0.7296
+    }
+   ],
    "players": {
+    "clef": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 990.122
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "bricks_broken": 0.0,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.5172,
+       "k_ci": [
+        0.3764,
+        0.6623
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 791.207
+       },
+       "mean": 0.5917,
+       "mean_ci": [
+        0.4667,
+        0.7085
+       ],
+       "metrics": {
+        "allowed_wins": 0.05,
+        "first": 0.5,
+        "missed_wins": 0.0,
+        "moves": 18.4,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "draw": 1,
+         "loss": 24,
+         "win": 35
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 911.17
+       },
+       "mean": -20.6,
+       "mean_ci": [
+        -20.85,
+        -20.3
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.4
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.1377,
+       "k_ci": [
+        0.1183,
+        0.1605
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 821.242
+       },
+       "mean": 9.38,
+       "mean_ci": [
+        8.06,
+        10.8205
+       ],
+       "metrics": {
+        "death": {
+         "body": 12,
+         "wall": 38
+        },
+        "died": 1.0,
+        "food": 9.38,
+        "length": 12.38,
+        "starved": 0.0
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.008,
+       "k_ci": [
+        0.0049,
+        0.011
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 925.452
+       },
+       "mean": 1.02,
+       "mean_ci": [
+        0.66,
+        1.36
+       ],
+       "metrics": {
+        "lines": 1.02,
+        "pieces": 22.98,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 13.26,
+     "index_ci": [
+      10.36,
+      16.22
+     ],
+     "rank": 2
+    },
+    "clef-flash": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0029,
+       "k_ci": [
+        0.0,
+        0.0213
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 305.545
+       },
+       "mean": 1.3,
+       "mean_ci": [
+        0.3,
+        2.4
+       ],
+       "metrics": {
+        "bricks_broken": 1.3,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.3448,
+       "k_ci": [
+        0.1999,
+        0.5
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 252.225
+       },
+       "mean": 0.4667,
+       "mean_ci": [
+        0.35,
+        0.5837
+       ],
+       "metrics": {
+        "allowed_wins": 0.1667,
+        "first": 0.5,
+        "missed_wins": 0.1333,
+        "moves": 17.4,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "loss": 32,
+         "win": 28
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 275.803
+       },
+       "mean": -20.75,
+       "mean_ci": [
+        -20.9,
+        -20.55
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.25
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.0163,
+       "k_ci": [
+        0.0119,
+        0.0212
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 251.642
+       },
+       "mean": 1.16,
+       "mean_ci": [
+        0.88,
+        1.48
+       ],
+       "metrics": {
+        "death": {
+         "body": 2,
+         "none": 3,
+         "wall": 45
+        },
+        "died": 0.94,
+        "food": 1.16,
+        "length": 4.16,
+        "starved": 0.06
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.001
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 278.281
+       },
+       "mean": 0.08,
+       "mean_ci": [
+        0.02,
+        0.16
+       ],
+       "metrics": {
+        "lines": 0.08,
+        "pieces": 13.4,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 7.28,
+     "index_ci": [
+      4.41,
+      10.37
+     ],
+     "rank": 6
+    },
+    "kev-0.8b": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0152
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 99.96
+       },
+       "mean": 1.0,
+       "mean_ci": [
+        0.1975,
+        2.1
+       ],
+       "metrics": {
+        "bricks_broken": 1.0,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.2299,
+       "k_ci": [
+        0.0987,
+        0.3637
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 74.606
+       },
+       "mean": 0.3833,
+       "mean_ci": [
+        0.2667,
+        0.5
+       ],
+       "metrics": {
+        "allowed_wins": 0.35,
+        "first": 0.5,
+        "missed_wins": 0.0167,
+        "moves": 14.9167,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "loss": 37,
+         "win": 23
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 89.058
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.0092,
+       "k_ci": [
+        0.0057,
+        0.013
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 87.282
+       },
+       "mean": 0.68,
+       "mean_ci": [
+        0.46,
+        0.92
+       ],
+       "metrics": {
+        "death": {
+         "body": 7,
+         "wall": 43
+        },
+        "died": 1.0,
+        "food": 0.68,
+        "length": 3.68,
+        "starved": 0.0
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.0005,
+       "k_ci": [
+        0.0,
+        0.002
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 97.725
+       },
+       "mean": 0.14,
+       "mean_ci": [
+        0.02,
+        0.28
+       ],
+       "metrics": {
+        "lines": 0.14,
+        "pieces": 27.64,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 4.79,
+     "index_ci": [
+      2.21,
+      7.57
+     ],
+     "rank": 7
+    },
+    "kev-4b": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0143
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 434.303
+       },
+       "mean": 0.95,
+       "mean_ci": [
+        0.0988,
+        2.05
+       ],
+       "metrics": {
+        "bricks_broken": 0.95,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.069,
+       "k_ci": [
+        0.0,
+        0.1707
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 331.844
+       },
+       "mean": 0.2667,
+       "mean_ci": [
+        0.15,
+        0.3833
+       ],
+       "metrics": {
+        "allowed_wins": 1.0667,
+        "first": 0.5,
+        "missed_wins": 0.1,
+        "moves": 14.6333,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "loss": 44,
+         "win": 16
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 386.89
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.0062,
+       "k_ci": [
+        0.0041,
+        0.0085
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 377.761
+       },
+       "mean": 0.48,
+       "mean_ci": [
+        0.34,
+        0.62
+       ],
+       "metrics": {
+        "death": {
+         "wall": 50
+        },
+        "died": 1.0,
+        "food": 0.48,
+        "length": 3.48,
+        "starved": 0.0
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 423.005
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 11.5,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 1.5,
+     "index_ci": [
+      0.11,
+      3.6
+     ],
+     "rank": 10
+    },
+    "kev-9b": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 622.769
+       },
+       "mean": 0.1,
+       "mean_ci": [
+        0.0,
+        0.3
+       ],
+       "metrics": {
+        "bricks_broken": 0.1,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.3678,
+       "k_ci": [
+        0.2299,
+        0.5119
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 485.03
+       },
+       "mean": 0.4833,
+       "mean_ci": [
+        0.35,
+        0.6
+       ],
+       "metrics": {
+        "allowed_wins": 0.2333,
+        "first": 0.5,
+        "missed_wins": 0.0,
+        "moves": 17.1,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "draw": 2,
+         "loss": 30,
+         "win": 28
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 599.907
+       },
+       "mean": -20.9,
+       "mean_ci": [
+        -21.0,
+        -20.75
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.1
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.0443,
+       "k_ci": [
+        0.0365,
+        0.0533
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 597.231
+       },
+       "mean": 3.06,
+       "mean_ci": [
+        2.58,
+        3.58
+       ],
+       "metrics": {
+        "death": {
+         "body": 13,
+         "wall": 37
+        },
+        "died": 1.0,
+        "food": 3.06,
+        "length": 6.06,
+        "starved": 0.0
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0005
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 606.159
+       },
+       "mean": 0.06,
+       "mean_ci": [
+        0.0,
+        0.14
+       ],
+       "metrics": {
+        "lines": 0.06,
+        "pieces": 17.32,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 8.24,
+     "index_ci": [
+      5.52,
+      11.13
+     ],
+     "rank": 5
+    },
+    "laya-english": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0431,
+       "k_ci": [
+        0.0246,
+        0.0728
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 30.241
+       },
+       "mean": 4.05,
+       "mean_ci": [
+        2.9,
+        5.3
+       ],
+       "metrics": {
+        "bricks_broken": 2.85,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.1149,
+       "k_ci": [
+        0.0,
+        0.2223
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 28.498
+       },
+       "mean": 0.3,
+       "mean_ci": [
+        0.1833,
+        0.4167
+       ],
+       "metrics": {
+        "allowed_wins": 0.8,
+        "first": 0.5,
+        "missed_wins": 0.4,
+        "moves": 14.8667,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "loss": 42,
+         "win": 18
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 28.614
+       },
+       "mean": -20.65,
+       "mean_ci": [
+        -20.9,
+        -20.3
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.35
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.0006,
+       "k_ci": [
+        0.0,
+        0.0022
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 28.608
+       },
+       "mean": 0.1,
+       "mean_ci": [
+        0.02,
+        0.18
+       ],
+       "metrics": {
+        "death": {
+         "wall": 50
+        },
+        "died": 1.0,
+        "food": 0.1,
+        "length": 3.1,
+        "starved": 0.0
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0005
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 30.255
+       },
+       "mean": 0.04,
+       "mean_ci": [
+        0.0,
+        0.1
+       ],
+       "metrics": {
+        "lines": 0.04,
+        "pieces": 19.52,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 3.17,
+     "index_ci": [
+      1.01,
+      5.47
+     ],
+     "rank": 8
+    },
+    "laya-multilingual": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 21.319
+       },
+       "mean": 0.15,
+       "mean_ci": [
+        0.0,
+        0.3
+       ],
+       "metrics": {
+        "bricks_broken": 0.15,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0964
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 39.055
+       },
+       "mean": 0.1833,
+       "mean_ci": [
+        0.0833,
+        0.2833
+       ],
+       "metrics": {
+        "allowed_wins": 0.9,
+        "first": 0.5,
+        "missed_wins": 0.4833,
+        "moves": 14.1167,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "loss": 49,
+         "win": 11
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 20.168
+       },
+       "mean": -20.6,
+       "mean_ci": [
+        -20.9,
+        -20.25
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.4
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0015
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 38.925
+       },
+       "mean": 0.06,
+       "mean_ci": [
+        0.0,
+        0.12
+       ],
+       "metrics": {
+        "death": {
+         "wall": 50
+        },
+        "died": 1.0,
+        "food": 0.06,
+        "length": 3.06,
+        "starved": 0.0
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 21.219
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 17.56,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 0.0,
+     "index_ci": [
+      0.0,
+      1.93
+     ],
+     "rank": 11
+    },
+    "laya-typed": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 40.0
+       },
+       "mean": 0.25,
+       "mean_ci": [
+        0.1,
+        0.45
+       ],
+       "metrics": {
+        "bricks_broken": 0.25,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.092,
+       "k_ci": [
+        0.0,
+        0.1928
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 29.101
+       },
+       "mean": 0.2833,
+       "mean_ci": [
+        0.1667,
+        0.4
+       ],
+       "metrics": {
+        "allowed_wins": 0.5167,
+        "first": 0.5,
+        "missed_wins": 0.25,
+        "moves": 12.6833,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "loss": 43,
+         "win": 17
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 38.071
+       },
+       "mean": -20.7,
+       "mean_ci": [
+        -20.95,
+        -20.35
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.3
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.0009,
+       "k_ci": [
+        0.0,
+        0.0027
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 29.098
+       },
+       "mean": 0.12,
+       "mean_ci": [
+        0.04,
+        0.22
+       ],
+       "metrics": {
+        "death": {
+         "wall": 50
+        },
+        "died": 1.0,
+        "food": 0.12,
+        "length": 3.12,
+        "starved": 0.0
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 30.303
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 20.18,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 1.86,
+     "index_ci": [
+      0.02,
+      3.88
+     ],
+     "rank": 9
+    },
+    "nimble": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0073,
+       "k_ci": [
+        0.0,
+        0.0251
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 336.736
+       },
+       "mean": 1.6,
+       "mean_ci": [
+        0.6,
+        2.75
+       ],
+       "metrics": {
+        "bricks_broken": 1.6,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.3103,
+       "k_ci": [
+        0.1798,
+        0.4479
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 266.761
+       },
+       "mean": 0.4417,
+       "mean_ci": [
+        0.3167,
+        0.5583
+       ],
+       "metrics": {
+        "allowed_wins": 0.3667,
+        "first": 0.5,
+        "missed_wins": 0.0167,
+        "moves": 14.5667,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "draw": 1,
+         "loss": 33,
+         "win": 26
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 296.626
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.2459,
+       "k_ci": [
+        0.2168,
+        0.2781
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 262.756
+       },
+       "mean": 16.7,
+       "mean_ci": [
+        15.1,
+        18.2005
+       ],
+       "metrics": {
+        "death": {
+         "body": 37,
+         "wall": 13
+        },
+        "died": 1.0,
+        "food": 16.7,
+        "length": 19.7,
+        "starved": 0.0
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.0376,
+       "k_ci": [
+        0.0278,
+        0.0495
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 294.642
+       },
+       "mean": 4.52,
+       "mean_ci": [
+        3.38,
+        5.92
+       ],
+       "metrics": {
+        "lines": 4.52,
+        "pieces": 32.16,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 12.02,
+     "index_ci": [
+      9.34,
+      14.83
+     ],
+     "rank": 3
+    },
+    "nimble-v2": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0058,
+       "k_ci": [
+        0.0,
+        0.016
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 337.201
+       },
+       "mean": 1.5,
+       "mean_ci": [
+        1.15,
+        1.8512
+       ],
+       "metrics": {
+        "bricks_broken": 1.5,
+        "game_over": 1.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "connect4": {
+       "k": 0.3448,
+       "k_ci": [
+        0.2093,
+        0.4899
+       ],
+       "latency_ms": {
+        "episodes": 60,
+        "median_of_episode_medians": 269.94
+       },
+       "mean": 0.4667,
+       "mean_ci": [
+        0.3496,
+        0.5833
+       ],
+       "metrics": {
+        "allowed_wins": 0.3167,
+        "first": 0.5,
+        "missed_wins": 0.0667,
+        "moves": 16.1333,
+        "opponent": {
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
+        },
+        "result": {
+         "loss": 32,
+         "win": 28
+        }
+       },
+       "n": 60
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 300.142
+       },
+       "mean": -20.75,
+       "mean_ci": [
+        -20.9,
+        -20.55
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.25
+       },
+       "n": 20
+      },
+      "snake": {
+       "k": 0.214,
+       "k_ci": [
+        0.1912,
+        0.2403
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 267.145
+       },
+       "mean": 14.54,
+       "mean_ci": [
+        13.1795,
+        16.0
+       ],
+       "metrics": {
+        "death": {
+         "body": 36,
+         "wall": 14
+        },
+        "died": 1.0,
+        "food": 14.54,
+        "length": 17.54,
+        "starved": 0.0
+       },
+       "n": 50
+      },
+      "tetris": {
+       "k": 0.0088,
+       "k_ci": [
+        0.0049,
+        0.0134
+       ],
+       "latency_ms": {
+        "episodes": 50,
+        "median_of_episode_medians": 300.39
+       },
+       "mean": 1.12,
+       "mean_ci": [
+        0.68,
+        1.68
+       ],
+       "metrics": {
+        "lines": 1.12,
+        "pieces": 21.88,
+        "topped_out": 1.0
+       },
+       "n": 50
+      }
+     },
+     "index": 11.47,
+     "index_ci": [
+      8.6,
+      14.48
+     ],
+     "rank": 4
+    },
     "random": {
      "complete": true,
      "games": {
@@ -698,17 +7007,17 @@
         0.0,
         0.0
        ],
-       "mean": 0.6667,
+       "mean": 1.1,
        "mean_ci": [
-        0.0,
-        2.0
+        0.7,
+        1.55
        ],
        "metrics": {
-        "bricks_broken": 0.6667,
+        "bricks_broken": 1.1,
         "game_over": 1.0,
         "lives": 0.0
        },
-       "n": 3
+       "n": 20
       },
       "connect4": {
        "k": 0.0,
@@ -716,27 +7025,27 @@
         0.0,
         0.0
        ],
-       "mean": 0.1667,
+       "mean": 0.2167,
        "mean_ci": [
-        0.0,
-        0.5
+        0.1167,
+        0.3171
        ],
        "metrics": {
-        "allowed_wins": 1.3333,
+        "allowed_wins": 1.15,
         "first": 0.5,
-        "missed_wins": 0.3333,
-        "moves": 16.0,
+        "missed_wins": 0.9,
+        "moves": 17.6167,
         "opponent": {
-         "negamax-4": 2,
-         "random": 2,
-         "win-block": 2
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
         },
         "result": {
-         "loss": 5,
-         "win": 1
+         "loss": 47,
+         "win": 13
         }
        },
-       "n": 6
+       "n": 60
       },
       "pong": {
        "k": 0.0,
@@ -744,17 +7053,17 @@
         0.0,
         0.0
        ],
-       "mean": -20.6667,
+       "mean": -19.35,
        "mean_ci": [
-        -21.0,
-        -20.0
+        -19.95,
+        -18.75
        ],
        "metrics": {
         "game_over": 1.0,
         "points_lost": 21.0,
-        "points_won": 0.3333
+        "points_won": 1.65
        },
-       "n": 3
+       "n": 20
       },
       "snake": {
        "k": 0.0,
@@ -762,21 +7071,21 @@
         0.0,
         0.0
        ],
-       "mean": 0.0,
+       "mean": 0.06,
        "mean_ci": [
         0.0,
-        0.0
+        0.14
        ],
        "metrics": {
         "death": {
-         "wall": 5
+         "wall": 50
         },
         "died": 1.0,
-        "food": 0.0,
-        "length": 3.0,
+        "food": 0.06,
+        "length": 3.06,
         "starved": 0.0
        },
-       "n": 5
+       "n": 50
       },
       "tetris": {
        "k": 0.0,
@@ -784,17 +7093,17 @@
         0.0,
         0.0
        ],
-       "mean": 0.0,
+       "mean": 0.08,
        "mean_ci": [
-        0.0,
-        0.0
+        0.02,
+        0.16
        ],
        "metrics": {
-        "lines": 0.0,
-        "pieces": 17.6,
+        "lines": 0.08,
+        "pieces": 20.18,
         "topped_out": 1.0
        },
-       "n": 5
+       "n": 50
       }
      },
      "index": 0.0,
@@ -802,7 +7111,7 @@
       0.0,
       0.0
      ],
-     "rank": 2
+     "rank": 12
     },
     "reference": {
      "complete": true,
@@ -813,17 +7122,17 @@
         1.0,
         1.0
        ],
-       "mean": 55.3333,
+       "mean": 69.6,
        "mean_ci": [
-        42.0,
-        64.0
+        50.2975,
+        96.01
        ],
        "metrics": {
-        "bricks_broken": 32.3333,
+        "bricks_broken": 34.5,
         "game_over": 1.0,
         "lives": 0.0
        },
-       "n": 3
+       "n": 20
       },
       "connect4": {
        "k": 1.0,
@@ -831,27 +7140,28 @@
         1.0,
         1.0
        ],
-       "mean": 0.9167,
+       "mean": 0.9417,
        "mean_ci": [
-        0.75,
-        1.0
+        0.8833,
+        0.9917
        ],
        "metrics": {
         "allowed_wins": 0.0,
         "first": 0.5,
         "missed_wins": 0.0,
-        "moves": 19.8333,
+        "moves": 18.0667,
         "opponent": {
-         "negamax-4": 2,
-         "random": 2,
-         "win-block": 2
+         "negamax-4": 20,
+         "random": 20,
+         "win-block": 20
         },
         "result": {
-         "draw": 1,
-         "win": 5
+         "draw": 3,
+         "loss": 2,
+         "win": 55
         }
        },
-       "n": 6
+       "n": 60
       },
       "pong": {
        "k": 1.0,
@@ -859,17 +7169,17 @@
         1.0,
         1.0
        ],
-       "mean": -7.6667,
+       "mean": -6.15,
        "mean_ci": [
-        -16.0,
-        -1.0
+        -9.45,
+        -2.8488
        ],
        "metrics": {
         "game_over": 1.0,
-        "points_lost": 21.0,
-        "points_won": 13.3333
+        "points_lost": 20.15,
+        "points_won": 14.0
        },
-       "n": 3
+       "n": 20
       },
       "snake": {
        "k": 1.0,
@@ -877,21 +7187,21 @@
         1.0,
         1.0
        ],
-       "mean": 61.4,
+       "mean": 67.72,
        "mean_ci": [
-        46.0,
-        76.4
+        63.76,
+        71.4405
        ],
        "metrics": {
         "death": {
-         "none": 5
+         "none": 50
         },
         "died": 0.0,
-        "food": 61.4,
-        "length": 64.4,
-        "starved": 0.4
+        "food": 67.72,
+        "length": 70.72,
+        "starved": 0.14
        },
-       "n": 5
+       "n": 50
       },
       "tetris": {
        "k": 1.0,
@@ -899,17 +7209,17 @@
         1.0,
         1.0
        ],
-       "mean": 118.2,
+       "mean": 118.08,
        "mean_ci": [
-        117.4,
-        119.0
+        117.88,
+        118.3
        ],
        "metrics": {
-        "lines": 118.2,
+        "lines": 118.08,
         "pieces": 300.0,
         "topped_out": 0.0
        },
-       "n": 5
+       "n": 50
       }
      },
      "index": 100.0,
@@ -922,6 +7232,16 @@
    },
    "ranking": [
     "reference",
+    "clef",
+    "nimble",
+    "nimble-v2",
+    "kev-9b",
+    "clef-flash",
+    "kev-0.8b",
+    "laya-english",
+    "laya-typed",
+    "kev-4b",
+    "laya-multilingual",
     "random"
    ]
   },
@@ -929,19 +7249,19 @@
    "anchor_board": "frame",
    "anchors": {
     "breakout": {
-     "n": 3,
-     "random": 0.6667,
-     "reference": 224.3333
+     "n": 20,
+     "random": 1.15,
+     "reference": 174.25
     },
     "pong": {
-     "n": 3,
-     "random": -20.3333,
-     "reference": 0.0
+     "n": 20,
+     "random": -20.7,
+     "reference": -0.65
     },
     "tetris": {
-     "n": 3,
+     "n": 30,
      "random": 0.0,
-     "reference": 38.6667
+     "reference": 38.2
     }
    },
    "board": "realtime",
@@ -951,19 +7271,1307 @@
     "breakout"
    ],
    "missing_anchors": [],
-   "pairs": [],
-   "players": {},
-   "ranking": []
+   "pairs": [
+    {
+     "a": "laya-typed",
+     "b": "nimble-v2",
+     "ci": [
+      0.4391,
+      2.4025
+     ],
+     "diff": 1.45,
+     "p": 0.004,
+     "p_holm": 0.08
+    },
+    {
+     "a": "laya-typed",
+     "b": "nimble",
+     "ci": [
+      0.6876,
+      2.5497
+     ],
+     "diff": 1.66,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-typed",
+     "b": "clef-flash",
+     "ci": [
+      0.776,
+      2.5378
+     ],
+     "diff": 1.71,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-typed",
+     "b": "clef",
+     "ci": [
+      1.0013,
+      2.9345
+     ],
+     "diff": 1.92,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-typed",
+     "b": "laya-english",
+     "ci": [
+      1.1693,
+      3.0714
+     ],
+     "diff": 2.06,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-typed",
+     "b": "kev-0.8b",
+     "ci": [
+      1.1663,
+      3.0664
+     ],
+     "diff": 2.08,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-typed",
+     "b": "kev-9b",
+     "ci": [
+      1.2016,
+      3.1074
+     ],
+     "diff": 2.12,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-typed",
+     "b": "kev-4b",
+     "ci": [
+      1.2338,
+      3.1337
+     ],
+     "diff": 2.13,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-typed",
+     "b": "laya-multilingual",
+     "ci": [
+      1.3208,
+      3.2012
+     ],
+     "diff": 2.22,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "nimble",
+     "ci": [
+      -0.3087,
+      0.7038
+     ],
+     "diff": 0.21,
+     "p": 0.4028,
+     "p_holm": 1.0
+    },
+    {
+     "a": "nimble-v2",
+     "b": "clef-flash",
+     "ci": [
+      -0.3125,
+      0.7183
+     ],
+     "diff": 0.26,
+     "p": 0.3528,
+     "p_holm": 1.0
+    },
+    {
+     "a": "nimble-v2",
+     "b": "clef",
+     "ci": [
+      0.1908,
+      1.0973
+     ],
+     "diff": 0.47,
+     "p": 0.002,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "laya-english",
+     "ci": [
+      0.3144,
+      1.2624
+     ],
+     "diff": 0.61,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "kev-0.8b",
+     "ci": [
+      0.3294,
+      1.2607
+     ],
+     "diff": 0.63,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "kev-9b",
+     "ci": [
+      0.4067,
+      1.2919
+     ],
+     "diff": 0.67,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "kev-4b",
+     "ci": [
+      0.3935,
+      1.2997
+     ],
+     "diff": 0.68,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble-v2",
+     "b": "laya-multilingual",
+     "ci": [
+      0.5095,
+      1.3824
+     ],
+     "diff": 0.77,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "clef-flash",
+     "ci": [
+      -0.4648,
+      0.5022
+     ],
+     "diff": 0.05,
+     "p": 0.7656,
+     "p_holm": 1.0
+    },
+    {
+     "a": "nimble",
+     "b": "clef",
+     "ci": [
+      0.0804,
+      0.8408
+     ],
+     "diff": 0.26,
+     "p": 0.005,
+     "p_holm": 0.095
+    },
+    {
+     "a": "nimble",
+     "b": "laya-english",
+     "ci": [
+      0.1948,
+      1.0261
+     ],
+     "diff": 0.4,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "kev-0.8b",
+     "ci": [
+      0.2108,
+      0.9887
+     ],
+     "diff": 0.42,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "kev-9b",
+     "ci": [
+      0.245,
+      1.0419
+     ],
+     "diff": 0.46,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "kev-4b",
+     "ci": [
+      0.238,
+      1.0997
+     ],
+     "diff": 0.47,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "nimble",
+     "b": "laya-multilingual",
+     "ci": [
+      0.3406,
+      1.1803
+     ],
+     "diff": 0.56,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "clef",
+     "ci": [
+      -0.039,
+      0.8376
+     ],
+     "diff": 0.21,
+     "p": 0.1169,
+     "p_holm": 1.0
+    },
+    {
+     "a": "clef-flash",
+     "b": "laya-english",
+     "ci": [
+      0.1454,
+      0.972
+     ],
+     "diff": 0.35,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "kev-0.8b",
+     "ci": [
+      0.1665,
+      0.9777
+     ],
+     "diff": 0.37,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "kev-9b",
+     "ci": [
+      0.1977,
+      1.0263
+     ],
+     "diff": 0.41,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "kev-4b",
+     "ci": [
+      0.2226,
+      1.0442
+     ],
+     "diff": 0.42,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef-flash",
+     "b": "laya-multilingual",
+     "ci": [
+      0.3272,
+      1.1227
+     ],
+     "diff": 0.51,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "clef",
+     "b": "laya-english",
+     "ci": [
+      -0.0581,
+      0.3622
+     ],
+     "diff": 0.14,
+     "p": 0.1779,
+     "p_holm": 1.0
+    },
+    {
+     "a": "clef",
+     "b": "kev-0.8b",
+     "ci": [
+      -0.0393,
+      0.3752
+     ],
+     "diff": 0.16,
+     "p": 0.1309,
+     "p_holm": 1.0
+    },
+    {
+     "a": "clef",
+     "b": "kev-9b",
+     "ci": [
+      0.0298,
+      0.3893
+     ],
+     "diff": 0.2,
+     "p": 0.019,
+     "p_holm": 0.3418
+    },
+    {
+     "a": "clef",
+     "b": "kev-4b",
+     "ci": [
+      0.0176,
+      0.4392
+     ],
+     "diff": 0.21,
+     "p": 0.033,
+     "p_holm": 0.5607
+    },
+    {
+     "a": "clef",
+     "b": "laya-multilingual",
+     "ci": [
+      0.1338,
+      0.502
+     ],
+     "diff": 0.3,
+     "p": 0.001,
+     "p_holm": 0.045
+    },
+    {
+     "a": "laya-english",
+     "b": "kev-0.8b",
+     "ci": [
+      -0.1575,
+      0.1677
+     ],
+     "diff": 0.02,
+     "p": 0.9105,
+     "p_holm": 1.0
+    },
+    {
+     "a": "laya-english",
+     "b": "kev-9b",
+     "ci": [
+      -0.1507,
+      0.2477
+     ],
+     "diff": 0.06,
+     "p": 0.5667,
+     "p_holm": 1.0
+    },
+    {
+     "a": "laya-english",
+     "b": "kev-4b",
+     "ci": [
+      -0.1132,
+      0.2592
+     ],
+     "diff": 0.07,
+     "p": 0.4838,
+     "p_holm": 1.0
+    },
+    {
+     "a": "laya-english",
+     "b": "laya-multilingual",
+     "ci": [
+      0.0233,
+      0.3055
+     ],
+     "diff": 0.16,
+     "p": 0.035,
+     "p_holm": 0.5607
+    },
+    {
+     "a": "kev-0.8b",
+     "b": "kev-9b",
+     "ci": [
+      -0.0916,
+      0.1855
+     ],
+     "diff": 0.04,
+     "p": 0.5657,
+     "p_holm": 1.0
+    },
+    {
+     "a": "kev-0.8b",
+     "b": "kev-4b",
+     "ci": [
+      -0.0934,
+      0.2195
+     ],
+     "diff": 0.05,
+     "p": 0.5137,
+     "p_holm": 1.0
+    },
+    {
+     "a": "kev-0.8b",
+     "b": "laya-multilingual",
+     "ci": [
+      0.0,
+      0.2951
+     ],
+     "diff": 0.14,
+     "p": 0.064,
+     "p_holm": 0.9595
+    },
+    {
+     "a": "kev-9b",
+     "b": "kev-4b",
+     "ci": [
+      -0.1168,
+      0.1552
+     ],
+     "diff": 0.01,
+     "p": 0.9885,
+     "p_holm": 1.0
+    },
+    {
+     "a": "kev-9b",
+     "b": "laya-multilingual",
+     "ci": [
+      0.0,
+      0.2386
+     ],
+     "diff": 0.1,
+     "p": 0.2009,
+     "p_holm": 1.0
+    },
+    {
+     "a": "kev-4b",
+     "b": "laya-multilingual",
+     "ci": [
+      0.0,
+      0.1938
+     ],
+     "diff": 0.09,
+     "p": 0.1839,
+     "p_holm": 1.0
+    }
+   ],
+   "players": {
+    "clef": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.009,
+       "k_ci": [
+        0.004,
+        0.0151
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 850.36
+       },
+       "mean": 2.7,
+       "mean_ci": [
+        1.95,
+        3.55
+       ],
+       "metrics": {
+        "bricks_broken": 2.25,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 735.118
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 845.734
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.7667,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.3,
+     "index_ci": [
+      0.13,
+      0.5
+     ],
+     "rank": 5
+    },
+    "clef-flash": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0127,
+       "k_ci": [
+        0.0091,
+        0.0172
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 258.279
+       },
+       "mean": 3.35,
+       "mean_ci": [
+        2.9,
+        3.8
+       ],
+       "metrics": {
+        "bricks_broken": 3.35,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0025,
+       "k_ci": [
+        0.0,
+        0.0202
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 230.669
+       },
+       "mean": -20.65,
+       "mean_ci": [
+        -20.85,
+        -20.45
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.35
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 258.188
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.7333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.51,
+     "index_ci": [
+      0.33,
+      1.12
+     ],
+     "rank": 4
+    },
+    "kev-0.8b": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0043,
+       "k_ci": [
+        0.0,
+        0.0089
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 94.412
+       },
+       "mean": 1.9,
+       "mean_ci": [
+        1.35,
+        2.45
+       ],
+       "metrics": {
+        "bricks_broken": 1.9,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 71.283
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 86.32
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.8333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.14,
+     "index_ci": [
+      0.0,
+      0.3
+     ],
+     "rank": 7
+    },
+    "kev-4b": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0026,
+       "k_ci": [
+        0.0,
+        0.0058
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 400.366
+       },
+       "mean": 1.6,
+       "mean_ci": [
+        1.1,
+        2.1
+       ],
+       "metrics": {
+        "bricks_broken": 1.6,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 314.995
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 368.85
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.8333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.09,
+     "index_ci": [
+      0.0,
+      0.19
+     ],
+     "rank": 9
+    },
+    "kev-9b": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0029,
+       "k_ci": [
+        0.0,
+        0.0072
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 604.814
+       },
+       "mean": 1.65,
+       "mean_ci": [
+        1.1,
+        2.25
+       ],
+       "metrics": {
+        "bricks_broken": 1.65,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 494.865
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 589.139
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.8667,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.1,
+     "index_ci": [
+      0.0,
+      0.24
+     ],
+     "rank": 8
+    },
+    "laya-english": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0038,
+       "k_ci": [
+        0.0,
+        0.0079
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 45.879
+       },
+       "mean": 1.8,
+       "mean_ci": [
+        1.2,
+        2.4
+       ],
+       "metrics": {
+        "bricks_broken": 1.8,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 36.912
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0009,
+       "k_ci": [
+        0.0,
+        0.0026
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 45.813
+       },
+       "mean": 0.0333,
+       "mean_ci": [
+        0.0,
+        0.1
+       ],
+       "metrics": {
+        "lines": 0.0333,
+        "pieces": 15.0333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.16,
+     "index_ci": [
+      0.02,
+      0.31
+     ],
+     "rank": 6
+    },
+    "laya-multilingual": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 37.69
+       },
+       "mean": 0.05,
+       "mean_ci": [
+        0.0,
+        0.15
+       ],
+       "metrics": {
+        "bricks_broken": 0.05,
+        "game_over": 0.0,
+        "idle_end": 1.0,
+        "lives": 4.75
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 37.179
+       },
+       "mean": -21.0,
+       "mean_ci": [
+        -21.0,
+        -21.0
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.0
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 19.203
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 10.8333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.0,
+     "index_ci": [
+      0.0,
+      0.0
+     ],
+     "rank": 10
+    },
+    "laya-typed": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0084,
+       "k_ci": [
+        0.0046,
+        0.0125
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 46.19
+       },
+       "mean": 2.6,
+       "mean_ci": [
+        2.05,
+        3.15
+       ],
+       "metrics": {
+        "bricks_broken": 2.6,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0574,
+       "k_ci": [
+        0.03,
+        0.0872
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 45.587
+       },
+       "mean": -19.55,
+       "mean_ci": [
+        -20.0,
+        -19.05
+       ],
+       "metrics": {
+        "game_over": 0.9,
+        "points_lost": 20.8,
+        "points_won": 1.25
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0009,
+       "k_ci": [
+        0.0,
+        0.0026
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 46.178
+       },
+       "mean": 0.0333,
+       "mean_ci": [
+        0.0,
+        0.1
+       ],
+       "metrics": {
+        "lines": 0.0333,
+        "pieces": 18.5333,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 2.22,
+     "index_ci": [
+      1.32,
+      3.2
+     ],
+     "rank": 1
+    },
+    "nimble": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0168,
+       "k_ci": [
+        0.0097,
+        0.0262
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 269.627
+       },
+       "mean": 4.05,
+       "mean_ci": [
+        3.1,
+        5.25
+       ],
+       "metrics": {
+        "bricks_broken": 3.6,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0167
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 237.168
+       },
+       "mean": -20.75,
+       "mean_ci": [
+        -20.95,
+        -20.5
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.25
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 269.678
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 11.5,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.56,
+     "index_ci": [
+      0.34,
+      1.18
+     ],
+     "rank": 3
+    },
+    "nimble-v2": {
+     "complete": true,
+     "games": {
+      "breakout": {
+       "k": 0.0231,
+       "k_ci": [
+        0.0146,
+        0.0355
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 272.007
+       },
+       "mean": 5.15,
+       "mean_ci": [
+        3.8,
+        6.8012
+       ],
+       "metrics": {
+        "bricks_broken": 4.7,
+        "game_over": 1.0,
+        "idle_end": 0.0,
+        "lives": 0.0
+       },
+       "n": 20
+      },
+      "pong": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0141
+       ],
+       "latency_ms": {
+        "episodes": 20,
+        "median_of_episode_medians": 234.87
+       },
+       "mean": -20.8,
+       "mean_ci": [
+        -21.0,
+        -20.55
+       ],
+       "metrics": {
+        "game_over": 1.0,
+        "points_lost": 21.0,
+        "points_won": 0.2
+       },
+       "n": 20
+      },
+      "tetris": {
+       "k": 0.0,
+       "k_ci": [
+        0.0,
+        0.0
+       ],
+       "latency_ms": {
+        "episodes": 30,
+        "median_of_episode_medians": 272.904
+       },
+       "mean": 0.0,
+       "mean_ci": [
+        0.0,
+        0.0
+       ],
+       "metrics": {
+        "lines": 0.0,
+        "pieces": 11.2,
+        "topped_out": 1.0
+       },
+       "n": 30
+      }
+     },
+     "index": 0.77,
+     "index_ci": [
+      0.51,
+      1.38
+     ],
+     "rank": 2
+    }
+   },
+   "ranking": [
+    "laya-typed",
+    "nimble-v2",
+    "nimble",
+    "clef-flash",
+    "clef",
+    "laya-english",
+    "kev-0.8b",
+    "kev-9b",
+    "kev-4b",
+    "laya-multilingual"
+   ]
   }
  },
- "seed_set": "dev",
+ "seed_set": "test",
  "suite": {
   "bootstrap": 2000,
   "confidence": 0.95,
-  "frozen": false,
+  "frozen": true,
   "group_size": 8,
   "id": "v0.1",
-  "lock": null,
+  "lock": "17f3ed7e0f660aa0982cd0ebffa90bd71cf02ffcb8adc6663c7a4bf964ec5f6c",
   "sticky": 0.25
  }
 }
