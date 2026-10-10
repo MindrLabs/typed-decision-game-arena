@@ -9,7 +9,8 @@
 种子上按随机玩家（0）和强规则参考玩家（100）之间换算，因此新增模型不会改变其他模型的分数。排行榜和回放查看器是
 一个静态网站，由 model-compose 与模型一同提供。
 
-**状态：** suite v0.1 已定义但尚未冻结，尚未发布任何模型结果。网站目前只显示两个锚点玩家在开发种子上的对局。
+**状态：** suite v0.1 已冻结（lock `17f3ed7e0f66…`）。十个模型的 test 结果在 [`results/v0.1`](results/v0.1)
+和排行榜上，每一个决策都在 Hugging Face 数据集 `MindrLabs/typed-decision-game-arena` 中。
 
 ## 目录
 

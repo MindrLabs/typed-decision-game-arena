@@ -3,8 +3,9 @@
 이 문서는 결정이 내려진 순서와 이유를 남기는 내부 기록입니다. 공개용 설명은 [methodology.md](methodology.md)와
 [suite-v0.1.md](suite-v0.1.md)에 있습니다.
 
-상태: **구현 완료, 동결 전.** 2026-10-08 KST 브레인스토밍으로 방향을 정했고, 같은 날 구현했습니다. 모델 결과는
-아직 없습니다. 게임 상한과 선택지 사실 목록은 dev 시드 파일럿을 본 뒤 `arena suite freeze`로 고정합니다.
+상태: **v0.1 test 결과 확정.** 2026-10-08 KST 브레인스토밍으로 방향을 정했고 같은 날 구현했습니다. dev 시드
+파일럿 뒤 suite를 동결했고(lock `17f3ed7e0f66…`), 2026-10-10에 모델 10개의 test campaign을 마쳤습니다(§8).
+저장소와 dataset은 아직 private입니다.
 
 ## 1. 목표
 
@@ -173,9 +174,66 @@ clef의 파일럿은 건너뛰었습니다. 앞의 결과로 천장 효과는 �
 - laya-typed 0.7시간, kev-0.8b 1.1시간, clef-flash 3.5시간, nimble-v2 4.7시간
 - 요청 하나에 걸리는 시간은 clef가 clef-flash의 약 3배이므로, 10개 모델 전체는 약 1.5~2일로 봅니다.
 
-## 8. 남은 일
+## 8. test campaign (2026-10-08 ~ 10-10)
 
-1. test campaign. 동결 커밋의 worktree에서 실행하고, 빠른 모델부터 돌립니다.
-2. 끝나면 verify, env, score, export, dataset(private)을 거쳐 결과를 커밋하고 push합니다.
-3. 저장소와 dataset의 공개 전환: 사전 승인.
-4. 새 family upstream 기여: v0.1 결과 뒤, PR마다 사전 승인. 후보는 NeoHorse-Jev-4B, AutoJev-27B, 그 밖의 Decision Index 상위 공개 모델입니다.
+**실행.** 동결된 커밋의 worktree에서 `arena campaign --seed-set test`를 systemd 서비스로 돌렸습니다. 도중에 고친
+campaign 코드(c773aac, b225a18)로 worktree를 옮겼지만 lock에 묶인 파일은 바뀌지 않았으므로 lock은 그대로입니다.
+- **기간과 규모.** 첫 에피소드는 10-08 09:48 UTC, 마지막은 10-10 22:38 UTC에 시작했습니다. 사용자 요청으로 두 번
+  멈췄습니다. 에피소드는 3,940개(모델 10개 × 340, 앵커 2개 × 270)이고, 모델 요청은 587,687번, 모델 에피소드
+  시간은 합계 40.2시간입니다.
+- **실패와 재시도.** 10-08 09:51에 서버 전체 OOM(docker 컨테이너의 할당이 계기)으로 서버가 재시작됐습니다. 그
+  사이 laya-multilingual macro/breakout seed 16이 연결 거부로 실패했고, 재시도에서 처음부터 다시 돌았습니다
+  (`errors.jsonl`에 남아 있고, 설계대로 git에서는 제외합니다). 그 밖의 실패는 없었습니다.
+- **검증.** `arena verify`로 3,940개 에피소드를 모두 replay했고 불일치는 0입니다. `arena score`가 test 시드의
+  lock과 실시간 보드의 지연(k)을 latency 파일과 대조했고 모두 통과했습니다.
+- **latency 측정 환경.** laya-multilingual을 뺀 모든 측정은 GPU 사용률 0%에서 시작했습니다. laya-multilingual은 사용률 기록을 더하기
+  전 코드(bd0b643)로 측정해서 `gpu_utilization_at_start`가 없습니다. clef 측정 때는 다른 사용자의 프로세스가
+  1.3 GB를 잡고 있었지만 계산은 하지 않았습니다(사용률 0%).
+- **환경 기록.** `arena env`는 fac72d2에서 기록했습니다. 이 커밋은 b225a18과 달리 결과 파일을 dirty로 세지 않는
+  수정만 담았습니다(`arena/environment.py`와 테스트). 그 전에는 커밋되지 않은 results/ 때문에 늘 dirty로 찍혔습니다.
+
+**결과.** board 지수(0 = random, 100 = reference)와 95% 구간입니다.
+
+| 모델 | Macro | Frame | Real-time |
+|---|---:|---:|---:|
+| clef | 13.3 (10.4–16.2) | 26.9 (23.6–30.3) | 0.3 (0.1–0.5) |
+| nimble | 12.0 (9.3–14.8) | 9.8 (7.9–12.2) | 0.6 (0.3–1.2) |
+| nimble-v2 | 11.5 (8.6–14.5) | 24.4 (22.1–26.9) | 0.8 (0.5–1.4) |
+| kev-9b | 8.2 (5.5–11.1) | 3.1 (1.9–4.7) | 0.1 (0.0–0.2) |
+| clef-flash | 7.3 (4.4–10.4) | 9.3 (7.7–11.5) | 0.5 (0.3–1.1) |
+| kev-0.8b | 4.8 (2.2–7.6) | 0.1 (0.0–0.2) | 0.1 (0.0–0.3) |
+| laya-english | 3.2 (1.0–5.5) | 1.0 (0.1–2.0) | 0.2 (0.0–0.3) |
+| laya-typed | 1.9 (0.0–3.9) | 0.1 (0.0–0.5) | 2.2 (1.3–3.2) |
+| kev-4b | 1.5 (0.1–3.6) | 1.7 (0.8–2.5) | 0.1 (0.0–0.2) |
+| laya-multilingual | 0.0 (0.0–1.9) | 0.0 (0.0–0.1) | 0.0 (0.0–0.0) |
+
+- **Macro.** 상위 셋(clef, nimble, nimble-v2)은 서로 구별되지 않습니다(Holm 보정 p = 1.0). 셋 모두 clef-flash
+  이하와는 유의하게 갈립니다. 점수 대부분은 Connect Four(clef 51.7)와 Snake(nimble 24.6)에서 나옵니다. macro
+  Pong은 모든 모델이 0이고, Tetris는 nimble의 3.8이 최고입니다.
+- **Frame.** clef(26.9)와 nimble-v2(24.4)는 구별되지 않고(p_holm 0.80), 나머지보다 14점 이상 앞섭니다. 차이는
+  Pong에서 납니다(둘 다 약 60, nimble 16.5, clef-flash 0). Breakout은 clef-flash가 27.9로 가장 높습니다. nimble과
+  nimble-v2는 macro에서 같지만 frame에서 크게 갈립니다.
+- **Real-time.** 모두 바닥(최고 2.2)입니다. 빠른 모델이 유리합니다. laya-typed(k = 1, 30~50 ms)가 nimble,
+  clef-flash, clef보다 유의하게 높고, clef는 frame 지연이 670~810 ms(k = 11~13)여서 frame 최고 모델인데도 실시간
+  보드에서는 0.3입니다. 이 보드가 측정하려는 속도와 판단의 곱이 그대로 드러납니다.
+- **변별력.** 대부분의 차이는 Connect Four, Snake, Frame Pong, Frame Breakout에서 나옵니다. Tetris와 macro Pong은
+  v0.1의 모든 모델이 바닥이라 지금은 변별하지 않습니다. 다만 이것을 이유로 v0.1을 바꾸지는 않습니다(§7 동결 판단).
+
+**처리량.** 실행 도중 병렬화로 더 빨리 끝낼 수 있는지 다시 확인했습니다. 결과는 손실 없이는 불가였습니다.
+- 에피소드 시간의 95~100%가 모델 응답 대기입니다(kev-4b, kev-9b, nimble 실측). 클라이언트 쪽에 겹칠 시간이 없습니다.
+- `model-compose.yml`은 컴포넌트마다 `max_concurrent_count: 1`입니다. model-compose의 `WorkQueue`가 요청을 하나씩
+  처리하고, 요청끼리 묶지 않습니다. 같은 모델에 worker를 늘려도 대기열만 길어집니다.
+- 두 모델을 동시에 올리면 GPU를 시분할하므로 합산 처리량이 늘지 않습니다(이웃이 있을 때 2.5~10배 느려짐을
+  이미 측정). OOM 위험도 커집니다.
+- 요청 묶음(batch)이나 kev의 bf16 전환은 수치를 바꾸므로 이미 돌린 모델과 비교할 수 없고, 동결도 깨집니다.
+
+**공개 준비.** 결정 로그는 private HF dataset `MindrLabs/typed-decision-game-arena`(첫 revision 0b87b3d421,
+파일 4,093개)에 올렸습니다. 에피소드 줄, 점수, latency, bias, 환경 기록은 `results/v0.1/`에 커밋합니다.
+리더보드 데이터(`webui/data`)도 test 결과로 다시 export했고, 실제 브라우저에서 리더보드와 Pong, Breakout,
+Tetris replay가 콘솔 오류 없이 그려지는 것을 확인했습니다.
+
+## 9. 남은 일
+
+1. 저장소와 dataset의 공개 전환: 사전 승인.
+2. 새 family upstream 기여: PR마다 사전 승인. 후보는 NeoHorse-Jev-4B, AutoJev-27B, 그 밖의 Decision Index 상위
+   공개 모델입니다.

@@ -10,8 +10,9 @@ text. Scores are scaled between a random player (0) and a strong rule-based refe
 seeds, so adding a model never moves anyone else's score. The leaderboard and the replay viewer are a static site
 that model-compose serves next to the models.
 
-**Status:** suite v0.1 is defined but not frozen, and no model results are published yet. The site currently shows
-the two anchor players on development seeds.
+**Status:** suite v0.1 is frozen (lock `17f3ed7e0f66…`). The test results of ten models are in
+[`results/v0.1`](results/v0.1) and on the leaderboard, and every decision is in the Hugging Face dataset
+`MindrLabs/typed-decision-game-arena`.
 
 ## Contents
 

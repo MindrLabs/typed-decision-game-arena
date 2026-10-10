@@ -10,8 +10,9 @@
 그래서 모델이 추가되어도 다른 모델의 점수는 바뀌지 않습니다. 리더보드와 리플레이 뷰어는 정적 사이트이고,
 model-compose가 모델과 함께 띄웁니다.
 
-**상태:** suite v0.1은 정의됐지만 아직 동결되지 않았고, 공개된 모델 결과는 아직 없습니다. 지금 사이트에는
-개발용 시드에서 돌린 두 앵커 플레이어만 보입니다.
+**상태:** suite v0.1은 동결됐습니다(lock `17f3ed7e0f66…`). 모델 10개의 test 결과는
+[`results/v0.1`](results/v0.1)과 리더보드에 있고, 모든 결정은 Hugging Face dataset
+`MindrLabs/typed-decision-game-arena`에 있습니다.
 
 ## 목차
 
