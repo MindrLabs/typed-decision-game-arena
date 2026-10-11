@@ -136,9 +136,9 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
       <nav aria-label="Breadcrumb" className="text-xs text-muted">
         <a href={href.versus}>Versus</a> · <a href={href.versusPick('direct', 'connect4', a, b)}>{names.a} vs {names.b}</a> · Connect Four
       </nav>
-      <section aria-label="Pair score" className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-5 rounded-2xl border border-line bg-surface px-5 py-3">
+      <section aria-label="Pair score" className="grid grid-cols-2 items-center gap-x-5 gap-y-2 rounded-2xl border border-line bg-surface px-5 py-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
         {(['a', 'b'] as const).map((side) => (
-          <div key={side} className={`flex min-w-0 items-center gap-2.5 ${side === 'a' ? 'order-1' : 'order-3 flex-row-reverse text-right'}`}>
+          <div key={side} className={`flex min-w-0 items-center gap-2.5 ${side === 'a' ? 'order-1' : 'order-2 flex-row-reverse text-right sm:order-3'}`}>
             <TeamDot side={side} className="size-3.5" />
             <div className="min-w-0">
               <h2 className="truncate text-xl font-bold tracking-tight">{names[side]}</h2>
@@ -146,7 +146,7 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
             </div>
           </div>
         ))}
-        <div className="order-2 flex flex-col items-center">
+        <div className="order-3 col-span-2 flex flex-col items-center sm:order-2 sm:col-span-1">
           <h1 className="text-center text-xs font-semibold tracking-wide text-muted uppercase">Connect Four · opening {replay.seed} · game pair</h1>
           <div className="flex items-baseline gap-3 font-mono text-3xl font-bold tabular-nums">
             <span className={TEAM.a.text}>{formatNumber(openingPoints[a] ?? 0, 1)}</span>

@@ -13,7 +13,7 @@ import { Badge, TEAM, eventLabel } from './parts'
 
 function TapeRow({ label, a, b, better }: { label: string; a: string; b: string; better: Side | null }) {
   return (
-    <div className="grid grid-cols-[minmax(0,1fr)_minmax(8rem,14rem)_minmax(0,1fr)] items-center gap-4 border-t border-line py-2.5">
+    <div className="grid grid-cols-[minmax(0,1fr)_minmax(6rem,14rem)_minmax(0,1fr)] items-center gap-2 border-t border-line py-2.5 sm:gap-4">
       <span className={`text-right font-mono text-xl font-bold tabular-nums ${better === 'a' ? TEAM.a.text : 'text-fg'}`}>{a}</span>
       <span className="text-center text-xs text-muted">{label}</span>
       <span className={`font-mono text-xl font-bold tabular-nums ${better === 'b' ? TEAM.b.text : 'text-fg'}`}>{b}</span>
@@ -76,11 +76,11 @@ function MatchIntro({
         <h1 className="text-center text-sm font-semibold tracking-wide text-muted uppercase">
           {gameTitle} · {boardTitle} board · seed {seed}
         </h1>
-        <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-end gap-4">
+        <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-end gap-2 sm:gap-4">
           {(['a', 'b'] as const).map((side) => (
             <div key={side} className={`flex min-w-0 flex-col gap-1 ${side === 'a' ? 'order-1 items-end text-right' : 'order-3 items-start'}`}>
               <span aria-hidden="true" className={`h-1.5 w-12 rounded-full ${TEAM[side].fill}`} />
-              <h2 className="text-3xl font-bold tracking-tight">{names[side]}</h2>
+              <h2 className="text-xl font-bold tracking-tight break-words sm:text-3xl">{names[side]}</h2>
               <span className="truncate font-mono text-xs text-muted">{playerInfo(index, ids[side]).repository ?? ids[side]}</span>
             </div>
           ))}

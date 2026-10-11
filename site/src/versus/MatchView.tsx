@@ -420,12 +420,12 @@ export function MatchView({
         <a href={href.versus}>Versus</a> · <a href={href.versusPick(game.board, game.game, runs.a.id, runs.b.id)}>{names.a} vs {names.b}</a> · {boardTitle} board
       </nav>
 
-      <section aria-label="Score" className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-x-5 gap-y-2 rounded-2xl border border-line bg-surface px-5 py-3">
+      <section aria-label="Score" className="grid grid-cols-2 items-center gap-x-5 gap-y-2 rounded-2xl border border-line bg-surface px-5 py-3 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
         {(['a', 'b'] as const).map((side) => {
           const run = runs[side]
           const info = playerInfo(index, run.id)
           return (
-            <div key={side} className={`flex min-w-0 items-center gap-2.5 ${side === 'a' ? 'order-1' : 'order-3 flex-row-reverse text-right'}`}>
+            <div key={side} className={`flex min-w-0 items-center gap-2.5 ${side === 'a' ? 'order-1' : 'order-2 flex-row-reverse text-right sm:order-3'}`}>
               <TeamDot side={side} />
               <div className="min-w-0">
                 <h2 className="truncate text-xl font-bold tracking-tight">
@@ -439,7 +439,7 @@ export function MatchView({
             </div>
           )
         })}
-        <div className="order-2 flex flex-col items-center gap-0.5">
+        <div className="order-3 col-span-2 flex flex-col items-center gap-0.5 sm:order-2 sm:col-span-1">
           <h1 className="text-center text-xs font-semibold tracking-wide text-muted uppercase">
             {gameTitle} · {boardTitle} · seed {seed} · {scoreName}
           </h1>
