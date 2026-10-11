@@ -68,9 +68,11 @@ class DecisionWriter:
         # Held open across `write` calls and closed by `commit` or `discard`, so no `with` block.
         self._file: gzip.GzipFile | None = gzip.GzipFile(self.temporary, "wb", compresslevel=6)
 
-    def write(self, record: DecisionRecord) -> None:
+    def write(self, record: DecisionRecord, extra: JSON | None = None) -> None:
+        """One decision line; `extra` adds fields (a direct game records the side and the player)."""
         assert self._file is not None
-        line = json.dumps(decision_json(record), separators=(",", ":"), ensure_ascii=False)
+        item = decision_json(record) if extra is None else {**decision_json(record), **extra}
+        line = json.dumps(item, separators=(",", ":"), ensure_ascii=False)
         self._file.write(line.encode() + b"\n")
 
     def finish(self, snapshot: JSON, step: int) -> None:

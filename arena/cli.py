@@ -15,6 +15,7 @@ arena status   --seed-set test                what is complete, per player and b
 arena dataset  --seed-set test                decision logs and results to a Hugging Face dataset
 arena laya-cuts                               how much of each question Laya reads
 arena suite show|freeze|check                 the frozen protocol
+arena duel run|verify|score|status --seed-set test     models against each other (Connect Four, duel suite)
 """
 
 from __future__ import annotations
@@ -259,6 +260,49 @@ def cmd_status(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_duel(args: argparse.Namespace) -> int:
+    from arena import duel
+
+    suite = load_suite(args.duel_suite)
+    results_dir = Path(args.results)
+    if args.action == "run":
+        models = [m for m in args.models.split(",") if m] if args.models else list(contestants())
+        pairs = [p for p in args.pairs.split(",") if p] if args.pairs else duel.schedule(models)
+        seeds = parse_seeds(args.seeds) if args.seeds else None
+        summary = duel.run_duels(suite, args.seed_set, pairs, seeds=seeds, server=args.server, results=results_dir)
+        print(
+            f"{len(summary.finished)} games played, {summary.skipped} already done, {len(summary.failed)} failed",
+            file=sys.stderr,
+        )
+        return 1 if summary.failed else 0
+    if args.action == "verify":
+        checked = failed = 0
+        for item in duel.verify(suite, args.seed_set, results=results_dir):
+            checked += 1
+            if item.problem:
+                failed += 1
+                print(f"MISMATCH {item.pair} seed {item.seed} game {item.game_no}: {item.problem}")
+        print(f"{checked} games replayed, {failed} mismatches", file=sys.stderr)
+        return 1 if failed else 0
+    if args.action == "score":
+        report = duel.score(suite, args.seed_set, results=results_dir)
+        out = results_dir / suite.id / f"scores-{args.seed_set}.json"
+        write_json(out, report)
+        ranked = sorted(report["ratings"].items(), key=lambda kv: -kv[1]["elo"])
+        for rank, (player, info) in enumerate(ranked, 1):
+            low, high = info["interval"] or (float("nan"), float("nan"))
+            points = f"{info['points']:g}/{info['games']}"
+            print(f"{rank:>2}. {player:<18} {info['elo']:7.1f}  [{low:.1f}, {high:.1f}]  {points}")
+        print(f"{report['games']} games; wrote {out}", file=sys.stderr)
+        return 0
+    models = list(contestants())
+    total = len(suite.game(duel.BOARD, duel.GAME).seeds[args.seed_set]) * 2
+    for pair in duel.schedule(models):
+        done = len(duel.read_games(duel.pair_dir(suite.id, args.seed_set, pair, results=results_dir)))
+        print(f"{pair:<36} {done:>3}/{total}")
+    return 0
+
+
 def cmd_laya_cuts(args: argparse.Namespace) -> int:
     from arena.laya_cuts import measure
 
@@ -406,6 +450,17 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("env", help="record software and hardware next to the results")
     results(p)
     p.set_defaults(func=cmd_env)
+
+    p = sub.add_parser("duel", help="models against each other (Connect Four, suite of kind duel)")
+    p.add_argument("action", choices=("run", "verify", "score", "status"))
+    p.add_argument("--duel-suite", default="duel-v0.1", help="the duel suite (suites/<id>.toml)")
+    p.add_argument("--seed-set", choices=SEED_SETS, required=True)
+    p.add_argument("--models", help="comma-separated models for run (default: every model in model-compose.yml)")
+    p.add_argument("--pairs", help="comma-separated pairs a~b for run, in running order")
+    p.add_argument("--seeds", help="seed list for run, e.g. 1-5 (default: the suite's seeds of the seed set)")
+    server(p)
+    results(p)
+    p.set_defaults(func=cmd_duel)
 
     p = sub.add_parser("suite", help="show, freeze or check the suite lock")
     p.add_argument("action", choices=("show", "freeze", "check"))

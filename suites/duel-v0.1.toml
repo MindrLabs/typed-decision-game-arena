@@ -1,0 +1,28 @@
+# Typed-decision game arena, direct games suite duel-v0.1: models play Connect Four against each other.
+#
+# Every pair of models plays each opening twice, once with each model as X (arena/duel.py). After the two
+# opening moves both sides get exactly the macro board's Connect Four question, through the same decision
+# protocol as suite v0.1. Pinned by suites/duel-v0.1.lock.json, which also locks arena/duel.py.
+
+id = "duel-v0.1"
+kind = "duel"
+
+# The decision protocol of suite v0.1 (Connect Four never has more than 7 options, so no knockout happens).
+group_size = 8
+
+# Rating intervals: openings are resampled, both games of an opening together.
+bootstrap = 400
+confidence = 0.95
+
+[atari]
+# Unused by Connect Four; every suite file has the same shape.
+sticky = 0.25
+
+[boards.direct]
+title = "Direct"
+summary = "Two models play Connect Four against each other: every opening twice, with the colours swapped."
+order = 1
+
+[boards.direct.games.connect4]
+# Seeds pick an opening (the first two moves); seeds 1-25 cover the 25 openings up to mirror image once each.
+seeds = { dev = "21-22", test = "1-20" }

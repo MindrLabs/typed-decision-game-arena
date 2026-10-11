@@ -36,6 +36,8 @@ LOCKED_SOURCES = (
     "arena/games/pong.py",
     "arena/games/breakout.py",
 )
+# A suite of kind "duel" (models playing each other) also locks the module that runs those games.
+DUEL_SOURCES = ("arena/duel.py",)
 LOCKED_PACKAGES = ("ale-py", "gymnasium", "numpy")
 
 SEED_SETS = ("dev", "test")
@@ -93,6 +95,8 @@ class Suite:
     confidence: float
     sticky: float
     boards: dict[str, BoardSpec] = field(default_factory=dict)
+    #: "single" (each player alone against the game) or "duel" (models against each other)
+    kind: str = "single"
 
     @property
     def lock_path(self) -> Path:
@@ -161,7 +165,19 @@ def load_suite(suite_id: str = "v0.1", directory: Path = SUITES) -> Suite:
         float(data["confidence"]),
         float(data["atari"]["sticky"]),
         boards,
+        _kind(data),
     )
+
+
+def _kind(data: dict[str, Any]) -> str:
+    kind = str(data.get("kind", "single"))
+    if kind not in ("single", "duel"):
+        raise ValueError(f"suite kind must be 'single' or 'duel', got {kind!r}")
+    return kind
+
+
+def locked_sources(suite: Suite) -> tuple[str, ...]:
+    return LOCKED_SOURCES + (DUEL_SOURCES if suite.kind == "duel" else ())
 
 
 # --- lock -----------------------------------------------------------------------------------------------
@@ -175,7 +191,7 @@ def manifest(suite: Suite, root: Path = ROOT) -> dict[str, Any]:
     return {
         "suite": suite.id,
         "suite_file": {str(suite.path.relative_to(root)): _sha256(suite.path)},
-        "sources": {name: _sha256(root / name) for name in LOCKED_SOURCES},
+        "sources": {name: _sha256(root / name) for name in locked_sources(suite)},
         "packages": {name: importlib.metadata.version(name) for name in LOCKED_PACKAGES},
         "python": ".".join(platform.python_version_tuple()[:2]),
     }
