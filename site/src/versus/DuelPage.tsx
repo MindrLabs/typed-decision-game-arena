@@ -6,7 +6,7 @@ import { formatMs, formatNumber } from '../lib/format'
 import { playerInfo } from '../lib/leaderboard'
 import { href } from '../lib/router'
 import type { ArenaIndex, DuelDecision, DuelReplay, DuelSnapshot, VersusData } from '../lib/types'
-import { pairId, topOptions, type Side } from '../lib/versus'
+import { duelPoints, pairId, topOptions, type Side } from '../lib/versus'
 import { Missing } from './MatchPage'
 import { Badge, TEAM, TeamDot, percent } from './parts'
 
@@ -17,6 +17,7 @@ const BLOCKS = 'takes the cell where the opponent could complete four'
 type DuelEventKind = 'threat' | 'missed' | 'allowed' | 'win' | 'draw'
 
 interface DuelEvent {
+  /** The 0-based step of the move; for a win or a draw, the moves played, so it falls on the final position. */
   move: number
   kind: DuelEventKind
   side: Side
@@ -87,6 +88,8 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
       if (event.key === 'ArrowRight') go(current + 1)
       else if (event.key === 'ArrowLeft') go(current - 1)
       else if (event.key === ' ') setPlaying((p) => !p)
+      else if (event.key === 'Home') go(0)
+      else if (event.key === 'End') go(frames - 1)
       else if (event.key === 'e' || event.key === 'E') go(eventFrames.find((f) => f > current) ?? frames - 1)
       else if (event.key === 'q' || event.key === 'Q') go([...eventFrames].reverse().find((f) => f < current) ?? 0)
       else return
@@ -99,16 +102,23 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
   }, [current, go, eventFrames, frames])
 
   const pair = pairId(a, b)
-  const openingPoints = data.duel?.pairs[pair]?.openings[String(replay.seed)] ?? {}
-  const otherGame = replay.game_no === 1 ? 2 : 1
-  const otherRow = data.duel?.games[pair]?.find((g) => g.seed === replay.seed && g.game_no === otherGame)
+  const pairGames = (data.duel?.games[pair] ?? []).filter((g) => g.seed === replay.seed)
+  const otherRow = pairGames.find((g) => g.game_no !== replay.game_no)
+  // Only games already over count, so the score never gives away how this one ends.
+  const finished = pairGames.filter((g) => g.game_no < replay.game_no || (g.game_no === replay.game_no && atEnd))
+  const scoreSoFar = { a: finished.reduce((t, g) => t + duelPoints(g, a), 0), b: finished.reduce((t, g) => t + duelPoints(g, b), 0) }
   const options = decision ? topOptions(decision, 7) : []
   const pByColumn = new Map(options.map((o) => [o.key, o.p]))
-  const blockColumn = decision?.options.find((o) => o.text.includes(BLOCKS))?.key
+  // Cells that complete four: the mover's own (a win on offer) and the opponent's (to block), dashed in the colour of
+  // the side the four would belong to.
+  const fourCells = new Map<string, Side>()
+  for (const o of decision?.options ?? []) {
+    const cell = `${6 - Number(/row (\d+)/.exec(o.text)?.[1] ?? 0)}-${o.key}`
+    if (toMove && o.text.includes(WINS)) fourCells.set(cell, toMove)
+    else if (toMove && o.text.includes(BLOCKS)) fourCells.set(cell, toMove === 'a' ? 'b' : 'a')
+  }
   const grid = snapshot?.grid ?? []
   const lastRow = snapshot?.last ? grid.findIndex((line) => line[(snapshot.last ?? 1) - 1] !== '.') : -1
-  const blockText = decision?.options.find((o) => o.key === blockColumn)?.text ?? ''
-  const threatRow = blockColumn ? 6 - Number(/row (\d+)/.exec(blockText)?.[1] ?? 0) : -1
   const discSide = (mark: string): Side | null => (mark === 'X' ? xSide : mark === 'O' ? (xSide === 'a' ? 'b' : 'a') : null)
   const latest = [...events].reverse().find((e) => e.move <= move)
   const captionFor = (e: DuelEvent | undefined) => {
@@ -149,11 +159,13 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
         <div className="order-3 col-span-2 flex flex-col items-center sm:order-2 sm:col-span-1">
           <h1 className="text-center text-xs font-semibold tracking-wide text-muted uppercase">Connect Four · opening {replay.seed} · game pair</h1>
           <div className="flex items-baseline gap-3 font-mono text-3xl font-bold tabular-nums">
-            <span className={TEAM.a.text}>{formatNumber(openingPoints[a] ?? 0, 1)}</span>
+            <span className={TEAM.a.text}>{formatNumber(scoreSoFar.a, 1)}</span>
             <span className="text-lg text-faint">:</span>
-            <span className={TEAM.b.text}>{formatNumber(openingPoints[b] ?? 0, 1)}</span>
+            <span className={TEAM.b.text}>{formatNumber(scoreSoFar.b, 1)}</span>
           </div>
-          <span className="text-[11px] text-muted">win 1, draw ½ over both games of this opening</span>
+          <span className="text-[11px] text-muted">
+            after {finished.length} of 2 games on this opening · win 1, draw ½
+          </span>
         </div>
       </section>
 
@@ -251,11 +263,11 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
               line.split('').map((mark, c) => {
                 const owner = discSide(mark)
                 const last = snapshot?.last === c + 1 && r === lastRow
-                const threat = blockColumn === `c${c + 1}` && r === threatRow
+                const four = fourCells.get(`${r}-c${c + 1}`)
                 return (
                   <span
                     key={`${r}-${c}`}
-                    className={`block size-12 rounded-full ${owner ? TEAM[owner].fill : 'bg-[var(--game-bg)]'} ${last ? 'ring-3 ring-fg' : ''} ${threat ? 'border-[3px] border-dashed border-danger' : ''}`}
+                    className={`block size-12 rounded-full ${owner ? TEAM[owner].fill : 'bg-[var(--game-bg)]'} ${last ? 'ring-3 ring-fg' : ''} ${four ? `border-[3px] border-dashed ${TEAM[four].border}` : ''}`}
                   />
                 )
               }),
@@ -268,7 +280,7 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
               </span>
             ))}
           </div>
-          <p className="text-center text-xs text-muted">Ringed: the last move. Dashed: the cell a side needs for four.</p>
+          <p className="max-w-[25.5rem] text-center text-xs text-muted">Ringed: the last move. Dashed: a cell that completes four, in the colour of the side it would win for.</p>
         </div>
       </div>
 
@@ -281,7 +293,7 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
         {caption ? (
           <>
             <span className={`text-xs font-semibold ${caption.side ? TEAM[caption.side].text : 'text-muted'}`}>
-              Move {(latest?.move ?? 0) + 1}
+              Move {latest && (latest.kind === 'win' || latest.kind === 'draw') ? latest.move : (latest?.move ?? 0) + 1}
               {caption.side ? ` · ${names[caption.side]}` : ''}
             </span>
             <span className="text-lg font-bold">{caption.headline}</span>
@@ -296,7 +308,9 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
         <div className="flex flex-wrap items-end gap-1">
           {decisions.map((d, i) => {
             const side = sideOf(d.player)
-            const mark = events.find((e) => e.move === d.step && e.kind !== 'win' && e.kind !== 'draw')
+            const marks = events.filter((e) => e.move === d.step && e.kind !== 'win' && e.kind !== 'draw')
+            // A mistake outranks the threat that set it up.
+            const mark = marks.find((e) => e.kind !== 'threat') ?? marks[0]
             return (
               <button
                 key={d.i}
@@ -332,7 +346,7 @@ function DuelView({ index, data, replay, a, b }: { index: ArenaIndex; data: Vers
             ›
           </button>
           <span className="font-mono text-xs text-muted">{decision ? `move ${move + 1}` : `end: ${result}`}</span>
-          <span className="ml-auto text-xs text-muted">Markers: ! threat · m missed win · a allowed win. Keys: E/Q events, ← → moves, Space play</span>
+          <span className="ml-auto text-xs text-muted">Markers: ! threat · m missed win · a allowed win. Keys: E/Q events, ← → moves, Home/End, Space play</span>
         </div>
       </section>
     </div>

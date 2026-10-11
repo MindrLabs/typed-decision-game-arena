@@ -5,8 +5,8 @@ import { versusResource } from '../lib/data'
 import { formatNumber } from '../lib/format'
 import { playerInfo } from '../lib/leaderboard'
 import { href } from '../lib/router'
-import type { ArenaIndex, VersusData } from '../lib/types'
-import { formatScore, pairId, seedRows, seriesRecord, splitPair, whyWatch, type SeedRow } from '../lib/versus'
+import type { ArenaIndex, DuelGameRow, VersusData } from '../lib/types'
+import { duelPoints, formatScore, pairId, seedRows, seriesRecord, splitPair, whyWatch, type SeedRow, type Side } from '../lib/versus'
 import { TEAM, TeamDot } from './parts'
 
 const DIRECT = 'direct'
@@ -173,7 +173,7 @@ function DuelSectionView({ data, index, a, b }: { data: VersusData; index: Arena
   const names = { a: playerInfo(index, a).title, b: playerInfo(index, b).title }
   const seeds = [...new Set(games.map((g) => g.seed))].sort((x, y) => x - y)
   const points = duel.pairs[pair]?.points ?? {}
-  const label = (result: string, x: string) => (result === 'draw' ? 'draw' : result === 'X' ? `${playerInfo(index, x).title} wins` : `${playerInfo(index, x === a ? b : a).title} wins`)
+  const winner = (g: DuelGameRow): Side | null => (duelPoints(g, a) === 1 ? 'a' : duelPoints(g, b) === 1 ? 'b' : null)
   return (
     <div className="flex flex-col gap-5">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
@@ -236,11 +236,12 @@ function DuelSectionView({ data, index, a, b }: { data: VersusData; index: Arena
                         </td>
                         {[1, 2].map((gameNo) => {
                           const g = games.find((x) => x.seed === seed && x.game_no === gameNo)
+                          const side = g ? winner(g) : null
                           return (
                             <td key={gameNo} className="py-1 pr-2">
                               {g ? (
-                                <a href={href.duel(a, b, seed, gameNo)} className="inline-flex min-h-9 items-center">
-                                  {label(g.result, g.x)} · {g.moves} moves
+                                <a href={href.duel(a, b, seed, gameNo)} className={`inline-flex min-h-9 items-center ${side ? TEAM[side].text : 'text-muted'}`}>
+                                  {side ? `${names[side]} wins` : g.result} · {g.moves} moves
                                 </a>
                               ) : (
                                 <span className="text-muted">not played</span>

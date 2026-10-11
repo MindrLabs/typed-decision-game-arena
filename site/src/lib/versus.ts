@@ -3,7 +3,7 @@
  * rules; tests/golden/versus-series.json holds the cases both implementations must agree on), the events and
  * captions of a match, and the per-side numbers the match page shows.
  */
-import type { Cell, ReplayDecision, Replay, SyncUnit, VersusData, VersusEpisode } from './types'
+import type { Cell, DuelGameRow, ReplayDecision, Replay, SyncUnit, VersusData, VersusEpisode } from './types'
 
 export type Side = 'a' | 'b'
 
@@ -485,6 +485,13 @@ export function seriesRecord(rows: readonly SeedRow[]): Record3 {
     else record.draws += 1
   }
   return record
+}
+
+/** Points of `player` in one direct game: a win 1, a draw ½. */
+export function duelPoints(game: Pick<DuelGameRow, 'x' | 'result'>, player: string): number {
+  if (game.result === 'draw') return 0.5
+  if (game.result === 'unfinished') return 0
+  return (game.result === 'X') === (game.x === player) ? 1 : 0
 }
 
 /** Why a seed is worth watching, from its comparison alone (no replay needed). */

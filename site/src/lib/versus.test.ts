@@ -7,6 +7,7 @@ import {
   captionAt,
   compare,
   diffPaths,
+  duelPoints,
   endsTheGame,
   framesOf,
   lastAtOrBefore,
@@ -175,5 +176,15 @@ describe('versus.json rows', () => {
     expect(rows[0]?.chase).toBe(true)
     expect(rows.map((r) => r.floored)).toEqual([false, false, true])
     expect(seriesRecord(rows)).toEqual({ wins: 1, draws: 1, losses: 1 })
+  })
+})
+
+describe('duelPoints', () => {
+  it('scores a win 1, a draw ½ and an unfinished game 0 from either side', () => {
+    expect(duelPoints({ x: 'clef', result: 'X' }, 'clef')).toBe(1)
+    expect(duelPoints({ x: 'clef', result: 'X' }, 'nimble')).toBe(0)
+    expect(duelPoints({ x: 'clef', result: 'O' }, 'nimble')).toBe(1)
+    expect(duelPoints({ x: 'clef', result: 'draw' }, 'nimble')).toBe(0.5)
+    expect(duelPoints({ x: 'clef', result: 'unfinished' }, 'clef')).toBe(0)
   })
 })
