@@ -177,38 +177,40 @@ function DuelSectionView({ data, index, a, b }: { data: VersusData; index: Arena
   return (
     <div className="flex flex-col gap-5">
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
-        <div className="flex flex-col gap-2">
+        <div className="flex min-w-0 flex-col gap-2">
           <h3 className="text-sm font-semibold">Ratings from {Object.values(duel.games).reduce((t, g) => t + g.length, 0)} direct games</h3>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-line text-left text-xs text-muted">
-                <th scope="col" className="py-1.5 pr-2 font-semibold">#</th>
-                <th scope="col" className="py-1.5 pr-2 font-semibold">Model</th>
-                <th scope="col" className="py-1.5 pr-2 text-right font-semibold">Elo</th>
-                <th scope="col" className="py-1.5 pr-2 font-semibold">95% interval</th>
-                <th scope="col" className="py-1.5 text-right font-semibold">Points</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ranked.map(([id, rating], i) => (
-                <tr key={id} className={`border-b border-line/60 ${id === a || id === b ? 'bg-surface-2' : ''}`}>
-                  <td className="py-1 pr-2 font-mono text-muted">{i + 1}</td>
-                  <td className="py-1 pr-2">
-                    {id === a ? <TeamDot side="a" className="mr-1.5 size-2" /> : id === b ? <TeamDot side="b" className="mr-1.5 size-2" /> : null}
-                    {playerInfo(index, id).title}
-                  </td>
-                  <td className="py-1 pr-2 text-right font-mono font-bold">{formatNumber(rating.elo, 0)}</td>
-                  <td className="py-1 pr-2 font-mono text-xs text-muted">{rating.interval ? `${formatNumber(rating.interval[0], 0)} to ${formatNumber(rating.interval[1], 0)}` : '—'}</td>
-                  <td className="py-1 text-right font-mono">
-                    {formatNumber(rating.points, 1)} / {rating.games}
-                  </td>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-line text-left text-xs text-muted">
+                  <th scope="col" className="py-1.5 pr-2 font-semibold">#</th>
+                  <th scope="col" className="py-1.5 pr-2 font-semibold">Model</th>
+                  <th scope="col" className="py-1.5 pr-2 text-right font-semibold">Elo</th>
+                  <th scope="col" className="py-1.5 pr-2 font-semibold">95% interval</th>
+                  <th scope="col" className="py-1.5 text-right font-semibold">Points</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {ranked.map(([id, rating], i) => (
+                  <tr key={id} className={`border-b border-line/60 ${id === a || id === b ? 'bg-surface-2' : ''}`}>
+                    <td className="py-1 pr-2 font-mono text-muted">{i + 1}</td>
+                    <td className="py-1 pr-2">
+                      {id === a ? <TeamDot side="a" className="mr-1.5 size-2" /> : id === b ? <TeamDot side="b" className="mr-1.5 size-2" /> : null}
+                      {playerInfo(index, id).title}
+                    </td>
+                    <td className="py-1 pr-2 text-right font-mono font-bold">{formatNumber(rating.elo, 0)}</td>
+                    <td className="py-1 pr-2 font-mono text-xs text-muted">{rating.interval ? `${formatNumber(rating.interval[0], 0)} to ${formatNumber(rating.interval[1], 0)}` : '—'}</td>
+                    <td className="py-1 text-right font-mono">
+                      {formatNumber(rating.points, 1)} / {rating.games}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p className="text-xs text-muted">Bradley–Terry on the Elo scale, the mean model at 1500; intervals resample the openings.</p>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="flex min-w-0 flex-col gap-2">
           <h3 className="text-sm font-semibold">
             {names.a} vs {names.b}:{' '}
             <span className={`font-mono ${TEAM.a.text}`}>{formatNumber(points[a] ?? 0, 1)}</span> :{' '}
