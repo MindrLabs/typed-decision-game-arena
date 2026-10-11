@@ -26,6 +26,21 @@ describe('parseHash', () => {
     expect(parseHash(href.replay('frame', 'pong', 'clef', 3))).toMatchObject({ name: 'replay', seed: 3 })
   })
 
+  it('parses the Versus routes', () => {
+    expect(parseHash('#/versus')).toEqual({ name: 'versus', board: null, game: null, a: null, b: null })
+    expect(parseHash(href.versusPick('macro', 'snake', 'nimble', 'clef'))).toEqual({ name: 'versus', board: 'macro', game: 'snake', a: 'nimble', b: 'clef' })
+    expect(parseHash(href.match('frame', 'pong', 'clef', 'nimble-v2', 3))).toEqual({
+      name: 'match',
+      board: 'frame',
+      game: 'pong',
+      a: 'clef',
+      b: 'nimble-v2',
+      seed: 3,
+    })
+    expect(parseHash(href.duel('nimble', 'clef', 7, 2))).toEqual({ name: 'duel', a: 'nimble', b: 'clef', seed: 7, gameNo: 2 })
+    expect(parseHash('#/duel/nimble/clef/7/3')).toMatchObject({ name: 'notfound' })
+  })
+
   it('rejects malformed paths', () => {
     expect(parseHash('#/replay/macro/tetris/x/abc')).toEqual({ name: 'notfound', path: 'replay/macro/tetris/x/abc' })
     expect(parseHash('#/nowhere')).toMatchObject({ name: 'notfound' })

@@ -19,6 +19,15 @@
   --warn-text: #6a4300;
   --good: #15803d;
 
+  /* Versus: the left and right model. Text colours keep 4.5:1 on the surface; fills are for marks and bars. */
+  --team-a: #b45309;
+  --team-a-fill: #d97706;
+  --team-a-soft: #fef3c7;
+  --team-b: #6d28d9;
+  --team-b-fill: #8b5cf6;
+  --team-b-soft: #ede9fe;
+  --danger: #b91c1c;
+
   /* game canvases */
   --game-bg: #10181b;
   --game-grid: #1f2b30;
@@ -57,6 +66,14 @@
     --warn-text: #f2d48d;
     --good: #4ade80;
 
+    --team-a: #fbbf24;
+    --team-a-fill: #fbbf24;
+    --team-a-soft: #2a2210;
+    --team-b: #c4b5fd;
+    --team-b-fill: #a78bfa;
+    --team-b-soft: #1d1838;
+    --danger: #fca5a5;
+
     --game-bg: #070b0d;
     --game-grid: #172126;
   }
@@ -77,6 +94,13 @@
   --color-warn-line: var(--warn-border);
   --color-warn-fg: var(--warn-text);
   --color-good: var(--good);
+  --color-team-a: var(--team-a);
+  --color-team-a-fill: var(--team-a-fill);
+  --color-team-a-soft: var(--team-a-soft);
+  --color-team-b: var(--team-b);
+  --color-team-b-fill: var(--team-b-fill);
+  --color-team-b-soft: var(--team-b-soft);
+  --color-danger: var(--danger);
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;

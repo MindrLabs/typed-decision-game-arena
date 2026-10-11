@@ -11,6 +11,9 @@ import { LeaderboardView } from './pages/LeaderboardPage'
 import { MethodView } from './pages/MethodPage'
 import { ModelView } from './pages/ModelPage'
 import { ReplayPage } from './pages/ReplayPage'
+import { DuelPage } from './versus/DuelPage'
+import { MatchPage } from './versus/MatchPage'
+import { VersusView } from './versus/VersusPage'
 
 const SITE = 'Typed-Decision Game Arena'
 
@@ -26,6 +29,12 @@ function title(index: ArenaIndex, route: Route): string {
       return `${index.games[route.game]?.title ?? route.game} replay · ${playerInfo(index, route.player).title} · ${SITE}`
     case 'method':
       return `Method · ${SITE}`
+    case 'versus':
+      return `Versus · ${SITE}`
+    case 'match':
+      return `${index.games[route.game]?.title ?? route.game}: ${playerInfo(index, route.a).title} vs ${playerInfo(index, route.b).title} · ${SITE}`
+    case 'duel':
+      return `Connect Four: ${playerInfo(index, route.a).title} vs ${playerInfo(index, route.b).title} · ${SITE}`
     case 'notfound':
       return `Not found · ${SITE}`
   }
@@ -41,6 +50,22 @@ function Page({ index, route }: { index: ArenaIndex; route: Route }) {
       return <ReplayPage index={index} board={route.board} game={route.game} player={route.player} seed={route.seed} />
     case 'method':
       return <MethodView index={index} />
+    case 'versus':
+      return (
+        <VersusView
+          index={index}
+          selection={{
+            ...(route.board ? { board: route.board } : {}),
+            ...(route.game ? { game: route.game } : {}),
+            ...(route.a ? { a: route.a } : {}),
+            ...(route.b ? { b: route.b } : {}),
+          }}
+        />
+      )
+    case 'match':
+      return <MatchPage index={index} board={route.board} game={route.game} a={route.a} b={route.b} seed={route.seed} />
+    case 'duel':
+      return <DuelPage index={index} a={route.a} b={route.b} seed={route.seed} gameNo={route.gameNo} />
     case 'notfound':
       return (
         <div className="flex flex-col gap-2">

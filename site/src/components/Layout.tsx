@@ -53,6 +53,9 @@ export function Layout({ index, route, children }: { index: ArenaIndex | null; r
             <NavLink to={href.home} current={onLeaderboard}>
               Leaderboard
             </NavLink>
+            <NavLink to={href.versus} current={route.name === 'versus' || route.name === 'match' || route.name === 'duel'}>
+              Versus
+            </NavLink>
             <NavLink to={href.method} current={route.name === 'method'}>
               Method
             </NavLink>
@@ -64,7 +67,9 @@ export function Layout({ index, route, children }: { index: ArenaIndex | null; r
           ) : null}
         </div>
       </header>
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6">{children}</main>
+      <main className={`mx-auto w-full flex-1 px-4 py-6 ${route.name === 'match' || route.name === 'duel' ? 'max-w-[90rem]' : 'max-w-6xl'}`}>
+        {children}
+      </main>
       <footer className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-wrap gap-x-4 gap-y-1 px-4 py-4 text-xs text-faint">
           {index ? (

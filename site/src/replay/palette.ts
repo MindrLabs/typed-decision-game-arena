@@ -20,6 +20,9 @@ export interface Palette {
   paddle: string
   band: string
   accent: string
+  /** Versus: the left and the right model. */
+  teamA: string
+  teamB: string
 }
 
 const VARIABLES: Record<keyof Palette, string> = {
@@ -41,6 +44,8 @@ const VARIABLES: Record<keyof Palette, string> = {
   paddle: '--game-paddle',
   band: '--game-band',
   accent: '--accent',
+  teamA: '--team-a-fill',
+  teamB: '--team-b-fill',
 }
 
 export const FALLBACK_PALETTE: Palette = {
@@ -62,6 +67,8 @@ export const FALLBACK_PALETTE: Palette = {
   paddle: '#ef6262',
   band: '#5eead4',
   accent: '#0f766e',
+  teamA: '#d97706',
+  teamB: '#8b5cf6',
 }
 
 const DARK_QUERY = '(prefers-color-scheme: dark)'

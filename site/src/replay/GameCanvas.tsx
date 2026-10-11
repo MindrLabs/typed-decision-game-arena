@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import type { Cell } from '../lib/types'
 import { usePalette } from './palette'
-import { ASPECT, canDraw, drawSnapshot, type Size } from './renderers'
+import { ASPECT, canDraw, drawSnapshot, type Candidate, type Size } from './renderers'
 
 const MAX_HEIGHT = 520
 
@@ -19,6 +19,8 @@ export function GameCanvas({
   band,
   ghost,
   preview,
+  candidates,
+  candidateColour,
 }: {
   game: string
   snapshot: unknown
@@ -28,6 +30,9 @@ export function GameCanvas({
   ghost?: readonly Cell[] | undefined
   /** Cells of a hovered option's landing (macro Tetris). */
   preview?: readonly Cell[] | undefined
+  /** Versus: the likeliest options, numbered, in `candidateColour`. */
+  candidates?: readonly Candidate[] | undefined
+  candidateColour?: string | undefined
 }) {
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -65,9 +70,11 @@ export function GameCanvas({
       ...(bandLow !== undefined && bandHigh !== undefined ? { band: [bandLow, bandHigh] as const } : {}),
       ...(ghost ? { ghost } : {}),
       ...(preview ? { preview } : {}),
+      ...(candidates ? { candidates } : {}),
+      ...(candidateColour ? { candidateColour } : {}),
     }
     drawSnapshot(ctx, game, snapshot, palette, { width, height }, overlay)
-  }, [game, snapshot, palette, width, height, bandLow, bandHigh, ghost, preview])
+  }, [game, snapshot, palette, width, height, bandLow, bandHigh, ghost, preview, candidates, candidateColour])
 
   return (
     <div ref={containerRef} className="flex w-full flex-col items-center">

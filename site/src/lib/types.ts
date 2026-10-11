@@ -255,3 +255,133 @@ export interface BreakoutSnapshot {
   /** 6 rows of 18, top row first, '#' standing and '.' broken. */
   bricks: string[]
 }
+
+// --- versus (webui/data/versus.json, arena/versus.py) ---------------------------------------------------------
+
+/** How two runs of one seed line up: by decision (turn-based boards) or by game step (real-time board). */
+export type SyncUnit = 'decision' | 'step'
+
+export interface VersusGame {
+  board: string
+  game: string
+  sync: SyncUnit
+  /** What one position is called: "piece", "step", "decision", "frame". */
+  unit: string
+  seeds: number[]
+}
+
+export interface VersusExcluded {
+  board: string
+  game: string
+  reason: string
+}
+
+/** [score, length in sync units, how the run ended] */
+export type VersusEpisode = [number, number | null, string]
+
+/** [lead changes, chase (0 or 1), margin first - second] for the pair in sorted order. */
+export type VersusMatchRow = [number, number, number]
+
+export interface VersusPick {
+  board: string
+  game: string
+  a: string
+  b: string
+  seed: number
+  lead_changes: number
+  chase: boolean
+  margin: number
+}
+
+export interface LatencySummary {
+  median: number
+  p95: number
+  n: number
+}
+
+export interface DuelGameRow {
+  seed: number
+  game_no: number
+  x: string
+  o: string
+  result: 'X' | 'O' | 'draw' | 'unfinished'
+  moves: number
+  missed_wins: Record<string, number>
+  allowed_wins: Record<string, number>
+  latency_ms: Record<string, LatencySummary | null>
+}
+
+export interface DuelRating {
+  elo: number
+  interval: [number, number] | null
+  games: number
+  points: number
+  missed_wins: number
+  allowed_wins: number
+}
+
+export interface DuelPairScore {
+  games: number
+  points: Record<string, number>
+  wins: Record<string, number>
+  draws: number
+  openings: Record<string, Record<string, number>>
+}
+
+export interface DuelSection {
+  suite: string
+  seed_set: string
+  /** 1-based columns of X's and O's first moves, by seed. */
+  openings: Record<string, [number, number]>
+  /** Games by pair id "a~b" (sorted). */
+  games: Record<string, DuelGameRow[]>
+  ratings: Record<string, DuelRating>
+  pairs: Record<string, DuelPairScore>
+}
+
+export interface VersusData {
+  schema: number
+  suite: string
+  seed_set: string
+  models: string[]
+  games: VersusGame[]
+  excluded: VersusExcluded[]
+  /** "<board>/<game>" -> model -> seed -> episode */
+  episodes: Record<string, Record<string, Record<string, VersusEpisode>>>
+  /** "<board>/<game>" -> pair id -> seed -> row */
+  matches: Record<string, Record<string, Record<string, VersusMatchRow>>>
+  /** The reference player's score on the seed. */
+  par: Record<string, Record<string, number>>
+  /** Real-time board: each model's reaction delay in steps. */
+  delays: Record<string, Record<string, number>>
+  /** The lowest final score any model reached on the game (every point lost, no line cleared). */
+  floors: Record<string, number>
+  picks: VersusPick[]
+  duel: DuelSection | null
+}
+
+export interface DuelSnapshot {
+  grid: string[]
+  to_move: 'X' | 'O'
+  last: number | null
+  moves: number
+  result: string | null
+}
+
+export interface DuelDecision extends ReplayDecision {
+  side: 'X' | 'O'
+  player: string
+}
+
+export interface DuelReplay {
+  schema: number
+  pair: string
+  seed: number
+  game_no: number
+  x: string
+  o: string
+  opening: [number, number]
+  result: string
+  decisions: DuelDecision[]
+  final: ReplayFinal | null
+}

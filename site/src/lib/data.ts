@@ -1,4 +1,4 @@
-import type { ArenaIndex, Replay } from './types'
+import type { ArenaIndex, DuelReplay, Replay, VersusData } from './types'
 
 /** Data lives next to the page (webui/data), so relative URLs work on every static host. */
 export const DATA_BASE = './data/'
@@ -59,9 +59,58 @@ export async function fetchReplay(path: string, signal?: AbortSignal): Promise<R
   return replay
 }
 
+export async function fetchVersus(signal?: AbortSignal): Promise<VersusData> {
+  const data = await parseMaybeGzip<VersusData>(await fetchBytes(`${DATA_BASE}versus.json`, signal))
+  if (data.schema !== SUPPORTED_SCHEMA || !Array.isArray(data.games)) {
+    throw new DataError(`versus.json is not schema ${SUPPORTED_SCHEMA} versus data`)
+  }
+  return data
+}
+
+export async function fetchDuel(path: string, signal?: AbortSignal): Promise<DuelReplay> {
+  const replay = await parseMaybeGzip<DuelReplay>(await fetchBytes(`${DATA_BASE}${path}`, signal))
+  if (replay.schema !== SUPPORTED_SCHEMA || !Array.isArray(replay.decisions)) {
+    throw new DataError(`${path}: not a schema ${SUPPORTED_SCHEMA} direct game`)
+  }
+  return replay
+}
+
 // Promise caches for React's `use`: one request per resource for the lifetime of the page.
 let indexPromise: Promise<ArenaIndex> | null = null
 const replayPromises = new Map<string, Promise<Replay>>()
+
+let versusPromise: Promise<VersusData> | null = null
+const duelPromises = new Map<string, Promise<DuelReplay>>()
+
+export function versusResource(): Promise<VersusData> {
+  if (!versusPromise) {
+    const promise = fetchVersus()
+    versusPromise = promise
+    promise.catch(() => {
+      versusPromise = null
+    })
+  }
+  return versusPromise
+}
+
+export function duelResource(path: string): Promise<DuelReplay> {
+  let promise = duelPromises.get(path)
+  if (!promise) {
+    promise = fetchDuel(path)
+    duelPromises.set(path, promise)
+    promise.catch(() => duelPromises.delete(path))
+  }
+  return promise
+}
+
+/** Where `arena export` writes the replay of a run and of a direct game. */
+export function replayPath(board: string, game: string, player: string, seed: number): string {
+  return `replays/${board}/${game}/${player}/${seed}.json.gz`
+}
+
+export function duelPath(pair: string, seed: number, gameNo: number): string {
+  return `replays/duel/${pair}/${seed}-${gameNo}.json.gz`
+}
 
 export function indexResource(): Promise<ArenaIndex> {
   indexPromise ??= fetchIndex()

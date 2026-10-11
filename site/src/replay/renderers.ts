@@ -18,6 +18,73 @@ export interface Overlay {
   ghost?: readonly Cell[]
   /** Macro Tetris: where another option would land (the one hovered in the side panel). */
   preview?: readonly Cell[]
+  /** Versus: the likeliest options, numbered from 1 in the model's colour. Tetris: the cells a placement lands
+   * on; Snake: the cell the head enters (`danger` when the move ends the game). */
+  candidates?: readonly Candidate[]
+  /** The colour of the candidates (the side's team colour). */
+  candidateColour?: string
+}
+
+export interface Candidate {
+  cells: readonly Cell[]
+  rank: number
+  danger?: boolean
+}
+
+function marks(
+  ctx: CanvasRenderingContext2D,
+  candidates: readonly Candidate[],
+  colour: string,
+  cellBox: (r: number, c: number) => { x: number; y: number; size: number },
+) {
+  for (const candidate of [...candidates].sort((x, y) => y.rank - x.rank)) {
+    const first = candidate.rank === 1
+    ctx.save()
+    for (const [r, c] of candidate.cells) {
+      const { x, y, size } = cellBox(r, c)
+      const width = Math.max(2, Math.round(size / 9))
+      if (first) {
+        ctx.globalAlpha = 0.3
+        ctx.fillStyle = colour
+        ctx.fillRect(x, y, size, size)
+        ctx.globalAlpha = 1
+      }
+      ctx.lineWidth = width
+      ctx.strokeStyle = colour
+      ctx.setLineDash(first ? [] : [Math.max(3, size / 5), Math.max(2, size / 8)])
+      ctx.strokeRect(x + width / 2, y + width / 2, size - width, size - width)
+      if (candidate.danger) {
+        ctx.setLineDash([])
+        ctx.beginPath()
+        ctx.moveTo(x + size * 0.25, y + size * 0.25)
+        ctx.lineTo(x + size * 0.75, y + size * 0.75)
+        ctx.moveTo(x + size * 0.75, y + size * 0.25)
+        ctx.lineTo(x + size * 0.25, y + size * 0.75)
+        ctx.stroke()
+      }
+    }
+    const corner = candidate.cells.reduce<Cell | null>((best, cell) => {
+      if (!best) return [cell[0], cell[1]]
+      return cell[0] < best[0] || (cell[0] === best[0] && cell[1] > best[1]) ? [cell[0], cell[1]] : best
+    }, null)
+    if (corner) {
+      const { x, y, size } = cellBox(corner[0], corner[1])
+      const radius = Math.max(7, size * 0.3)
+      const cx = x + size - radius * 0.4
+      const cy = y + radius * 0.4
+      ctx.setLineDash([])
+      ctx.fillStyle = colour
+      ctx.beginPath()
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.fillStyle = '#0c1113'
+      ctx.font = `700 ${Math.round(radius * 1.25)}px ui-sans-serif, system-ui, sans-serif`
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText(String(candidate.rank), cx, cy + 0.5)
+    }
+    ctx.restore()
+  }
 }
 
 /** The cells a macro Tetris option lands on, when the snapshot carries them. */
@@ -162,10 +229,17 @@ function drawTetris(ctx: CanvasRenderingContext2D, s: TetrisSnapshot, palette: P
   }
   if (overlay.preview && overlay.preview !== overlay.ghost) outline(overlay.preview, palette.text, true, 0)
   if (overlay.ghost) outline(overlay.ghost, colour, false, 0.35)
+  if (overlay.candidates?.length) {
+    marks(ctx, overlay.candidates, overlay.candidateColour ?? palette.accent, (r, c) => ({
+      x: left + c * cell + gap,
+      y: top + r * cell + gap,
+      size: cell - 2 * gap,
+    }))
+  }
   if (s.over) curtain(ctx, size, palette, 'topped out')
 }
 
-function drawSnake(ctx: CanvasRenderingContext2D, s: SnakeSnapshot, palette: Palette, size: Size) {
+function drawSnake(ctx: CanvasRenderingContext2D, s: SnakeSnapshot, palette: Palette, size: Size, overlay: Overlay) {
   const n = s.size
   const cell = Math.floor(Math.min(size.width, size.height) / n)
   if (cell < MIN_CELL) return
@@ -234,6 +308,12 @@ function drawSnake(ctx: CanvasRenderingContext2D, s: SnakeSnapshot, palette: Pal
       ctx.arc(ex, ey, Math.max(1.5, cell * 0.07), 0, Math.PI * 2)
       ctx.fill()
     }
+  }
+  if (overlay.candidates?.length) {
+    const visible = overlay.candidates
+      .map((candidate) => ({ ...candidate, cells: candidate.cells.filter(([r, c]) => r >= 0 && c >= 0 && r < n && c < n) }))
+      .filter((candidate) => candidate.cells.length > 0)
+    marks(ctx, visible, overlay.candidateColour ?? palette.accent, (r, c) => ({ x: left + c * cell + 1, y: top + r * cell + 1, size: cell - 2 }))
   }
   if (!s.alive) curtain(ctx, size, palette, 'game over')
 }
@@ -377,7 +457,7 @@ export function drawSnapshot(
 ): void {
   ctx.clearRect(0, 0, size.width, size.height)
   if (game === 'tetris' && isTetris(snapshot)) drawTetris(ctx, snapshot, palette, size, overlay)
-  else if (game === 'snake' && isSnake(snapshot)) drawSnake(ctx, snapshot, palette, size)
+  else if (game === 'snake' && isSnake(snapshot)) drawSnake(ctx, snapshot, palette, size, overlay)
   else if (game === 'connect4' && isConnect4(snapshot)) drawConnect4(ctx, snapshot, palette, size)
   else if (game === 'pong' && isPong(snapshot)) drawPong(ctx, snapshot, palette, size, overlay)
   else if (game === 'breakout' && isBreakout(snapshot)) drawBreakout(ctx, snapshot, palette, size, overlay)
