@@ -1,0 +1,4350 @@
+{
+  "games": 1800,
+  "lock": "1ba85311a039ae072d26c7b1bea34bf34b703b60e13e7dd4ffa3b825690924ba",
+  "pairs": {
+    "clef-flash~kev-0.8b": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "10": {
+          "clef-flash": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "11": {
+          "clef-flash": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "12": {
+          "clef-flash": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "13": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "14": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "15": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "16": {
+          "clef-flash": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "17": {
+          "clef-flash": 0.0,
+          "kev-0.8b": 2.0
+        },
+        "18": {
+          "clef-flash": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "19": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "2": {
+          "clef-flash": 0.0,
+          "kev-0.8b": 2.0
+        },
+        "20": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "3": {
+          "clef-flash": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "4": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "5": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "6": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "7": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "8": {
+          "clef-flash": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "9": {
+          "clef-flash": 2.0,
+          "kev-0.8b": 0.0
+        }
+      },
+      "points": {
+        "clef-flash": 25.0,
+        "kev-0.8b": 15.0
+      },
+      "wins": {
+        "clef-flash": 25,
+        "kev-0.8b": 15
+      }
+    },
+    "clef-flash~kev-4b": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "10": {
+          "clef-flash": 1.0,
+          "kev-4b": 1.0
+        },
+        "11": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "12": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "13": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "14": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "15": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "16": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "17": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "18": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "19": {
+          "clef-flash": 1.0,
+          "kev-4b": 1.0
+        },
+        "2": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "20": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "3": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "4": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "5": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "6": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "7": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "8": {
+          "clef-flash": 2.0,
+          "kev-4b": 0.0
+        },
+        "9": {
+          "clef-flash": 1.0,
+          "kev-4b": 1.0
+        }
+      },
+      "points": {
+        "clef-flash": 37.0,
+        "kev-4b": 3.0
+      },
+      "wins": {
+        "clef-flash": 37,
+        "kev-4b": 3
+      }
+    },
+    "clef-flash~kev-9b": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef-flash": 1.0,
+          "kev-9b": 1.0
+        },
+        "10": {
+          "clef-flash": 0.0,
+          "kev-9b": 2.0
+        },
+        "11": {
+          "clef-flash": 1.0,
+          "kev-9b": 1.0
+        },
+        "12": {
+          "clef-flash": 2.0,
+          "kev-9b": 0.0
+        },
+        "13": {
+          "clef-flash": 1.0,
+          "kev-9b": 1.0
+        },
+        "14": {
+          "clef-flash": 0.0,
+          "kev-9b": 2.0
+        },
+        "15": {
+          "clef-flash": 2.0,
+          "kev-9b": 0.0
+        },
+        "16": {
+          "clef-flash": 2.0,
+          "kev-9b": 0.0
+        },
+        "17": {
+          "clef-flash": 2.0,
+          "kev-9b": 0.0
+        },
+        "18": {
+          "clef-flash": 1.0,
+          "kev-9b": 1.0
+        },
+        "19": {
+          "clef-flash": 1.0,
+          "kev-9b": 1.0
+        },
+        "2": {
+          "clef-flash": 0.0,
+          "kev-9b": 2.0
+        },
+        "20": {
+          "clef-flash": 1.0,
+          "kev-9b": 1.0
+        },
+        "3": {
+          "clef-flash": 2.0,
+          "kev-9b": 0.0
+        },
+        "4": {
+          "clef-flash": 2.0,
+          "kev-9b": 0.0
+        },
+        "5": {
+          "clef-flash": 2.0,
+          "kev-9b": 0.0
+        },
+        "6": {
+          "clef-flash": 0.0,
+          "kev-9b": 2.0
+        },
+        "7": {
+          "clef-flash": 1.0,
+          "kev-9b": 1.0
+        },
+        "8": {
+          "clef-flash": 1.0,
+          "kev-9b": 1.0
+        },
+        "9": {
+          "clef-flash": 2.0,
+          "kev-9b": 0.0
+        }
+      },
+      "points": {
+        "clef-flash": 24.0,
+        "kev-9b": 16.0
+      },
+      "wins": {
+        "clef-flash": 24,
+        "kev-9b": 16
+      }
+    },
+    "clef-flash~laya-english": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "10": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "11": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "12": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "13": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "14": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "15": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "16": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "17": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "18": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "19": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "2": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "20": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "3": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "4": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "5": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "6": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "7": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "8": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        },
+        "9": {
+          "clef-flash": 2.0,
+          "laya-english": 0.0
+        }
+      },
+      "points": {
+        "clef-flash": 40.0,
+        "laya-english": 0.0
+      },
+      "wins": {
+        "clef-flash": 40,
+        "laya-english": 0
+      }
+    },
+    "clef-flash~laya-multilingual": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "10": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "11": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "12": {
+          "clef-flash": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "13": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "14": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "15": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "16": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "17": {
+          "clef-flash": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "18": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "19": {
+          "clef-flash": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "2": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "20": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "3": {
+          "clef-flash": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "4": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "5": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "6": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "7": {
+          "clef-flash": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "8": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "9": {
+          "clef-flash": 2.0,
+          "laya-multilingual": 0.0
+        }
+      },
+      "points": {
+        "clef-flash": 35.0,
+        "laya-multilingual": 5.0
+      },
+      "wins": {
+        "clef-flash": 35,
+        "laya-multilingual": 5
+      }
+    },
+    "clef-flash~laya-typed": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "10": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "11": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "12": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "13": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "14": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "15": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "16": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "17": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "18": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "19": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "2": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "20": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "3": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "4": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "5": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "6": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "7": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "8": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        },
+        "9": {
+          "clef-flash": 2.0,
+          "laya-typed": 0.0
+        }
+      },
+      "points": {
+        "clef-flash": 40.0,
+        "laya-typed": 0.0
+      },
+      "wins": {
+        "clef-flash": 40,
+        "laya-typed": 0
+      }
+    },
+    "clef-flash~nimble": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "10": {
+          "clef-flash": 1.0,
+          "nimble": 1.0
+        },
+        "11": {
+          "clef-flash": 1.0,
+          "nimble": 1.0
+        },
+        "12": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "13": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "14": {
+          "clef-flash": 1.0,
+          "nimble": 1.0
+        },
+        "15": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "16": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "17": {
+          "clef-flash": 1.0,
+          "nimble": 1.0
+        },
+        "18": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "19": {
+          "clef-flash": 1.0,
+          "nimble": 1.0
+        },
+        "2": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "20": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "3": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "4": {
+          "clef-flash": 1.0,
+          "nimble": 1.0
+        },
+        "5": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "6": {
+          "clef-flash": 1.0,
+          "nimble": 1.0
+        },
+        "7": {
+          "clef-flash": 2.0,
+          "nimble": 0.0
+        },
+        "8": {
+          "clef-flash": 1.0,
+          "nimble": 1.0
+        },
+        "9": {
+          "clef-flash": 0.0,
+          "nimble": 2.0
+        }
+      },
+      "points": {
+        "clef-flash": 30.0,
+        "nimble": 10.0
+      },
+      "wins": {
+        "clef-flash": 30,
+        "nimble": 10
+      }
+    },
+    "clef-flash~nimble-v2": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef-flash": 2.0,
+          "nimble-v2": 0.0
+        },
+        "10": {
+          "clef-flash": 2.0,
+          "nimble-v2": 0.0
+        },
+        "11": {
+          "clef-flash": 2.0,
+          "nimble-v2": 0.0
+        },
+        "12": {
+          "clef-flash": 2.0,
+          "nimble-v2": 0.0
+        },
+        "13": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "14": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "15": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "16": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "17": {
+          "clef-flash": 2.0,
+          "nimble-v2": 0.0
+        },
+        "18": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "19": {
+          "clef-flash": 2.0,
+          "nimble-v2": 0.0
+        },
+        "2": {
+          "clef-flash": 2.0,
+          "nimble-v2": 0.0
+        },
+        "20": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "3": {
+          "clef-flash": 2.0,
+          "nimble-v2": 0.0
+        },
+        "4": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "5": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "6": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "7": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "8": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        },
+        "9": {
+          "clef-flash": 1.0,
+          "nimble-v2": 1.0
+        }
+      },
+      "points": {
+        "clef-flash": 28.0,
+        "nimble-v2": 12.0
+      },
+      "wins": {
+        "clef-flash": 28,
+        "nimble-v2": 12
+      }
+    },
+    "clef~clef-flash": {
+      "draws": 1,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        },
+        "10": {
+          "clef": 2.0,
+          "clef-flash": 0.0
+        },
+        "11": {
+          "clef": 1.5,
+          "clef-flash": 0.5
+        },
+        "12": {
+          "clef": 2.0,
+          "clef-flash": 0.0
+        },
+        "13": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        },
+        "14": {
+          "clef": 2.0,
+          "clef-flash": 0.0
+        },
+        "15": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        },
+        "16": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        },
+        "17": {
+          "clef": 2.0,
+          "clef-flash": 0.0
+        },
+        "18": {
+          "clef": 2.0,
+          "clef-flash": 0.0
+        },
+        "19": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        },
+        "2": {
+          "clef": 2.0,
+          "clef-flash": 0.0
+        },
+        "20": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        },
+        "3": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        },
+        "4": {
+          "clef": 2.0,
+          "clef-flash": 0.0
+        },
+        "5": {
+          "clef": 2.0,
+          "clef-flash": 0.0
+        },
+        "6": {
+          "clef": 2.0,
+          "clef-flash": 0.0
+        },
+        "7": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        },
+        "8": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        },
+        "9": {
+          "clef": 1.0,
+          "clef-flash": 1.0
+        }
+      },
+      "points": {
+        "clef": 29.5,
+        "clef-flash": 10.5
+      },
+      "wins": {
+        "clef": 29,
+        "clef-flash": 10
+      }
+    },
+    "clef~kev-0.8b": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef": 1.0,
+          "kev-0.8b": 1.0
+        },
+        "10": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "11": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "12": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "13": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "14": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "15": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "16": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "17": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "18": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "19": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "2": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "20": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "3": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "4": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "5": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "6": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "7": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "8": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        },
+        "9": {
+          "clef": 2.0,
+          "kev-0.8b": 0.0
+        }
+      },
+      "points": {
+        "clef": 39.0,
+        "kev-0.8b": 1.0
+      },
+      "wins": {
+        "clef": 39,
+        "kev-0.8b": 1
+      }
+    },
+    "clef~kev-4b": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef": 1.0,
+          "kev-4b": 1.0
+        },
+        "10": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "11": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "12": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "13": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "14": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "15": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "16": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "17": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "18": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "19": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "2": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "20": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "3": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "4": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "5": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "6": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "7": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "8": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        },
+        "9": {
+          "clef": 2.0,
+          "kev-4b": 0.0
+        }
+      },
+      "points": {
+        "clef": 39.0,
+        "kev-4b": 1.0
+      },
+      "wins": {
+        "clef": 39,
+        "kev-4b": 1
+      }
+    },
+    "clef~kev-9b": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "10": {
+          "clef": 1.0,
+          "kev-9b": 1.0
+        },
+        "11": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "12": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "13": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "14": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "15": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "16": {
+          "clef": 1.0,
+          "kev-9b": 1.0
+        },
+        "17": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "18": {
+          "clef": 1.0,
+          "kev-9b": 1.0
+        },
+        "19": {
+          "clef": 1.0,
+          "kev-9b": 1.0
+        },
+        "2": {
+          "clef": 1.0,
+          "kev-9b": 1.0
+        },
+        "20": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "3": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "4": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "5": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "6": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "7": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        },
+        "8": {
+          "clef": 1.0,
+          "kev-9b": 1.0
+        },
+        "9": {
+          "clef": 2.0,
+          "kev-9b": 0.0
+        }
+      },
+      "points": {
+        "clef": 34.0,
+        "kev-9b": 6.0
+      },
+      "wins": {
+        "clef": 34,
+        "kev-9b": 6
+      }
+    },
+    "clef~laya-english": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "10": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "11": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "12": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "13": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "14": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "15": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "16": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "17": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "18": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "19": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "2": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "20": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "3": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "4": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "5": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "6": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "7": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "8": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        },
+        "9": {
+          "clef": 2.0,
+          "laya-english": 0.0
+        }
+      },
+      "points": {
+        "clef": 40.0,
+        "laya-english": 0.0
+      },
+      "wins": {
+        "clef": 40,
+        "laya-english": 0
+      }
+    },
+    "clef~laya-multilingual": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "10": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "11": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "12": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "13": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "14": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "15": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "16": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "17": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "18": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "19": {
+          "clef": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "2": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "20": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "3": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "4": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "5": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "6": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "7": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "8": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "9": {
+          "clef": 2.0,
+          "laya-multilingual": 0.0
+        }
+      },
+      "points": {
+        "clef": 39.0,
+        "laya-multilingual": 1.0
+      },
+      "wins": {
+        "clef": 39,
+        "laya-multilingual": 1
+      }
+    },
+    "clef~laya-typed": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "10": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "11": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "12": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "13": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "14": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "15": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "16": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "17": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "18": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "19": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "2": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "20": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "3": {
+          "clef": 1.0,
+          "laya-typed": 1.0
+        },
+        "4": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "5": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "6": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "7": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "8": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        },
+        "9": {
+          "clef": 2.0,
+          "laya-typed": 0.0
+        }
+      },
+      "points": {
+        "clef": 39.0,
+        "laya-typed": 1.0
+      },
+      "wins": {
+        "clef": 39,
+        "laya-typed": 1
+      }
+    },
+    "clef~nimble": {
+      "draws": 1,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "10": {
+          "clef": 1.0,
+          "nimble": 1.0
+        },
+        "11": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "12": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "13": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "14": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "15": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "16": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "17": {
+          "clef": 1.5,
+          "nimble": 0.5
+        },
+        "18": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "19": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "2": {
+          "clef": 1.0,
+          "nimble": 1.0
+        },
+        "20": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "3": {
+          "clef": 1.0,
+          "nimble": 1.0
+        },
+        "4": {
+          "clef": 1.0,
+          "nimble": 1.0
+        },
+        "5": {
+          "clef": 1.0,
+          "nimble": 1.0
+        },
+        "6": {
+          "clef": 1.0,
+          "nimble": 1.0
+        },
+        "7": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "8": {
+          "clef": 2.0,
+          "nimble": 0.0
+        },
+        "9": {
+          "clef": 1.0,
+          "nimble": 1.0
+        }
+      },
+      "points": {
+        "clef": 32.5,
+        "nimble": 7.5
+      },
+      "wins": {
+        "clef": 32,
+        "nimble": 7
+      }
+    },
+    "clef~nimble-v2": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "clef": 1.0,
+          "nimble-v2": 1.0
+        },
+        "10": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "11": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "12": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "13": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "14": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "15": {
+          "clef": 1.0,
+          "nimble-v2": 1.0
+        },
+        "16": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "17": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "18": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "19": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "2": {
+          "clef": 0.0,
+          "nimble-v2": 2.0
+        },
+        "20": {
+          "clef": 1.0,
+          "nimble-v2": 1.0
+        },
+        "3": {
+          "clef": 1.0,
+          "nimble-v2": 1.0
+        },
+        "4": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "5": {
+          "clef": 1.0,
+          "nimble-v2": 1.0
+        },
+        "6": {
+          "clef": 1.0,
+          "nimble-v2": 1.0
+        },
+        "7": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        },
+        "8": {
+          "clef": 1.0,
+          "nimble-v2": 1.0
+        },
+        "9": {
+          "clef": 2.0,
+          "nimble-v2": 0.0
+        }
+      },
+      "points": {
+        "clef": 31.0,
+        "nimble-v2": 9.0
+      },
+      "wins": {
+        "clef": 31,
+        "nimble-v2": 9
+      }
+    },
+    "kev-0.8b~kev-4b": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-0.8b": 1.0,
+          "kev-4b": 1.0
+        },
+        "10": {
+          "kev-0.8b": 1.0,
+          "kev-4b": 1.0
+        },
+        "11": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "12": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "13": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "14": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "15": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "16": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "17": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "18": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "19": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "2": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "20": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "3": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "4": {
+          "kev-0.8b": 0.0,
+          "kev-4b": 2.0
+        },
+        "5": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "6": {
+          "kev-0.8b": 1.0,
+          "kev-4b": 1.0
+        },
+        "7": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "8": {
+          "kev-0.8b": 2.0,
+          "kev-4b": 0.0
+        },
+        "9": {
+          "kev-0.8b": 0.0,
+          "kev-4b": 2.0
+        }
+      },
+      "points": {
+        "kev-0.8b": 33.0,
+        "kev-4b": 7.0
+      },
+      "wins": {
+        "kev-0.8b": 33,
+        "kev-4b": 7
+      }
+    },
+    "kev-0.8b~kev-9b": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-0.8b": 0.0,
+          "kev-9b": 2.0
+        },
+        "10": {
+          "kev-0.8b": 0.0,
+          "kev-9b": 2.0
+        },
+        "11": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "12": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "13": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "14": {
+          "kev-0.8b": 2.0,
+          "kev-9b": 0.0
+        },
+        "15": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "16": {
+          "kev-0.8b": 0.0,
+          "kev-9b": 2.0
+        },
+        "17": {
+          "kev-0.8b": 2.0,
+          "kev-9b": 0.0
+        },
+        "18": {
+          "kev-0.8b": 2.0,
+          "kev-9b": 0.0
+        },
+        "19": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "2": {
+          "kev-0.8b": 0.0,
+          "kev-9b": 2.0
+        },
+        "20": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "3": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "4": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "5": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "6": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "7": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "8": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        },
+        "9": {
+          "kev-0.8b": 1.0,
+          "kev-9b": 1.0
+        }
+      },
+      "points": {
+        "kev-0.8b": 19.0,
+        "kev-9b": 21.0
+      },
+      "wins": {
+        "kev-0.8b": 19,
+        "kev-9b": 21
+      }
+    },
+    "kev-0.8b~laya-english": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "10": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "11": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "12": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "13": {
+          "kev-0.8b": 1.0,
+          "laya-english": 1.0
+        },
+        "14": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "15": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "16": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "17": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "18": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "19": {
+          "kev-0.8b": 1.0,
+          "laya-english": 1.0
+        },
+        "2": {
+          "kev-0.8b": 1.0,
+          "laya-english": 1.0
+        },
+        "20": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "3": {
+          "kev-0.8b": 1.0,
+          "laya-english": 1.0
+        },
+        "4": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "5": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "6": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "7": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        },
+        "8": {
+          "kev-0.8b": 1.0,
+          "laya-english": 1.0
+        },
+        "9": {
+          "kev-0.8b": 2.0,
+          "laya-english": 0.0
+        }
+      },
+      "points": {
+        "kev-0.8b": 35.0,
+        "laya-english": 5.0
+      },
+      "wins": {
+        "kev-0.8b": 35,
+        "laya-english": 5
+      }
+    },
+    "kev-0.8b~laya-multilingual": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-0.8b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "10": {
+          "kev-0.8b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "11": {
+          "kev-0.8b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "12": {
+          "kev-0.8b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "13": {
+          "kev-0.8b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "14": {
+          "kev-0.8b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "15": {
+          "kev-0.8b": 0.0,
+          "laya-multilingual": 2.0
+        },
+        "16": {
+          "kev-0.8b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "17": {
+          "kev-0.8b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "18": {
+          "kev-0.8b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "19": {
+          "kev-0.8b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "2": {
+          "kev-0.8b": 0.0,
+          "laya-multilingual": 2.0
+        },
+        "20": {
+          "kev-0.8b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "3": {
+          "kev-0.8b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "4": {
+          "kev-0.8b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "5": {
+          "kev-0.8b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "6": {
+          "kev-0.8b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "7": {
+          "kev-0.8b": 0.0,
+          "laya-multilingual": 2.0
+        },
+        "8": {
+          "kev-0.8b": 0.0,
+          "laya-multilingual": 2.0
+        },
+        "9": {
+          "kev-0.8b": 1.0,
+          "laya-multilingual": 1.0
+        }
+      },
+      "points": {
+        "kev-0.8b": 24.0,
+        "laya-multilingual": 16.0
+      },
+      "wins": {
+        "kev-0.8b": 24,
+        "laya-multilingual": 16
+      }
+    },
+    "kev-0.8b~laya-typed": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "10": {
+          "kev-0.8b": 1.0,
+          "laya-typed": 1.0
+        },
+        "11": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "12": {
+          "kev-0.8b": 1.0,
+          "laya-typed": 1.0
+        },
+        "13": {
+          "kev-0.8b": 1.0,
+          "laya-typed": 1.0
+        },
+        "14": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "15": {
+          "kev-0.8b": 1.0,
+          "laya-typed": 1.0
+        },
+        "16": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "17": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "18": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "19": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "2": {
+          "kev-0.8b": 1.0,
+          "laya-typed": 1.0
+        },
+        "20": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "3": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "4": {
+          "kev-0.8b": 1.0,
+          "laya-typed": 1.0
+        },
+        "5": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "6": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "7": {
+          "kev-0.8b": 2.0,
+          "laya-typed": 0.0
+        },
+        "8": {
+          "kev-0.8b": 1.0,
+          "laya-typed": 1.0
+        },
+        "9": {
+          "kev-0.8b": 1.0,
+          "laya-typed": 1.0
+        }
+      },
+      "points": {
+        "kev-0.8b": 32.0,
+        "laya-typed": 8.0
+      },
+      "wins": {
+        "kev-0.8b": 32,
+        "laya-typed": 8
+      }
+    },
+    "kev-0.8b~nimble": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "10": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "11": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "12": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "13": {
+          "kev-0.8b": 2.0,
+          "nimble": 0.0
+        },
+        "14": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "15": {
+          "kev-0.8b": 2.0,
+          "nimble": 0.0
+        },
+        "16": {
+          "kev-0.8b": 2.0,
+          "nimble": 0.0
+        },
+        "17": {
+          "kev-0.8b": 2.0,
+          "nimble": 0.0
+        },
+        "18": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "19": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "2": {
+          "kev-0.8b": 2.0,
+          "nimble": 0.0
+        },
+        "20": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "3": {
+          "kev-0.8b": 2.0,
+          "nimble": 0.0
+        },
+        "4": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "5": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        },
+        "6": {
+          "kev-0.8b": 2.0,
+          "nimble": 0.0
+        },
+        "7": {
+          "kev-0.8b": 2.0,
+          "nimble": 0.0
+        },
+        "8": {
+          "kev-0.8b": 0.0,
+          "nimble": 2.0
+        },
+        "9": {
+          "kev-0.8b": 1.0,
+          "nimble": 1.0
+        }
+      },
+      "points": {
+        "kev-0.8b": 27.0,
+        "nimble": 13.0
+      },
+      "wins": {
+        "kev-0.8b": 27,
+        "nimble": 13
+      }
+    },
+    "kev-0.8b~nimble-v2": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-0.8b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "10": {
+          "kev-0.8b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "11": {
+          "kev-0.8b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "12": {
+          "kev-0.8b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "13": {
+          "kev-0.8b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "14": {
+          "kev-0.8b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "15": {
+          "kev-0.8b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "16": {
+          "kev-0.8b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "17": {
+          "kev-0.8b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "18": {
+          "kev-0.8b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "19": {
+          "kev-0.8b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "2": {
+          "kev-0.8b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "20": {
+          "kev-0.8b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "3": {
+          "kev-0.8b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "4": {
+          "kev-0.8b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "5": {
+          "kev-0.8b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "6": {
+          "kev-0.8b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "7": {
+          "kev-0.8b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "8": {
+          "kev-0.8b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "9": {
+          "kev-0.8b": 0.0,
+          "nimble-v2": 2.0
+        }
+      },
+      "points": {
+        "kev-0.8b": 18.0,
+        "nimble-v2": 22.0
+      },
+      "wins": {
+        "kev-0.8b": 18,
+        "nimble-v2": 22
+      }
+    },
+    "kev-4b~kev-9b": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "10": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "11": {
+          "kev-4b": 2.0,
+          "kev-9b": 0.0
+        },
+        "12": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "13": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "14": {
+          "kev-4b": 2.0,
+          "kev-9b": 0.0
+        },
+        "15": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "16": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "17": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "18": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "19": {
+          "kev-4b": 1.0,
+          "kev-9b": 1.0
+        },
+        "2": {
+          "kev-4b": 1.0,
+          "kev-9b": 1.0
+        },
+        "20": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "3": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "4": {
+          "kev-4b": 1.0,
+          "kev-9b": 1.0
+        },
+        "5": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "6": {
+          "kev-4b": 1.0,
+          "kev-9b": 1.0
+        },
+        "7": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "8": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        },
+        "9": {
+          "kev-4b": 0.0,
+          "kev-9b": 2.0
+        }
+      },
+      "points": {
+        "kev-4b": 8.0,
+        "kev-9b": 32.0
+      },
+      "wins": {
+        "kev-4b": 8,
+        "kev-9b": 32
+      }
+    },
+    "kev-4b~laya-english": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-4b": 2.0,
+          "laya-english": 0.0
+        },
+        "10": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "11": {
+          "kev-4b": 2.0,
+          "laya-english": 0.0
+        },
+        "12": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "13": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "14": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "15": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "16": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "17": {
+          "kev-4b": 0.0,
+          "laya-english": 2.0
+        },
+        "18": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "19": {
+          "kev-4b": 2.0,
+          "laya-english": 0.0
+        },
+        "2": {
+          "kev-4b": 2.0,
+          "laya-english": 0.0
+        },
+        "20": {
+          "kev-4b": 0.0,
+          "laya-english": 2.0
+        },
+        "3": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "4": {
+          "kev-4b": 2.0,
+          "laya-english": 0.0
+        },
+        "5": {
+          "kev-4b": 0.0,
+          "laya-english": 2.0
+        },
+        "6": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "7": {
+          "kev-4b": 0.0,
+          "laya-english": 2.0
+        },
+        "8": {
+          "kev-4b": 1.0,
+          "laya-english": 1.0
+        },
+        "9": {
+          "kev-4b": 2.0,
+          "laya-english": 0.0
+        }
+      },
+      "points": {
+        "kev-4b": 22.0,
+        "laya-english": 18.0
+      },
+      "wins": {
+        "kev-4b": 22,
+        "laya-english": 18
+      }
+    },
+    "kev-4b~laya-multilingual": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-4b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "10": {
+          "kev-4b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "11": {
+          "kev-4b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "12": {
+          "kev-4b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "13": {
+          "kev-4b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "14": {
+          "kev-4b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "15": {
+          "kev-4b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "16": {
+          "kev-4b": 0.0,
+          "laya-multilingual": 2.0
+        },
+        "17": {
+          "kev-4b": 0.0,
+          "laya-multilingual": 2.0
+        },
+        "18": {
+          "kev-4b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "19": {
+          "kev-4b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "2": {
+          "kev-4b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "20": {
+          "kev-4b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "3": {
+          "kev-4b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "4": {
+          "kev-4b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "5": {
+          "kev-4b": 0.0,
+          "laya-multilingual": 2.0
+        },
+        "6": {
+          "kev-4b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "7": {
+          "kev-4b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "8": {
+          "kev-4b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "9": {
+          "kev-4b": 2.0,
+          "laya-multilingual": 0.0
+        }
+      },
+      "points": {
+        "kev-4b": 26.0,
+        "laya-multilingual": 14.0
+      },
+      "wins": {
+        "kev-4b": 26,
+        "laya-multilingual": 14
+      }
+    },
+    "kev-4b~laya-typed": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "10": {
+          "kev-4b": 0.0,
+          "laya-typed": 2.0
+        },
+        "11": {
+          "kev-4b": 2.0,
+          "laya-typed": 0.0
+        },
+        "12": {
+          "kev-4b": 0.0,
+          "laya-typed": 2.0
+        },
+        "13": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "14": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "15": {
+          "kev-4b": 2.0,
+          "laya-typed": 0.0
+        },
+        "16": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "17": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "18": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "19": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "2": {
+          "kev-4b": 2.0,
+          "laya-typed": 0.0
+        },
+        "20": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "3": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "4": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        },
+        "5": {
+          "kev-4b": 2.0,
+          "laya-typed": 0.0
+        },
+        "6": {
+          "kev-4b": 2.0,
+          "laya-typed": 0.0
+        },
+        "7": {
+          "kev-4b": 0.0,
+          "laya-typed": 2.0
+        },
+        "8": {
+          "kev-4b": 0.0,
+          "laya-typed": 2.0
+        },
+        "9": {
+          "kev-4b": 1.0,
+          "laya-typed": 1.0
+        }
+      },
+      "points": {
+        "kev-4b": 21.0,
+        "laya-typed": 19.0
+      },
+      "wins": {
+        "kev-4b": 21,
+        "laya-typed": 19
+      }
+    },
+    "kev-4b~nimble": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "10": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "11": {
+          "kev-4b": 1.0,
+          "nimble": 1.0
+        },
+        "12": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "13": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "14": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "15": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "16": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "17": {
+          "kev-4b": 1.0,
+          "nimble": 1.0
+        },
+        "18": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "19": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "2": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "20": {
+          "kev-4b": 1.0,
+          "nimble": 1.0
+        },
+        "3": {
+          "kev-4b": 1.0,
+          "nimble": 1.0
+        },
+        "4": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "5": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "6": {
+          "kev-4b": 1.0,
+          "nimble": 1.0
+        },
+        "7": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "8": {
+          "kev-4b": 0.0,
+          "nimble": 2.0
+        },
+        "9": {
+          "kev-4b": 1.0,
+          "nimble": 1.0
+        }
+      },
+      "points": {
+        "kev-4b": 6.0,
+        "nimble": 34.0
+      },
+      "wins": {
+        "kev-4b": 6,
+        "nimble": 34
+      }
+    },
+    "kev-4b~nimble-v2": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "10": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "11": {
+          "kev-4b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "12": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "13": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "14": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "15": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "16": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "17": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "18": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "19": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "2": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "20": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "3": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "4": {
+          "kev-4b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "5": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "6": {
+          "kev-4b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "7": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "8": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "9": {
+          "kev-4b": 0.0,
+          "nimble-v2": 2.0
+        }
+      },
+      "points": {
+        "kev-4b": 3.0,
+        "nimble-v2": 37.0
+      },
+      "wins": {
+        "kev-4b": 3,
+        "nimble-v2": 37
+      }
+    },
+    "kev-9b~laya-english": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "10": {
+          "kev-9b": 1.0,
+          "laya-english": 1.0
+        },
+        "11": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "12": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "13": {
+          "kev-9b": 1.0,
+          "laya-english": 1.0
+        },
+        "14": {
+          "kev-9b": 1.0,
+          "laya-english": 1.0
+        },
+        "15": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "16": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "17": {
+          "kev-9b": 1.0,
+          "laya-english": 1.0
+        },
+        "18": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "19": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "2": {
+          "kev-9b": 1.0,
+          "laya-english": 1.0
+        },
+        "20": {
+          "kev-9b": 1.0,
+          "laya-english": 1.0
+        },
+        "3": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "4": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "5": {
+          "kev-9b": 1.0,
+          "laya-english": 1.0
+        },
+        "6": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "7": {
+          "kev-9b": 1.0,
+          "laya-english": 1.0
+        },
+        "8": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        },
+        "9": {
+          "kev-9b": 2.0,
+          "laya-english": 0.0
+        }
+      },
+      "points": {
+        "kev-9b": 32.0,
+        "laya-english": 8.0
+      },
+      "wins": {
+        "kev-9b": 32,
+        "laya-english": 8
+      }
+    },
+    "kev-9b~laya-multilingual": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "10": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "11": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "12": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "13": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "14": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "15": {
+          "kev-9b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "16": {
+          "kev-9b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "17": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "18": {
+          "kev-9b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "19": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "2": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "20": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "3": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "4": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "5": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "6": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "7": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "8": {
+          "kev-9b": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "9": {
+          "kev-9b": 2.0,
+          "laya-multilingual": 0.0
+        }
+      },
+      "points": {
+        "kev-9b": 36.0,
+        "laya-multilingual": 4.0
+      },
+      "wins": {
+        "kev-9b": 36,
+        "laya-multilingual": 4
+      }
+    },
+    "kev-9b~laya-typed": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-9b": 1.0,
+          "laya-typed": 1.0
+        },
+        "10": {
+          "kev-9b": 1.0,
+          "laya-typed": 1.0
+        },
+        "11": {
+          "kev-9b": 1.0,
+          "laya-typed": 1.0
+        },
+        "12": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        },
+        "13": {
+          "kev-9b": 1.0,
+          "laya-typed": 1.0
+        },
+        "14": {
+          "kev-9b": 1.0,
+          "laya-typed": 1.0
+        },
+        "15": {
+          "kev-9b": 0.0,
+          "laya-typed": 2.0
+        },
+        "16": {
+          "kev-9b": 1.0,
+          "laya-typed": 1.0
+        },
+        "17": {
+          "kev-9b": 1.0,
+          "laya-typed": 1.0
+        },
+        "18": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        },
+        "19": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        },
+        "2": {
+          "kev-9b": 1.0,
+          "laya-typed": 1.0
+        },
+        "20": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        },
+        "3": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        },
+        "4": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        },
+        "5": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        },
+        "6": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        },
+        "7": {
+          "kev-9b": 1.0,
+          "laya-typed": 1.0
+        },
+        "8": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        },
+        "9": {
+          "kev-9b": 2.0,
+          "laya-typed": 0.0
+        }
+      },
+      "points": {
+        "kev-9b": 29.0,
+        "laya-typed": 11.0
+      },
+      "wins": {
+        "kev-9b": 29,
+        "laya-typed": 11
+      }
+    },
+    "kev-9b~nimble": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-9b": 0.0,
+          "nimble": 2.0
+        },
+        "10": {
+          "kev-9b": 1.0,
+          "nimble": 1.0
+        },
+        "11": {
+          "kev-9b": 2.0,
+          "nimble": 0.0
+        },
+        "12": {
+          "kev-9b": 1.0,
+          "nimble": 1.0
+        },
+        "13": {
+          "kev-9b": 1.0,
+          "nimble": 1.0
+        },
+        "14": {
+          "kev-9b": 1.0,
+          "nimble": 1.0
+        },
+        "15": {
+          "kev-9b": 2.0,
+          "nimble": 0.0
+        },
+        "16": {
+          "kev-9b": 2.0,
+          "nimble": 0.0
+        },
+        "17": {
+          "kev-9b": 2.0,
+          "nimble": 0.0
+        },
+        "18": {
+          "kev-9b": 2.0,
+          "nimble": 0.0
+        },
+        "19": {
+          "kev-9b": 1.0,
+          "nimble": 1.0
+        },
+        "2": {
+          "kev-9b": 2.0,
+          "nimble": 0.0
+        },
+        "20": {
+          "kev-9b": 0.0,
+          "nimble": 2.0
+        },
+        "3": {
+          "kev-9b": 1.0,
+          "nimble": 1.0
+        },
+        "4": {
+          "kev-9b": 0.0,
+          "nimble": 2.0
+        },
+        "5": {
+          "kev-9b": 1.0,
+          "nimble": 1.0
+        },
+        "6": {
+          "kev-9b": 1.0,
+          "nimble": 1.0
+        },
+        "7": {
+          "kev-9b": 0.0,
+          "nimble": 2.0
+        },
+        "8": {
+          "kev-9b": 1.0,
+          "nimble": 1.0
+        },
+        "9": {
+          "kev-9b": 2.0,
+          "nimble": 0.0
+        }
+      },
+      "points": {
+        "kev-9b": 23.0,
+        "nimble": 17.0
+      },
+      "wins": {
+        "kev-9b": 23,
+        "nimble": 17
+      }
+    },
+    "kev-9b~nimble-v2": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "kev-9b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "10": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "11": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "12": {
+          "kev-9b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "13": {
+          "kev-9b": 0.0,
+          "nimble-v2": 2.0
+        },
+        "14": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "15": {
+          "kev-9b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "16": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "17": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "18": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "19": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "2": {
+          "kev-9b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "20": {
+          "kev-9b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "3": {
+          "kev-9b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "4": {
+          "kev-9b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "5": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "6": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "7": {
+          "kev-9b": 1.0,
+          "nimble-v2": 1.0
+        },
+        "8": {
+          "kev-9b": 2.0,
+          "nimble-v2": 0.0
+        },
+        "9": {
+          "kev-9b": 0.0,
+          "nimble-v2": 2.0
+        }
+      },
+      "points": {
+        "kev-9b": 27.0,
+        "nimble-v2": 13.0
+      },
+      "wins": {
+        "kev-9b": 27,
+        "nimble-v2": 13
+      }
+    },
+    "laya-english~laya-multilingual": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "10": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "11": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "12": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "13": {
+          "laya-english": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "14": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "15": {
+          "laya-english": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "16": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "17": {
+          "laya-english": 0.0,
+          "laya-multilingual": 2.0
+        },
+        "18": {
+          "laya-english": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "19": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "2": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "20": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "3": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "4": {
+          "laya-english": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "5": {
+          "laya-english": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "6": {
+          "laya-english": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "7": {
+          "laya-english": 1.0,
+          "laya-multilingual": 1.0
+        },
+        "8": {
+          "laya-english": 2.0,
+          "laya-multilingual": 0.0
+        },
+        "9": {
+          "laya-english": 1.0,
+          "laya-multilingual": 1.0
+        }
+      },
+      "points": {
+        "laya-english": 30.0,
+        "laya-multilingual": 10.0
+      },
+      "wins": {
+        "laya-english": 30,
+        "laya-multilingual": 10
+      }
+    },
+    "laya-english~laya-typed": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "laya-english": 1.0,
+          "laya-typed": 1.0
+        },
+        "10": {
+          "laya-english": 1.0,
+          "laya-typed": 1.0
+        },
+        "11": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "12": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "13": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "14": {
+          "laya-english": 0.0,
+          "laya-typed": 2.0
+        },
+        "15": {
+          "laya-english": 1.0,
+          "laya-typed": 1.0
+        },
+        "16": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "17": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "18": {
+          "laya-english": 1.0,
+          "laya-typed": 1.0
+        },
+        "19": {
+          "laya-english": 1.0,
+          "laya-typed": 1.0
+        },
+        "2": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "20": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "3": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "4": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "5": {
+          "laya-english": 1.0,
+          "laya-typed": 1.0
+        },
+        "6": {
+          "laya-english": 2.0,
+          "laya-typed": 0.0
+        },
+        "7": {
+          "laya-english": 1.0,
+          "laya-typed": 1.0
+        },
+        "8": {
+          "laya-english": 1.0,
+          "laya-typed": 1.0
+        },
+        "9": {
+          "laya-english": 1.0,
+          "laya-typed": 1.0
+        }
+      },
+      "points": {
+        "laya-english": 29.0,
+        "laya-typed": 11.0
+      },
+      "wins": {
+        "laya-english": 29,
+        "laya-typed": 11
+      }
+    },
+    "laya-english~nimble": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "laya-english": 0.0,
+          "nimble": 2.0
+        },
+        "10": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "11": {
+          "laya-english": 2.0,
+          "nimble": 0.0
+        },
+        "12": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "13": {
+          "laya-english": 0.0,
+          "nimble": 2.0
+        },
+        "14": {
+          "laya-english": 2.0,
+          "nimble": 0.0
+        },
+        "15": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "16": {
+          "laya-english": 0.0,
+          "nimble": 2.0
+        },
+        "17": {
+          "laya-english": 0.0,
+          "nimble": 2.0
+        },
+        "18": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "19": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "2": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "20": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "3": {
+          "laya-english": 0.0,
+          "nimble": 2.0
+        },
+        "4": {
+          "laya-english": 0.0,
+          "nimble": 2.0
+        },
+        "5": {
+          "laya-english": 0.0,
+          "nimble": 2.0
+        },
+        "6": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "7": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "8": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        },
+        "9": {
+          "laya-english": 1.0,
+          "nimble": 1.0
+        }
+      },
+      "points": {
+        "laya-english": 15.0,
+        "nimble": 25.0
+      },
+      "wins": {
+        "laya-english": 15,
+        "nimble": 25
+      }
+    },
+    "laya-english~nimble-v2": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "10": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "11": {
+          "laya-english": 1.0,
+          "nimble-v2": 1.0
+        },
+        "12": {
+          "laya-english": 2.0,
+          "nimble-v2": 0.0
+        },
+        "13": {
+          "laya-english": 1.0,
+          "nimble-v2": 1.0
+        },
+        "14": {
+          "laya-english": 1.0,
+          "nimble-v2": 1.0
+        },
+        "15": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "16": {
+          "laya-english": 1.0,
+          "nimble-v2": 1.0
+        },
+        "17": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "18": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "19": {
+          "laya-english": 1.0,
+          "nimble-v2": 1.0
+        },
+        "2": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "20": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "3": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "4": {
+          "laya-english": 1.0,
+          "nimble-v2": 1.0
+        },
+        "5": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "6": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "7": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "8": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        },
+        "9": {
+          "laya-english": 0.0,
+          "nimble-v2": 2.0
+        }
+      },
+      "points": {
+        "laya-english": 8.0,
+        "nimble-v2": 32.0
+      },
+      "wins": {
+        "laya-english": 8,
+        "nimble-v2": 32
+      }
+    },
+    "laya-multilingual~laya-typed": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "10": {
+          "laya-multilingual": 2.0,
+          "laya-typed": 0.0
+        },
+        "11": {
+          "laya-multilingual": 2.0,
+          "laya-typed": 0.0
+        },
+        "12": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "13": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "14": {
+          "laya-multilingual": 1.0,
+          "laya-typed": 1.0
+        },
+        "15": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "16": {
+          "laya-multilingual": 1.0,
+          "laya-typed": 1.0
+        },
+        "17": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "18": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "19": {
+          "laya-multilingual": 2.0,
+          "laya-typed": 0.0
+        },
+        "2": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "20": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "3": {
+          "laya-multilingual": 1.0,
+          "laya-typed": 1.0
+        },
+        "4": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "5": {
+          "laya-multilingual": 1.0,
+          "laya-typed": 1.0
+        },
+        "6": {
+          "laya-multilingual": 1.0,
+          "laya-typed": 1.0
+        },
+        "7": {
+          "laya-multilingual": 0.0,
+          "laya-typed": 2.0
+        },
+        "8": {
+          "laya-multilingual": 1.0,
+          "laya-typed": 1.0
+        },
+        "9": {
+          "laya-multilingual": 1.0,
+          "laya-typed": 1.0
+        }
+      },
+      "points": {
+        "laya-multilingual": 13.0,
+        "laya-typed": 27.0
+      },
+      "wins": {
+        "laya-multilingual": 13,
+        "laya-typed": 27
+      }
+    },
+    "laya-multilingual~nimble": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "10": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "11": {
+          "laya-multilingual": 1.0,
+          "nimble": 1.0
+        },
+        "12": {
+          "laya-multilingual": 1.0,
+          "nimble": 1.0
+        },
+        "13": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "14": {
+          "laya-multilingual": 1.0,
+          "nimble": 1.0
+        },
+        "15": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "16": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "17": {
+          "laya-multilingual": 1.0,
+          "nimble": 1.0
+        },
+        "18": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "19": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "2": {
+          "laya-multilingual": 2.0,
+          "nimble": 0.0
+        },
+        "20": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "3": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "4": {
+          "laya-multilingual": 1.0,
+          "nimble": 1.0
+        },
+        "5": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "6": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "7": {
+          "laya-multilingual": 1.0,
+          "nimble": 1.0
+        },
+        "8": {
+          "laya-multilingual": 0.0,
+          "nimble": 2.0
+        },
+        "9": {
+          "laya-multilingual": 1.0,
+          "nimble": 1.0
+        }
+      },
+      "points": {
+        "laya-multilingual": 9.0,
+        "nimble": 31.0
+      },
+      "wins": {
+        "laya-multilingual": 9,
+        "nimble": 31
+      }
+    },
+    "laya-multilingual~nimble-v2": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "10": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "11": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "12": {
+          "laya-multilingual": 2.0,
+          "nimble-v2": 0.0
+        },
+        "13": {
+          "laya-multilingual": 1.0,
+          "nimble-v2": 1.0
+        },
+        "14": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "15": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "16": {
+          "laya-multilingual": 1.0,
+          "nimble-v2": 1.0
+        },
+        "17": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "18": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "19": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "2": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "20": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "3": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "4": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "5": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "6": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "7": {
+          "laya-multilingual": 1.0,
+          "nimble-v2": 1.0
+        },
+        "8": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        },
+        "9": {
+          "laya-multilingual": 0.0,
+          "nimble-v2": 2.0
+        }
+      },
+      "points": {
+        "laya-multilingual": 5.0,
+        "nimble-v2": 35.0
+      },
+      "wins": {
+        "laya-multilingual": 5,
+        "nimble-v2": 35
+      }
+    },
+    "laya-typed~nimble": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "10": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "11": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "12": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "13": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "14": {
+          "laya-typed": 2.0,
+          "nimble": 0.0
+        },
+        "15": {
+          "laya-typed": 2.0,
+          "nimble": 0.0
+        },
+        "16": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "17": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "18": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "19": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "2": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "20": {
+          "laya-typed": 0.0,
+          "nimble": 2.0
+        },
+        "3": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "4": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "5": {
+          "laya-typed": 0.0,
+          "nimble": 2.0
+        },
+        "6": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "7": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        },
+        "8": {
+          "laya-typed": 0.0,
+          "nimble": 2.0
+        },
+        "9": {
+          "laya-typed": 1.0,
+          "nimble": 1.0
+        }
+      },
+      "points": {
+        "laya-typed": 19.0,
+        "nimble": 21.0
+      },
+      "wins": {
+        "laya-typed": 19,
+        "nimble": 21
+      }
+    },
+    "laya-typed~nimble-v2": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "10": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "11": {
+          "laya-typed": 1.0,
+          "nimble-v2": 1.0
+        },
+        "12": {
+          "laya-typed": 1.0,
+          "nimble-v2": 1.0
+        },
+        "13": {
+          "laya-typed": 1.0,
+          "nimble-v2": 1.0
+        },
+        "14": {
+          "laya-typed": 1.0,
+          "nimble-v2": 1.0
+        },
+        "15": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "16": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "17": {
+          "laya-typed": 1.0,
+          "nimble-v2": 1.0
+        },
+        "18": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "19": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "2": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "20": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "3": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "4": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "5": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "6": {
+          "laya-typed": 1.0,
+          "nimble-v2": 1.0
+        },
+        "7": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "8": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        },
+        "9": {
+          "laya-typed": 0.0,
+          "nimble-v2": 2.0
+        }
+      },
+      "points": {
+        "laya-typed": 6.0,
+        "nimble-v2": 34.0
+      },
+      "wins": {
+        "laya-typed": 6,
+        "nimble-v2": 34
+      }
+    },
+    "nimble~nimble-v2": {
+      "draws": 0,
+      "games": 40,
+      "openings": {
+        "1": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "10": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "11": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "12": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "13": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "14": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "15": {
+          "nimble": 0.0,
+          "nimble-v2": 2.0
+        },
+        "16": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "17": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "18": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "19": {
+          "nimble": 0.0,
+          "nimble-v2": 2.0
+        },
+        "2": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "20": {
+          "nimble": 2.0,
+          "nimble-v2": 0.0
+        },
+        "3": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "4": {
+          "nimble": 0.0,
+          "nimble-v2": 2.0
+        },
+        "5": {
+          "nimble": 0.0,
+          "nimble-v2": 2.0
+        },
+        "6": {
+          "nimble": 0.0,
+          "nimble-v2": 2.0
+        },
+        "7": {
+          "nimble": 0.0,
+          "nimble-v2": 2.0
+        },
+        "8": {
+          "nimble": 1.0,
+          "nimble-v2": 1.0
+        },
+        "9": {
+          "nimble": 0.0,
+          "nimble-v2": 2.0
+        }
+      },
+      "points": {
+        "nimble": 14.0,
+        "nimble-v2": 26.0
+      },
+      "wins": {
+        "nimble": 14,
+        "nimble-v2": 26
+      }
+    }
+  },
+  "ratings": {
+    "clef": {
+      "allowed_wins": 5,
+      "elo": 1880.5,
+      "games": 360,
+      "interval": [
+        1841.1,
+        1934.9
+      ],
+      "missed_wins": 0,
+      "points": 323.0
+    },
+    "clef-flash": {
+      "allowed_wins": 56,
+      "elo": 1704.9,
+      "games": 360,
+      "interval": [
+        1669.2,
+        1745.8
+      ],
+      "missed_wins": 186,
+      "points": 269.5
+    },
+    "kev-0.8b": {
+      "allowed_wins": 175,
+      "elo": 1546.6,
+      "games": 360,
+      "interval": [
+        1500.2,
+        1592.1
+      ],
+      "missed_wins": 11,
+      "points": 204.0
+    },
+    "kev-4b": {
+      "allowed_wins": 309,
+      "elo": 1305.4,
+      "games": 360,
+      "interval": [
+        1239.4,
+        1358.7
+      ],
+      "missed_wins": 51,
+      "points": 97.0
+    },
+    "kev-9b": {
+      "allowed_wins": 136,
+      "elo": 1587.4,
+      "games": 360,
+      "interval": [
+        1551.3,
+        1622.8
+      ],
+      "missed_wins": 4,
+      "points": 222.0
+    },
+    "laya-english": {
+      "allowed_wins": 330,
+      "elo": 1344.1,
+      "games": 360,
+      "interval": [
+        1306.6,
+        1373.4
+      ],
+      "missed_wins": 166,
+      "points": 113.0
+    },
+    "laya-multilingual": {
+      "allowed_wins": 345,
+      "elo": 1253.4,
+      "games": 360,
+      "interval": [
+        1199.6,
+        1289.7
+      ],
+      "missed_wins": 102,
+      "points": 77.0
+    },
+    "laya-typed": {
+      "allowed_wins": 377,
+      "elo": 1317.7,
+      "games": 360,
+      "interval": [
+        1283.3,
+        1356.3
+      ],
+      "missed_wins": 106,
+      "points": 102.0
+    },
+    "nimble": {
+      "allowed_wins": 214,
+      "elo": 1477.3,
+      "games": 360,
+      "interval": [
+        1438.0,
+        1516.9
+      ],
+      "missed_wins": 0,
+      "points": 172.5
+    },
+    "nimble-v2": {
+      "allowed_wins": 138,
+      "elo": 1582.8,
+      "games": 360,
+      "interval": [
+        1526.5,
+        1637.9
+      ],
+      "missed_wins": 20,
+      "points": 220.0
+    }
+  },
+  "seed_set": "test",
+  "suite": "duel-v0.1"
+}
