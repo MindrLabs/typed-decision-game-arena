@@ -232,7 +232,41 @@ campaign 코드(c773aac, b225a18)로 worktree를 옮겼지만 lock에 묶인 파
 리더보드 데이터(`webui/data`)도 test 결과로 다시 export했고, 실제 브라우저에서 리더보드와 Pong, Breakout,
 Tetris replay가 콘솔 오류 없이 그려지는 것을 확인했습니다.
 
-## 9. 남은 일
+## 9. Versus (2026-10-11)
+
+**무엇을 만들었나.** 같은 seed로 따로 둔 두 판을 나란히 재생하는 Versus 페이지와, Connect Four에서 모델끼리 직접
+두는 대국입니다. 화면 구도는 레퍼런스 방송 화면을 따라 한 시안이 "너무 따라했다"는 평가를 받은 뒤, 사이트의 다크 톤에
+두 판을 가운데 비교 열 양옆에 두는 방향(A)을 남겼습니다. 이어 게임·e스포츠·AI 대국 중계 관례를 조사했고
+(CTWC/NESTrisChamps, Battlesnake/SnakeBench, TCEC·CCC, Kaggle Game Arena, 스피드런 타이머 등), 그 결과에 따라
+가운데 열·타임라인·자막·종료 처리를 정했습니다.
+
+**사용자 결정.**
+- Connect Four는 직접 대국을 구현해 실제로 돌립니다. v0.1 lock은 그대로 두고 별도 suite `duel-v0.1`(kind
+  "duel")을 만들었습니다. duel suite의 lock은 `arena/duel.py`까지 잠급니다.
+- 리플레이는 기존 포맷 그대로, 비교하는 게임의 모든 모델 판을 `webui/data`에 넣습니다.
+- 신호가 있는 보드는 모두 다룹니다. frame·real-time Tetris는 모든 모델이 0줄이라 뺍니다.
+- `feat/versus` 브랜치에 커밋하고 푸시합니다. main 병합은 확인 뒤입니다.
+
+**정한 것 (근거 포함).**
+- 두 판은 결정 번호(macro·frame)나 게임 step(real-time)으로 맞춥니다. 실제 시간으로 맞추면 실력이 아니라 API
+  속도가 화면을 지배합니다.
+- 리드 교체는 마지막으로 앞섰던 쪽과 다른 쪽이 앞설 때만 셉니다(동점은 리더를 유지). 추격은 한 판이 끝날 때 다른
+  판이 앞서 있지 않은 경우입니다. Python(`arena/versus.py`)과 사이트(`site/src/lib/versus.ts`)가 같은 골든
+  케이스(`tests/golden/versus-series.json`)를 통과합니다.
+- 두 판 모두 그 게임의 바닥(최저 점수)으로 끝난 경기는 추천하지 않습니다. real-time Pong에서 둘 다 21점을 모두
+  잃는 경기가 실점 순서 때문에 리드 교체 9회로 1위에 올랐기 때문입니다.
+- 확률은 "선택 확률"로 부르고, knockout 조별 확률은 결승 확률과 척도가 달라 접어 둡니다. turn-based 보드의 시간은
+  막대로 그리지 않습니다(빠를수록 잘한 것처럼 읽힘).
+- 직접 대국: 오프닝(처음 두 수) 25가지(좌우 대칭 제외) 중 test seed 1–20, 쌍마다 선후공을 바꿔 두 판, 승 1·무 ½,
+  Bradley–Terry(Elo 척도, 기하평균 1500, 평균 상대와의 무승부 한 판 prior), 오프닝 단위 bootstrap 구간.
+
+**운영에서 알게 된 것.** GB10의 다른 작업이 메모리를 쓰는 상황에서 Clef(52GB)를 처음 올리는 데 약 15분이
+걸렸습니다. 클라이언트 시간 제한(15분)에 걸려 재요청이 들어가자 로딩이 겹쳐 스왑이 가득 찼습니다. 그래서 쌍마다
+다른 모델이 내려가기를 기다리고, 그동안 다음 쌍에 남는 모델은 30초마다 요청으로 붙잡아 두며, 두 모델을 시간
+제한 없이 하나씩 올린 뒤 대국을 시작합니다(`arena duel run --last clef`). 대국 규칙(`arena/duel.py`)은 그대로라
+lock은 바뀌지 않습니다.
+
+## 10. 남은 일
 
 1. 저장소와 dataset의 공개 전환: 사전 승인.
 2. 새 family upstream 기여: PR마다 사전 승인. 후보는 NeoHorse-Jev-4B, AutoJev-27B, 그 밖의 Decision Index 상위

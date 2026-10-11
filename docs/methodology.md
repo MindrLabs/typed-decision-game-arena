@@ -162,6 +162,29 @@ byte for byte. `tests/golden/` pins the first question of every board and game, 
 shows up as a diff. `arena env` records the GPU and driver, the model-compose revision, this repository's commit
 and the full package list of every model runtime.
 
+## Versus
+
+**Same seed, separate runs.** Two models are compared on a seed both played: the same Tetris pieces, the same
+Snake start and food seed, the same emulator seed and console opponent in Pong and Breakout, and the same option
+order at the same point. The runs are lined up by decision on the macro and frame boards (a piece, a step, a
+frame) and by game step on the real-time board, where each model acts with its own reaction delay. At every
+position a run counts with its latest score and, once it has stopped, with its final score. The lead changes
+when the side ahead differs from the side last ahead; a level score keeps the last leader. A chase is a run that
+stops while the other is not ahead of it: the survivor plays on against a fixed target. A seed goes to the higher
+final score. A match where both runs end on the game's floor (every Pong point lost, no Tetris line) has nothing
+to compare and is never recommended. Tetris on the frame and real-time boards is left out, since no model clears
+a line there. `arena/versus.py` computes these for the site; `site/src/lib/versus.ts` computes the events of an
+open match; both follow the cases in `tests/golden/versus-series.json`.
+
+**Direct games.** In suite `duel-v0.1` the models play Connect Four against each other. A seed fixes an opening,
+the first two moves (25 up to mirror image; the test seeds use 20), and each pair plays it twice with the
+colours swapped. After the opening both sides get exactly the macro board's question, from the side to move,
+through the same decision protocol. A win scores 1, a draw ½. Ratings are Bradley–Terry strengths on the Elo
+scale (the geometric mean at 1500, with a prior of one drawn game against an average player), with 95% intervals
+from resampling the openings (both games of an opening together). Missed and allowed wins look one move ahead, as
+in the option facts; a move that turns a won game into a draw several moves later needs a solver and is not
+counted. `arena duel verify` replays every game from its log.
+
 ## Limitations
 
 - The reference players are strong, not optimal. On Pong's macro board the reference still loses to the console's

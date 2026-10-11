@@ -13,6 +13,17 @@ results/<suite>/
   scores-<seed set>.json      arena score
 ```
 
+Direct games (suite `duel-v0.1`, `arena duel`) keep both sides in one place per pair, `a~b` in sorted order; game
+1 of a seed has `a` as X, game 2 has `b`:
+
+```
+results/duel-v0.1/<seed set>/direct/connect4/<a>~<b>/
+  episodes.jsonl                  one line per finished game: x, o, opening, result, winner, points, moves,
+                                  decisions, calls, missed_wins, allowed_wins and latency_ms per player
+  decisions/<seed>-<game>.jsonl.gz    both sides' decisions (each line adds side and player), then the end
+results/duel-v0.1/scores-<seed set>.json   arena duel score: ratings and pair records
+```
+
 **Episode line**: `suite`, `lock` (digest of the frozen suite, test seeds only), `seed_set`, `board`, `game`,
 `player`, `seed`, `score`, `metrics` (per game, e.g. `lines`, `pieces`, `topped_out`; `result`, `missed_wins`),
 `decisions`, `forced` (single-option decisions, not asked), `calls` (requests sent), `steps` (game steps),

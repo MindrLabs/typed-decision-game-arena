@@ -93,6 +93,24 @@ Steps:
    the Hugging Face dataset `MindrLabs/typed-decision-game-arena` in one commit (a new dataset is private). Then
    commit `results/v0.1/` (episode lines, scores, latency, bias, environment) and `webui/data`.
 
+## Direct games
+
+The duel suite has its own lock (`suites/duel-v0.1.lock.json`, which also locks `arena/duel.py`). A pair needs both
+models loaded at once, so the run waits before each pair until no other model holds the GPU, and loads the pair's
+models one at a time with an untimed request (Clef, 52 GB, takes about a quarter of an hour on the GB10 while other
+work holds memory). Run the largest model's pairs last, so it stays loaded across them:
+
+```bash
+systemd-run --user --unit=arena-duel --working-directory=$PWD -E PATH=$PATH \
+  uv run arena duel run --seed-set test --last clef
+uv run arena duel status --seed-set test     # games per pair
+uv run arena duel verify --seed-set test     # replays every game
+uv run arena duel score --seed-set test      # results/duel-v0.1/scores-test.json
+uv run arena export --seed-set test          # also writes the Versus data and every replay it opens
+```
+
+If the leaderboard is already served on port 8381, start the model server with `ARENA_WEB_PORT=8382`.
+
 ## Cost
 
 Requests per episode depend on the game (Tetris landings above 8 options take several requests: on average about

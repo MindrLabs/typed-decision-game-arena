@@ -21,6 +21,7 @@ that model-compose serves next to the models.
 - [Boards and games](#boards-and-games)
 - [How the comparison is kept fair](#how-the-comparison-is-kept-fair)
 - [Scores](#scores)
+- [Versus](#versus)
 - [Full runs](#full-runs)
 - [Adding a model](#adding-a-model)
 - [Repository layout](#repository-layout)
@@ -129,6 +130,15 @@ The full protocol is in [docs/methodology.md](docs/methodology.md).
 For each game, `k = clip((model - random) / (reference - random), 0, 1)` over the test seeds. A board's index is
 100 x the mean of `k` over its games. Intervals come from a paired bootstrap over seeds (2000 replicates), and
 pairwise differences carry Holm-adjusted p-values. The real-time board is scored against the frame board's anchors.
+
+## Versus
+
+The site's Versus pages compare two models on the same seed: both runs replay side by side in step (by decision on
+the turn-based boards, by game step on the real-time board), with the signed score difference, each side's choice
+probabilities, a comparison column and captions computed from the logs (first score, changes of lead, a run that
+stops, a chase). Tetris on the frame and real-time boards is left out: no model clears a line there. Connect Four
+is played directly between the models in suite `duel-v0.1` (every opening twice, colours swapped; `arena duel`),
+rated by Bradley–Terry on the Elo scale. The rules are in [docs/methodology.md](docs/methodology.md#versus).
 
 ## Full runs
 

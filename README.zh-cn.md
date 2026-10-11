@@ -19,6 +19,7 @@
 - [榜单与游戏](#榜单与游戏)
 - [如何保持比较公平](#如何保持比较公平)
 - [分数](#分数)
+- [Versus](#versus)
 - [完整运行](#完整运行)
 - [添加模型](#添加模型)
 - [仓库结构](#仓库结构)
@@ -124,6 +125,13 @@ Environment 上（Machado et al. 2018）。各游戏的规则、选项和上限�
 每个游戏在 test 种子上计算 `k = clip((model - random) / (reference - random), 0, 1)`。榜单指数是该榜单各游戏 `k`
 的平均值乘以 100。置信区间来自按种子配对的 bootstrap（2000 次），两两差异附带 Holm 校正的 p 值。Real-time 榜单
 使用 Frame 榜单的锚点换算。
+
+## Versus
+
+网站的 Versus 页面在同一个种子上比较两个模型：两局并排、按同一位置同步回放（回合制榜单按决策，实时榜单按游戏步），显示带符号的
+分差、双方的选择概率、中间的对比栏，以及从日志计算出的字幕（首次得分、领先易手、先结束的一局、追分）。帧榜单和实时榜单上的
+Tetris 不参与比较：没有模型能消除一行。Connect Four 在 `duel-v0.1` 套件中由模型直接对弈（每个开局走两局并交换先后手，
+`arena duel`），评分为 Elo 尺度的 Bradley–Terry。规则见 [docs/methodology.md](docs/methodology.md#versus)。
 
 ## 完整运行
 

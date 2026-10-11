@@ -21,6 +21,7 @@ model-compose가 모델과 함께 띄웁니다.
 - [보드와 게임](#보드와-게임)
 - [비교를 공정하게 유지하는 방법](#비교를-공정하게-유지하는-방법)
 - [점수](#점수)
+- [Versus](#versus)
 - [전체 실행](#전체-실행)
 - [모델 추가하기](#모델-추가하기)
 - [저장소 구성](#저장소-구성)
@@ -128,6 +129,14 @@ Environment(Machado et al. 2018)에서 돌립니다. 게임별 규칙, 선택지
 게임마다 test 시드 평균으로 `k = clip((model - random) / (reference - random), 0, 1)`을 계산합니다. 보드의
 지수는 그 보드 게임들의 `k` 평균에 100을 곱한 값입니다. 신뢰구간은 시드를 짝지어 다시 뽑는 부트스트랩(2000회)으로
 구하고, 쌍별 차이에는 Holm 보정 p값을 붙입니다. Real-time 보드는 Frame 보드의 앵커로 환산합니다.
+
+## Versus
+
+사이트의 Versus 페이지는 두 모델을 같은 seed로 비교합니다. 두 판을 나란히 같은 시점에 맞춰(턴제 보드는 결정 단위,
+real-time 보드는 게임 step 단위) 재생하고, 부호가 붙은 점수 차, 양쪽의 선택 확률, 가운데 비교 열, 로그에서 계산한
+자막(첫 득점, 리드 교체, 먼저 끝난 판, 추격)을 보여 줍니다. frame과 real-time 보드의 Tetris는 어떤 모델도 줄을
+지우지 못해 뺐습니다. Connect Four는 suite `duel-v0.1`에서 모델끼리 직접 둡니다(오프닝마다 선후공을 바꿔 두 판,
+`arena duel`). 레이팅은 Elo 척도의 Bradley–Terry입니다. 규칙은 [docs/methodology.md](docs/methodology.md#versus)에 있습니다.
 
 ## 전체 실행
 

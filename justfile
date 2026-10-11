@@ -44,3 +44,12 @@ publish seed_set="test":
 # decision logs and results to the Hugging Face dataset (a new one is private)
 dataset seed_set="test":
     uv run --extra publish arena dataset --seed-set {{seed_set}}
+
+# direct Connect Four games between every pair of models (resumable; the largest model's pairs last)
+duel seed_set="test":
+    uv run arena duel run --seed-set {{seed_set}} --last clef
+
+# replay and rate the direct games
+duel-publish seed_set="test":
+    uv run arena duel verify --seed-set {{seed_set}}
+    uv run arena duel score --seed-set {{seed_set}}
