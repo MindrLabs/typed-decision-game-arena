@@ -268,8 +268,18 @@ def cmd_duel(args: argparse.Namespace) -> int:
     if args.action == "run":
         models = [m for m in args.models.split(",") if m] if args.models else list(contestants())
         pairs = [p for p in args.pairs.split(",") if p] if args.pairs else duel.schedule(models)
+        late = {m for m in (args.last or "").split(",") if m}
+        pairs = sorted(pairs, key=lambda pair: bool(late & set(duel.split_pair(pair))))
         seeds = parse_seeds(args.seeds) if args.seeds else None
-        summary = duel.run_duels(suite, args.seed_set, pairs, seeds=seeds, server=args.server, results=results_dir)
+        summary = duel.run_duels(
+            suite,
+            args.seed_set,
+            pairs,
+            seeds=seeds,
+            server=args.server,
+            results=results_dir,
+            room=lambda pair: _warm_pair(suite, pair, args.server),
+        )
         print(
             f"{len(summary.finished)} games played, {summary.skipped} already done, {len(summary.failed)} failed",
             file=sys.stderr,
@@ -301,6 +311,28 @@ def cmd_duel(args: argparse.Namespace) -> int:
         done = len(duel.read_games(duel.pair_dir(suite.id, args.seed_set, pair, results=results_dir)))
         print(f"{pair:<36} {done:>3}/{total}")
     return 0
+
+
+def _warm_pair(suite: Suite, pair: str, server: str) -> None:
+    """Before a pair plays: wait until no other model holds the GPU, then load its two models one at a time with
+    one untimed request each, so that two never load at once and no game request waits on a load."""
+    import time
+
+    from arena import duel
+    from arena.players import TextPlayer
+
+    duel.wait_for_room(pair)
+    task = duel.Connect4Duel()
+    task.reset(1)
+    question = task.decision_point().question
+    for player_id in duel.split_pair(pair):
+        player = TextPlayer(contestants()[player_id], ModelClient(server, timeout=5400, retries=0), suite.group_size)
+        started = time.perf_counter()
+        try:
+            player.ask(question, "warm-up")
+        finally:
+            player.close()
+        print(f"{player_id} ready ({time.perf_counter() - started:.0f}s)", file=sys.stderr, flush=True)
 
 
 def cmd_laya_cuts(args: argparse.Namespace) -> int:
@@ -458,6 +490,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--models", help="comma-separated models for run (default: every model in model-compose.yml)")
     p.add_argument("--pairs", help="comma-separated pairs a~b for run, in running order")
     p.add_argument("--seeds", help="seed list for run, e.g. 1-5 (default: the suite's seeds of the seed set)")
+    p.add_argument("--last", help="comma-separated models whose pairs run last (the largest, to load with most room)")
     server(p)
     results(p)
     p.set_defaults(func=cmd_duel)
