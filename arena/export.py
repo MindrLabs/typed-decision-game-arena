@@ -1,4 +1,6 @@
-"""Site data: webui/data/index.json (scores, players, diagnostics) and a few gzipped replays per player.
+"""Site data: webui/data/index.json (scores, players, diagnostics) and a few gzipped replays per player, plus
+webui/data/versus.json and the replays the Versus pages open (every model episode of the compared games, and the
+direct games; see arena/versus.py).
 
 The site (site/, built into webui/) only reads these files, so the leaderboard works from any static host and
 from model-compose's static web UI alike. Replays are gzipped JSON the browser inflates with DecompressionStream.
@@ -12,7 +14,7 @@ import shutil
 from datetime import UTC, datetime
 from pathlib import Path
 
-from arena import __version__
+from arena import __version__, versus
 from arena.bias import bias_path
 from arena.core import JSON
 from arena.logs import RESULTS, decisions_path, read_decisions, read_episodes, read_final, read_json, run_dir
@@ -112,6 +114,7 @@ def export(
     out: Path = WEBUI_DATA,
     results: Path = RESULTS,
     replays_per_player: int = 2,
+    versus: bool = True,
 ) -> Path:
     """Everything is read and checked before `out` is touched, so a refused export leaves the old data in place."""
     report = score(suite, seed_set, results)
@@ -174,4 +177,19 @@ def export(
         "replays": replays,
     }
     (out / "index.json").write_text(json.dumps(index, indent=1, ensure_ascii=False, sort_keys=True) + "\n")
+    if versus:
+        _export_versus(suite, seed_set, out, results, players)
     return out / "index.json"
+
+
+def _export_versus(suite: Suite, seed_set: str, out: Path, results: Path, players: dict[str, JSON]) -> None:
+    models = [pid for pid, info in players.items() if info["kind"] == "model"]
+    for board, game in versus.GAMES:
+        for model in models:
+            directory = run_dir(suite.id, seed_set, board, game, model, results=results)
+            for episode in read_episodes(directory):
+                if not (out / f"replays/{board}/{game}/{model}/{episode['seed']}.json.gz").exists():
+                    _write_replay(suite, seed_set, episode, out, results)
+    versus.write_duel_replays(seed_set, out, results)
+    data = versus.versus_data(suite, seed_set, models, results=results)
+    (out / "versus.json").write_text(json.dumps(data, separators=(",", ":"), ensure_ascii=False, sort_keys=True) + "\n")

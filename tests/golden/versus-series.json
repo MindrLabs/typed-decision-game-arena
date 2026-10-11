@@ -1,0 +1,45 @@
+{
+  "about": "Two runs of one seed as (position, score) points, where each stopped and its final score, with the expected comparison. Read by tests/test_versus.py and site/src/lib/versus.test.ts.",
+  "cases": [
+    {
+      "name": "a chase after a top-out, decided late",
+      "a": {"points": [[0, 0], [4, 1], [12, 2], [34, 3]], "end": 35, "final": 3},
+      "b": {"points": [[0, 0], [9, 1], [11, 2]], "end": 21, "final": 2},
+      "lead_changes": 2,
+      "chase": true,
+      "margin": 1
+    },
+    {
+      "name": "nothing scored",
+      "a": {"points": [[0, 0]], "end": 12, "final": 0},
+      "b": {"points": [[0, 0]], "end": 12, "final": 0},
+      "lead_changes": 0,
+      "chase": false,
+      "margin": 0
+    },
+    {
+      "name": "the survivor is already ahead: no chase",
+      "a": {"points": [[0, 0], [6, 1]], "end": 10, "final": 1},
+      "b": {"points": [[0, 0], [3, 2], [8, 3]], "end": 20, "final": 3},
+      "lead_changes": 0,
+      "chase": false,
+      "margin": -2
+    },
+    {
+      "name": "steps that do not line up (real-time board)",
+      "a": {"points": [[0, 0], [5, 1], [15, 2]], "end": 20, "final": 2},
+      "b": {"points": [[0, 0], [7, 1], [8, 2], [30, 3]], "end": 40, "final": 3},
+      "lead_changes": 1,
+      "chase": true,
+      "margin": -1
+    },
+    {
+      "name": "a level score keeps the last leader",
+      "a": {"points": [[0, 0], [2, 1], [5, 2], [9, 3]], "end": 12, "final": 3},
+      "b": {"points": [[0, 0], [3, 1], [6, 2], [7, 3], [10, 4]], "end": 12, "final": 4},
+      "lead_changes": 1,
+      "chase": false,
+      "margin": -1
+    }
+  ]
+}
