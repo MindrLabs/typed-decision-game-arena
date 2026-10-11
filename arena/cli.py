@@ -313,12 +313,24 @@ def cmd_duel(args: argparse.Namespace) -> int:
     return 0
 
 
-def _warm_pair(suite: Suite, pair: str, server: str, *, timeout: float = 3600.0) -> None:
-    """Before a pair plays: wait until no other model holds the GPU (two models share it during a game, and a third
-    could exhaust the GB10's unified memory), then load the pair's models one at a time with one untimed request
-    each, so that two never load at once and no game request waits on a load. model-compose unloads a model after
-    two idle minutes and a load can take a quarter of an hour, so a background thread keeps every model of the pair
-    that is already loaded warm with a request every half minute until the games start."""
+def _available_gib() -> float:
+    """MemAvailable from /proc/meminfo (the GB10's memory is shared with the GPU); infinite where it is unknown."""
+    try:
+        for line in Path("/proc/meminfo").read_text().splitlines():
+            if line.startswith("MemAvailable:"):
+                return int(line.split()[1]) / 2**20
+    except OSError:
+        pass
+    return float("inf")
+
+
+def _warm_pair(suite: Suite, pair: str, server: str, *, timeout: float = 3600.0, room_gib: float = 64.0) -> None:
+    """Before a pair plays: unless `room_gib` of memory is free, wait until no other model holds the GPU (two
+    models share it during a game, and a third could exhaust the GB10's unified memory). Then load the pair's
+    models one at a time with one untimed request each, so that two never load at once and no game request waits
+    on a load. model-compose unloads a model after two idle minutes and a load can take a quarter of an hour, so a
+    background thread keeps every model of the pair that is already loaded warm with a request every half minute
+    until the games start."""
     import threading
     import time
 
@@ -357,7 +369,7 @@ def _warm_pair(suite: Suite, pair: str, server: str, *, timeout: float = 3600.0)
             loaded = {p.runtime for p in gpu_processes() if p.runtime and p.busy}
             warm.update(pid for pid in members if pid in loaded)
             others = sorted(name for name in loaded if name and name not in members)
-            if not others:
+            if not others or _available_gib() >= room_gib:
                 break
             if time.monotonic() > deadline:
                 raise TimeoutError(f"models {others} stayed loaded for {timeout:.0f}s; stop them before {pair}")
