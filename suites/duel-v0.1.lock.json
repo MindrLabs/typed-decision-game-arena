@@ -1,0 +1,28 @@
+{
+  "packages": {
+    "ale-py": "0.12.1",
+    "gymnasium": "1.4.0",
+    "numpy": "2.5.3"
+  },
+  "python": "3.12",
+  "sources": {
+    "arena/core.py": "b22107814d68505a1e715bcd5fc043e868e5c5c56a90190492c488e4eaab9d01",
+    "arena/duel.py": "856c348886f21fcbdcc3c6a74c92d5ef0ecf8b89cc68a478641c7099b48638a2",
+    "arena/episode.py": "8f04efe6f1c1fe8b3ee7d9edde37e21b832015134a9932cf0ecb8d271f5f2aa8",
+    "arena/families.py": "13acb2dbede1b6b117225d4d967e9ba37d0ad40c61f5668721d2988d046eefe6",
+    "arena/games/__init__.py": "02f8f73ebec6a4a65d19648842f5767569d842acd9ab373ef57d2d55a1c37037",
+    "arena/games/atari.py": "727a48d7885628411bf765860f2d8e42e492e310ace9818fea1122e639f2b385",
+    "arena/games/breakout.py": "c3ad52123040e4350a2fdfa86abf4621d7fa2524aeee3835a6e6b48bb2c9eb27",
+    "arena/games/connect4.py": "8f59a9e11ae24b0442f49ceda40db6154f7ffe89eb9dd1d3f84e659c79aa519e",
+    "arena/games/pong.py": "75f1ee6deabec8288256d720313fea70c55376ae676966b7e74b110007952f44",
+    "arena/games/snake.py": "ebfe7086fb40743115b61832dc979af66282f12a6a4637398121c37e045052a4",
+    "arena/games/tetris.py": "8898e54c81864696416b2ccbfcd5510218c0c9e2c4d741eefc25a19fa3aa857c",
+    "arena/protocol.py": "ed2bc0a576a91162fffdd67f879d60c15ff72fb402aa313ccf5186b385a76b7c",
+    "arena/seeding.py": "d1533570597a05f27c5ea503f087054377441c8bc8ee923a0ae6a076742f7b76",
+    "arena/tasks.py": "3a4ba088157cf8d5fea2580865d85e8e5966bac7c36a0f53ff266b5782453530"
+  },
+  "suite": "duel-v0.1",
+  "suite_file": {
+    "suites/duel-v0.1.toml": "3a80c637ff4c2cf02869b72a55d0ecc27481f16746e992b7e731321580c52b8e"
+  }
+}
