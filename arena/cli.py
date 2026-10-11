@@ -315,13 +315,15 @@ def cmd_duel(args: argparse.Namespace) -> int:
 
 def _warm_pair(suite: Suite, pair: str, server: str, *, timeout: float = 3600.0) -> None:
     """Before a pair plays: wait until no other model holds the GPU (two models share it during a game, and a third
-    could exhaust the GB10's unified memory), keeping this pair's already loaded models warm with a request every
-    half minute (model-compose unloads a model after two idle minutes, and reloading the largest takes a quarter
-    of an hour). Then load the pair's models one at a time with one untimed request each, so that two never load
-    at once and no game request waits on a load."""
+    could exhaust the GB10's unified memory), then load the pair's models one at a time with one untimed request
+    each, so that two never load at once and no game request waits on a load. model-compose unloads a model after
+    two idle minutes and a load can take a quarter of an hour, so a background thread keeps every model of the pair
+    that is already loaded warm with a request every half minute until the games start."""
+    import threading
     import time
 
     from arena import duel
+    from arena.core import PlayerError
     from arena.gpu import gpu_processes
     from arena.players import TextPlayer
 
@@ -335,26 +337,41 @@ def _warm_pair(suite: Suite, pair: str, server: str, *, timeout: float = 3600.0)
         return TextPlayer(known[player_id], ModelClient(server, timeout=5400, retries=0), suite.group_size)
 
     players = {pid: untimed(pid) for pid in members}
+    keepers = {pid: untimed(pid) for pid in members}
+    warm: set[str] = set()
+    stop = threading.Event()
+
+    def keep_warm() -> None:
+        while not stop.wait(30):
+            for pid in sorted(warm):
+                try:
+                    keepers[pid].ask(question, "keep-alive")
+                except PlayerError as error:
+                    print(f"keep-alive {pid}: {error}", file=sys.stderr, flush=True)
+
+    thread = threading.Thread(target=keep_warm, daemon=True)
+    thread.start()
     try:
         deadline = time.monotonic() + timeout
         while True:
             loaded = {p.runtime for p in gpu_processes() if p.runtime and p.busy}
+            warm.update(pid for pid in members if pid in loaded)
             others = sorted(name for name in loaded if name and name not in members)
             if not others:
                 break
             if time.monotonic() > deadline:
                 raise TimeoutError(f"models {others} stayed loaded for {timeout:.0f}s; stop them before {pair}")
-            for pid in members:
-                if pid in loaded:
-                    players[pid].ask(question, "keep-alive")
             print(f"waiting for {', '.join(others)} to unload before {pair}", file=sys.stderr, flush=True)
             time.sleep(30)
         for pid in members:
             started = time.perf_counter()
             players[pid].ask(question, "warm-up")
+            warm.add(pid)
             print(f"{pid} ready ({time.perf_counter() - started:.0f}s)", file=sys.stderr, flush=True)
     finally:
-        for player in players.values():
+        stop.set()
+        thread.join(timeout=120)
+        for player in [*players.values(), *keepers.values()]:
             player.close()
 
 
