@@ -313,26 +313,49 @@ def cmd_duel(args: argparse.Namespace) -> int:
     return 0
 
 
-def _warm_pair(suite: Suite, pair: str, server: str) -> None:
-    """Before a pair plays: wait until no other model holds the GPU, then load its two models one at a time with
-    one untimed request each, so that two never load at once and no game request waits on a load."""
+def _warm_pair(suite: Suite, pair: str, server: str, *, timeout: float = 3600.0) -> None:
+    """Before a pair plays: wait until no other model holds the GPU (two models share it during a game, and a third
+    could exhaust the GB10's unified memory), keeping this pair's already loaded models warm with a request every
+    half minute (model-compose unloads a model after two idle minutes, and reloading the largest takes a quarter
+    of an hour). Then load the pair's models one at a time with one untimed request each, so that two never load
+    at once and no game request waits on a load."""
     import time
 
     from arena import duel
+    from arena.gpu import gpu_processes
     from arena.players import TextPlayer
 
-    duel.wait_for_room(pair)
+    members = duel.split_pair(pair)
     task = duel.Connect4Duel()
     task.reset(1)
     question = task.decision_point().question
-    for player_id in duel.split_pair(pair):
-        player = TextPlayer(contestants()[player_id], ModelClient(server, timeout=5400, retries=0), suite.group_size)
-        started = time.perf_counter()
-        try:
-            player.ask(question, "warm-up")
-        finally:
+    known = contestants()
+
+    def untimed(player_id: str) -> TextPlayer:
+        return TextPlayer(known[player_id], ModelClient(server, timeout=5400, retries=0), suite.group_size)
+
+    players = {pid: untimed(pid) for pid in members}
+    try:
+        deadline = time.monotonic() + timeout
+        while True:
+            loaded = {p.runtime for p in gpu_processes() if p.runtime and p.busy}
+            others = sorted(name for name in loaded if name and name not in members)
+            if not others:
+                break
+            if time.monotonic() > deadline:
+                raise TimeoutError(f"models {others} stayed loaded for {timeout:.0f}s; stop them before {pair}")
+            for pid in members:
+                if pid in loaded:
+                    players[pid].ask(question, "keep-alive")
+            print(f"waiting for {', '.join(others)} to unload before {pair}", file=sys.stderr, flush=True)
+            time.sleep(30)
+        for pid in members:
+            started = time.perf_counter()
+            players[pid].ask(question, "warm-up")
+            print(f"{pid} ready ({time.perf_counter() - started:.0f}s)", file=sys.stderr, flush=True)
+    finally:
+        for player in players.values():
             player.close()
-        print(f"{player_id} ready ({time.perf_counter() - started:.0f}s)", file=sys.stderr, flush=True)
 
 
 def cmd_laya_cuts(args: argparse.Namespace) -> int:
