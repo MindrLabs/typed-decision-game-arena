@@ -131,7 +131,9 @@ Environment 上（Machado et al. 2018）。各游戏的规则、选项和上限�
 网站的 Versus 页面在同一个种子上比较两个模型：两局并排、按同一位置同步回放（回合制榜单按决策，实时榜单按游戏步），显示带符号的
 分差、双方的选择概率、中间的对比栏，以及从日志计算出的字幕（首次得分、领先易手、先结束的一局、追分）。帧榜单和实时榜单上的
 Tetris 不参与比较：没有模型能消除一行。Connect Four 在 `duel-v0.1` 套件中由模型直接对弈（每个开局走两局并交换先后手，
-`arena duel`），评分为 Elo 尺度的 Bradley–Terry。规则见 [docs/methodology.md](docs/methodology.md#versus)。
+`arena duel`），评分为 Elo 尺度的 Bradley–Terry。在 test 开局上（1,800 局，2 局和棋）Clef 以 1881（95% 区间
+1841–1935）领先，其后是 Clef-flash 1705 和 Kev 9B 1587；全部评分与对阵记录见 `results/duel-v0.1/scores-test.json`。
+规则见 [docs/methodology.md](docs/methodology.md#versus)。
 
 ## 完整运行
 

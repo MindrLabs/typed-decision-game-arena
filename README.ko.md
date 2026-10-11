@@ -136,7 +136,9 @@ Environment(Machado et al. 2018)에서 돌립니다. 게임별 규칙, 선택지
 real-time 보드는 게임 step 단위) 재생하고, 부호가 붙은 점수 차, 양쪽의 선택 확률, 가운데 비교 열, 로그에서 계산한
 자막(첫 득점, 리드 교체, 먼저 끝난 판, 추격)을 보여 줍니다. frame과 real-time 보드의 Tetris는 어떤 모델도 줄을
 지우지 못해 뺐습니다. Connect Four는 suite `duel-v0.1`에서 모델끼리 직접 둡니다(오프닝마다 선후공을 바꿔 두 판,
-`arena duel`). 레이팅은 Elo 척도의 Bradley–Terry입니다. 규칙은 [docs/methodology.md](docs/methodology.md#versus)에 있습니다.
+`arena duel`). 레이팅은 Elo 척도의 Bradley–Terry입니다. test 오프닝 1,800판(무승부 2판)에서 Clef가 1881(95% 구간
+1841–1935)로 앞서고, Clef-flash 1705, Kev 9B 1587이 뒤따릅니다. 모든 레이팅과 쌍별 기록은
+`results/duel-v0.1/scores-test.json`에 있습니다. 규칙은 [docs/methodology.md](docs/methodology.md#versus)에 있습니다.
 
 ## 전체 실행
 

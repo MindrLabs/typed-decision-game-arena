@@ -138,7 +138,9 @@ the turn-based boards, by game step on the real-time board), with the signed sco
 probabilities, a comparison column and captions computed from the logs (first score, changes of lead, a run that
 stops, a chase). Tetris on the frame and real-time boards is left out: no model clears a line there. Connect Four
 is played directly between the models in suite `duel-v0.1` (every opening twice, colours swapped; `arena duel`),
-rated by Bradley–Terry on the Elo scale. The rules are in [docs/methodology.md](docs/methodology.md#versus).
+rated by Bradley–Terry on the Elo scale. On the test openings (1,800 games, 2 drawn) Clef leads at 1881 (95% interval
+1841–1935), then Clef-flash at 1705 and Kev 9B at 1587; `results/duel-v0.1/scores-test.json` has every rating and
+pair record. The rules are in [docs/methodology.md](docs/methodology.md#versus).
 
 ## Full runs
 

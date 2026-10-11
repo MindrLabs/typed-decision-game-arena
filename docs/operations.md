@@ -96,9 +96,12 @@ Steps:
 ## Direct games
 
 The duel suite has its own lock (`suites/duel-v0.1.lock.json`, which also locks `arena/duel.py`). A pair needs both
-models loaded at once, so the run waits before each pair until no other model holds the GPU, and loads the pair's
-models one at a time with an untimed request (Clef, 52 GB, takes about a quarter of an hour on the GB10 while other
-work holds memory). Run the largest model's pairs last, so it stays loaded across them:
+models loaded at once, so the run waits before each pair until no other model holds the GPU (or 64 GiB is free
+anyway), and loads the pair's models one at a time with an untimed request (Clef, 52 GB, takes about a quarter of an
+hour on the GB10 while other work holds memory). Run the largest model's pairs last, so it stays loaded across them.
+Clef's load peaks near 100 GB (the 52 GB on the GPU plus a CPU copy of about the same size), so start its pairs on a
+freshly started model server: the runtimes of the models played before keep a few GB each. If the server is killed
+for memory mid-load, restart it and run the same command again; finished games are kept.
 
 ```bash
 systemd-run --user --unit=arena-duel --working-directory=$PWD -E PATH=$PATH \
