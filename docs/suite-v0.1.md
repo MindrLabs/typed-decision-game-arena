@@ -5,8 +5,8 @@ The games, what each decision looks like, and how each game is scored. Parameter
 first question of every board and game, exactly as models receive it, is in [`tests/golden/`](../tests/golden).
 `uv run arena show --board <board> --game <game> --seed <seed> --skip <n>` prints any later one.
 
-Status: **not frozen.** The numbers below may still change after the dev-seed pilot; once
-`suites/v0.1.lock.json` exists they are fixed.
+Status: **frozen** on 2026-10-08 after the dev-seed pilot (`suites/v0.1.lock.json`, lock `17f3ed7e0f66…`). The
+numbers below are fixed; changing any of them makes a new suite version, and every player runs again.
 
 ## Overview
 

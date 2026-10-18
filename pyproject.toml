@@ -1,7 +1,7 @@
 [project]
 name = "typed-decision-game-arena"
 version = "0.1.0"
-description = "Typed-decision models playing Tetris, Snake, Connect Four, Pong and Breakout under one pre-registered protocol"
+description = "Typed-decision models playing Tetris, Snake, Connect Four, Pong and Breakout under one frozen protocol"
 readme = "README.md"
 license = "MIT"
 requires-python = "==3.12.*"

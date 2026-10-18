@@ -289,8 +289,37 @@ lock은 바뀌지 않습니다. Clef 로딩은 GPU 52GB에 거의 같은 크기�
   내준 수는 56번으로 Clef 다음으로 적습니다.
 - Kev 4B가 Kev 0.8B보다 아래입니다. Kev 9B와 Nimble 9B v2는 구간이 겹쳐 순서를 가리지 못합니다.
 
-## 10. 남은 일
+## 10. 보고서 형식 (2026-10-18)
+
+**무엇을 바꿨나.** README 세 언어판을 MindrLabs의 다른 저장소와 같은 보고서
+형식으로 다시 썼습니다. 요약, 1 실험 환경, 2 돌리는 데 드는 것, 3 결과, 4 권고, 5 한계와 측정하지 않은 것 순서이고,
+그 뒤에 Reference, Changes, License가 옵니다. 표 1, 3, 5–9는 `scripts/stats.py`가, 그림 1–5(en, ko, zh-cn)는
+`scripts/charts.py`가 results/에서 다시 계산합니다(`just report`). 데모 GIF는 사이트의 직접 대국 리플레이(Clef 대
+Clef-flash, 오프닝 5의 첫 판)를 한 수씩 찍어 만들었습니다.
+
+**정한 것 (근거 포함).**
+- "사전 등록"이라는 말은 쓰지 않습니다. 시점이 찍힌 별도의 사전 등록 문서가 없기 때문입니다. 대신 suite가 test
+  시드보다 먼저 동결되고 해시됐다는 사실과, 채점 코드(`arena/score.py`)가 동결 전에 마지막으로 바뀌었다는 사실을
+  적습니다. 같은 이유로 pyproject와 `arena/__init__.py`의 "pre-registered"를 "frozen"으로 고쳤습니다.
+- `arena score`와 `arena duel score`가 내지 않는 분석은 *(exploratory)*로 표시합니다. 선택지에 적힌 사실을 따랐는지
+  (표 8, 그림 4)와, macro Connect Four 순위와 직접 대국 순위의 상관(Spearman 0.97)이 여기에 해당합니다.
+- 표 8은 결정 하나하나가 필요합니다. git에는 결정 로그가 없고, 직접 대국의 로그는 HF dataset에도 없습니다(`arena
+  dataset`은 suite v0.1만 올립니다). 그런데 사이트가 커밋해 둔 리플레이(`webui/data/replays`)에 모든 모델의 Snake
+  macro 판과 모든 직접 대국이 같은 결정으로 들어 있습니다. 그래서 로그가 없으면 리플레이를 읽고, 두 경로의 결과가
+  같음을 확인했습니다. random 행만 random의 로그가 필요합니다(`arena run`으로 몇 초).
+- 숫자 반올림은 사이트(`site/src/lib/format.ts`)와 같게 했습니다. 정확히 반인 값은 0에서 먼 쪽으로 올립니다. 그래서
+  Clef의 Elo가 사이트와 같은 1881입니다.
+- 그림 색은 family별로 고정했습니다(Clef 파랑, Laya 주황, Nimble 청록, Kev 노랑). 색약 시뮬레이션에서의 구분과
+  배경 대비는 검사 스크립트로 확인했고, 대비가 낮은 두 색은 행 이름과 값 라벨, README의 표가 보완합니다.
+
+**새로 드러난 것 (탐색적).** 선택지 순서를 뒤집은 200문항에서 같은 답을 한 것은 Clef 두 모델뿐입니다(100%, 나머지
+43–74%). Snake에서 안전한 수가 함께 있는데도 "so the game ends"라고 적힌 수를 고른 비율은 Kev 4B 85%, 무작위
+34%, Nimble 0.1–0.3%입니다.
+
+## 11. 남은 일
 
 1. 저장소와 dataset의 공개 전환: 사전 승인.
 2. 새 family upstream 기여: PR마다 사전 승인. 후보는 NeoHorse-Jev-4B, AutoJev-27B, 그 밖의 Decision Index 상위
    공개 모델입니다.
+3. 보고서가 "측정하지 않은 것"으로 적은 항목: 모델별 GPU 메모리, 모델에 다시 물어 같은 답을 내는지 보는 재현 검사,
+   다른 하드웨어에서의 Real-time 보드. 모두 GPU 시간이 들므로 사전 승인.
