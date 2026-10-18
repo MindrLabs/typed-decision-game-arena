@@ -312,21 +312,16 @@ def game_k(results: S.Results, t: dict[str, Any], out: Path) -> None:
 def options(results: S.Results, t: dict[str, Any], out: Path) -> bool:
     order = S.ranked(S.scores(results)["boards"]["macro"])
     c4 = S.connect4_choices(results)
-    snake = {p: S.snake_choices(results, p) for p in [*order, "random"]}
-    if c4 is None or any(snake[p] is None for p in order):
+    fatal = {p: n for p in [*order, "random"] if (n := S.snake_choices(results, p)) is not None}
+    if c4 is None or any(p not in fatal for p in order):
         return False
-
-    def share(counts: tuple[int, int] | None) -> float:
-        assert counts is not None
-        return 100 * counts[0] / counts[1]
-
     agreement = {p: 100 * S.load(results.suite() / "bias" / f"{p}.json")["overall"]["agreement"] for p in order}
-    random = snake["random"]
+    random = 100 * fatal["random"][0] / fatal["random"][1] if "random" in fatal else None
     panels = [
         (agreement, None),
-        ({p: share(snake[p]) for p in order}, None if random is None else share(random)),
-        ({p: share(c4[p][:2]) for p in order}, None),
-        ({p: share(c4[p][2:]) for p in order}, None),
+        ({p: 100 * fatal[p][0] / fatal[p][1] for p in order}, random),
+        ({p: 100 * c4[p][0] / c4[p][1] for p in order}, None),
+        ({p: 100 * c4[p][2] / c4[p][3] for p in order}, None),
     ]
     fig, axes = plt.subplots(2, 2, figsize=(10, 9), dpi=160, sharey=True)
     fig.subplots_adjust(left=0.2, right=0.97, top=0.9, bottom=0.04, wspace=0.12, hspace=0.28)

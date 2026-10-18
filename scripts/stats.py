@@ -5,11 +5,11 @@
     uv run python scripts/stats.py --pairs          adjacent pairs of each board, for the text
 
 Tables 1, 3, 5, 6, 7 and 9 read the scores, latency and bias of suite v0.1, its episode lines, and the direct
-games of duel-v0.1. Table 8 reads every decision of the Snake macro games and of the direct games: from the decision
-logs a run leaves under results/ (git ignores them), otherwise from the replays the site ships in
-webui/data/replays, which carry the same decisions for every model game. Its random row needs random's own logs:
-`uv run arena run --board macro --game snake --player random --seeds test` writes them in seconds. Tables 2, 4 and
-10 are prose. Charts: scripts/charts.py.
+games of duel-v0.1; Tables 3 and 11 also read results/v0.1/recheck.json, which scripts/recheck.py writes. Table 8
+reads every decision of the Snake macro games and of the direct games: from the decision logs a run leaves under
+results/ (git ignores them), otherwise from the replays the site ships in webui/data/replays, which carry the same
+decisions for every model game. Its random row needs random's own logs: `uv run arena run --board macro --game
+snake --player random --seeds test` writes them in seconds. Tables 2, 4 and 10 are prose. Charts: scripts/charts.py.
 """
 
 from __future__ import annotations
@@ -196,47 +196,39 @@ def table1(results: Results) -> str:
     return "Table 1: Summary by model (index: random 0, reference 100)\n\n" + table(head, rows, "lrrrrrr")
 
 
+def recheck(results: Results) -> dict[str, Any]:
+    """scripts/recheck.py's summary: seed 1 asked again, and each model's memory while it played."""
+    path = results.suite() / "recheck.json"
+    return dict(load(path)["models"]) if path.exists() else {}
+
+
 def table3(results: Results) -> str:
-    totals: dict[str, dict[str, float]] = {}
+    seconds: dict[str, float] = {}
     for e in episodes(results):
-        t = totals.setdefault(e["player"], {"calls": 0, "seconds": 0.0})
-        t["calls"] += e["calls"]
-        t["seconds"] += e["seconds"]
+        seconds[e["player"]] = seconds.get(e["player"], 0.0) + e["seconds"]
     k = delays(results)
+    again = recheck(results)
     rows = []
     for pid in sorted(models(), key=lambda p: statistics.median(latency(results, p, "frame"))):
         frame, macro = latency(results, pid, "frame"), latency(results, pid, "macro")
-        t = totals[pid]
-        rows.append(
-            [
-                title(pid),
-                spread(frame),
-                spread(macro),
-                span(k[pid]),
-                f"{int(t['calls']):,}",
-                f"{num(t['seconds'] / 3600)} h",
-            ]
+        measured = again.get(pid, {})
+        memory = (
+            f"{num(measured['gpu_memory_mib'] / 1024)} / {num(measured['peak_resident_mib'] / 1024)} GiB"
+            if measured.get("gpu_memory_mib") and measured.get("peak_resident_mib")
+            else ""
         )
-    played = [t for p, t in totals.items() if p not in ANCHORS]
-    rows.append(
-        [
-            "All ten",
-            "",
-            "",
-            "",
-            f"{int(sum(t['calls'] for t in played)):,}",
-            f"{num(sum(t['seconds'] for t in played) / 3600)} h",
-        ]
-    )
+        rows.append([title(pid), spread(frame), spread(macro), span(k[pid]), memory, f"{num(seconds[pid] / 3600)} h"])
+    played = sum(v for p, v in seconds.items() if p not in ANCHORS)
+    rows.append(["All ten", "", "", "", "", f"{num(played / 3600)} h"])
     head = [
         "Model",
         "Per request, frame board",
         "Per request, macro board",
         "Real-time delay (steps)",
-        "Test requests",
+        "Memory, GPU / process peak",
         "Test play time",
     ]
-    return "Table 3: Time per request on the DGX Spark, and the test campaign\n\n" + table(head, rows, "lrrrrr")
+    return "Table 3: Time and memory on the DGX Spark, and the test campaign\n\n" + table(head, rows, "lrrrrr")
 
 
 def board_table(results: Results, board: str, number: int, caption: str) -> str:
@@ -375,6 +367,32 @@ def table9(results: Results) -> str:
     return f"Table 9: Connect Four between the models ({d['games']:,} games)\n\n" + table(head, rows, "lrrrrr")
 
 
+def table11(results: Results) -> str:
+    again = recheck(results)
+    rows = []
+    for pid in [p for p in models() if p in again]:
+        games = again[pid]["games"]
+        same = [g for g in games.values() if g.get("identical")]
+        compared = sum(g.get("same_before_first_difference", 0) for g in games.values())
+        largest = max((g.get("largest_probability_difference", 0.0) for g in games.values()), default=0.0)
+        firsts = [
+            f"{key}, decision {g['first_difference']['decision'] + 1}: {g['first_difference']['what']}"
+            for key, g in games.items()
+            if g.get("first_difference")
+        ]
+        rows.append(
+            [
+                title(pid),
+                f"{len(same)} of {len(games)}",
+                f"{compared:,}",
+                "0" if largest == 0 else f"{largest:.1e}",
+                "; ".join(firsts) or "none",
+            ]
+        )
+    head = ["Model", "Games identical", "Decisions the same", "Largest probability difference", "First difference"]
+    return "Table 11: Seed 1 asked again (every board and game)\n\n" + table(head, rows, "lrrrl")
+
+
 def pairs(results: Results) -> str:
     out = []
     for board in BOARDS:
@@ -402,6 +420,7 @@ TABLES = {
     7: table7,
     8: table8,
     9: table9,
+    11: table11,
 }
 
 
