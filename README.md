@@ -27,6 +27,7 @@ Scores are scaled per game between a random player (0) and a rule-based referenc
 - [5 Limitations and what we did not measure](#5-limitations-and-what-we-did-not-measure)
   - [What the intervals cover](#what-the-intervals-cover)
   - [Changes after the freeze](#changes-after-the-freeze)
+  - [Asking the models again](#asking-the-models-again)
   - [Floors](#floors)
   - [What the models could not read](#what-the-models-could-not-read)
   - [Other limitations](#other-limitations)
@@ -93,7 +94,7 @@ python3 -m http.server 8381 --bind 127.0.0.1 --directory webui     # then open h
 To recompute every table and figure below from the files in this repository:
 
 ```bash
-uv run python scripts/stats.py                       # Tables 1, 3 and 5-9
+uv run python scripts/stats.py                       # Tables 1, 3, 5-9 and 11
 uv run --extra report python scripts/charts.py       # Figures 1-5, into docs/images/<language>/
 ```
 
@@ -104,6 +105,12 @@ uv run arena campaign --seed-set test                # anchors, then each model:
 uv run arena duel run --seed-set test --last clef    # every pair of models at Connect Four
 uv run arena verify --seed-set test && uv run arena duel verify --seed-set test
 uv run arena score --seed-set test && uv run arena duel score --seed-set test
+```
+
+To ask the models again and compare every decision with the published one (the model server running; about three hours for all ten):
+
+```bash
+uv run python scripts/recheck.py --out /tmp/recheck  # seed 1 of every board and game, into results/v0.1/recheck.json
 ```
 
 | On the first run | What happens |
@@ -136,7 +143,8 @@ It returns `{"status": "completed", "output": {"decision": {"move": "straight"},
 4. Only Clef and Clef-flash ignored where an option stands: asked 200 fixed questions again with the options reversed, they picked the same option every time; the other eight models did in 43–74% of them. *(exploratory)* Acting on what an option says is a separate matter. In Snake, where every option says whether the move ends the game, Kev 4B chose such a move in 85% of the decisions that also offered a safe one, more often than random play (34%); the Laya models did about as often as random play (32–42%); Nimble 9B and 9B v2 almost never did (0.1% and 0.3%).
 5. Playing each other at Connect Four (1,800 games: every pair, 20 openings, both colours), Clef won all nine of its pairs and rated 1881 Elo [1841, 1935], ahead of Clef-flash (1705) and a group of Kev 9B, Nimble 9B v2 and Kev 0.8B (1547–1587, overlapping intervals). Clef took all 319 wins it was offered. Clef-flash passed over 186 of its 454 and still came second: it gave the opponent a four in 8% of the decisions where it could avoid it, against 24–80% for every model below it.
 6. Within a family, bigger was not always better. Kev 4B rated below Kev 0.8B in the direct games (1305 against 1547; the intervals do not overlap) and walked into walls in Snake. Nimble 9B v2 tied the first release on the macro board and more than doubled it on the frame board (24.4 against 9.8), all of it in Pong.
-7. A request took 28 ms (Laya typed-decisions) to 759 ms (Clef) on the DGX Spark. The whole test campaign took 40.2 hours of play and 587,687 requests; Clef alone took 12.9 hours.
+7. A request took 28 ms (Laya typed-decisions) to 759 ms (Clef) on the DGX Spark, and a model held 1.8 GiB (Laya multilingual) to 52.2 GiB (Clef) on the GPU. The whole test campaign took 40.2 hours of play and 587,687 requests; Clef alone took 12.9 hours.
+8. Asked again eight days later, every model repeated itself exactly: seed 1 of all 11 boards and games, played once more with every model, gave the same 25,515 decisions as the published games, with every probability equal to the last digit.
 
 Table 1: Summary by model (index: random 0, reference 100)
 
@@ -162,7 +170,7 @@ Table 2: Device and software
 | Device | NVIDIA DGX Spark: GB10, driver 580.126.09, 128 GB unified memory, aarch64. Shared with other jobs |
 | Model server | model-compose `9a7dad4f` (`scripts/model-compose.rev`), one runtime per model, one request at a time per model (`max_concurrent_count: 1`), no batching |
 | Model runtimes | torch 2.14.1+cu130 for Clef, Nimble and Laya (`laya` 0.4.0); torch 2.8.0+cu129 for Kev, which runs in fp32, the `kev` package's default. Every package of every runtime is in [`results/v0.1/environment.json`](results/v0.1/environment.json) |
-| Weights | Revisions pinned in `model-compose.yml`. model-compose's Laya driver takes no revision, so the Laya snapshot is recorded, not pinned |
+| Weights | Revisions pinned in `model-compose.yml`. model-compose's Laya driver takes no revision; the Laya bundle's `main` has been `7b928d82` since 2026-10-03, before the campaign |
 | Games | Tetris, Snake and Connect Four implemented here; Pong and Breakout on ale-py 0.12.1 with sticky actions 0.25 (Machado et al. 2018) |
 | Suites | v0.1, lock `17f3ed7e0f66`, frozen 2026-10-08 09:46 UTC before any test seed ran; duel-v0.1 (direct games), lock `1ba85311a039`, frozen 2026-10-11 08:03 UTC |
 | Test seeds | Tetris 1-50 (macro) and 1-30 (frame); Snake 1-50; Connect Four 1-60; Pong and Breakout 1-20. Direct games: openings 1-20, each pair twice with the colours swapped |
@@ -174,31 +182,32 @@ Table 2: Device and software
 - **Scores.** Per game, *k* = clip((model − random) / (reference − random), 0, 1) over the test seeds, and a board's index is 100 × the mean *k* of its games. The real-time board is scaled with the frame board's anchors. Intervals come from a paired bootstrap over seeds (2,000 resamples), and pairwise differences carry Holm-adjusted p-values within each board.
 - **Frozen before the test seeds.** `arena suite freeze` hashed the suite and every source file that shapes a question or a score into a lock, and test runs refuse a checkout that differs. The scoring code last changed before the freeze. The direct games have their own suite and lock, which also covers `arena/duel.py`. Analyses that `arena score` and `arena duel score` do not produce are marked *(exploratory)*. The [full protocol](docs/methodology.md) and the [per-game rules](docs/suite-v0.1.md) are in docs/.
 
-Every published game replays from its log. `arena verify` replayed all 3,940 episodes of the test campaign, and `arena duel verify` all 1,800 direct games, and required the same text, positions and final score byte for byte: there were 0 mismatches. This checks the games against the logs; it does not ask the models again (section [5](#other-limitations)).
+Every published game replays from its log. `arena verify` replayed all 3,940 episodes of the test campaign, and `arena duel verify` all 1,800 direct games, and required the same text, positions and final score byte for byte: there were 0 mismatches. That checks the games against the logs. The models were also asked again: on seed 1 of every board and game, all ten gave the same decisions and probabilities as published (section [5](#asking-the-models-again)).
 
 ## 2 What it takes to run
 
-Table 3: Time per request on the DGX Spark, and the test campaign
+Table 3: Time and memory on the DGX Spark, and the test campaign
 
-| Model | Per request, frame board | Per request, macro board | Real-time delay (steps) | Test requests | Test play time |
+| Model | Per request, frame board | Per request, macro board | Real-time delay (steps) | Memory, GPU / process peak | Test play time |
 |---|---:|---:|---:|---:|---:|
-| Laya (typed-decisions) | 28 ms (26–46) | 46 ms (30–49) | 1 | 74,350 | 0.8 h |
-| Laya (multilingual) | 38 ms | 19 ms (18–38) | 1 | 56,543 | 0.4 h |
-| Laya (english) | 45 ms (29–46) | 31 ms (29–47) | 1 | 54,887 | 0.6 h |
-| Kev 0.8B | 72 ms (65–87) | 88 ms (73–105) | 1–2 | 49,979 | 1.1 h |
-| Clef-flash | 240 ms (207–249) | 276 ms (252–306) | 4 | 56,108 | 3.7 h |
-| Bespoke Nimble 9B | 250 ms (209–254) | 297 ms (263–338) | 4 | 72,697 | 4.9 h |
-| Bespoke Nimble 9B v2 | 252 ms (212–255) | 301 ms (267–339) | 4 | 69,839 | 4.7 h |
-| Kev 4B | 317 ms (292–374) | 383 ms (328–515) | 5–6 | 40,417 | 3.6 h |
-| Kev 9B | 497 ms (450–595) | 607 ms (482–811) | 7–9 | 51,221 | 7.4 h |
-| Clef | 759 ms (674–813) | 914 ms (821–1000) | 11–13 | 61,646 | 12.9 h |
-| All ten |  |  |  | 587,687 | 40.2 h |
+| Laya (typed-decisions) | 28 ms (26–46) | 46 ms (30–49) | 1 | 2.8 / 3.4 GiB | 0.8 h |
+| Laya (multilingual) | 38 ms | 19 ms (18–38) | 1 | 1.8 / 4.3 GiB | 0.4 h |
+| Laya (english) | 45 ms (29–46) | 31 ms (29–47) | 1 | 2.9 / 3.4 GiB | 0.6 h |
+| Kev 0.8B | 72 ms (65–87) | 88 ms (73–105) | 1–2 | 3.3 / 5.3 GiB | 1.1 h |
+| Clef-flash | 240 ms (207–249) | 276 ms (252–306) | 4 | 18.5 / 18.4 GiB | 3.7 h |
+| Bespoke Nimble 9B | 250 ms (209–254) | 297 ms (263–338) | 4 | 18.3 / 18.4 GiB | 4.9 h |
+| Bespoke Nimble 9B v2 | 252 ms (212–255) | 301 ms (267–339) | 4 | 18.2 / 18.4 GiB | 4.7 h |
+| Kev 4B | 317 ms (292–374) | 383 ms (328–515) | 5–6 | 16.6 / 24.5 GiB | 3.6 h |
+| Kev 9B | 497 ms (450–595) | 607 ms (482–811) | 7–9 | 30.9 / 50.8 GiB | 7.4 h |
+| Clef | 759 ms (674–813) | 914 ms (821–1000) | 11–13 | 52.2 / 45.4 GiB | 12.9 h |
+| All ten |  |  |  |  | 40.2 h |
 
 - Times are `arena latency`: 200 fixed questions per game after 20 warm-up requests, one model alone on the GPU, timed on the client with model-compose's HTTP overhead included. Each cell is the median of the board's per-game medians, with their range. The real-time delay follows from them: *k* = ceil(median / 66.7 ms).
 - A macro decision with more than 8 options takes several requests (a Tetris piece about 4.7 on average), so a decision can take several times a request.
-- Kev runs in fp32, the `kev` package's default. We did not try bf16, which would change the times and possibly the picks.
 - The test campaign ran from 2026-10-08 09:48 to 2026-10-10 22:38 UTC, with two pauses: 3,940 episodes, of which 3,400 were model episodes, and 587,687 requests. Running models side by side does not speed it up: each model answers one request at a time, 95–100% of an episode's time is spent waiting for the model (measured for Kev 4B, Kev 9B and Nimble 9B), and two models on the GPU share it by time-slicing. Batching requests would change the numbers.
-- Every model loads on its first request and unloads after 2 idle minutes. An unloaded runtime keeps about 400 MiB of CUDA context; a loaded Laya about 2.8 GiB. Clef's 52 GB of weights took about 15 minutes to load while other jobs held memory, and the load peaks near 100 GB (a CPU copy of about the same size). We did not measure each model's GPU memory.
+- Memory was measured while each model played seed 1 again (`scripts/recheck.py`): the largest GPU memory nvidia-smi reported for the model's runtime, and the runtime process's peak resident memory (VmHWM), mostly the weights the loader holds in host memory before they move to the GPU. On the GB10 both come out of the same 128 GB, though not necessarily at the same time. Clef needs close to 100 GB free while it loads.
+- Kev runs in fp32, the `kev` package's default, and needs about twice the GPU memory of a bf16 model of its size: 30.9 GiB for Kev 9B, against 18.2–18.5 GiB for the 9B Nimble and Clef-flash models. We did not try bf16, which would change the times and possibly the picks.
+- Every model loads on its first request and unloads after 2 idle minutes; an unloaded runtime keeps 300–400 MiB of CUDA context. The first request after a start waits for the load, which takes minutes for the 9B and 27B models.
 - The 1,800 direct games need both models of a pair loaded at once. Clef's nine pairs (360 games) took 1 h 40 min, 19 minutes of it loading Clef.
 
 ## 3 Results
@@ -374,7 +383,7 @@ Table 9: Connect Four between the models (1,800 games)
 - **Choosing a size within a family**: Measure each size. Kev 4B was below Kev 0.8B in the direct games and in Snake, and Nimble 9B v2 and the first release are equal on one board and far apart on another.
 - **Small and fast**: Laya answers in 28 to 45 ms, but zero-shot it played near random play on almost every game here. Do not rely on it untrained; we did not measure how far fine-tuning on these games would take it.
 - **Comparing models on your own task**: Give every model the same text and the same seeds, scale against a random and a reference player, freeze the protocol before the test seeds, and log every decision so that every game can be replayed. During development, `arena verify` caught logs that a later change to the engine or the text had made stale.
-- **Reproducing a run**: Run `scripts/setup_runtimes.py` before `scripts/serve.sh`, keep the model-compose revision in `scripts/model-compose.rev`, and expect the real-time board to change on other hardware, since its delays come from this machine's latency.
+- **Reproducing a run**: Run `scripts/setup_runtimes.py` before `scripts/serve.sh` and keep the model-compose revision in `scripts/model-compose.rev`. With those, every model repeated every published decision of seed 1 here (Table 11). Expect the real-time board to change on other hardware, since its delays come from this machine's latency.
 
 ## 5 Limitations and what we did not measure
 
@@ -399,6 +408,27 @@ Table 10: Changes after the freezes
 | Direct games: the pair loading and memory waits changed four times after the duel freeze (`201f80b`, `8ade9c3`, `ea2ca0c`, `47e513d`); `arena/duel.py`, under the duel lock, did not | 2026-10-11 08:25-09:00 | Loading Clef's 52 GB timed out and overlapped | None: the lock matches |
 | The first attempt at Clef's pairs ran out of memory 17 minutes into loading; the server restarted and the same command resumed, keeping the finished games | 2026-10-11 | Runtimes of earlier models held memory | None |
 
+### Asking the models again
+
+On 2026-10-18, eight days after the campaign, we played seed 1 of every board and game once more with every model, through the same runner, on the same machine with the same model-compose revision and runtime packages (every runtime's package list matched `results/v0.1/environment.json`). `scripts/recheck.py` compared each decision with the published log: the question, the order each request showed, every pick, the knockout's group picks included, and every probability. The summary is in `results/v0.1/recheck.json`.
+
+Table 11: Seed 1 asked again (every board and game)
+
+| Model | Games identical | Decisions the same | Largest probability difference | First difference |
+|---|---:|---:|---:|---|
+| Clef | 11 of 11 | 3,224 | 0 | none |
+| Clef-flash | 11 of 11 | 2,421 | 0 | none |
+| Kev 9B | 11 of 11 | 2,168 | 0 | none |
+| Kev 4B | 11 of 11 | 2,050 | 0 | none |
+| Kev 0.8B | 11 of 11 | 2,156 | 0 | none |
+| Bespoke Nimble 9B v2 | 11 of 11 | 2,779 | 0 | none |
+| Bespoke Nimble 9B | 11 of 11 | 2,689 | 0 | none |
+| Laya (english) | 11 of 11 | 2,348 | 0 | none |
+| Laya (typed-decisions) | 11 of 11 | 3,241 | 0 | none |
+| Laya (multilingual) | 11 of 11 | 2,439 | 0 | none |
+
+All 110 games came out the same: 25,515 decisions and 26,382 requests, with every probability equal to the last digit. On this setup the models answer deterministically, so a published game is what a model does with that text, not one draw among many. This is one seed on one machine with one set of packages: other hardware or other package versions can flip near-tie picks.
+
 ### Floors
 
 Tetris on every board, macro Pong and the real-time board are at the floor for every model, so the indices rest on fewer games than the boards list: most of the macro index comes from Connect Four and Snake, and most of the frame index from Pong and Breakout. We did not change the suite because of it. The text is clear and neutral, and fitting it to the models would break the comparison; a new suite version would have to run every model again.
@@ -412,14 +442,14 @@ Tetris on every board, macro Pong and the real-time board are at the floor for e
 ### Other limitations
 
 - We measured on one DGX Spark, shared with other jobs. RTX-class GPUs, Macs and hosted APIs were not tried. Latency, and with it the real-time board, belongs to this machine.
-- We did not ask the models again to check that they repeat their answers. `arena verify` checks the games against the logs (text, positions, scores), not the models.
+- The models repeated themselves with the same packages on the same machine ([above](#asking-the-models-again)); we did not try other package versions.
 - The reference players are strong, not optimal: a depth-7 search in Connect Four, and a reference that loses macro Pong to the console.
 - The options state immediate consequences by design. They spare a model the arithmetic over a drawing of the board, and nothing in them looks further than one move.
 - Models remember nothing between decisions except what the state says.
 - One wording and one question format for everyone; only the JSON around it follows each family. Neither maker's own recommended prompt format was tried.
 - Serving settings are model-compose's and the packages' defaults: Kev in fp32, one request at a time, no batching. Faster settings would change the times and may change picks.
-- model-compose's Laya driver loads the bundle without a revision; `arena env` records the snapshot used. Nimble 9B v2 is served by the Nimble loader model-compose pins: for 26 choices or fewer its prompts are the release's own, and the v2 loader only adds a probability temperature, which does not change the pick. Nimble's probabilities here are therefore unscaled.
-- Not measured: GPU memory per model, other hardware, other wordings, other option orders, fine-tuning on these games, and models that write free text.
+- model-compose's Laya driver loads the bundle without a revision. Its `main` has been `7b928d82` since 2026-10-03, so the campaign, the direct games and the recheck all loaded that snapshot. Nimble 9B v2 is served by the Nimble loader model-compose pins: for 26 choices or fewer its prompts are the release's own, and the v2 loader only adds a probability temperature, which does not change the pick. Nimble's probabilities here are therefore unscaled.
+- Not measured: other hardware, other wordings, other option orders, fine-tuning on these games, and models that write free text.
 
 ## Reference
 
@@ -449,9 +479,9 @@ arena/                   the runner: games/, protocol, family adapters, episodes
   games/                 tetris.py snake.py connect4.py (here), pong.py breakout.py (ALE), each with its reference
 site/                    leaderboard, replay viewer and Versus pages (Vite, React); builds into webui/
 webui/                   the built site and webui/data from `arena export`, served by model-compose
-results/                 episode lines, scores, latency, bias, environment (see results/README.md)
+results/                 episode lines, scores, latency, bias, environment, recheck (see results/README.md)
 docs/                    methodology, suite, operations, design notes; images/ holds this README's figures
-scripts/                 serve.sh, setup_runtimes.py, model-compose.rev; stats.py and charts.py for this report
+scripts/                 serve.sh, setup_runtimes.py, model-compose.rev; stats.py, charts.py and recheck.py for this report
 tests/                   engines, protocol, runner, scoring, golden questions
 ```
 
@@ -464,7 +494,7 @@ Development checks: `uv run ruff check . && uv run mypy && uv run pytest`; for t
 | 2026-10-08 | Suite v0.1 frozen after a dev-seed pilot |
 | 2026-10-10 | Test results of ten models (3,940 episodes), the leaderboard and its replays |
 | 2026-10-11 | Direct Connect Four games between the models (suite duel-v0.1, 1,800 games) and the Versus pages |
-| 2026-10-18 | This README rewritten as a report, with its figures and the scripts that recompute them |
+| 2026-10-18 | This README rewritten as a report, with its figures and the scripts that recompute them. Seed 1 asked again of every model: all 110 games the same. Memory measured |
 
 ## License
 

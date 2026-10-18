@@ -27,6 +27,7 @@
 - [5 局限与未测量的内容](#5-局限与未测量的内容)
   - [置信区间涵盖什么](#置信区间涵盖什么)
   - [冻结之后的改动](#冻结之后的改动)
+  - [再问一遍模型](#再问一遍模型)
   - [地板效应](#地板效应)
   - [模型没有读到的输入](#模型没有读到的输入)
   - [其他局限](#其他局限)
@@ -93,7 +94,7 @@ python3 -m http.server 8381 --bind 127.0.0.1 --directory webui     # 然后打�
 要从本仓库中的文件重新算出下面所有的表和图：
 
 ```bash
-uv run python scripts/stats.py                       # 表 1、3 和 5-9
+uv run python scripts/stats.py                       # 表 1、3、5-9 和 11
 uv run --extra report python scripts/charts.py       # 图 1-5，写入 docs/images/<语言>/
 ```
 
@@ -104,6 +105,12 @@ uv run arena campaign --seed-set test                # 先跑锚点，再依次�
 uv run arena duel run --seed-set test --last clef    # 每一对模型下 Connect Four
 uv run arena verify --seed-set test && uv run arena duel verify --seed-set test
 uv run arena score --seed-set test && uv run arena duel score --seed-set test
+```
+
+要再问一遍模型，并把每个决策与公开的决策逐一对照（需要先启动模型服务器；十个模型全部做完约需三小时）：
+
+```bash
+uv run python scripts/recheck.py --out /tmp/recheck  # 所有榜单和游戏的种子 1，结果写入 results/v0.1/recheck.json
 ```
 
 | 首次运行时 | 会发生什么 |
@@ -136,7 +143,8 @@ curl -s 127.0.0.1:8380/api/workflows/runs -H 'Content-Type: application/json' -d
 4. 只有 Clef 和 Clef-flash 不受选项位置的影响：把 200 道固定问题的选项倒过来再问一遍，它们每次都选同一个选项；其余八个模型只在 43–74% 的问题上如此。*（探索性）* 是否按选项写的内容行事，则是另一回事。在 Snake 中，每个选项都写明这一步会不会结束游戏；在同时有安全走法的决策里，Kev 4B 有 85% 选了会结束游戏的走法，比随机下法（34%）还多；Laya 系列和随机下法差不多（32–42%）；Nimble 9B 和 9B v2 几乎从不这样（0.1% 和 0.3%）。
 5. 模型之间下 Connect Four（1,800 局：每一对模型、20 个开局、先后手各一次），Clef 赢下了自己的全部九组对阵，评分 1881 Elo [1841, 1935]，领先 Clef-flash（1705），以及 Kev 9B、Nimble 9B v2 和 Kev 0.8B 这一组（1547–1587，区间重叠）。送到眼前的 319 次胜利，Clef 全部拿下。Clef-flash 放过了 454 次中的 186 次，仍然排第二：在本可避免的决策中，它只有 8% 让对手连成四子，而排在它后面的每个模型都在 24–80%。
 6. 同一系列里，更大的模型不一定更好。直接对局中 Kev 4B 的评分低于 Kev 0.8B（1305 对 1547；区间不重叠），在 Snake 中还会撞墙。Nimble 9B v2 在 Macro 榜单上与第一版持平，在 Frame 榜单上却是后者的两倍多（24.4 对 9.8），差距全在 Pong。
-7. 在 DGX Spark 上，每次请求耗时 28 ms（Laya typed-decisions）到 759 ms（Clef）。整个 test 全套运行共用了 40.2 小时的游戏时间和 587,687 次请求，光 Clef 就用了 12.9 小时。
+7. 在 DGX Spark 上，每次请求耗时 28 ms（Laya typed-decisions）到 759 ms（Clef），模型在 GPU 上占用 1.8 GiB（Laya multilingual）到 52.2 GiB（Clef）。整个 test 全套运行共用了 40.2 小时的游戏时间和 587,687 次请求，光 Clef 就用了 12.9 小时。
+8. 八天后再问一遍，每个模型的回答都分毫不差：用每个模型把全部 11 个榜单与游戏的种子 1 再下一遍，得到的 25,515 个决策与公开的对局完全相同，概率也一直相同到最后一位。
 
 表 1：各模型概况（指数：随机 0，参考玩家 100）
 
@@ -162,7 +170,7 @@ curl -s 127.0.0.1:8380/api/workflows/runs -H 'Content-Type: application/json' -d
 | 设备 | NVIDIA DGX Spark：GB10，驱动 580.126.09，128 GB 统一内存，aarch64。与其他任务共用 |
 | 模型服务器 | model-compose `9a7dad4f`（`scripts/model-compose.rev`），每个模型一个运行环境，每个模型同一时间只处理一个请求（`max_concurrent_count: 1`），不做批处理 |
 | 模型运行环境 | Clef、Nimble 和 Laya 用 torch 2.14.1+cu130（`laya` 0.4.0）；Kev 用 torch 2.8.0+cu129，并以 `kev` 包的默认精度 fp32 运行。每个运行环境的全部软件包见 [`results/v0.1/environment.json`](results/v0.1/environment.json) |
-| 权重 | 版本固定在 `model-compose.yml` 中。model-compose 的 Laya 驱动不接受 revision，因此 Laya 的快照只记录、无法固定 |
+| 权重 | 版本固定在 `model-compose.yml` 中。model-compose 的 Laya 驱动不接受 revision；Laya 套件的 `main` 自 2026-10-03（全套运行之前）起一直是 `7b928d82` |
 | 游戏 | Tetris、Snake 和 Connect Four 在本仓库中实现；Pong 和 Breakout 运行在 ale-py 0.12.1 上，sticky actions 为 0.25（Machado et al. 2018） |
 | Suite | v0.1，lock `17f3ed7e0f66`，于 2026-10-08 09:46 UTC 冻结，早于任何 test 种子的运行；duel-v0.1（直接对局），lock `1ba85311a039`，于 2026-10-11 08:03 UTC 冻结 |
 | test 种子 | Tetris 1-50（Macro）和 1-30（Frame）；Snake 1-50；Connect Four 1-60；Pong 和 Breakout 1-20。直接对局：开局 1-20，每对模型交换先后手各下一局 |
@@ -174,31 +182,32 @@ curl -s 127.0.0.1:8380/api/workflows/runs -H 'Content-Type: application/json' -d
 - **分数。** 每个游戏在 test 种子上计算 *k* = clip((model − random) / (reference − random), 0, 1)，榜单指数是该榜单各游戏 *k* 的平均值乘以 100。Real-time 榜单使用 Frame 榜单的锚点换算。置信区间来自按种子配对的 bootstrap（2,000 次重抽样），两两差异附带在每个榜单内做 Holm 校正的 p 值。
 - **在 test 种子之前冻结。** `arena suite freeze` 把 suite 和所有影响问题或分数的源文件哈希成一个 lock，工作树不一致时 test 运行会被拒绝。计分代码的最后一次修改早于冻结。直接对局有自己的 suite 和 lock，这个 lock 还覆盖 `arena/duel.py`。`arena score` 和 `arena duel score` 不产生的分析都标注为 *（探索性）*。[完整协议](docs/methodology.md)和[各游戏规则](docs/suite-v0.1.md)在 docs/ 中。
 
-每一局公开的游戏都能从日志重放。`arena verify` 重放了 test 全套运行的全部 3,940 局，`arena duel verify` 重放了全部 1,800 局直接对局，要求文本、局面和最终分数逐字节一致：不一致为 0。这检查的是游戏与日志是否一致，并不会再去问一遍模型（见第 [5](#其他局限) 节）。
+每一局公开的游戏都能从日志重放。`arena verify` 重放了 test 全套运行的全部 3,940 局，`arena duel verify` 重放了全部 1,800 局直接对局，要求文本、局面和最终分数逐字节一致：不一致为 0。这检查的是游戏与日志是否一致。我们也再问了一遍模型：在每个榜单和游戏的种子 1 上，十个模型给出的决策和概率都与公开的相同（见第 [5](#再问一遍模型) 节）。
 
 ## 2 运行需要什么
 
-表 3：DGX Spark 上每次请求的时间，以及 test 全套运行
+表 3：DGX Spark 上的时间与内存，以及 test 全套运行
 
-| 模型 | 每次请求，Frame 榜单 | 每次请求，Macro 榜单 | Real-time 延迟（步） | test 请求数 | test 游戏时间 |
+| 模型 | 每次请求，Frame 榜单 | 每次请求，Macro 榜单 | Real-time 延迟（步） | 内存，GPU / 进程峰值 | test 游戏时间 |
 |---|---:|---:|---:|---:|---:|
-| Laya (typed-decisions) | 28 ms（26–46） | 46 ms（30–49） | 1 | 74,350 | 0.8 小时 |
-| Laya (multilingual) | 38 ms | 19 ms（18–38） | 1 | 56,543 | 0.4 小时 |
-| Laya (english) | 45 ms（29–46） | 31 ms（29–47） | 1 | 54,887 | 0.6 小时 |
-| Kev 0.8B | 72 ms（65–87） | 88 ms（73–105） | 1–2 | 49,979 | 1.1 小时 |
-| Clef-flash | 240 ms（207–249） | 276 ms（252–306） | 4 | 56,108 | 3.7 小时 |
-| Bespoke Nimble 9B | 250 ms（209–254） | 297 ms（263–338） | 4 | 72,697 | 4.9 小时 |
-| Bespoke Nimble 9B v2 | 252 ms（212–255） | 301 ms（267–339） | 4 | 69,839 | 4.7 小时 |
-| Kev 4B | 317 ms（292–374） | 383 ms（328–515） | 5–6 | 40,417 | 3.6 小时 |
-| Kev 9B | 497 ms（450–595） | 607 ms（482–811） | 7–9 | 51,221 | 7.4 小时 |
-| Clef | 759 ms（674–813） | 914 ms（821–1000） | 11–13 | 61,646 | 12.9 小时 |
-| 十个模型合计 |  |  |  | 587,687 | 40.2 小时 |
+| Laya (typed-decisions) | 28 ms (26–46) | 46 ms (30–49) | 1 | 2.8 / 3.4 GiB | 0.8 小时 |
+| Laya (multilingual) | 38 ms | 19 ms (18–38) | 1 | 1.8 / 4.3 GiB | 0.4 小时 |
+| Laya (english) | 45 ms (29–46) | 31 ms (29–47) | 1 | 2.9 / 3.4 GiB | 0.6 小时 |
+| Kev 0.8B | 72 ms (65–87) | 88 ms (73–105) | 1–2 | 3.3 / 5.3 GiB | 1.1 小时 |
+| Clef-flash | 240 ms (207–249) | 276 ms (252–306) | 4 | 18.5 / 18.4 GiB | 3.7 小时 |
+| Bespoke Nimble 9B | 250 ms (209–254) | 297 ms (263–338) | 4 | 18.3 / 18.4 GiB | 4.9 小时 |
+| Bespoke Nimble 9B v2 | 252 ms (212–255) | 301 ms (267–339) | 4 | 18.2 / 18.4 GiB | 4.7 小时 |
+| Kev 4B | 317 ms (292–374) | 383 ms (328–515) | 5–6 | 16.6 / 24.5 GiB | 3.6 小时 |
+| Kev 9B | 497 ms (450–595) | 607 ms (482–811) | 7–9 | 30.9 / 50.8 GiB | 7.4 小时 |
+| Clef | 759 ms (674–813) | 914 ms (821–1000) | 11–13 | 52.2 / 45.4 GiB | 12.9 小时 |
+| 十个模型合计 |  |  |  |  | 40.2 小时 |
 
 - 时间来自 `arena latency`：每个游戏 200 道固定问题，先预热 20 次请求，GPU 上只有这一个模型，在客户端计时，包含 model-compose 的 HTTP 开销。每格是该榜单各游戏中位数的中位数，括号内是它们的范围。Real-time 延迟由此得出：*k* = ceil(中位数 / 66.7 ms)。
 - 超过 8 个选项的 Macro 决策需要多次请求（一个 Tetris 方块平均约 4.7 次），因此一个决策可能要花一次请求好几倍的时间。
-- Kev 以 `kev` 包的默认精度 fp32 运行。我们没有试 bf16，它会改变时间，也可能改变选择。
 - test 全套运行从 2026-10-08 09:48 持续到 2026-10-10 22:38 UTC，中间暂停过两次：共 3,940 局，其中 3,400 局是模型对局，共 587,687 次请求。让多个模型并排运行并不能加快速度：每个模型同一时间只回答一个请求，一局 95–100% 的时间都在等模型（在 Kev 4B、Kev 9B 和 Nimble 9B 上实测），而两个模型同在 GPU 上时只是分时共用。批处理会改变数字。
-- 每个模型在第一次请求时加载，空闲 2 分钟后卸载。卸载后的运行环境仍占约 400 MiB 的 CUDA 上下文；加载后的 Laya 约占 2.8 GiB。在其他任务占用内存时，Clef 的 52 GB 权重加载用了约 15 分钟，加载峰值接近 100 GB（另有一份大小相近的 CPU 副本）。我们没有测量每个模型的 GPU 内存。
+- 内存是在每个模型重新下种子 1 时测量的（`scripts/recheck.py`）：nvidia-smi 为该模型的运行环境报告的最大 GPU 内存，以及运行环境进程的常驻内存峰值（VmHWM）。后者主要是加载器在把权重移到 GPU 之前放在主机内存里的那一份。在 GB10 上两者都出自同一块 128 GB，但不一定同时占用。加载 Clef 时需要空出接近 100 GB。
+- Kev 以 `kev` 包的默认精度 fp32 运行，所需 GPU 内存约为同等规模 bf16 模型的两倍：Kev 9B 为 30.9 GiB，而 9B 的两个 Nimble 模型和 Clef-flash 为 18.2–18.5 GiB。我们没有试 bf16，它会改变时间，也可能改变选择。
+- 每个模型在第一次请求时加载，空闲 2 分钟后卸载；卸载后的运行环境仍占 300–400 MiB 的 CUDA 上下文。服务器启动后的第一次请求要等模型加载，9B 和 27B 模型需要几分钟。
 - 1,800 局直接对局要求一对模型同时加载。Clef 的九组对阵（360 局）用了 1 小时 40 分钟，其中 19 分钟在加载 Clef。
 
 ## 3 结果
@@ -374,7 +383,7 @@ Connect Four 得分：赢一局得 1，和棋得 ½，对手是一组固定的�
 - **在同一系列里选规模时**：每个规模都要实测。Kev 4B 在直接对局和 Snake 中都不如 Kev 0.8B；Nimble 9B v2 和第一版在一个榜单上相同，在另一个榜单上却相差很远。
 - **又小又快的模型**：Laya 的回答只需 28 到 45 ms，但不经训练时，它在这里几乎每个游戏上都接近随机下法。不要直接依赖它；用这些游戏微调能让它进步多少，我们没有测量。
 - **在自己的任务上比较模型时**：给每个模型相同的文本和相同的种子，以随机玩家和参考玩家为锚点换算，在 test 种子之前冻结协议，并记录每一个决策，让每一局都能重放。开发期间，`arena verify` 抓到过因后来修改引擎或文本而过时的日志。
-- **重现运行时**：在 `scripts/serve.sh` 之前运行 `scripts/setup_runtimes.py`，保持 `scripts/model-compose.rev` 中的 model-compose 版本，并预期 Real-time 榜单在其他硬件上会变化，因为它的延迟来自这台机器的速度。
+- **重现运行时**：在 `scripts/serve.sh` 之前运行 `scripts/setup_runtimes.py`，保持 `scripts/model-compose.rev` 中的 model-compose 版本。这样做时，每个模型在这里都分毫不差地重复了种子 1 的公开决策（表 11）。另外要预期 Real-time 榜单在其他硬件上会变化，因为它的延迟来自这台机器的速度。
 
 ## 5 局限与未测量的内容
 
@@ -399,6 +408,27 @@ suite 的 lock 覆盖游戏、文本、选项顺序和对局循环，这些文�
 | 直接对局：duel 冻结之后，成对加载和内存等待的代码改过四次（`201f80b`、`8ade9c3`、`ea2ca0c`、`47e513d`）；受 duel lock 约束的 `arena/duel.py` 没有改 | 2026-10-11 08:25-09:00 | 加载 Clef 的 52 GB 时超时，加载过程互相重叠 | 无：lock 一致 |
 | 第一次跑 Clef 的对阵时，加载 17 分钟后内存耗尽；服务器重启后用同一条命令继续，已完成的对局都保留 | 2026-10-11 | 之前模型的运行环境占着内存 | 无 |
 
+### 再问一遍模型
+
+在全套运行结束八天后的 2026-10-18，我们在同一台机器上，用同一个 model-compose 版本和相同的运行环境软件包（每个运行环境的软件包列表都与 `results/v0.1/environment.json` 一致），通过同一个运行器，让每个模型把每个榜单和游戏的种子 1 再下一遍。`scripts/recheck.py` 把每个决策与公开的日志逐一对照：问题、每次请求展示的顺序、每一个选择（包括淘汰赛的小组选择）以及每一个概率。汇总见 `results/v0.1/recheck.json`。
+
+表 11：再次询问种子 1 的结果（所有榜单和游戏）
+
+| 模型 | 相同的对局 | 相同的决策 | 最大概率差 | 首次出现差异 |
+|---|---:|---:|---:|---|
+| Clef | 11 局中 11 局 | 3,224 | 0 | 无 |
+| Clef-flash | 11 局中 11 局 | 2,421 | 0 | 无 |
+| Kev 9B | 11 局中 11 局 | 2,168 | 0 | 无 |
+| Kev 4B | 11 局中 11 局 | 2,050 | 0 | 无 |
+| Kev 0.8B | 11 局中 11 局 | 2,156 | 0 | 无 |
+| Bespoke Nimble 9B v2 | 11 局中 11 局 | 2,779 | 0 | 无 |
+| Bespoke Nimble 9B | 11 局中 11 局 | 2,689 | 0 | 无 |
+| Laya (english) | 11 局中 11 局 | 2,348 | 0 | 无 |
+| Laya (typed-decisions) | 11 局中 11 局 | 3,241 | 0 | 无 |
+| Laya (multilingual) | 11 局中 11 局 | 2,439 | 0 | 无 |
+
+110 局全部相同：25,515 个决策和 26,382 次请求都一样，概率也一直相同到最后一位。在这套环境中模型的回答是确定性的，所以公开的对局就是模型拿到那段文本时会做的事，而不是多次抽样中的一次。不过这只是在一个种子、一台机器、一套软件包上的检查：换硬件或换软件包版本，可能会让接近平票的选择翻转。
+
 ### 地板效应
 
 所有榜单上的 Tetris、Macro Pong 以及 Real-time 榜单对每个模型都处在地板上，因此指数实际依靠的游戏比榜单列出的要少：Macro 指数大部分来自 Connect Four 和 Snake，Frame 指数大部分来自 Pong 和 Breakout。我们没有因此修改 suite。文本清楚而中立，为迁就模型去改写会破坏比较；而新的 suite 版本必须让每个模型都重新跑一遍。
@@ -412,14 +442,14 @@ suite 的 lock 覆盖游戏、文本、选项顺序和对局循环，这些文�
 ### 其他局限
 
 - 我们只在一台与其他任务共用的 DGX Spark 上测量，没有试 RTX 级 GPU、Mac 和托管 API。延迟以及随之而来的 Real-time 榜单，都属于这台机器。
-- 我们没有再问一遍模型，看它们是否会给出同样的回答。`arena verify` 检查的是游戏与日志（文本、局面、分数）是否一致，而不是模型。
+- 在同一台机器、同一套软件包上，模型的回答完全相同（见[上文](#再问一遍模型)）；我们没有试其他软件包版本。
 - 参考玩家很强，但并非最优：Connect Four 中是 7 层搜索，Macro Pong 中的参考玩家会输给主机。
 - 选项按设计只陈述即时后果。它们替模型省去了在棋盘图上做的计算，而且其中没有任何内容往后看超过一步。
 - 除了状态中写明的内容，模型在决策之间什么都不记得。
 - 所有模型使用同一种措辞和同一种问题格式，只有外层的 JSON 遵循各系列的格式。也没有试各开发者自己推荐的提示格式。
 - 服务设置是 model-compose 和各软件包的默认值：Kev 用 fp32，一次一个请求，不做批处理。更快的设置会改变时间，也可能改变选择。
-- model-compose 的 Laya 驱动加载套件时不带 revision；`arena env` 记录了实际使用的快照。Nimble 9B v2 由 model-compose 固定的 Nimble 加载器提供服务：选项不超过 26 个时，它的提示与官方版本相同，v2 加载器只多了一个概率温度，不会改变选择。因此这里 Nimble 的概率是未经缩放的。
-- 未测量：每个模型的 GPU 内存、其他硬件、其他措辞、其他选项顺序、在这些游戏上的微调，以及会写自由文本的模型。
+- model-compose 的 Laya 驱动加载套件时不带 revision。套件的 `main` 自 2026-10-03 起一直是 `7b928d82`，所以全套运行、直接对局和重新提问用的都是这个快照。Nimble 9B v2 由 model-compose 固定的 Nimble 加载器提供服务：选项不超过 26 个时，它的提示与官方版本相同，v2 加载器只多了一个概率温度，不会改变选择。因此这里 Nimble 的概率是未经缩放的。
+- 未测量：其他硬件、其他措辞、其他选项顺序、在这些游戏上的微调，以及会写自由文本的模型。
 
 ## 参考
 
@@ -449,9 +479,9 @@ arena/                   运行器：games/、协议、系列适配器、对局�
   games/                 tetris.py snake.py connect4.py（本仓库实现），pong.py breakout.py（ALE），各含参考玩家
 site/                    排行榜、回放查看器和 Versus 页面（Vite、React）；构建到 webui/
 webui/                   构建好的网站和 `arena export` 生成的 webui/data，由 model-compose 提供
-results/                 对局记录、分数、延迟、位置偏差、环境（见 results/README.md）
+results/                 对局记录、分数、延迟、位置偏差、环境、重新提问（见 results/README.md）
 docs/                    方法、suite、运维、设计笔记；images/ 存放本 README 的图
-scripts/                 serve.sh、setup_runtimes.py、model-compose.rev；本报告用的 stats.py 和 charts.py
+scripts/                 serve.sh、setup_runtimes.py、model-compose.rev；本报告用的 stats.py、charts.py 和 recheck.py
 tests/                   引擎、协议、运行器、计分、golden 问题
 ```
 
@@ -464,7 +494,7 @@ tests/                   引擎、协议、运行器、计分、golden 问题
 | 2026-10-08 | 经过 dev 种子试运行后冻结 suite v0.1 |
 | 2026-10-10 | 十个模型的 test 结果（3,940 局）、排行榜及其回放 |
 | 2026-10-11 | 模型之间的 Connect Four 直接对局（suite duel-v0.1，1,800 局）和 Versus 页面 |
-| 2026-10-18 | 本 README 改写为报告，附上图表以及重新计算它们的脚本 |
+| 2026-10-18 | 本 README 改写为报告，附上图表以及重新计算它们的脚本。再问每个模型一遍种子 1：110 局全部相同。测量了内存 |
 
 ## 许可证
 

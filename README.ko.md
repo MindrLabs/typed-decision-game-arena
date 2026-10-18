@@ -27,6 +27,7 @@ typed-decision 모델이 Tetris, Snake, Connect Four, Pong, Breakout을 한 번�
 - [5 한계와 측정하지 않은 것](#5-한계와-측정하지-않은-것)
   - [신뢰구간이 담는 것](#신뢰구간이-담는-것)
   - [동결 이후 바뀐 것](#동결-이후-바뀐-것)
+  - [모델에게 다시 묻기](#모델에게-다시-묻기)
   - [바닥에 붙은 게임](#바닥에-붙은-게임)
   - [모델이 읽지 못한 입력](#모델이-읽지-못한-입력)
   - [그 밖의 한계](#그-밖의-한계)
@@ -93,7 +94,7 @@ python3 -m http.server 8381 --bind 127.0.0.1 --directory webui     # 그다음 h
 아래의 표와 그림을 모두 이 저장소의 파일만으로 다시 계산하려면:
 
 ```bash
-uv run python scripts/stats.py                       # 표 1, 3, 5-9
+uv run python scripts/stats.py                       # 표 1, 3, 5-9, 11
 uv run --extra report python scripts/charts.py       # 그림 1-5, docs/images/<언어>/에 쓴다
 ```
 
@@ -104,6 +105,12 @@ uv run arena campaign --seed-set test                # 앵커, 이어서 모델�
 uv run arena duel run --seed-set test --last clef    # 모든 모델 쌍이 Connect Four를 둔다
 uv run arena verify --seed-set test && uv run arena duel verify --seed-set test
 uv run arena score --seed-set test && uv run arena duel score --seed-set test
+```
+
+모델에게 다시 물어 모든 결정을 공개한 것과 대조하려면(모델 서버를 띄운 상태에서. 열 모델 모두 하면 세 시간쯤 걸린다):
+
+```bash
+uv run python scripts/recheck.py --out /tmp/recheck  # 모든 보드와 게임의 시드 1. 결과는 results/v0.1/recheck.json
 ```
 
 | 첫 실행 | 하는 일 |
@@ -136,7 +143,8 @@ curl -s 127.0.0.1:8380/api/workflows/runs -H 'Content-Type: application/json' -d
 4. 선택지가 놓인 자리를 무시한 것은 Clef와 Clef-flash뿐이다. 고정 질문 200개를 선택지 순서를 뒤집어 다시 묻자 둘은 매번 같은 선택지를 골랐고, 나머지 여덟 모델은 43–74%에서만 그랬다. *(탐색적)* 선택지에 적힌 내용대로 움직이는지는 또 다른 문제다. 선택지마다 그 수로 게임이 끝나는지 적혀 있는 Snake에서, Kev 4B는 안전한 수도 함께 있던 결정의 85%에서 게임이 끝나는 수를 골랐다. 무작위 플레이(34%)보다 잦다. Laya 모델들은 무작위 플레이와 비슷했고(32–42%), Nimble 9B와 9B v2는 거의 그러지 않았다(0.1%, 0.3%).
 5. Connect Four로 서로 맞붙자(1,800판: 모든 쌍, 오프닝 20개, 선후공 양쪽) Clef가 9쌍을 모두 이기며 Elo 1881 [1841, 1935]을 기록했다. 그 뒤로 Clef-flash(1705), 이어서 Kev 9B, Nimble 9B v2, Kev 0.8B가 한 무리(1547–1587, 구간이 겹친다)를 이룬다. Clef는 주어진 승리 319번을 모두 잡았다. Clef-flash는 454번 중 186번을 놓치고도 2위였다. 피할 수 있었는데도 상대에게 4목을 내준 결정이 8%뿐이었고, 그보다 아래인 모델은 모두 24–80%였다.
 6. 같은 family 안에서도 클수록 낫지는 않았다. Kev 4B는 직접 대국에서 Kev 0.8B보다 아래였고(1305 대 1547, 구간이 겹치지 않는다) Snake에서는 벽으로 걸어 들어갔다. Nimble 9B v2는 Macro 보드에서 첫 릴리스와 같았지만 Frame 보드에서는 두 배 넘게 앞섰고(24.4 대 9.8), 그 차이는 모두 Pong에서 났다.
-7. 요청 하나에 DGX Spark에서 28 ms(Laya typed-decisions)부터 759 ms(Clef)까지 걸렸다. test campaign 전체는 플레이 시간 40.2시간, 요청 587,687번이었고, Clef 혼자 12.9시간이었다.
+7. 요청 하나에 DGX Spark에서 28 ms(Laya typed-decisions)부터 759 ms(Clef)까지 걸렸고, 모델이 GPU에 쓴 메모리는 1.8 GiB(Laya multilingual)부터 52.2 GiB(Clef)까지였다. test campaign 전체는 플레이 시간 40.2시간, 요청 587,687번이었고, Clef 혼자 12.9시간이었다.
+8. 8일 뒤에 다시 물어도 모든 모델이 똑같이 답했다. 모든 보드와 게임 11개의 시드 1을 모든 모델로 한 번 더 돌리자 공개한 게임과 같은 결정 25,515개가 나왔고, 확률도 끝자리까지 같았다.
 
 표 1: 모델별 요약(지수: 무작위 0, 기준 플레이어 100)
 
@@ -162,7 +170,7 @@ curl -s 127.0.0.1:8380/api/workflows/runs -H 'Content-Type: application/json' -d
 | 장비 | NVIDIA DGX Spark: GB10, 드라이버 580.126.09, 통합 메모리 128 GB, aarch64. 다른 작업과 함께 쓴다 |
 | 모델 서버 | model-compose `9a7dad4f`(`scripts/model-compose.rev`). 모델마다 런타임 하나를 두고, 모델마다 요청을 한 번에 하나씩 처리하며(`max_concurrent_count: 1`) 여러 요청을 묶어 처리하지 않는다 |
 | 모델 런타임 | Clef, Nimble, Laya는 torch 2.14.1+cu130(`laya` 0.4.0). Kev는 torch 2.8.0+cu129이고, `kev` 패키지의 기본값인 fp32로 돈다. 런타임마다 모든 패키지 목록이 [`results/v0.1/environment.json`](results/v0.1/environment.json)에 있다 |
-| 가중치 | 리비전은 `model-compose.yml`에 고정했다. model-compose의 Laya 드라이버는 리비전을 받지 않아서, Laya 스냅샷은 고정하지 못하고 기록만 했다 |
+| 가중치 | 리비전은 `model-compose.yml`에 고정했다. model-compose의 Laya 드라이버는 리비전을 받지 않는다. Laya 번들의 `main`은 campaign 전인 2026-10-03부터 `7b928d82`다 |
 | 게임 | Tetris, Snake, Connect Four는 이 저장소에서 구현했다. Pong과 Breakout은 ale-py 0.12.1에서 sticky action 0.25로 돌린다(Machado et al. 2018) |
 | suite | v0.1, lock `17f3ed7e0f66`, test 시드를 하나도 돌리기 전인 2026-10-08 09:46 UTC에 동결. duel-v0.1(직접 대국), lock `1ba85311a039`, 2026-10-11 08:03 UTC에 동결 |
 | test 시드 | Tetris 1-50(Macro)과 1-30(Frame), Snake 1-50, Connect Four 1-60, Pong과 Breakout 1-20. 직접 대국: 오프닝 1-20, 쌍마다 선후공을 바꿔 두 판 |
@@ -174,31 +182,32 @@ curl -s 127.0.0.1:8380/api/workflows/runs -H 'Content-Type: application/json' -d
 - **점수.** 게임마다 test 시드 평균으로 *k* = clip((model − random) / (reference − random), 0, 1)를 구하고, 보드 지수는 그 보드 게임들의 *k* 평균에 100을 곱한 값이다. Real-time 보드는 Frame 보드의 앵커로 환산한다. 신뢰구간은 시드를 짝지어 다시 뽑는 부트스트랩(2,000회)으로 구하고, 쌍별 차이에는 보드마다 Holm 보정한 p값을 붙인다.
 - **test 시드 전에 동결.** `arena suite freeze`가 suite와, 질문이나 점수를 정하는 소스 파일을 모두 해시해 lock으로 묶었고, test 실행은 이와 다른 체크아웃을 거부한다. 채점 코드가 마지막으로 바뀐 것은 동결 전이다. 직접 대국에는 따로 suite와 lock이 있고, 그 lock은 `arena/duel.py`까지 묶는다. `arena score`와 `arena duel score`가 내지 않는 분석에는 *(탐색적)* 표시를 붙였다. [전체 프로토콜](docs/methodology.md)과 [게임별 규칙](docs/suite-v0.1.md)은 docs/에 있다.
 
-공개한 모든 게임은 로그에서 재생된다. `arena verify`가 test campaign의 에피소드 3,940개를, `arena duel verify`가 직접 대국 1,800판을 모두 재생해 텍스트, 국면, 최종 점수가 바이트 단위로 같은지 확인했고, 불일치는 0이었다. 이것은 게임을 로그와 대조한 것이지 모델에게 다시 물은 것이 아니다([5절](#그-밖의-한계)).
+공개한 모든 게임은 로그에서 재생된다. `arena verify`가 test campaign의 에피소드 3,940개를, `arena duel verify`가 직접 대국 1,800판을 모두 재생해 텍스트, 국면, 최종 점수가 바이트 단위로 같은지 확인했고, 불일치는 0이었다. 이것은 게임을 로그와 대조한 것이다. 모델에게도 다시 물었다. 모든 보드와 게임의 시드 1에서 열 모델 모두 공개한 것과 같은 결정과 확률을 냈다([5절](#모델에게-다시-묻기)).
 
 ## 2 돌리는 데 드는 것
 
-표 3: DGX Spark에서 요청당 시간과 test campaign
+표 3: DGX Spark에서 걸린 시간과 메모리, 그리고 test campaign
 
-| 모델 | 요청당 시간, Frame 보드 | 요청당 시간, Macro 보드 | Real-time 지연(스텝) | test 요청 수 | test 플레이 시간 |
+| 모델 | 요청당 시간, Frame 보드 | 요청당 시간, Macro 보드 | Real-time 지연(스텝) | 메모리, GPU / 프로세스 최대 | test 플레이 시간 |
 |---|---:|---:|---:|---:|---:|
-| Laya (typed-decisions) | 28 ms (26–46) | 46 ms (30–49) | 1 | 74,350 | 0.8 h |
-| Laya (multilingual) | 38 ms | 19 ms (18–38) | 1 | 56,543 | 0.4 h |
-| Laya (english) | 45 ms (29–46) | 31 ms (29–47) | 1 | 54,887 | 0.6 h |
-| Kev 0.8B | 72 ms (65–87) | 88 ms (73–105) | 1–2 | 49,979 | 1.1 h |
-| Clef-flash | 240 ms (207–249) | 276 ms (252–306) | 4 | 56,108 | 3.7 h |
-| Bespoke Nimble 9B | 250 ms (209–254) | 297 ms (263–338) | 4 | 72,697 | 4.9 h |
-| Bespoke Nimble 9B v2 | 252 ms (212–255) | 301 ms (267–339) | 4 | 69,839 | 4.7 h |
-| Kev 4B | 317 ms (292–374) | 383 ms (328–515) | 5–6 | 40,417 | 3.6 h |
-| Kev 9B | 497 ms (450–595) | 607 ms (482–811) | 7–9 | 51,221 | 7.4 h |
-| Clef | 759 ms (674–813) | 914 ms (821–1000) | 11–13 | 61,646 | 12.9 h |
-| 모델 열 개 합계 |  |  |  | 587,687 | 40.2 h |
+| Laya (typed-decisions) | 28 ms (26–46) | 46 ms (30–49) | 1 | 2.8 / 3.4 GiB | 0.8 h |
+| Laya (multilingual) | 38 ms | 19 ms (18–38) | 1 | 1.8 / 4.3 GiB | 0.4 h |
+| Laya (english) | 45 ms (29–46) | 31 ms (29–47) | 1 | 2.9 / 3.4 GiB | 0.6 h |
+| Kev 0.8B | 72 ms (65–87) | 88 ms (73–105) | 1–2 | 3.3 / 5.3 GiB | 1.1 h |
+| Clef-flash | 240 ms (207–249) | 276 ms (252–306) | 4 | 18.5 / 18.4 GiB | 3.7 h |
+| Bespoke Nimble 9B | 250 ms (209–254) | 297 ms (263–338) | 4 | 18.3 / 18.4 GiB | 4.9 h |
+| Bespoke Nimble 9B v2 | 252 ms (212–255) | 301 ms (267–339) | 4 | 18.2 / 18.4 GiB | 4.7 h |
+| Kev 4B | 317 ms (292–374) | 383 ms (328–515) | 5–6 | 16.6 / 24.5 GiB | 3.6 h |
+| Kev 9B | 497 ms (450–595) | 607 ms (482–811) | 7–9 | 30.9 / 50.8 GiB | 7.4 h |
+| Clef | 759 ms (674–813) | 914 ms (821–1000) | 11–13 | 52.2 / 45.4 GiB | 12.9 h |
+| 모델 열 개 합계 |  |  |  |  | 40.2 h |
 
 - 시간은 `arena latency`로 쟀다. 게임마다 고정 질문 200개를 워밍업 요청 20개 뒤에 묻고, GPU에 모델 하나만 올린 채 클라이언트에서 model-compose의 HTTP 오버헤드까지 포함해 쟀다. 칸마다 그 보드의 게임별 중앙값들의 중앙값이고, 괄호 안은 그 범위다. Real-time 지연은 여기서 나온다: *k* = ceil(중앙값 / 66.7 ms).
 - 선택지가 8개를 넘는 Macro 결정에는 요청이 여러 번 필요하다(Tetris 피스 하나에 평균 약 4.7번). 그래서 결정 하나에 요청 몇 번만큼의 시간이 걸릴 수 있다.
-- Kev는 `kev` 패키지의 기본값인 fp32로 돈다. bf16은 시험하지 않았다. 바꾸면 시간이 달라지고, 선택도 달라질 수 있다.
 - test campaign은 2026-10-08 09:48부터 2026-10-10 22:38 UTC까지, 중간에 두 번 멈췄다가 이어서 돌았다. 에피소드는 3,940개(그중 모델 에피소드 3,400개), 요청은 587,687번이다. 모델을 나란히 돌려도 빨라지지 않는다. 모델마다 요청을 한 번에 하나씩 처리하고, 에피소드 시간의 95–100%가 모델을 기다리는 시간이며(Kev 4B, Kev 9B, Nimble 9B에서 실측), GPU에 모델 둘을 올리면 시분할로 나눠 쓴다. 요청을 묶어 처리하면 수치가 달라진다.
-- 모델은 첫 요청 때 올라가고, 2분 동안 요청이 없으면 내려간다. 내려간 런타임도 CUDA 컨텍스트를 약 400 MiB 쥐고 있고, Laya는 올라가면 약 2.8 GiB를 쓴다. Clef의 가중치 52 GB는 다른 작업이 메모리를 쓰는 동안 올리는 데 약 15분 걸렸고, 로딩 중에는 비슷한 크기의 CPU 사본까지 더해 100 GB 가까이 쓴다. 모델별 GPU 메모리는 재지 않았다.
+- 메모리는 모델마다 시드 1을 다시 플레이하는 동안 쟀다(`scripts/recheck.py`). nvidia-smi가 그 모델의 런타임에 대해 보고한 가장 큰 GPU 메모리와, 런타임 프로세스의 최대 상주 메모리(VmHWM)다. 뒤의 것은 대부분 로더가 가중치를 GPU로 옮기기 전에 호스트 메모리에 쥐고 있는 몫이다. GB10에서는 둘 다 같은 128 GB에서 나가지만, 반드시 동시에 쓰이지는 않는다. Clef를 올릴 때는 100 GB 가까이 비어 있어야 한다.
+- Kev는 `kev` 패키지의 기본값인 fp32로 돌아서, 같은 크기의 bf16 모델보다 GPU 메모리를 두 배쯤 쓴다. Kev 9B가 30.9 GiB, 9B인 Nimble 두 모델과 Clef-flash가 18.2–18.5 GiB다. bf16은 시험하지 않았다. 바꾸면 시간이 달라지고, 선택도 달라질 수 있다.
+- 모델은 첫 요청 때 올라가고, 2분 동안 요청이 없으면 내려간다. 내려간 런타임도 CUDA 컨텍스트를 300–400 MiB 쥐고 있다. 서버를 띄운 뒤 첫 요청은 로딩을 기다리며, 9B와 27B 모델은 몇 분이 걸린다.
 - 직접 대국 1,800판은 쌍마다 두 모델을 동시에 올려야 한다. Clef의 9쌍(360판)에는 1시간 40분이 걸렸고, 그중 19분이 Clef 로딩이었다.
 
 ## 3 결과
@@ -374,7 +383,7 @@ Versus 페이지도 같은 이유로 Frame과 Real-time의 Tetris를 뺐다. 모
 - **family 안에서 크기를 고를 때**: 크기마다 따로 잰다. Kev 4B는 직접 대국과 Snake에서 Kev 0.8B보다 못했고, Nimble 9B v2와 첫 릴리스는 한 보드에서는 같고 다른 보드에서는 크게 갈렸다.
 - **작고 빠른 모델**: Laya는 28–45 ms에 답하지만, 학습 없이는 여기의 거의 모든 게임에서 무작위 플레이에 가까웠다. 그대로는 기대지 않는다. 이 게임들로 파인튜닝하면 얼마나 오르는지는 재지 않았다.
 - **내 과제에서 모델을 비교할 때**: 모든 모델에 같은 텍스트와 같은 시드를 주고, 무작위 플레이어와 기준 플레이어 사이로 환산하고, test 시드 전에 프로토콜을 동결하고, 모든 결정을 로그로 남겨 모든 게임을 재생할 수 있게 한다. 개발 중에 `arena verify`는 엔진이나 텍스트를 나중에 고쳐서 낡아 버린 로그를 잡아냈다.
-- **실행을 재현할 때**: `scripts/serve.sh` 전에 `scripts/setup_runtimes.py`를 돌리고, model-compose 리비전은 `scripts/model-compose.rev`대로 둔다. Real-time 보드의 지연은 이 장비의 latency에서 나오므로, 다른 하드웨어에서는 이 보드가 달라진다고 본다.
+- **실행을 재현할 때**: `scripts/serve.sh` 전에 `scripts/setup_runtimes.py`를 돌리고, model-compose 리비전은 `scripts/model-compose.rev`대로 둔다. 그렇게 하면 여기서는 모든 모델이 시드 1의 공개 결정을 하나도 빠짐없이 되풀이했다(표 11). Real-time 보드의 지연은 이 장비의 latency에서 나오므로, 다른 하드웨어에서는 이 보드가 달라진다고 본다.
 
 ## 5 한계와 측정하지 않은 것
 
@@ -399,6 +408,27 @@ suite의 lock은 게임, 텍스트, 선택지 순서, 에피소드 루프를 묶
 | 직접 대국: duel 동결 뒤 쌍 로딩과 메모리 대기 방식을 네 번 고쳤다(`201f80b`, `8ade9c3`, `ea2ca0c`, `47e513d`). duel lock이 묶는 `arena/duel.py`는 바뀌지 않았다 | 2026-10-11 08:25-09:00 | Clef 52 GB 로딩이 시간 제한에 걸려 겹쳤다 | 없음: lock이 일치한다 |
 | Clef 쌍의 첫 시도가 로딩 17분 만에 메모리 부족으로 멈췄다. 서버를 다시 띄우고 같은 명령으로 이어 돌렸고, 끝난 판은 그대로 남았다 | 2026-10-11 | 앞서 돌린 모델들의 런타임이 메모리를 쥐고 있었다 | 없음 |
 
+### 모델에게 다시 묻기
+
+campaign이 끝나고 8일 뒤인 2026-10-18에, 같은 장비와 같은 model-compose 리비전, 같은 런타임 패키지로(런타임마다 패키지 목록이 `results/v0.1/environment.json`과 일치했다) 모든 모델에게 모든 보드와 게임의 시드 1을 같은 러너로 한 번 더 플레이시켰다. `scripts/recheck.py`가 결정마다 공개한 로그와 대조했다. 질문, 요청마다 보여 준 순서, 토너먼트의 조별 선택까지 포함한 모든 선택, 그리고 모든 확률이다. 요약은 `results/v0.1/recheck.json`에 있다.
+
+표 11: 시드 1을 다시 물은 결과(모든 보드와 게임)
+
+| 모델 | 같은 게임 | 같은 결정 | 가장 큰 확률 차이 | 처음 달라진 곳 |
+|---|---:|---:|---:|---|
+| Clef | 11개 중 11개 | 3,224 | 0 | 없음 |
+| Clef-flash | 11개 중 11개 | 2,421 | 0 | 없음 |
+| Kev 9B | 11개 중 11개 | 2,168 | 0 | 없음 |
+| Kev 4B | 11개 중 11개 | 2,050 | 0 | 없음 |
+| Kev 0.8B | 11개 중 11개 | 2,156 | 0 | 없음 |
+| Bespoke Nimble 9B v2 | 11개 중 11개 | 2,779 | 0 | 없음 |
+| Bespoke Nimble 9B | 11개 중 11개 | 2,689 | 0 | 없음 |
+| Laya (english) | 11개 중 11개 | 2,348 | 0 | 없음 |
+| Laya (typed-decisions) | 11개 중 11개 | 3,241 | 0 | 없음 |
+| Laya (multilingual) | 11개 중 11개 | 2,439 | 0 | 없음 |
+
+110판이 모두 같았다. 결정 25,515개와 요청 26,382번이 같았고, 확률도 끝자리까지 같았다. 이 환경에서 모델은 결정적으로 답하므로, 공개한 게임은 그 텍스트를 받은 모델이 실제로 하는 일이지 여러 번 뽑은 것 중 하나가 아니다. 다만 시드 하나, 장비 하나, 패키지 한 벌로 확인한 것이다. 다른 하드웨어나 다른 패키지 버전에서는 거의 동점인 선택이 뒤집힐 수 있다.
+
 ### 바닥에 붙은 게임
 
 모든 보드의 Tetris, Macro Pong, Real-time 보드는 모든 모델이 바닥이라, 지수는 보드에 올린 것보다 적은 게임에 기대고 있다. Macro 지수는 대부분 Connect Four와 Snake에서, Frame 지수는 대부분 Pong과 Breakout에서 나온다. 그렇다고 suite를 바꾸지는 않았다. 텍스트는 명확하고 중립적이며, 모델에 맞춰 고치면 비교가 깨진다. 고치려면 새 suite 버전으로 모든 모델을 다시 돌려야 한다.
@@ -412,14 +442,14 @@ suite의 lock은 게임, 텍스트, 선택지 순서, 에피소드 루프를 묶
 ### 그 밖의 한계
 
 - 다른 작업과 함께 쓰는 DGX Spark 한 대에서만 쟀다. RTX 계열 GPU, Mac, 호스팅 API는 해 보지 않았다. latency와, 그에 따라 Real-time 보드는 이 장비에 매여 있다.
-- 모델에게 다시 물어 같은 답을 하는지는 확인하지 않았다. `arena verify`는 게임을 로그와 대조할 뿐(텍스트, 국면, 점수) 모델을 대조하지 않는다.
+- 같은 장비와 같은 패키지에서는 모델이 똑같이 답했다([위](#모델에게-다시-묻기)). 다른 패키지 버전은 시험하지 않았다.
 - 기준 플레이어는 강하지만 최적은 아니다. Connect Four는 깊이 7 탐색이고, Macro Pong의 기준 플레이어는 콘솔에 진다.
 - 선택지는 설계상 즉시 결과만 적는다. 판 그림을 놓고 셈하는 수고를 덜어 줄 뿐, 한 수보다 더 앞을 내다보지 않는다.
 - 모델은 상태 텍스트에 적힌 것 말고는 결정 사이에 아무것도 기억하지 않는다.
 - 문장과 질문 형식은 모두에게 하나씩이다. family마다 다른 것은 그것을 감싼 JSON뿐이다. 제작사가 각자 권하는 프롬프트 형식은 시험하지 않았다.
 - 서빙 설정은 model-compose와 각 패키지의 기본값이다. Kev는 fp32, 요청은 한 번에 하나, 묶음 처리는 없다. 더 빠른 설정은 시간을 바꾸고 선택도 바꿀 수 있다.
-- model-compose의 Laya 드라이버는 번들을 리비전 없이 받는다. 실제로 쓴 스냅샷은 `arena env`가 기록한다. Nimble 9B v2는 model-compose가 고정한 Nimble 로더로 서빙한다. 선택지가 26개 이하이면 프롬프트는 릴리스의 것과 같고, v2 로더가 더하는 것은 확률 온도뿐이라 선택은 바뀌지 않는다. 그래서 여기의 Nimble 확률은 온도를 적용하지 않은 값이다.
-- 재지 않은 것: 모델별 GPU 메모리, 다른 하드웨어, 다른 문장, 다른 선택지 순서, 이 게임들로 한 파인튜닝, 자유 텍스트를 쓰는 모델.
+- model-compose의 Laya 드라이버는 번들을 리비전 없이 받는다. 번들의 `main`이 2026-10-03부터 `7b928d82`여서, campaign과 직접 대국과 재확인 모두 이 스냅샷을 썼다. Nimble 9B v2는 model-compose가 고정한 Nimble 로더로 서빙한다. 선택지가 26개 이하이면 프롬프트는 릴리스의 것과 같고, v2 로더가 더하는 것은 확률 온도뿐이라 선택은 바뀌지 않는다. 그래서 여기의 Nimble 확률은 온도를 적용하지 않은 값이다.
+- 재지 않은 것: 다른 하드웨어, 다른 문장, 다른 선택지 순서, 이 게임들로 한 파인튜닝, 자유 텍스트를 쓰는 모델.
 
 ## 참고
 
@@ -449,9 +479,9 @@ arena/                   러너: games/, 프로토콜, family 어댑터, 에피�
   games/                 tetris.py snake.py connect4.py(자체 구현), pong.py breakout.py(ALE), 각각 기준 플레이어 포함
 site/                    리더보드, 리플레이 뷰어, Versus 페이지(Vite, React). webui/로 빌드된다
 webui/                   빌드된 사이트와 `arena export`가 만든 webui/data. model-compose가 띄운다
-results/                 에피소드 줄, 점수, latency, bias, 환경 기록(results/README.md 참고)
+results/                 에피소드 줄, 점수, latency, bias, 환경 기록, 재확인(results/README.md 참고)
 docs/                    방법론, suite, 운영, 설계 기록. images/에 이 README의 그림
-scripts/                 serve.sh, setup_runtimes.py, model-compose.rev. 이 보고서용 stats.py와 charts.py
+scripts/                 serve.sh, setup_runtimes.py, model-compose.rev. 이 보고서용 stats.py, charts.py, recheck.py
 tests/                   엔진, 프로토콜, 러너, 채점, golden 질문
 ```
 
@@ -464,7 +494,7 @@ tests/                   엔진, 프로토콜, 러너, 채점, golden 질문
 | 2026-10-08 | dev 시드 파일럿 뒤 suite v0.1 동결 |
 | 2026-10-10 | 모델 10개의 test 결과(에피소드 3,940개), 리더보드와 리플레이 |
 | 2026-10-11 | 모델끼리 둔 Connect Four 직접 대국(suite duel-v0.1, 1,800판)과 Versus 페이지 |
-| 2026-10-18 | 이 README를 보고서 형식으로 다시 쓰고, 그림과 그것을 다시 계산하는 스크립트를 더함 |
+| 2026-10-18 | 이 README를 보고서 형식으로 다시 쓰고, 그림과 그것을 다시 계산하는 스크립트를 더함. 모든 모델에게 시드 1을 다시 물어 110판이 모두 같음을 확인. 메모리 측정 |
 
 ## 라이선스
 
