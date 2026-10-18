@@ -21,6 +21,8 @@ Repository = "https://github.com/MindrLabs/typed-decision-game-arena"
 diag = ["tokenizers>=0.22", "huggingface-hub>=0.35"]
 # Uploading results as a Hugging Face dataset (`arena dataset`).
 publish = ["huggingface-hub>=0.35"]
+# The README's figures (scripts/charts.py).
+report = ["matplotlib>=3.10"]
 
 [project.scripts]
 arena = "arena.cli:main"

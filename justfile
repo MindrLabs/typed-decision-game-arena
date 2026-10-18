@@ -45,6 +45,11 @@ publish seed_set="test":
 dataset seed_set="test":
     uv run --extra publish arena dataset --seed-set {{seed_set}}
 
+# the README's tables and figures, recomputed from results/ (and the replays in webui/data)
+report:
+    uv run python scripts/stats.py
+    uv run --extra report python scripts/charts.py
+
 # direct Connect Four games between every pair of models (resumable; the largest model's pairs last)
 duel seed_set="test":
     uv run arena duel run --seed-set {{seed_set}} --last clef
