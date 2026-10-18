@@ -10,6 +10,7 @@ results/<suite>/
   bias/<player>.json          arena bias
   laya-cuts.json              arena laya-cuts
   environment.json            arena env
+  recheck.json                scripts/recheck.py: seed 1 asked again of every model, and its memory
   scores-<seed set>.json      arena score
 ```
 

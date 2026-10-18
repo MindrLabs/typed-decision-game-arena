@@ -1,0 +1,1305 @@
+{
+ "models": {
+  "clef": {
+   "checked": "2026-10-18T14:57:30+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 1449,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 1449,
+     "score": {
+      "published": 80.0,
+      "rerun": 80.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 1500,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 1500,
+     "score": {
+      "published": -4.0,
+      "rerun": -4.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 11,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 11,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 10,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 10,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 4,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 4,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 39,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 39,
+     "score": {
+      "published": -19.0,
+      "rerun": -19.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 65,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 65,
+     "score": {
+      "published": 6.0,
+      "rerun": 6.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 29,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 29,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 20,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 20,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 86,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 86,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 11,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 11,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 53491,
+   "peak_resident_mib": 46498,
+   "revision": "ed3eed331870db2eff4b0db01237128ede8a00ce",
+   "same_packages": true
+  },
+  "clef-flash": {
+   "checked": "2026-10-18T12:35:50+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 1138,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 1138,
+     "score": {
+      "published": 42.0,
+      "rerun": 42.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 764,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 764,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 143,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 143,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 10,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 10,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 7,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 7,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 28,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 28,
+     "score": {
+      "published": -20.0,
+      "rerun": -20.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 8,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 8,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 12,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 12,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 65,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 65,
+     "score": {
+      "published": 3.0,
+      "rerun": 3.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 230,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 230,
+     "score": {
+      "published": -20.0,
+      "rerun": -20.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 16,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 16,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 18941,
+   "peak_resident_mib": 18860,
+   "revision": "fde727a287004204b7518dcc983fe64379776712",
+   "same_packages": true
+  },
+  "kev-0.8b": {
+   "checked": "2026-10-18T12:17:45+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 202,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 202,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 764,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 764,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 109,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 109,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 10,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 10,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 4,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 4,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 23,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 23,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 30,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 30,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 30,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 30,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 162,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 162,
+     "score": {
+      "published": 4.0,
+      "rerun": 4.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 764,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 764,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 58,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 58,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 3360,
+   "peak_resident_mib": 5452,
+   "revision": "bf75a6a8848ea6960ff2ed108d9ed44c2941174f",
+   "same_packages": true
+  },
+  "kev-4b": {
+   "checked": "2026-10-18T12:50:33+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 200,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 200,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 1468,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 1468,
+     "score": {
+      "published": -20.0,
+      "rerun": -20.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 90,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 90,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 10,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 10,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 13,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 13,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 23,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 23,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 8,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 8,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 12,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 12,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 38,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 38,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 153,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 153,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 35,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 35,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 16984,
+   "peak_resident_mib": 25115,
+   "revision": "6cfce5c2fa4b4bd64026336ab649c5ca78857d52",
+   "same_packages": true
+  },
+  "kev-9b": {
+   "checked": "2026-10-18T13:55:39+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 675,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 675,
+     "score": {
+      "published": 24.0,
+      "rerun": 24.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 1099,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 1099,
+     "score": {
+      "published": -20.0,
+      "rerun": -20.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 89,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 89,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 10,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 10,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 4,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 4,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 26,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 26,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 81,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 81,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 20,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 20,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 23,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 23,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 110,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 110,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 31,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 31,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 31618,
+   "peak_resident_mib": 52066,
+   "revision": "db029f08b290afd9fee4aa4bbcd9ae48602d1eb0",
+   "same_packages": true
+  },
+  "laya-english": {
+   "checked": "2026-10-18T12:08:26+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 200,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 200,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 983,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 983,
+     "score": {
+      "published": -20.0,
+      "rerun": -20.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 18,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 18,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 12,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 12,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 12,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 12,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 42,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 42,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 11,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 11,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 20,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 20,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 205,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 205,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 764,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 764,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 81,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 81,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 2923,
+   "peak_resident_mib": 3462,
+   "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+   "same_packages": true
+  },
+  "laya-multilingual": {
+   "checked": "2026-10-18T12:04:46+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 242,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 242,
+     "score": {
+      "published": 3.0,
+      "rerun": 3.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 764,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 764,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 34,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 34,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 10,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 10,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 12,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 12,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 29,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 29,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 22,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 22,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 18,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 18,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 300,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 300,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 764,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 764,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 244,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 244,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 1859,
+   "peak_resident_mib": 4423,
+   "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+   "same_packages": true
+  },
+  "laya-typed": {
+   "checked": "2026-10-18T12:12:25+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 200,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 200,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 1129,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 1129,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 65,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 65,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 12,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 12,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 4,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 4,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 32,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 32,
+     "score": {
+      "published": -20.0,
+      "rerun": -20.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 17,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 17,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 15,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 15,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 233,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 233,
+     "score": {
+      "published": 3.0,
+      "rerun": 3.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 1007,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 1007,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 527,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 527,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 2843,
+   "peak_resident_mib": 3459,
+   "revision": "7b928d828b7b0e022f929d9bd2e44165aa270148",
+   "same_packages": true
+  },
+  "nimble": {
+   "checked": "2026-10-18T13:30:50+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 543,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 543,
+     "score": {
+      "published": 15.0,
+      "rerun": 15.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 1499,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 1499,
+     "score": {
+      "published": -19.0,
+      "rerun": -19.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 89,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 89,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 10,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 10,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 4,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 4,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 23,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 23,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 160,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 160,
+     "score": {
+      "published": 12.0,
+      "rerun": 12.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 68,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 68,
+     "score": {
+      "published": 19.0,
+      "rerun": 19.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 64,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 64,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 191,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 191,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 38,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 38,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 18750,
+   "peak_resident_mib": 18825,
+   "revision": "bd792f44ec8e265be861bfcdf4e05967ffe0e858",
+   "same_packages": true
+  },
+  "nimble-v2": {
+   "checked": "2026-10-18T13:10:18+00:00",
+   "games": {
+    "frame/breakout": {
+     "decisions": 661,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 661,
+     "score": {
+      "published": 15.0,
+      "rerun": 15.0
+     }
+    },
+    "frame/pong": {
+     "decisions": 1500,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 1500,
+     "score": {
+      "published": -9.0,
+      "rerun": -9.0
+     }
+    },
+    "frame/tetris": {
+     "decisions": 97,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 97,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    },
+    "macro/breakout": {
+     "decisions": 12,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 12,
+     "score": {
+      "published": 2.0,
+      "rerun": 2.0
+     }
+    },
+    "macro/connect4": {
+     "decisions": 7,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 7,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "macro/pong": {
+     "decisions": 31,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 31,
+     "score": {
+      "published": -20.0,
+      "rerun": -20.0
+     }
+    },
+    "macro/snake": {
+     "decisions": 60,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 60,
+     "score": {
+      "published": 4.0,
+      "rerun": 4.0
+     }
+    },
+    "macro/tetris": {
+     "decisions": 25,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 25,
+     "score": {
+      "published": 1.0,
+      "rerun": 1.0
+     }
+    },
+    "realtime/breakout": {
+     "decisions": 93,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 93,
+     "score": {
+      "published": 6.0,
+      "rerun": 6.0
+     }
+    },
+    "realtime/pong": {
+     "decisions": 252,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 252,
+     "score": {
+      "published": -21.0,
+      "rerun": -21.0
+     }
+    },
+    "realtime/tetris": {
+     "decisions": 41,
+     "first_difference": null,
+     "identical": true,
+     "largest_probability_difference": 0.0,
+     "same_before_first_difference": 41,
+     "score": {
+      "published": 0.0,
+      "rerun": 0.0
+     }
+    }
+   },
+   "gpu_memory_mib": 18684,
+   "peak_resident_mib": 18850,
+   "revision": "4b8c04d1ac2cea3e41e5e3c4d2130bcead2c0abe",
+   "same_packages": true
+  }
+ },
+ "seed": 1
+}
