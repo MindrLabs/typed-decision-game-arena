@@ -93,6 +93,22 @@ Steps:
    the Hugging Face dataset `MindrLabs/typed-decision-game-arena` in one commit (a new dataset is private). Then
    commit `results/v0.1/` (episode lines, scores, latency, bias, environment) and `webui/data`.
 
+## Asking the models again
+
+`scripts/recheck.py` plays seed 1 of every board and game once more with every model, into a scratch directory, and
+compares each decision with the published log: the question, the order each request showed, every pick and every
+probability. It also records each runtime's GPU memory and peak resident memory. With the model server running:
+
+```bash
+uv run python scripts/recheck.py --out /tmp/recheck \
+  --models laya-multilingual,laya-english,laya-typed,kev-0.8b,clef-flash,kev-4b,nimble-v2,nimble,kev-9b
+systemctl --user restart arena-serve       # Clef last, on a freshly started server
+uv run python scripts/recheck.py --out /tmp/recheck --models clef
+```
+
+It waits before each model until no model holds the GPU, so every model starts alone. The summary is merged into
+`results/v0.1/recheck.json`; on 2026-10-18 all 110 games came out the same, every probability to the last digit.
+
 ## Direct games
 
 The duel suite has its own lock (`suites/duel-v0.1.lock.json`, which also locks `arena/duel.py`). A pair needs both

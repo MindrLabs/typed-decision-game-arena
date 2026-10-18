@@ -160,7 +160,9 @@ probabilities and latency, and a snapshot of the position. `arena verify` replay
 seed and logged choices and requires every state text, option list and snapshot, and the final score, to match
 byte for byte. `tests/golden/` pins the first question of every board and game, so any change to what models read
 shows up as a diff. `arena env` records the GPU and driver, the model-compose revision, this repository's commit
-and the full package list of every model runtime.
+and the full package list of every model runtime. `scripts/recheck.py` asks the models again: it plays seed 1 of
+every board and game through the model server and compares every question, request order, pick and probability
+with the published log.
 
 ## Versus
 
@@ -194,7 +196,8 @@ counted. `arena duel verify` replays every game from its log.
 - Models answer one decision at a time and remember nothing between decisions except what the state says.
 - Latency, and therefore the real-time board, is measured on one machine (an NVIDIA DGX Spark, GB10).
 - model-compose's Laya driver loads the bundle repository without a revision, so Laya players are not pinned to
-  a commit; the HF snapshot used is visible in `arena env`.
+  a commit. The bundle's `main` has been `7b928d82` since 2026-10-03, before the test campaign, and
+  `scripts/recheck.py` records the snapshot it loaded in `results/v0.1/recheck.json`.
 - Nimble 9B v2 is served by the Nimble loader that model-compose pins. For at most 26 choices its prompts are the
   release's own (A-Z codes); the released v2 loader only adds a probability temperature, which does not change
   which option comes first. Probabilities reported for Nimble are therefore unscaled.
