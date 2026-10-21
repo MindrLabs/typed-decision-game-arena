@@ -177,7 +177,7 @@ clef의 파일럿은 건너뛰었습니다. 앞의 결과로 천장 효과는 �
 ## 8. test campaign (2026-10-08 ~ 10-10)
 
 **실행.** 동결된 커밋의 worktree에서 `arena campaign --seed-set test`를 systemd 서비스로 돌렸습니다. 도중에 고친
-campaign 코드(c773aac, b225a18)로 worktree를 옮겼지만 lock에 묶인 파일은 바뀌지 않았으므로 lock은 그대로입니다.
+campaign 코드(dfae0a6, 8c1890b)로 worktree를 옮겼지만 lock에 묶인 파일은 바뀌지 않았으므로 lock은 그대로입니다.
 - **기간과 규모.** 첫 에피소드는 10-08 09:48 UTC, 마지막은 10-10 22:38 UTC에 시작했습니다. 사용자 요청으로 두 번
   멈췄습니다. 에피소드는 3,940개(모델 10개 × 340, 앵커 2개 × 270)이고, 모델 요청은 587,687번, 모델 에피소드
   시간은 합계 40.2시간입니다.
@@ -187,7 +187,7 @@ campaign 코드(c773aac, b225a18)로 worktree를 옮겼지만 lock에 묶인 파
 - **검증.** `arena verify`로 3,940개 에피소드를 모두 replay했고 불일치는 0입니다. `arena score`가 test 시드의
   lock과 실시간 보드의 지연(k)을 latency 파일과 대조했고 모두 통과했습니다.
 - **latency 측정 환경.** laya-multilingual을 뺀 모든 측정은 GPU 사용률 0%에서 시작했습니다. laya-multilingual은 사용률 기록을 더하기
-  전 코드(bd0b643)로 측정해서 `gpu_utilization_at_start`가 없습니다. clef 측정 때는 다른 사용자의 프로세스가
+  전 코드(19ad90b)로 측정해서 `gpu_utilization_at_start`가 없습니다. clef 측정 때는 다른 사용자의 프로세스가
   1.3 GB를 잡고 있었지만 계산은 하지 않았습니다(사용률 0%).
 - **환경 기록.** `arena env`는 fac72d2에서 기록했습니다. 이 커밋은 b225a18과 달리 결과 파일을 dirty로 세지 않는
   수정만 담았습니다(`arena/environment.py`와 테스트). 그 전에는 커밋되지 않은 results/ 때문에 늘 dirty로 찍혔습니다.

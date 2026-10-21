@@ -399,13 +399,13 @@ Table 10: Changes after the freezes
 
 | What changed | When (UTC) | Why | Effect on results |
 |---|---|---|---|
-| The campaign waits for a GPU that computes nothing, rather than an empty one, before measuring latency (`c773aac`) | 2026-10-08 10:42, during the campaign | Unloaded runtimes keep about 400 MiB of CUDA context each, so the GPU was never empty | None on scores |
-| Models already finished skip their first smoke question (`b225a18`) | 2026-10-08 10:43 | Time | None |
+| The campaign waits for a GPU that computes nothing, rather than an empty one, before measuring latency (`dfae0a6`) | 2026-10-08 10:42, during the campaign | Unloaded runtimes keep about 400 MiB of CUDA context each, so the GPU was never empty | None on scores |
+| Models already finished skip their first smoke question (`8c1890b`) | 2026-10-08 10:43 | Time | None |
 | The model server restarted once after the machine ran out of memory (another job's container). One episode, Laya multilingual on macro Breakout, seed 16, was refused a connection and ran again from the start | 2026-10-08 09:51 | | None: an episode depends only on its seed and the model's answers, and it replays |
 | Laya multilingual's latency was measured with the code of the freeze, before GPU utilisation was recorded | 2026-10-08 10:02 | It ran first | Its latency file has no utilisation field. Every other measurement started at 0% utilisation |
 | Clef's latency was measured while another user's process held 1.3 GB of GPU memory without computing | 2026-10-10 22:07 | Shared machine | Utilisation was 0% |
-| The environment record counts only code changes as a dirty checkout (`fac72d2`) | 2026-10-10 22:47, after the runs | Uncommitted results marked every record dirty | None; `environment.json` was recorded at `fac72d2` |
-| Direct games: the pair loading and memory waits changed four times after the duel freeze (`201f80b`, `8ade9c3`, `ea2ca0c`, `47e513d`); `arena/duel.py`, under the duel lock, did not | 2026-10-11 08:25-09:00 | Loading Clef's 52 GB timed out and overlapped | None: the lock matches |
+| The environment record counts only code changes as a dirty checkout (`cfef0f8`) | 2026-10-10 22:47, after the runs | Uncommitted results marked every record dirty | None; `environment.json` was recorded at `cfef0f8` |
+| Direct games: the pair loading and memory waits changed four times after the duel freeze (`7e361f2`, `1661819`, `17a47d8`, `08971d3`); `arena/duel.py`, under the duel lock, did not | 2026-10-11 08:25-09:00 | Loading Clef's 52 GB timed out and overlapped | None: the lock matches |
 | The first attempt at Clef's pairs ran out of memory 17 minutes into loading; the server restarted and the same command resumed, keeping the finished games | 2026-10-11 | Runtimes of earlier models held memory | None |
 
 ### Asking the models again
